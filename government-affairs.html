@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>政务服务 - 企税康协同工作平台</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="./assets/responsive.css">
+  <link rel="stylesheet" href="./assets/design-system.css">
+
+  <style>
+    body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
+    .gov-tab { border-bottom: 2px solid transparent; padding-bottom: 0.5rem; margin-bottom: -1px; color: #64748b; }
+    .gov-tab:hover { color: #334155; }
+    .gov-tab-active { border-bottom-color: #2563eb; color: #2563eb; font-weight: 600; }
+    #modal-new-order:not(.hidden), #modal-dispatch:not(.hidden), #modal-progress:not(.hidden) { display: flex; }
+  </style>
+</head>
+<body class="bg-[#f5f7fa] text-slate-700">
+  <div id="sidebar-backdrop" class="fixed inset-0 z-[150] bg-slate-900/40 hidden lg:hidden"></div>
+  <div class="min-h-screen w-full flex flex-col lg:flex-row relative">
+    <aside id="app-sidebar" class="w-64 max-w-[min(18rem,88vw)] bg-slate-900 text-slate-200 flex flex-col shrink-0 fixed lg:static inset-y-0 left-0 z-[160] h-screen lg:h-auto -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-out overflow-y-auto lg:overflow-visible shadow-xl lg:shadow-none">
+      <div class="h-16 px-3 flex items-center border-b border-slate-800">
+        <div class="w-full rounded-lg bg-white px-2 py-1.5 flex items-center justify-center">
+          <img src="./assets/qishuikang-logo.png" alt="企税康Logo" class="h-8 w-full max-h-8 object-contain object-center mix-blend-multiply">
+        </div>
+      </div>
+      <nav class="flex-1 py-4 text-sm overflow-y-auto">
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="index.html"><i class="fa-solid fa-table-columns w-5 mr-2"></i>工作台</a>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-building-user w-5 mr-2"></i>客户中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-management.html">客户管理</a>
+            
+            
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-target.html">销售目标</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">销售业绩</a>
+            
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-file-signature w-5 mr-2"></i>合同订单</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="contract-management.html">合同管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="order-management.html">订单管理</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group" open>
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg bg-slate-800/80 flex items-center justify-between text-white [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>交付中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="government-affairs.html">政务服务</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="accounting-customer-management.html">代账客户</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="address-management.html">地址管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-items.html">客户物品</a>
+          </div>
+        </details>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-wallet w-5 mr-2"></i>运营管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="payment-request.html">财务申请</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="hr-request.html">人事申请</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="financial-reports.html">财务报表</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="salary-management.html">薪资管理</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-gear w-5 mr-2"></i>系统管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="role-permissions.html">角色权限</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="department-employees.html">部门员工</a>
+
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="dictionary-management.html">字典管理</a>
+          </div>
+        </details>
+      </nav>
+    </aside>
+
+    <main class="flex-1 flex flex-col min-w-0 w-full">
+      <header class="h-16 bg-white border-b border-slate-200 px-4 sm:px-6 gap-2 flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-2 min-w-0 flex-1">
+        <button type="button" id="btn-sidebar-toggle" class="lg:hidden shrink-0 w-10 h-10 rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 flex items-center justify-center" aria-expanded="false" aria-controls="app-sidebar" aria-label="打开导航菜单"><i class="fa-solid fa-bars text-lg"></i></button>
+        <div class="text-sm text-slate-500 min-w-0 truncate">交付中心 / <span class="text-slate-700 font-medium">政务服务</span></div>
+        </div>
+        <div class="flex items-center gap-3 shrink-0">
+          <button type="button" class="w-9 h-9 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200"><i class="fa-regular fa-bell"></i></button>
+          <div class="flex items-center">
+            <img class="w-9 h-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=80&q=80" alt="用户头像">
+            <div class="ml-2">
+              <p class="text-sm font-medium text-slate-700">朱总</p>
+              <p class="text-xs text-slate-400">企业端</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="p-4 sm:p-6">
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <div class="mb-4 text-lg font-semibold text-slate-800">政务服务</div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-3 gap-y-4 items-end mb-5">
+            <label class="text-xs text-slate-500">企业名称
+              <input type="text" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm" placeholder="请输入">
+            </label>
+            <label class="text-xs text-slate-500">业务类型
+              <select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm bg-white text-slate-600">
+                <option value="">请选择</option>
+                <option>解除地址异常</option>
+                <option>解地址异常</option>
+                <option>工商变更</option>
+              </select>
+            </label>
+            <label class="text-xs text-slate-500">所属区域
+              <select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm bg-white text-slate-600">
+                <option value="">请选择</option>
+                <option>苏州市姑苏区</option>
+                <option>苏州工业园区</option>
+                <option>苏州吴中区</option>
+                <option>苏州昆山市</option>
+              </select>
+            </label>
+            <label class="text-xs text-slate-500">销售员
+              <select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm bg-white text-slate-600">
+                <option value="">请选择</option>
+                <option>周芳林</option>
+                <option>周方林</option>
+                <option>陈莉</option>
+              </select>
+            </label>
+            <label class="text-xs text-slate-500">所属部门
+              <select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm bg-white text-slate-600">
+                <option value="">请选择</option>
+                <option>网销一组</option>
+                <option>网销二组</option>
+                <option>政务服务部</option>
+              </select>
+            </label>
+            <label class="text-xs text-slate-500">线上申报员
+              <select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm bg-white text-slate-600">
+                <option value="">请选择</option>
+                <option>周芳林</option>
+                <option>许月</option>
+              </select>
+            </label>
+            <label class="text-xs text-slate-500">线下提报员
+              <select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm bg-white text-slate-600">
+                <option value="">请选择</option>
+                <option>许月</option>
+                <option>许悦</option>
+              </select>
+            </label>
+            <div class="sm:col-span-2 lg:col-span-3 xl:col-span-5 flex flex-wrap items-end gap-3">
+              <div class="text-xs text-slate-500 shrink-0">
+                创建时间
+                <div class="mt-1 flex items-center gap-1.5">
+                  <input type="text" value="2023-03-21" class="h-9 w-32 px-3 rounded border border-slate-200 text-sm">
+                  <span class="text-slate-400 shrink-0">-</span>
+                  <input type="text" value="2024-03-21" class="h-9 w-32 px-3 rounded border border-slate-200 text-sm">
+                </div>
+              </div>
+              <div class="flex flex-wrap items-center gap-2 shrink-0">
+                <button type="button" class="h-9 px-5 rounded bg-blue-600 text-white text-sm hover:bg-blue-700">确定</button>
+                <button type="button" class="h-9 px-5 rounded border border-blue-600 bg-white text-blue-600 text-sm hover:bg-blue-50">重置</button>
+                <button type="button" id="btn-open-new-order" class="h-9 px-4 rounded-md bg-blue-600 hover:bg-blue-700 cursor-pointer text-white text-sm hover:bg-blue-700">新增政务工单</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-6 text-sm mb-4 border-b border-slate-200" id="gov-tabs">
+            <button type="button" data-filter="all" class="gov-tab">全部</button>
+            <button type="button" data-filter="doing" class="gov-tab gov-tab-active">办理中</button>
+            <button type="button" data-filter="done" class="gov-tab">已完成</button>
+          </div>
+
+          <div class="overflow-x-auto rounded-lg border border-slate-200">
+            <table class="w-full min-w-[1400px] text-sm">
+              <thead class="bg-slate-50 text-slate-600">
+                <tr>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">企业名称</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">业务类型</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">所属区域</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">销售员</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">所属部门</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">线上申报员</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">线下提报员</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">客户资料</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">接收资料时间</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">已办理天数</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">派单时间</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">完成日期</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">查看详情</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">操作</th>
+                </tr>
+              </thead>
+              <tbody class="text-slate-700" id="gov-table-body">
+                <tr class="hover:bg-slate-50 gov-row" data-status="doing"
+                    data-id="gov-1"
+                    data-company="苏州美药科技有限公司"
+                    data-service="解地址异常"
+                    data-region="苏州工业园区"
+                    data-sales="周芳林"
+                    data-dept="网销一组"
+                    data-online="周芳林"
+                    data-offline="许月"
+                    data-material="未交接"
+                    data-start="2026-04-10"
+                    data-end="">
+                  <td class="px-3 py-3 border-b border-slate-100">苏州美药科技有限公司</td>
+                  <td class="px-3 py-3 border-b border-slate-100">解地址异常</td>
+                  <td class="px-3 py-3 border-b border-slate-100">苏州工业园区</td>
+                  <td class="px-3 py-3 border-b border-slate-100">周芳林</td>
+                  <td class="px-3 py-3 border-b border-slate-100">网销一组</td>
+                  <td class="px-3 py-3 border-b border-slate-100">周芳林</td>
+                  <td class="px-3 py-3 border-b border-slate-100">许月</td>
+                  <td class="px-3 py-3 border-b border-slate-100">未交接</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
+                  <td class="px-3 py-3 border-b border-slate-100">7天</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
+                  <td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="government-affairs-detail.html?id=gov-1">查看详情</a></td>
+                  <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="text-blue-600 hover:underline js-dispatch">派单</button></td>
+                </tr>
+                <tr class="hover:bg-slate-50 gov-row" data-status="doing"
+                    data-id="gov-2"
+                    data-company="苏州维尔因科技有限公司"
+                    data-service="解除地址异常"
+                    data-region="苏州吴中区"
+                    data-sales="周芳林"
+                    data-dept="网销一组"
+                    data-online="周芳林"
+                    data-offline="许月"
+                    data-material="部分交接"
+                    data-start="2026-04-14"
+                    data-end="2026-04-20">
+                  <td class="px-3 py-3 border-b border-slate-100">苏州维尔因科技有限公司</td>
+                  <td class="px-3 py-3 border-b border-slate-100">解除地址异常</td>
+                  <td class="px-3 py-3 border-b border-slate-100">苏州吴中区</td>
+                  <td class="px-3 py-3 border-b border-slate-100">周芳林</td>
+                  <td class="px-3 py-3 border-b border-slate-100">网销一组</td>
+                  <td class="px-3 py-3 border-b border-slate-100">周芳林</td>
+                  <td class="px-3 py-3 border-b border-slate-100">许月</td>
+                  <td class="px-3 py-3 border-b border-slate-100">部分交接</td>
+                  <td class="px-3 py-3 border-b border-slate-100">2026-04-10 17:23</td>
+                  <td class="px-3 py-3 border-b border-slate-100">5天</td>
+                  <td class="px-3 py-3 border-b border-slate-100">2026-03-21 16:03</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
+                  <td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="government-affairs-detail.html?id=gov-2">查看详情</a></td>
+                  <td class="px-3 py-3 border-b border-slate-100 space-x-2 whitespace-nowrap"><button type="button" class="text-blue-600 hover:underline js-progress">添加进度</button><button type="button" class="text-blue-600 hover:underline js-transfer">移交</button></td>
+                </tr>
+                <tr class="hover:bg-slate-50 gov-row" data-status="doing"
+                    data-id="gov-3"
+                    data-company="苏州美的信息科技有限公司"
+                    data-service="解除地址异常"
+                    data-region="苏州昆山市"
+                    data-sales="陈莉"
+                    data-dept="网销二组"
+                    data-online="周芳林"
+                    data-offline="许月"
+                    data-material="未交接"
+                    data-start="2026-04-14"
+                    data-end="2026-04-14">
+                  <td class="px-3 py-3 border-b border-slate-100">苏州美的信息科技有限公司</td>
+                  <td class="px-3 py-3 border-b border-slate-100">解除地址异常</td>
+                  <td class="px-3 py-3 border-b border-slate-100">苏州昆山市</td>
+                  <td class="px-3 py-3 border-b border-slate-100">陈莉</td>
+                  <td class="px-3 py-3 border-b border-slate-100">网销二组</td>
+                  <td class="px-3 py-3 border-b border-slate-100">周芳林</td>
+                  <td class="px-3 py-3 border-b border-slate-100">许月</td>
+                  <td class="px-3 py-3 border-b border-slate-100">未交接</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
+                  <td class="px-3 py-3 border-b border-slate-100">3天</td>
+                  <td class="px-3 py-3 border-b border-slate-100">2026-03-20 10:15</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
+                  <td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="government-affairs-detail.html?id=gov-3">查看详情</a></td>
+                  <td class="px-3 py-3 border-b border-slate-100 space-x-2 whitespace-nowrap"><button type="button" class="text-blue-600 hover:underline js-progress">添加进度</button><button type="button" class="text-blue-600 hover:underline js-transfer">移交</button></td>
+                </tr>
+                <tr class="hover:bg-slate-50 gov-row hidden" data-status="done"
+                    data-id="gov-4"
+                    data-company="昆山示例贸易有限公司"
+                    data-service="工商变更"
+                    data-region="苏州昆山市"
+                    data-sales="周芳林"
+                    data-dept="网销一组"
+                    data-online="周芳林"
+                    data-offline="许月"
+                    data-material="已交接"
+                    data-start="2026-03-01"
+                    data-end="2026-03-28">
+                  <td class="px-3 py-3 border-b border-slate-100">昆山示例贸易有限公司</td>
+                  <td class="px-3 py-3 border-b border-slate-100">工商变更</td>
+                  <td class="px-3 py-3 border-b border-slate-100">苏州昆山市</td>
+                  <td class="px-3 py-3 border-b border-slate-100">周芳林</td>
+                  <td class="px-3 py-3 border-b border-slate-100">网销一组</td>
+                  <td class="px-3 py-3 border-b border-slate-100">周芳林</td>
+                  <td class="px-3 py-3 border-b border-slate-100">许月</td>
+                  <td class="px-3 py-3 border-b border-slate-100">已交接</td>
+                  <td class="px-3 py-3 border-b border-slate-100">2026-03-05 14:00</td>
+                  <td class="px-3 py-3 border-b border-slate-100">28天</td>
+                  <td class="px-3 py-3 border-b border-slate-100">2026-03-01 09:00</td>
+                  <td class="px-3 py-3 border-b border-slate-100">2026-03-28</td>
+                  <td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="government-affairs-detail.html?id=gov-4">查看详情</a></td>
+                  <td class="px-3 py-3 border-b border-slate-100 space-x-2 whitespace-nowrap"><button type="button" class="text-blue-600 hover:underline js-progress">添加进度</button><button type="button" class="text-blue-600 hover:underline js-transfer">移交</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="mt-4 flex justify-end items-center gap-2 text-sm text-slate-600">
+            <button type="button" class="h-8 w-8 rounded border border-slate-200 bg-white hover:bg-slate-50"><i class="fa-solid fa-angle-left"></i></button>
+            <button type="button" class="h-8 min-w-8 px-2 rounded bg-blue-600 text-white">1</button>
+            <button type="button" class="h-8 min-w-8 px-2 rounded border border-slate-200 bg-white hover:bg-slate-50">2</button>
+            <button type="button" class="h-8 min-w-8 px-2 rounded border border-slate-200 bg-white hover:bg-slate-50">3</button>
+            <span class="px-1">...</span>
+            <button type="button" class="h-8 min-w-8 px-2 rounded border border-slate-200 bg-white hover:bg-slate-50">7</button>
+            <button type="button" class="h-8 w-8 rounded border border-slate-200 bg-white hover:bg-slate-50"><i class="fa-solid fa-angle-right"></i></button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- 新增工单 -->
+  <div id="modal-new-order" class="fixed inset-0 z-[130] hidden items-center justify-center bg-slate-900/45 p-4">
+    <div class="absolute inset-0" data-close-new></div>
+    <div class="relative w-full max-w-lg rounded-xl border border-slate-200 bg-white shadow-xl">
+      <div class="relative border-b border-slate-200 px-5 py-4">
+        <h3 class="text-center text-base font-semibold text-slate-800">新增工单</h3>
+        <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600" data-close-new><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <div class="px-6 py-5 space-y-4 text-sm">
+        <div class="grid grid-cols-[100px_1fr] items-center gap-3">
+          <label class="text-right text-slate-600">企业名称 <span class="text-red-500">*</span></label>
+          <input type="text" class="h-9 rounded border border-slate-200 px-3" value="苏州维尔因科技有限公司">
+        </div>
+        <div class="grid grid-cols-[100px_1fr] items-center gap-3">
+          <label class="text-right text-slate-600">关联合同 <span class="text-red-500">*</span></label>
+          <select class="h-9 rounded border border-slate-200 px-3 bg-white text-slate-700">
+            <option>20260415002</option>
+            <option>20260404001</option>
+            <option>20260301001</option>
+          </select>
+        </div>
+        <div class="grid grid-cols-[100px_1fr] items-center gap-3">
+          <label class="text-right text-slate-600">业务类型 <span class="text-red-500">*</span></label>
+          <select class="h-9 rounded border border-slate-200 px-3 bg-white text-slate-700">
+            <option>解除地址异常</option>
+            <option>解地址异常</option>
+            <option>工商变更</option>
+          </select>
+        </div>
+        <div class="grid grid-cols-[100px_1fr] items-center gap-3">
+          <label class="text-right text-slate-600">开始日期 <span class="text-red-500">*</span></label>
+          <div class="relative">
+            <i class="fa-regular fa-calendar absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm pointer-events-none"></i>
+            <input type="text" class="h-9 w-full rounded-md border border-slate-200 pl-9 pr-3" value="2026-04-16">
+          </div>
+        </div>
+        <div class="grid grid-cols-[100px_1fr] items-center gap-3">
+          <label class="text-right text-slate-600">结束日期</label>
+          <select class="h-9 w-full rounded-md border border-slate-200 px-3 bg-white text-slate-700">
+            <option value="">请选择</option>
+            <option>2026-04-30</option>
+            <option>2026-05-31</option>
+          </select>
+        </div>
+        <div class="grid grid-cols-[100px_1fr] items-center gap-3">
+          <label class="text-right text-slate-600">线上申报员 <span class="text-red-500">*</span></label>
+          <select class="h-9 rounded border border-slate-200 px-3 bg-white">
+            <option>周芳林</option>
+            <option>许月</option>
+          </select>
+        </div>
+        <div class="grid grid-cols-[100px_1fr] items-center gap-3">
+          <label class="text-right text-slate-600">线下提报员 <span class="text-red-500">*</span></label>
+          <select class="h-9 rounded border border-slate-200 px-3 bg-white">
+            <option>许月</option>
+            <option>许悦</option>
+          </select>
+        </div>
+        <div class="grid grid-cols-[100px_1fr] items-center gap-3">
+          <label class="text-right text-slate-600">销售员 <span class="text-red-500">*</span></label>
+          <select class="h-9 rounded border border-slate-200 px-3 bg-white">
+            <option>周芳林</option>
+            <option>陈莉</option>
+          </select>
+        </div>
+        <div class="grid grid-cols-[100px_1fr] items-center gap-3">
+          <label class="text-right text-slate-600">所属部门 <span class="text-red-500">*</span></label>
+          <select class="h-9 rounded border border-slate-200 px-3 bg-white">
+            <option>网销一组</option>
+            <option>网销二组</option>
+            <option>政务服务部</option>
+          </select>
+        </div>
+        <div class="grid grid-cols-[100px_1fr] items-center gap-3">
+          <label class="text-right text-slate-600">客户资料 <span class="text-red-500">*</span></label>
+          <select class="h-9 rounded border border-slate-200 px-3 bg-white">
+            <option>未交接</option>
+            <option>部分交接</option>
+            <option>已交接</option>
+          </select>
+        </div>
+      </div>
+      <div class="flex justify-center gap-3 border-t border-slate-100 px-5 py-4">
+        <button type="button" id="btn-confirm-new-order" class="h-9 min-w-[90px] rounded-md bg-blue-600 text-white hover:bg-blue-700">确认</button>
+        <button type="button" class="h-9 min-w-[90px] rounded-md border border-slate-300 bg-white text-slate-600 hover:bg-slate-50" data-close-new>取消</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 工商派单 -->
+  <div id="modal-dispatch" class="fixed inset-0 z-[130] hidden items-center justify-center bg-slate-900/45 p-4">
+    <div class="absolute inset-0" data-close-dispatch></div>
+    <div class="relative w-full max-w-xl rounded-xl border border-slate-200 bg-white shadow-xl">
+      <div class="relative border-b border-slate-200 px-5 py-4">
+        <h3 class="text-center text-base font-semibold text-slate-800">工商派单</h3>
+        <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600" data-close-dispatch><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <div class="px-6 py-5 space-y-4 text-sm">
+        <div class="grid grid-cols-2 gap-x-6 gap-y-4">
+          <div><p class="text-xs text-slate-500 mb-1">企业名称</p><p id="dispatch-company" class="text-slate-800">—</p></div>
+          <div><p class="text-xs text-slate-500 mb-1">业务类型</p><p id="dispatch-service" class="text-slate-800">—</p></div>
+          <div>
+            <label class="text-xs text-slate-500 mb-1 block">客户资料</label>
+            <select id="dispatch-material" class="h-9 w-full rounded-md border border-slate-200 px-3 bg-white text-sm">
+              <option>未交接</option>
+              <option>部分交接</option>
+              <option>已交接</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs text-slate-500 mb-1 block">开始日期</label>
+            <select id="dispatch-start" class="h-9 w-full rounded-md border border-slate-200 px-3 bg-white text-sm">
+              <option>2026-04-10</option>
+              <option>2026-04-14</option>
+              <option>2026-03-01</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs text-slate-500 mb-1 block">结束日期</label>
+            <select id="dispatch-end" class="h-9 w-full rounded-md border border-slate-200 px-3 bg-white text-sm">
+              <option value="">请选择</option>
+              <option>2026-04-20</option>
+              <option>2026-03-28</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs text-slate-500 mb-1 block">线上申报员 <span class="text-red-500">*</span></label>
+            <select id="dispatch-online" class="h-9 w-full rounded-md border border-slate-200 px-3 bg-white text-sm">
+              <option>周芳林</option>
+              <option>许月</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs text-slate-500 mb-1 block">线下提报员 <span class="text-red-500">*</span></label>
+            <select id="dispatch-offline" class="h-9 w-full rounded-md border border-slate-200 px-3 bg-white text-sm">
+              <option>许月</option>
+              <option>许悦</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-center gap-3 border-t border-slate-100 px-5 py-4">
+        <button type="button" class="h-9 min-w-[90px] rounded-md bg-blue-600 text-white hover:bg-blue-700" data-close-dispatch>确认</button>
+        <button type="button" class="h-9 min-w-[90px] rounded-md border border-slate-300 bg-white text-slate-600 hover:bg-slate-50" data-close-dispatch>取消</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 办理进度 -->
+  <div id="modal-progress" class="fixed inset-0 z-[130] hidden items-center justify-center bg-slate-900/45 p-4">
+    <div class="absolute inset-0" data-close-progress></div>
+    <div class="relative w-full max-w-lg rounded-xl border border-slate-200 bg-white shadow-xl">
+      <div class="relative border-b border-slate-200 px-5 py-4">
+        <h3 class="text-center text-base font-semibold text-slate-800">办理进度</h3>
+        <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600" data-close-progress><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <div class="px-6 py-5 space-y-4 text-sm">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-slate-600 mb-2">进度节点 <span class="text-red-500">*</span></label>
+            <select class="h-9 w-full rounded-md border border-slate-200 px-3 bg-white">
+              <option>提交资料</option>
+              <option>确认资料</option>
+              <option>收集材料</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-slate-600 mb-2">处理状态 <span class="text-red-500">*</span></label>
+            <select class="h-9 w-full rounded-md border border-slate-200 px-3 bg-white">
+              <option>已完成</option>
+              <option>待提交</option>
+              <option>办理中</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label class="block text-slate-600 mb-2">完成说明</label>
+          <textarea class="w-full h-24 rounded border border-slate-200 px-3 py-2 resize-none" placeholder="添加完成说明"></textarea>
+        </div>
+      </div>
+      <div class="flex justify-center gap-3 border-t border-slate-100 px-5 py-4">
+        <button type="button" class="h-9 min-w-[90px] rounded-md bg-blue-600 text-white hover:bg-blue-700" data-close-progress>确认</button>
+        <button type="button" class="h-9 min-w-[90px] rounded-md border border-slate-300 bg-white text-slate-600 hover:bg-slate-50" data-close-progress>取消</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="gov-toast" class="fixed top-6 left-1/2 -translate-x-1/2 z-[140] hidden rounded bg-slate-800 px-5 py-2 text-sm text-white shadow-lg">创建成功</div>
+
+  <script>
+    (function () {
+      var modalNew = document.getElementById('modal-new-order');
+      var modalDispatch = document.getElementById('modal-dispatch');
+      var modalProgress = document.getElementById('modal-progress');
+      var toast = document.getElementById('gov-toast');
+      var toastTimer;
+
+      function showToast(msg) {
+        toast.textContent = msg || '创建成功';
+        toast.classList.remove('hidden');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () { toast.classList.add('hidden'); }, 2200);
+      }
+
+      document.getElementById('btn-open-new-order').addEventListener('click', function () {
+        modalNew.classList.remove('hidden');
+        modalNew.classList.add('flex');
+      });
+      modalNew.querySelectorAll('[data-close-new]').forEach(function (el) {
+        el.addEventListener('click', function () {
+          modalNew.classList.add('hidden');
+          modalNew.classList.remove('flex');
+        });
+      });
+      document.getElementById('btn-confirm-new-order').addEventListener('click', function () {
+        modalNew.classList.add('hidden');
+        modalNew.classList.remove('flex');
+        showToast('创建成功');
+      });
+
+      function openDispatch(row) {
+        document.getElementById('dispatch-company').textContent = row.dataset.company || '—';
+        document.getElementById('dispatch-service').textContent = row.dataset.service || '—';
+        var materialSel = document.getElementById('dispatch-material');
+        var mat = row.dataset.material || '未交接';
+        if (materialSel) materialSel.value = mat;
+        var startSel = document.getElementById('dispatch-start');
+        if (startSel && row.dataset.start) startSel.value = row.dataset.start;
+        var endSel = document.getElementById('dispatch-end');
+        if (endSel) endSel.value = row.dataset.end || '';
+        var onlineSel = document.getElementById('dispatch-online');
+        if (onlineSel && row.dataset.online) onlineSel.value = row.dataset.online;
+        var offlineSel = document.getElementById('dispatch-offline');
+        if (offlineSel && row.dataset.offline) offlineSel.value = row.dataset.offline;
+        modalDispatch.classList.remove('hidden');
+        modalDispatch.classList.add('flex');
+      }
+
+      document.querySelectorAll('.js-dispatch').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          openDispatch(btn.closest('tr'));
+        });
+      });
+
+      modalDispatch.querySelectorAll('[data-close-dispatch]').forEach(function (el) {
+        el.addEventListener('click', function () {
+          modalDispatch.classList.add('hidden');
+          modalDispatch.classList.remove('flex');
+        });
+      });
+
+      document.querySelectorAll('.js-progress').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          modalProgress.classList.remove('hidden');
+          modalProgress.classList.add('flex');
+        });
+      });
+      document.querySelectorAll('.js-transfer').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          showToast('移交成功');
+        });
+      });
+      modalProgress.querySelectorAll('[data-close-progress]').forEach(function (el) {
+        el.addEventListener('click', function () {
+          modalProgress.classList.add('hidden');
+          modalProgress.classList.remove('flex');
+        });
+      });
+
+      var tabs = document.querySelectorAll('#gov-tabs [data-filter]');
+      var rows = document.querySelectorAll('.gov-row');
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          var f = tab.getAttribute('data-filter');
+          tabs.forEach(function (t) {
+            t.classList.toggle('gov-tab-active', t === tab);
+          });
+          rows.forEach(function (row) {
+            var st = row.getAttribute('data-status');
+            if (f === 'all') row.classList.remove('hidden');
+            else row.classList.toggle('hidden', st !== f);
+          });
+        });
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape') return;
+        modalNew.classList.add('hidden'); modalNew.classList.remove('flex');
+        modalDispatch.classList.add('hidden'); modalDispatch.classList.remove('flex');
+        modalProgress.classList.add('hidden'); modalProgress.classList.remove('flex');
+      });
+    })();
+  </script>
+  <script src="./assets/app-shell.js"></script>
+</body>
+</html>

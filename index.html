@@ -1,38 +1,62 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>企税- 协同工作平台</title>
+  <title>工作台 - 企税康协同工作平台</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="./assets/responsive.css">
   <style>
     body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
+    .sec-title { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9375rem; font-weight: 600; color: #1e293b; margin-bottom: 1rem; }
+    .sec-title::before { content: ''; width: 3px; height: 14px; border-radius: 2px; background: #2563eb; flex-shrink: 0; }
+    .dash-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 0.75rem; box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05); }
+    .stat-tile { background: #f8fafc; border: 1px solid #f1f5f9; border-radius: 0.5rem; padding: 0.75rem; }
+    .quick-entry { border: 1px solid #e2e8f0; border-radius: 0.5rem; padding: 0.75rem; background: #fff; transition: border-color 0.15s, background-color 0.15s, box-shadow 0.15s; cursor: pointer; text-align: left; width: 100%; }
+    .quick-entry:hover { border-color: #93c5fd; background: #eff6ff; box-shadow: 0 1px 2px rgba(37, 99, 235, 0.08); }
+    .brief-item { border: 1px solid #e2e8f0; border-radius: 0.5rem; padding: 1rem; background: #fff; box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04); }
+    .filter-btn { height: 2.25rem; padding: 0 0.75rem; border-radius: 0.375rem; border: 1px solid #e2e8f0; background: #fff; font-size: 0.875rem; color: #475569; transition: background-color 0.15s, border-color 0.15s; cursor: pointer; display: inline-flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+    .filter-btn:hover { background: #f8fafc; border-color: #cbd5e1; }
+    .dash-tab { padding-bottom: 0.625rem; border-bottom: 2px solid transparent; color: #64748b; font-size: 0.875rem; transition: color 0.15s, border-color 0.15s; cursor: pointer; }
+    .dash-tab:hover { color: #334155; }
+    .dash-tab.tab-active { color: #2563eb; border-bottom-color: #2563eb; font-weight: 600; }
     #modal-add-lead:not(.hidden),
     #modal-follow-note:not(.hidden),
     #modal-maintain:not(.hidden) { display: flex; }
   </style>
 </head>
-<body class="bg-slate-100 text-slate-700">
-  <div class="min-h-screen w-full flex">
-    <aside class="w-64 bg-slate-900 text-slate-200 flex flex-col">
+<body class="bg-[#f5f7fa] text-slate-700">
+  <div id="sidebar-backdrop" class="fixed inset-0 z-[150] bg-slate-900/40 hidden lg:hidden"></div>
+  <div class="min-h-screen w-full flex flex-col lg:flex-row relative">
+    <aside id="app-sidebar" class="w-64 max-w-[min(18rem,88vw)] bg-slate-900 text-slate-200 flex flex-col shrink-0 fixed lg:static inset-y-0 left-0 z-[160] h-screen lg:h-auto -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-out overflow-y-auto lg:overflow-visible shadow-xl lg:shadow-none">
       <div class="h-16 px-3 flex items-center border-b border-slate-800">
         <div class="w-full rounded-lg bg-white px-2 py-1.5 flex items-center justify-center">
-          <img src="./assets/qishuikang-logo.png" alt="企税康Logo" class="h-8 w-full max-h-8 object-contain object-center">
+          <img src="./assets/qishuikang-logo.png" alt="企税康Logo" class="h-8 w-full max-h-8 object-contain object-center mix-blend-multiply">
         </div>
       </div>
-
-      <nav class="flex-1 py-4 text-sm">
-        <a class="mx-3 mb-1 h-10 px-4 rounded-lg bg-blue-600 text-white flex items-center" href="index.html">
-          <i class="fa-solid fa-table-columns w-5 mr-2"></i>工作台        </a>
+      <nav class="flex-1 py-4 text-sm overflow-y-auto">
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg bg-blue-600 text-white font-medium flex items-center" href="index.html">
+          <i class="fa-solid fa-table-columns w-5 mr-2"></i>工作台
+        </a>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-building-user w-5 mr-2"></i>客户中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-management.html">客户管理</a>
+          </div>
+        </details>
         <details class="mx-3 mb-1 group">
           <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
             <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售管理</span>
             <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
           </summary>
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">销售业绩</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-target.html">销售目标</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">销售业绩</a>
           </div>
         </details>
         <details class="mx-3 mb-1 group">
@@ -43,81 +67,113 @@
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="contract-management.html">合同管理</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="order-management.html">订单管理</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="invoice-management.html">开票管理</a>
           </div>
         </details>
-        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="#">
-          <i class="fa-solid fa-truck-fast w-5 mr-2"></i>交付中心
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>交付中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="government-affairs.html">政务服务</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="accounting-customer-management.html">代账客户</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="address-management.html">地址管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-items.html">客户物品</a>
+          </div>
+        </details>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html">
+          <i class="fa-solid fa-book-open w-5 mr-2"></i>知识库
         </a>
-        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="#">
-          <i class="fa-solid fa-book-open w-5 mr-2"></i>知识库        </a>
-        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="#">
-          <i class="fa-solid fa-wallet w-5 mr-2"></i>财务管理
-        </a>
-        <a class="mx-3 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="#">
-          <i class="fa-solid fa-gear w-5 mr-2"></i>系统管理
-        </a>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-wallet w-5 mr-2"></i>运营管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="payment-request.html">财务申请</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="hr-request.html">人事申请</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="financial-reports.html">财务报表</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="salary-management.html">薪资管理</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-gear w-5 mr-2"></i>系统管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="role-permissions.html">角色权限</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="department-employees.html">部门员工</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="dictionary-management.html">字典管理</a>
+          </div>
+        </details>
       </nav>
     </aside>
 
-    <main class="flex-1 flex flex-col">
-      <header class="h-16 bg-white border-b border-slate-200 px-6 flex items-center justify-between">
-        <div class="text-sm text-slate-500">
-          首页 / <span class="text-slate-700 font-medium">工作台</span>
+    <main class="flex-1 flex flex-col min-w-0 w-full">
+      <header class="h-16 bg-white border-b border-slate-200 px-4 sm:px-6 gap-2 flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-2 min-w-0 flex-1">
+          <button type="button" id="btn-sidebar-toggle" class="lg:hidden shrink-0 w-10 h-10 rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 flex items-center justify-center" aria-expanded="false" aria-controls="app-sidebar" aria-label="打开导航菜单"><i class="fa-solid fa-bars text-lg"></i></button>
+          <div class="text-sm text-slate-500 min-w-0 truncate">
+            首页 / <span class="text-slate-700 font-medium">工作台</span>
+          </div>
         </div>
-        <div class="flex items-center gap-4">
-          <button class="w-9 h-9 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200">
+        <div class="flex items-center gap-2 sm:gap-4 shrink-0">
+          <button type="button" class="w-9 h-9 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200" aria-label="消息">
             <i class="fa-regular fa-bell"></i>
           </button>
-          <button class="w-9 h-9 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200">
+          <button type="button" class="w-9 h-9 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200" aria-label="帮助">
             <i class="fa-solid fa-circle-question"></i>
           </button>
-          <div class="w-px h-6 bg-slate-200"></div>
-          <div class="flex items-center">
-            <img class="w-9 h-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=80&q=80" alt="用户头像">
-            <div class="ml-2">
-              <p class="text-sm font-medium text-slate-700">朱总</p>
-              <p class="text-xs text-slate-400">企业端</p>
+          <div class="w-px h-6 bg-slate-200 hidden sm:block" aria-hidden="true"></div>
+          <div class="flex items-center min-w-0">
+            <img class="w-9 h-9 rounded-full object-cover shrink-0" src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=80&q=80" alt="用户头像">
+            <div class="ml-2 min-w-0">
+              <p class="text-sm font-medium text-slate-700 truncate">朱总</p>
+              <p class="text-xs text-slate-400 truncate">企业管理员</p>
             </div>
           </div>
         </div>
       </header>
 
-      <section class="p-6 space-y-5">
-        <div class="rounded-2xl bg-gradient-to-r from-blue-500 to-cyan-400 p-6 text-white shadow-sm">
-          <div>
-            <p class="text-lg font-semibold">你好，朱总，欢迎回到企税康</p>
-            <p class="text-blue-50 mt-1 text-sm">今日待处理事项 9 项</p>
+      <section class="p-4 sm:p-6 space-y-5">
+        <div class="dash-card overflow-hidden">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-5 sm:p-6 bg-gradient-to-r from-blue-600 to-blue-500 text-white">
+            <div>
+              <p class="text-lg font-semibold">你好，朱总，欢迎回到企税康</p>
+              <p class="text-blue-100 mt-1 text-sm">今日待处理事项 9 项 · 请优先处理右侧待办</p>
+            </div>
+            <span class="inline-flex items-center self-start sm:self-center rounded-full bg-white/15 px-3 py-1 text-xs font-medium">2026年5月19日</span>
           </div>
         </div>
 
-        <div class="grid grid-cols-12 gap-5">
-          <div class="col-span-9 space-y-5">
-            <section class="bg-white rounded-xl p-5 border border-slate-200">
+        <div class="grid grid-cols-1 xl:grid-cols-12 gap-5">
+          <div class="xl:col-span-8 space-y-5">
+            <section class="dash-card p-5">
               <div class="flex items-center justify-between mb-4">
-                <h2 class="text-base font-semibold text-slate-800">快捷入口</h2>
+                <h2 class="sec-title mb-0">快捷入口</h2>
                 <span class="text-xs text-slate-400">高频业务一键直达</span>
               </div>
-              <div class="grid grid-cols-4 gap-3">
-                <button type="button" id="btn-open-add-lead" class="w-full text-left rounded-lg border border-slate-200 p-3 hover:border-blue-300 hover:bg-blue-50 transition">
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <button type="button" id="btn-open-add-lead" class="quick-entry">
                   <div class="w-9 h-9 rounded-lg bg-orange-100 text-orange-500 flex items-center justify-center mb-2">
                     <i class="fa-solid fa-user-plus"></i>
                   </div>
                   <p class="text-sm font-medium text-slate-700">快速录入线索</p>
                 </button>
-                <button type="button" id="btn-open-follow-note" class="w-full text-left rounded-lg border border-slate-200 p-3 hover:border-blue-300 hover:bg-blue-50 transition">
+                <button type="button" id="btn-open-follow-note" class="quick-entry">
                   <div class="w-9 h-9 rounded-lg bg-red-100 text-red-500 flex items-center justify-center mb-2">
                     <i class="fa-solid fa-file-circle-plus"></i>
                   </div>
                   <p class="text-sm font-medium text-slate-700">新增跟进说明</p>
                 </button>
-                <button type="button" id="btn-open-create-contract" class="w-full text-left rounded-lg border border-slate-200 p-3 hover:border-blue-300 hover:bg-blue-50 transition">
+                <button type="button" id="btn-open-create-contract" class="quick-entry">
                   <div class="w-9 h-9 rounded-lg bg-sky-100 text-sky-500 flex items-center justify-center mb-2">
                     <i class="fa-solid fa-comments"></i>
                   </div>
                   <p class="text-sm font-medium text-slate-700">发起合同签署</p>
                 </button>
-                <button type="button" id="btn-open-maintain" class="w-full text-left rounded-lg border border-slate-200 p-3 hover:border-blue-300 hover:bg-blue-50 transition">
+                <button type="button" id="btn-open-maintain" class="quick-entry">
                   <div class="w-9 h-9 rounded-lg bg-amber-100 text-amber-500 flex items-center justify-center mb-2">
                     <i class="fa-solid fa-folder-plus"></i>
                   </div>
@@ -126,42 +182,33 @@
               </div>
             </section>
 
-            <section class="bg-white rounded-xl p-5 border border-slate-200">
-              <div class="flex items-center justify-between mb-4">
-                <h2 class="text-base font-semibold text-slate-800">数据概览</h2>
-                <div class="flex items-center gap-2">
-                  <button class="h-9 min-w-28 px-3 rounded-lg border border-slate-300 bg-white text-slate-600 text-sm flex items-center justify-between">
-                    <span>园区</span>
-                    <i class="fa-solid fa-angle-down text-slate-400 text-xs"></i>
-                  </button>
-                  <button class="h-9 min-w-32 px-3 rounded-lg border border-slate-300 bg-white text-slate-600 text-sm flex items-center justify-between">
-                    <span>周方林</span>
-                    <i class="fa-solid fa-angle-down text-slate-400 text-xs"></i>
-                  </button>
-                  <button class="h-9 min-w-24 px-3 rounded-lg border border-slate-300 bg-white text-slate-600 text-sm flex items-center justify-between">
-                    <span>本月</span>
-                    <i class="fa-solid fa-angle-down text-slate-400 text-xs"></i>
-                  </button>
+            <section class="dash-card p-5">
+              <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+                <h2 class="sec-title mb-0">数据概览</h2>
+                <div class="flex flex-wrap items-center gap-2">
+                  <button type="button" class="filter-btn min-w-28"><span>园区</span><i class="fa-solid fa-angle-down text-slate-400 text-xs"></i></button>
+                  <button type="button" class="filter-btn min-w-32"><span>周方林</span><i class="fa-solid fa-angle-down text-slate-400 text-xs"></i></button>
+                  <button type="button" class="filter-btn min-w-24"><span>本月</span><i class="fa-solid fa-angle-down text-slate-400 text-xs"></i></button>
                 </div>
               </div>
-              <div class="grid grid-cols-4 gap-3">
-                <div class="bg-slate-50 rounded-lg p-3">
+              <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+                <div class="stat-tile">
                   <div class="flex items-center justify-between">
                     <p class="text-xs text-slate-500">业绩进度</p>
-                    <div class="w-11 h-11 rounded-full" style="background:conic-gradient(#3b82f6 0 72%, #dbeafe 72% 100%);"></div>
+                    <div class="w-11 h-11 rounded-full" style="background:conic-gradient(#2563eb 0 72%, #dbeafe 72% 100%);"></div>
                   </div>
                   <p class="text-2xl font-semibold text-slate-800 mt-2">72%</p>
                   <p class="text-xs text-slate-500 mt-1">¥ 1,150,000 / ¥ 1,600,000</p>
                 </div>
-                <div class="bg-slate-50 rounded-lg p-3">
+                <div class="stat-tile">
                   <div class="flex items-center justify-between">
                     <p class="text-xs text-slate-500">户数进度</p>
-                    <div class="w-11 h-11 rounded-full" style="background:conic-gradient(#06b6d4 0 58%, #cffafe 58% 100%);"></div>
+                    <div class="w-11 h-11 rounded-full" style="background:conic-gradient(#3b82f6 0 58%, #dbeafe 58% 100%);"></div>
                   </div>
                   <p class="text-2xl font-semibold text-slate-800 mt-2">58</p>
                   <p class="text-xs text-slate-500 mt-1">目标 100，已完成 58%</p>
                 </div>
-                <div class="bg-slate-50 rounded-lg p-3">
+                <div class="stat-tile">
                   <div class="flex items-center justify-between">
                     <p class="text-xs text-slate-500">续费进度</p>
                     <div class="w-11 h-11 rounded-full" style="background:conic-gradient(#ef4444 0 81%, #fee2e2 81% 100%);"></div>
@@ -169,153 +216,137 @@
                   <p class="text-2xl font-semibold text-slate-800 mt-2">81%</p>
                   <p class="text-xs text-slate-500 mt-1">本月到期 ¥ 630,000</p>
                 </div>
-                <div class="bg-slate-50 rounded-lg p-3">
+                <div class="stat-tile">
                   <div class="flex items-center justify-between">
                     <p class="text-xs text-slate-500">线索转化</p>
                     <div class="w-11 h-11 rounded-full" style="background:conic-gradient(#22c55e 0 65%, #dcfce7 65% 100%);"></div>
                   </div>
                   <p class="text-2xl font-semibold text-slate-800 mt-2">65%</p>
-                  <p class="text-xs text-slate-500 mt-1">已交39 / 60 </p>
+                  <p class="text-xs text-slate-500 mt-1">已成单 39 / 60</p>
                 </div>
               </div>
             </section>
 
-            <section class="bg-white rounded-xl p-5 border border-slate-200">
-              <div class="flex items-center justify-between mb-4">
-                <h2 class="text-base font-semibold text-slate-800 flex items-center">
-                  <span class="w-1 h-4 rounded bg-cyan-500 mr-2"></span>工作简                </h2>
-                <div class="flex items-center gap-2">
-                  <button class="h-9 min-w-24 px-3 rounded border border-slate-200 bg-slate-50 text-slate-500 text-sm flex items-center justify-between">
-                    <span>全部</span>
-                    <i class="fa-solid fa-angle-down text-slate-300 text-xs"></i>
-                  </button>
-                  <button class="h-9 min-w-24 px-3 rounded border border-slate-200 bg-slate-50 text-slate-500 text-sm flex items-center justify-between">
-                    <span>全部</span>
-                    <i class="fa-solid fa-angle-down text-slate-300 text-xs"></i>
-                  </button>
-                  <button class="h-9 min-w-24 px-3 rounded border border-slate-200 bg-slate-50 text-slate-500 text-sm flex items-center justify-between">
-                    <span>本月</span>
-                    <i class="fa-solid fa-angle-down text-slate-300 text-xs"></i>
-                  </button>
+            <section class="dash-card p-5">
+              <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+                <h2 class="sec-title mb-0">工作简报</h2>
+                <div class="flex flex-wrap items-center gap-2">
+                  <button type="button" class="filter-btn min-w-24"><span>全部</span><i class="fa-solid fa-angle-down text-slate-400 text-xs"></i></button>
+                  <button type="button" class="filter-btn min-w-24"><span>全部</span><i class="fa-solid fa-angle-down text-slate-400 text-xs"></i></button>
+                  <button type="button" class="filter-btn min-w-24"><span>本月</span><i class="fa-solid fa-angle-down text-slate-400 text-xs"></i></button>
                 </div>
               </div>
-              <div class="grid grid-cols-5 gap-3">
-                <div class="border border-slate-200 rounded-lg p-4 flex items-center gap-3 shadow-sm">
-                  <div class="w-11 h-11 rounded-lg bg-blue-500 text-white flex items-center justify-center"><i class="fa-regular fa-file-lines"></i></div>
+              <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+                <div class="brief-item flex items-center gap-3">
+                  <div class="w-11 h-11 rounded-lg bg-blue-600 text-white flex items-center justify-center shrink-0"><i class="fa-regular fa-file-lines"></i></div>
                   <div><p class="text-2xl leading-6 text-slate-700">27</p><p class="text-sm text-slate-500 mt-1">新增线索</p></div>
                 </div>
-                <div class="border border-slate-200 rounded-lg p-4 flex items-center gap-3 shadow-sm">
-                  <div class="w-11 h-11 rounded-lg bg-blue-500 text-white flex items-center justify-center"><i class="fa-solid fa-clipboard-check"></i></div>
+                <div class="brief-item flex items-center gap-3">
+                  <div class="w-11 h-11 rounded-lg bg-blue-600 text-white flex items-center justify-center shrink-0"><i class="fa-solid fa-clipboard-check"></i></div>
                   <div><p class="text-2xl leading-6 text-slate-700">17</p><p class="text-sm text-slate-500 mt-1">有效线索</p></div>
                 </div>
-                <div class="border border-slate-200 rounded-lg p-4 flex items-center gap-3 shadow-sm">
-                  <div class="w-11 h-11 rounded-lg bg-blue-500 text-white flex items-center justify-center"><i class="fa-regular fa-clock"></i></div>
-                  <div><p class="text-2xl leading-6 text-slate-700">27</p><p class="text-sm text-slate-500 mt-1">跟进</p></div>
+                <div class="brief-item flex items-center gap-3">
+                  <div class="w-11 h-11 rounded-lg bg-blue-600 text-white flex items-center justify-center shrink-0"><i class="fa-regular fa-clock"></i></div>
+                  <div><p class="text-2xl leading-6 text-slate-700">27</p><p class="text-sm text-slate-500 mt-1">跟进中</p></div>
                 </div>
-                <div class="border border-slate-200 rounded-lg p-4 flex items-center gap-3 shadow-sm">
-                  <div class="w-11 h-11 rounded-lg bg-blue-500 text-white flex items-center justify-center"><i class="fa-regular fa-address-card"></i></div>
+                <div class="brief-item flex items-center gap-3">
+                  <div class="w-11 h-11 rounded-lg bg-blue-600 text-white flex items-center justify-center shrink-0"><i class="fa-regular fa-address-card"></i></div>
                   <div><p class="text-2xl leading-6 text-slate-700">27</p><p class="text-sm text-slate-500 mt-1">合同审核</p></div>
                 </div>
-                <div class="border border-slate-200 rounded-lg p-4 flex items-center gap-3 shadow-sm">
-                  <div class="w-11 h-11 rounded-lg bg-blue-500 text-white flex items-center justify-center"><i class="fa-regular fa-file-signature"></i></div>
+                <div class="brief-item flex items-center gap-3">
+                  <div class="w-11 h-11 rounded-lg bg-blue-600 text-white flex items-center justify-center shrink-0"><i class="fa-solid fa-file-signature"></i></div>
                   <div><p class="text-2xl leading-6 text-slate-700">27</p><p class="text-sm text-slate-500 mt-1">合同待签</p></div>
                 </div>
-                <div class="border border-slate-200 rounded-lg p-4 flex items-center gap-3 shadow-sm">
-                  <div class="w-11 h-11 rounded-lg bg-blue-500 text-white flex items-center justify-center"><i class="fa-solid fa-file-invoice-dollar"></i></div>
-                  <div><p class="text-2xl leading-6 text-slate-700">27</p><p class="text-sm text-slate-500 mt-1">订单未支</p></div>
+                <div class="brief-item flex items-center gap-3">
+                  <div class="w-11 h-11 rounded-lg bg-blue-600 text-white flex items-center justify-center shrink-0"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                  <div><p class="text-2xl leading-6 text-slate-700">27</p><p class="text-sm text-slate-500 mt-1">订单未支付</p></div>
                 </div>
-                <div class="border border-slate-200 rounded-lg p-4 flex items-center gap-3 shadow-sm">
-                  <div class="w-11 h-11 rounded-lg bg-blue-500 text-white flex items-center justify-center"><i class="fa-solid fa-building-columns"></i></div>
-                  <div><p class="text-2xl leading-6 text-slate-700">27</p><p class="text-sm text-slate-500 mt-1">工商未派</p></div>
+                <div class="brief-item flex items-center gap-3">
+                  <div class="w-11 h-11 rounded-lg bg-blue-600 text-white flex items-center justify-center shrink-0"><i class="fa-solid fa-building-columns"></i></div>
+                  <div><p class="text-2xl leading-6 text-slate-700">27</p><p class="text-sm text-slate-500 mt-1">工商未派单</p></div>
                 </div>
-                <div class="border border-slate-200 rounded-lg p-4 flex items-center gap-3 shadow-sm">
-                  <div class="w-11 h-11 rounded-lg bg-blue-500 text-white flex items-center justify-center"><i class="fa-regular fa-rectangle-list"></i></div>
-                  <div><p class="text-2xl leading-6 text-slate-700">27</p><p class="text-sm text-slate-500 mt-1">代账未派</p></div>
+                <div class="brief-item flex items-center gap-3">
+                  <div class="w-11 h-11 rounded-lg bg-blue-600 text-white flex items-center justify-center shrink-0"><i class="fa-regular fa-rectangle-list"></i></div>
+                  <div><p class="text-2xl leading-6 text-slate-700">27</p><p class="text-sm text-slate-500 mt-1">代账未派单</p></div>
                 </div>
-                <div class="border border-slate-200 rounded-lg p-4 flex items-center gap-3 shadow-sm">
-                  <div class="w-11 h-11 rounded-lg bg-blue-500 text-white flex items-center justify-center"><i class="fa-regular fa-calendar-check"></i></div>
+                <div class="brief-item flex items-center gap-3">
+                  <div class="w-11 h-11 rounded-lg bg-blue-600 text-white flex items-center justify-center shrink-0"><i class="fa-regular fa-calendar-check"></i></div>
                   <div><p class="text-2xl leading-6 text-slate-700">27</p><p class="text-sm text-slate-500 mt-1">代账到期</p></div>
                 </div>
-                <div class="border border-slate-200 rounded-lg p-4 flex items-center gap-3 shadow-sm">
-                  <div class="w-11 h-11 rounded-lg bg-blue-500 text-white flex items-center justify-center"><i class="fa-solid fa-map-location-dot"></i></div>
+                <div class="brief-item flex items-center gap-3">
+                  <div class="w-11 h-11 rounded-lg bg-blue-600 text-white flex items-center justify-center shrink-0"><i class="fa-solid fa-map-location-dot"></i></div>
                   <div><p class="text-2xl leading-6 text-slate-700">27</p><p class="text-sm text-slate-500 mt-1">地址到期</p></div>
                 </div>
               </div>
             </section>
 
-            <section class="rounded-xl border border-slate-200 bg-slate-50 p-5">
+            <section class="dash-card p-5 bg-slate-50/80">
               <div class="flex items-center justify-between mb-4">
-                <h2 class="text-base font-semibold text-slate-800 flex items-center">
-                  <span class="w-1 h-4 rounded bg-blue-500 mr-2"></span>业务速览
-                </h2>
-                <button class="text-xs text-blue-600 hover:text-blue-700">查看全部</button>
+                <h2 class="sec-title mb-0">业务速览</h2>
+                <a class="text-xs text-blue-600 hover:text-blue-700" href="government-affairs.html">查看全部</a>
               </div>
               <div class="flex gap-4 flex-col lg:flex-row">
                 <div class="w-full lg:w-56 shrink-0 space-y-3">
-                  <div class="bg-white rounded-lg border border-slate-200 p-4 shadow-sm">
+                  <div class="dash-card p-4">
                     <div class="flex items-start gap-3">
-                      <div class="w-11 h-11 rounded-lg bg-blue-500 text-white flex items-center justify-center shrink-0">
+                      <div class="w-11 h-11 rounded-lg bg-blue-600 text-white flex items-center justify-center shrink-0">
                         <i class="fa-solid fa-table-cells text-lg"></i>
                       </div>
                       <div class="min-w-0 flex-1">
-                        <p class="text-sm text-slate-600">政务服务（条</p>
-                        <div class="mt-2">
-                          <span class="text-2xl font-semibold text-slate-800 tabular-nums">422,169</span>
-                        </div>
+                        <p class="text-sm text-slate-600">政务服务（条）</p>
+                        <p class="text-2xl font-semibold text-slate-800 tabular-nums mt-2">422,169</p>
                       </div>
                     </div>
                   </div>
-                  <div class="bg-white rounded-lg border border-slate-200 p-4 shadow-sm">
+                  <div class="dash-card p-4">
                     <div class="flex items-start gap-3">
-                      <div class="w-11 h-11 rounded-lg bg-blue-500 text-white flex items-center justify-center shrink-0">
+                      <div class="w-11 h-11 rounded-lg bg-blue-600 text-white flex items-center justify-center shrink-0">
                         <i class="fa-solid fa-layer-group text-lg"></i>
                       </div>
                       <div class="min-w-0 flex-1">
-                        <p class="text-sm text-slate-600">会计服务（条</p>
-                        <div class="mt-2">
-                          <span class="text-2xl font-semibold text-slate-800 tabular-nums">422,169</span>
-                        </div>
+                        <p class="text-sm text-slate-600">代账客户（家）</p>
+                        <p class="text-2xl font-semibold text-slate-800 tabular-nums mt-2">422,169</p>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="flex-1 min-w-0 bg-white rounded-lg border border-slate-200 shadow-sm overflow-hidden">
+                <div class="flex-1 min-w-0 dash-card overflow-hidden">
                   <div class="overflow-auto">
-                    <table class="w-full text-sm border-collapse">
-                      <thead class="bg-slate-100 text-slate-600">
-                        <tr>
-                          <th class="text-left font-medium px-4 py-3 border border-slate-200">编号</th>
-                          <th class="text-left font-medium px-4 py-3 border border-slate-200">业务类型</th>
-                          <th class="text-left font-medium px-4 py-3 border border-slate-200">服务项目</th>
-                          <th class="text-left font-medium px-4 py-3 border border-slate-200">办理状态</th>
-                          <th class="text-left font-medium px-4 py-3 border border-slate-200">经办</th>
-                          <th class="text-left font-medium px-4 py-3 border border-slate-200">销售员</th>
+                    <table class="w-full text-sm">
+                      <thead class="bg-slate-50 text-slate-600">
+                        <tr class="border-b border-slate-200">
+                          <th class="text-left font-medium px-4 py-3">编号</th>
+                          <th class="text-left font-medium px-4 py-3">业务类型</th>
+                          <th class="text-left font-medium px-4 py-3">服务项目</th>
+                          <th class="text-left font-medium px-4 py-3">办理状态</th>
+                          <th class="text-left font-medium px-4 py-3">经办人</th>
+                          <th class="text-left font-medium px-4 py-3">销售员</th>
                         </tr>
                       </thead>
-                      <tbody class="text-slate-700">
+                      <tbody class="text-slate-700 divide-y divide-slate-100">
                         <tr>
-                          <td class="px-4 py-3 border border-slate-200">20260404002</td>
-                          <td class="px-4 py-3 border border-slate-200">代理记账</td>
-                          <td class="px-4 py-3 border border-slate-200">代理记账</td>
-                          <td class="px-4 py-3 border border-slate-200">待派</td>
-                          <td class="px-4 py-3 border border-slate-200">马氏</td>
-                          <td class="px-4 py-3 border border-slate-200">伊一</td>
+                          <td class="px-4 py-3">20260404002</td>
+                          <td class="px-4 py-3">代理记账</td>
+                          <td class="px-4 py-3">代理记账</td>
+                          <td class="px-4 py-3">待派单</td>
+                          <td class="px-4 py-3">马氏</td>
+                          <td class="px-4 py-3">伊一</td>
                         </tr>
                         <tr>
-                          <td class="px-4 py-3 border border-slate-200">20260404003</td>
-                          <td class="px-4 py-3 border border-slate-200">工商业务</td>
-                          <td class="px-4 py-3 border border-slate-200">解地址异常</td>
-                          <td class="px-4 py-3 border border-slate-200">提交材料</td>
-                          <td class="px-4 py-3 border border-slate-200">徐月</td>
-                          <td class="px-4 py-3 border border-slate-200">伊一</td>
+                          <td class="px-4 py-3">20260404003</td>
+                          <td class="px-4 py-3">工商业务</td>
+                          <td class="px-4 py-3">解地址异常</td>
+                          <td class="px-4 py-3">提交材料</td>
+                          <td class="px-4 py-3">徐月</td>
+                          <td class="px-4 py-3">伊一</td>
                         </tr>
                         <tr>
-                          <td class="px-4 py-3 border border-slate-200">20260404004</td>
-                          <td class="px-4 py-3 border border-slate-200">工商业务</td>
-                          <td class="px-4 py-3 border border-slate-200">解地址异常</td>
-                          <td class="px-4 py-3 border border-slate-200">政务系统审核</td>
-                          <td class="px-4 py-3 border border-slate-200">徐月</td>
-                          <td class="px-4 py-3 border border-slate-200">伊一</td>
+                          <td class="px-4 py-3">20260404004</td>
+                          <td class="px-4 py-3">工商业务</td>
+                          <td class="px-4 py-3">解地址异常</td>
+                          <td class="px-4 py-3">政务系统审核</td>
+                          <td class="px-4 py-3">徐月</td>
+                          <td class="px-4 py-3">伊一</td>
                         </tr>
                       </tbody>
                     </table>
@@ -325,78 +356,76 @@
             </section>
           </div>
 
-          <div class="col-span-3 space-y-5">
-            <section class="bg-white rounded-xl p-5 border border-slate-200">
+          <div class="xl:col-span-4 space-y-5">
+            <section class="dash-card p-5">
               <div class="flex items-center justify-between mb-3">
-                <h2 class="text-base font-semibold text-slate-800">平台知识库</h2>
-                <a class="text-xs text-blue-600" href="#">去查看</a>
+                <h2 class="sec-title mb-0">平台知识库</h2>
+                <a class="text-xs text-blue-600 hover:text-blue-700" href="knowledge-base.html">去查阅</a>
               </div>
               <ul class="space-y-3 text-sm">
                 <li class="flex gap-2">
-                  <i class="fa-regular fa-file-lines text-blue-500 mt-1"></i>
+                  <i class="fa-regular fa-file-lines text-blue-600 mt-1"></i>
                   <div>
-                    <p class="text-slate-700">关于客户涉税申诉处理指引026 版）</p>
-                    <p class="text-xs text-slate-400 mt-1">更新2026-05-04</p>
+                    <p class="text-slate-700">关于客户涉税申诉处理指引（2026 版）</p>
+                    <p class="text-xs text-slate-400 mt-1">更新于 2026-05-04</p>
                   </div>
                 </li>
                 <li class="flex gap-2">
-                  <i class="fa-regular fa-file-lines text-blue-500 mt-1"></i>
+                  <i class="fa-regular fa-file-lines text-blue-600 mt-1"></i>
                   <div>
                     <p class="text-slate-700">开票异常问题排查与工单升级规范</p>
-                    <p class="text-xs text-slate-400 mt-1">更新2026-05-02</p>
+                    <p class="text-xs text-slate-400 mt-1">更新于 2026-05-02</p>
                   </div>
                 </li>
                 <li class="flex gap-2">
-                  <i class="fa-regular fa-file-lines text-blue-500 mt-1"></i>
+                  <i class="fa-regular fa-file-lines text-blue-600 mt-1"></i>
                   <div>
                     <p class="text-slate-700">企业税务健康体检服务操作手册</p>
-                    <p class="text-xs text-slate-400 mt-1">更新2026-04-30</p>
+                    <p class="text-xs text-slate-400 mt-1">更新于 2026-04-30</p>
                   </div>
                 </li>
               </ul>
             </section>
 
-            <section class="bg-white rounded-xl p-5 border border-slate-200">
+            <section class="dash-card p-5">
               <div class="flex items-center justify-between mb-3">
-                <h2 class="text-base font-semibold text-slate-800">代办事项</h2>
-                <span class="text-xs text-red-500">8</span>
+                <h2 class="sec-title mb-0">代办事项</h2>
+                <span class="text-xs text-red-500 font-medium">8</span>
               </div>
               <ul class="space-y-2 text-sm max-h-44 overflow-y-auto pr-1">
                 <li class="flex justify-between items-center p-2 rounded bg-red-50">
                   <span>待完成：优质客户合同补充协议</span>
-                  <a class="text-xs text-red-600" href="#">去处理</a>
+                  <a class="text-xs text-red-600 shrink-0 ml-2" href="#">去处理</a>
                 </li>
                 <li class="flex justify-between items-center p-2 rounded bg-amber-50">
-                  <span>用税申请审批：深圳分公司</span>
-                  <a class="text-xs text-amber-600" href="#">去审核</a>
+                  <span>领用申请审批：深圳分公司</span>
+                  <a class="text-xs text-amber-600 shrink-0 ml-2" href="#">去审批</a>
                 </li>
                 <li class="flex justify-between items-center p-2 rounded bg-blue-50">
-                  <span>客户回访：江南生物本周复</span>
-                  <a class="text-xs text-blue-600" href="#">去跟进</a>
+                  <span>客户回访：江南生物本周回访</span>
+                  <a class="text-xs text-blue-600 shrink-0 ml-2" href="#">去跟进</a>
                 </li>
                 <li class="flex justify-between items-center p-2 rounded bg-violet-50">
                   <span>资料补齐：园区企业税控托管授权书</span>
-                  <a class="text-xs text-violet-600" href="#">去补录</a>
+                  <a class="text-xs text-violet-600 shrink-0 ml-2" href="#">去补充</a>
                 </li>
                 <li class="flex justify-between items-center p-2 rounded bg-emerald-50">
                   <span>续费跟进：苏州范尔科技合同到期提醒</span>
-                  <a class="text-xs text-emerald-600" href="#">去联系</a>
+                  <a class="text-xs text-emerald-600 shrink-0 ml-2" href="#">去联系</a>
                 </li>
               </ul>
             </section>
 
-            <section class="bg-white rounded-xl p-5 border border-slate-200">
+            <section class="dash-card p-5">
               <div class="flex items-center justify-between mb-3">
-                <h2 class="text-base font-semibold text-slate-800">月度业绩排行</h2>
+                <h2 class="sec-title mb-0">月度业绩排行</h2>
                 <a class="text-xs text-blue-600 hover:underline" href="sales-performance.html">更多</a>
               </div>
-              <div class="flex border-b border-slate-200 mb-3" role="tablist">
-                <button type="button" id="ranking-tab-personal" role="tab" aria-selected="true" aria-controls="ranking-panel-personal"
-                  class="flex-1 py-2.5 text-sm font-medium border-b-2 border-blue-600 text-blue-600 transition-colors">
+              <div class="flex border-b border-slate-200 mb-3 gap-6" role="tablist">
+                <button type="button" id="ranking-tab-personal" role="tab" aria-selected="true" aria-controls="ranking-panel-personal" class="dash-tab tab-active flex-1 text-center">
                   个人业绩排行
                 </button>
-                <button type="button" id="ranking-tab-team" role="tab" aria-selected="false" aria-controls="ranking-panel-team"
-                  class="flex-1 py-2.5 text-sm font-medium border-b-2 border-transparent text-slate-500 hover:text-slate-700 transition-colors">
+                <button type="button" id="ranking-tab-team" role="tab" aria-selected="false" aria-controls="ranking-panel-team" class="dash-tab flex-1 text-center">
                   团队业绩排行
                 </button>
               </div>
@@ -422,7 +451,7 @@
               <div id="ranking-panel-team" role="tabpanel" aria-labelledby="ranking-tab-team" class="hidden">
                 <ul class="space-y-2 text-sm">
                   <li class="flex items-center justify-between">
-                    <span><i class="fa-solid fa-medal text-amber-500 mr-2"></i>销售部一</span><span class="font-medium">¥ 1,256,800</span>
+                    <span><i class="fa-solid fa-medal text-amber-500 mr-2"></i>销售一部</span><span class="font-medium">¥ 1,256,800</span>
                   </li>
                   <li class="flex items-center justify-between">
                     <span><i class="fa-solid fa-medal text-slate-400 mr-2"></i>财税顾问二组</span><span class="font-medium">¥ 1,089,200</span>
@@ -446,11 +475,11 @@
   </div>
 
   <!-- 新增线索弹窗 -->
-  <div id="modal-add-lead" class="hidden fixed inset-0 z-[100] items-center justify-center p-4 bg-slate-900/45" role="dialog" aria-modal="true" aria-labelledby="modal-add-lead-title">
+  <div id="modal-add-lead" class="hidden fixed inset-0 z-[110] items-center justify-center p-4 bg-slate-900/45" role="dialog" aria-modal="true" aria-labelledby="modal-add-lead-title">
     <div class="bg-white rounded-xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-hidden flex flex-col border border-slate-200">
       <div class="relative flex items-center justify-center h-14 px-4 border-b border-slate-100 shrink-0">
-        <h2 id="modal-add-lead-title" class="text-base font-semibold text-slate-800">新增线索</h2>
-        <button type="button" id="btn-close-add-lead" class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 flex items-center justify-center" aria-label="关闭">
+        <h2 id="modal-add-lead-title" class="text-lg font-semibold text-slate-800">新增线索</h2>
+        <button type="button" id="btn-close-add-lead" class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-md text-slate-400 hover:text-slate-600 hover:bg-slate-100 flex items-center justify-center" aria-label="关闭">
           <i class="fa-solid fa-xmark text-lg"></i>
         </button>
       </div>
@@ -458,44 +487,44 @@
         <div class="flex items-center gap-4 min-h-11">
           <label class="w-[100px] shrink-0 text-sm text-slate-600">姓名 <span class="text-red-500">*</span></label>
           <div class="flex-1 relative min-w-0">
-            <input id="lead-name" type="text" maxlength="5" placeholder="请输入内容" class="w-full h-10 pl-3 pr-14 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
+            <input id="lead-name" type="text" maxlength="5" placeholder="请输入内容" class="w-full h-9 pl-3 pr-14 rounded-md border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
             <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 tabular-nums pointer-events-none"><span id="cnt-name">0</span>/5</span>
           </div>
         </div>
         <div class="flex items-center gap-4 min-h-11">
-          <label class="w-[100px] shrink-0 text-sm text-slate-600">手机<span class="text-red-500">*</span></label>
+          <label class="w-[100px] shrink-0 text-sm text-slate-600">手机 <span class="text-red-500">*</span></label>
           <div class="flex-1 relative min-w-0">
-            <input id="lead-phone" type="text" maxlength="11" inputmode="numeric" placeholder="请输入内容" class="w-full h-10 pl-3 pr-16 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
+            <input id="lead-phone" type="text" maxlength="11" inputmode="numeric" placeholder="请输入内容" class="w-full h-9 pl-3 pr-16 rounded-md border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
             <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 tabular-nums pointer-events-none"><span id="cnt-phone">0</span>/11</span>
           </div>
         </div>
         <div class="flex items-center gap-4 min-h-11">
           <label class="w-[100px] shrink-0 text-sm text-slate-600">所属区域</label>
-          <select class="flex-1 h-10 px-3 rounded-lg border border-slate-200 text-sm text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
+          <select class="flex-1 h-9 px-3 rounded-md border border-slate-200 text-sm text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
             <option selected>苏州工业园区</option>
-            <option>无锡新吴</option>
-            <option>昆山</option>
+            <option>无锡新吴区</option>
+            <option>昆山市</option>
           </select>
         </div>
         <div class="flex items-center gap-4 min-h-11">
           <label class="w-[100px] shrink-0 text-sm text-slate-600">行业类别</label>
-          <select class="flex-1 h-10 px-3 rounded-lg border border-slate-200 text-sm text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
+          <select class="flex-1 h-9 px-3 rounded-md border border-slate-200 text-sm text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
             <option selected>医疗器械</option>
             <option>贸易</option>
             <option>科技服务</option>
-            <option>制</option>
+            <option>其他</option>
           </select>
         </div>
         <div class="flex items-center gap-4 min-h-11">
           <label class="w-[100px] shrink-0 text-sm text-slate-600">企业形式</label>
-          <select class="flex-1 h-10 px-3 rounded-lg border border-slate-200 text-sm text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
+          <select class="flex-1 h-9 px-3 rounded-md border border-slate-200 text-sm text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
             <option selected>一般纳税人</option>
-            <option>小规</option>
+            <option>小规模</option>
           </select>
         </div>
         <div class="flex items-center gap-4 min-h-11">
           <label class="w-[100px] shrink-0 text-sm text-slate-600">业务类型</label>
-          <select class="flex-1 h-10 px-3 rounded-lg border border-slate-200 text-sm text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
+          <select class="flex-1 h-9 px-3 rounded-md border border-slate-200 text-sm text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
             <option value="">请选择</option>
             <option>代理记账</option>
             <option>工商注册</option>
@@ -504,42 +533,50 @@
         </div>
         <div class="flex items-center gap-4 min-h-11">
           <label class="w-[100px] shrink-0 text-sm text-slate-600">来源渠道 <span class="text-red-500">*</span></label>
-          <select class="flex-1 h-10 px-3 rounded-lg border border-slate-200 text-sm text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
+          <select class="flex-1 h-9 px-3 rounded-md border border-slate-200 text-sm text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
             <option selected>抖音</option>
-            <option>小红</option>
+            <option>小红书</option>
             <option>58同城</option>
-            <option>老客户介</option>
+            <option>老客户介绍</option>
           </select>
         </div>
         <div class="flex items-center gap-4 min-h-11">
-          <label class="w-[100px] shrink-0 text-sm text-slate-600">流转处理 <span class="text-red-500">*</span></label>
-          <select class="flex-1 h-10 px-3 rounded-lg border border-slate-200 text-sm text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
-            <option selected>销售主</option>
-            <option>销售一组</option>
-            <option>销售二组</option>
+          <label class="w-[100px] shrink-0 text-sm text-slate-600">跟进部门 <span class="text-red-500">*</span></label>
+          <select class="flex-1 h-9 px-3 rounded-md border border-slate-200 text-sm text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
+            <option selected>销售一部</option>
+            <option>销售二部</option>
+            <option>销售主管</option>
+          </select>
+        </div>
+        <div class="flex items-center gap-4 min-h-11">
+          <label class="w-[100px] shrink-0 text-sm text-slate-600">处理人 <span class="text-red-500">*</span></label>
+          <select class="flex-1 h-9 px-3 rounded-md border border-slate-200 text-sm text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
+            <option selected>周方林</option>
+            <option>陆琴</option>
+            <option>马经理</option>
           </select>
         </div>
         <div class="flex items-center gap-4 min-h-11">
           <label class="w-[100px] shrink-0 text-sm text-slate-600">备注</label>
           <div class="flex-1 relative min-w-0">
-            <input id="lead-remark" type="text" maxlength="30" placeholder="请输入内容" class="w-full h-10 pl-3 pr-16 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
+            <input id="lead-remark" type="text" maxlength="30" placeholder="请输入内容" class="w-full h-9 pl-3 pr-16 rounded-md border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
             <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 tabular-nums pointer-events-none"><span id="cnt-remark">0</span>/30</span>
           </div>
         </div>
       </form>
       <div class="flex justify-end gap-3 px-6 py-4 border-t border-slate-100 bg-slate-50/80 shrink-0">
-        <button type="button" id="btn-cancel-add-lead" class="h-10 px-6 rounded-lg border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50">取消</button>
-        <button type="button" id="btn-save-add-lead" class="h-10 px-6 rounded-lg bg-blue-600 text-white text-sm font-medium hover:bg-blue-700">保存</button>
+        <button type="button" id="btn-cancel-add-lead" class="h-9 px-6 rounded-md border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50">取消</button>
+        <button type="button" id="btn-save-add-lead" class="h-9 px-6 rounded-md bg-blue-600 text-white text-sm font-medium hover:bg-blue-700">保存</button>
       </div>
     </div>
   </div>
 
   <!-- 添加跟进弹窗 -->
-  <div id="modal-follow-note" class="hidden fixed inset-0 z-[100] items-center justify-center p-4 bg-slate-900/45" role="dialog" aria-modal="true" aria-labelledby="modal-follow-note-title">
+  <div id="modal-follow-note" class="hidden fixed inset-0 z-[110] items-center justify-center p-4 bg-slate-900/45" role="dialog" aria-modal="true" aria-labelledby="modal-follow-note-title">
     <div class="bg-white rounded-xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-hidden flex flex-col border border-slate-200">
       <div class="relative flex items-center justify-center h-14 px-4 border-b border-slate-100 shrink-0">
-        <h2 id="modal-follow-note-title" class="text-base font-semibold text-slate-800">添加跟进</h2>
-        <button type="button" id="btn-close-follow-note" class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 flex items-center justify-center" aria-label="关闭">
+        <h2 id="modal-follow-note-title" class="text-lg font-semibold text-slate-800">添加跟进</h2>
+        <button type="button" id="btn-close-follow-note" class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-md text-slate-400 hover:text-slate-600 hover:bg-slate-100 flex items-center justify-center" aria-label="关闭">
           <i class="fa-solid fa-xmark text-lg"></i>
         </button>
       </div>
@@ -547,11 +584,11 @@
         <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
           <label class="w-full sm:w-28 shrink-0 text-sm text-slate-600 sm:text-right">线索客户 <span class="text-red-500">*</span></label>
           <div class="flex-1 min-w-0 relative">
-            <select class="w-full h-10 pl-3 pr-9 rounded-lg border border-slate-200 text-sm text-slate-800 bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
+            <select class="w-full h-9 pl-3 pr-9 rounded-md border border-slate-200 text-sm text-slate-800 bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
               <option selected>苏苏</option>
-              <option>赵</option>
+              <option>陈明</option>
               <option>王敏</option>
-              <option>李先</option>
+              <option>李强</option>
             </select>
             <i class="fa-solid fa-angle-down pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
           </div>
@@ -559,11 +596,10 @@
         <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
           <label class="w-full sm:w-28 shrink-0 text-sm text-slate-600 sm:text-right">跟进进度 <span class="text-red-500">*</span></label>
           <div class="flex-1 min-w-0 relative">
-            <select class="w-full h-10 pl-3 pr-9 rounded-lg border border-slate-200 text-sm text-slate-800 bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
-              <option value="following" selected>跟进</option>
-              <option value="quote">已发报价</option>
-              <option value="negotiate">磋商</option>
-              <option value="pending_sign">待签</option>
+            <select class="w-full h-9 pl-3 pr-9 rounded-md border border-slate-200 text-sm text-slate-800 bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
+              <option value="following" selected>跟进中</option>
+              <option value="won">已成单</option>
+              <option value="abandoned">已放弃</option>
             </select>
             <i class="fa-solid fa-angle-down pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
           </div>
@@ -571,35 +607,36 @@
         <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
           <label class="w-full sm:w-28 shrink-0 text-sm text-slate-600 sm:text-right">跟进时间 <span class="text-red-500">*</span></label>
           <div class="flex-1 min-w-0 relative">
-            <input type="text" value="2026-04-07 10:09" class="w-full h-10 pl-3 pr-9 rounded-lg border border-slate-200 text-sm text-slate-800 tabular-nums focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
+            <input type="text" value="2026-04-07 10:09" class="w-full h-9 pl-3 pr-9 rounded-md border border-slate-200 text-sm text-slate-800 tabular-nums focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
             <i class="fa-solid fa-angle-down pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
           </div>
         </div>
         <div class="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
           <label class="w-full sm:w-28 shrink-0 text-sm text-slate-600 sm:text-right pt-2">跟进内容 <span class="text-red-500">*</span></label>
           <div class="flex-1 min-w-0 relative">
-            <textarea id="follow-note-content" maxlength="1000" rows="5" placeholder="请输入内容" class="w-full px-3 py-2.5 pb-8 rounded-lg border border-slate-200 text-sm text-slate-800 placeholder:text-slate-400 resize-y min-h-[140px] focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400 bg-slate-50/80"></textarea>
+            <textarea id="follow-note-content" maxlength="1000" rows="5" placeholder="请输入内容" class="w-full px-3 py-2.5 pb-8 rounded-md border border-slate-200 text-sm text-slate-800 placeholder:text-slate-400 resize-y min-h-[140px] focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400 bg-slate-50/80"></textarea>
             <span class="absolute bottom-2 right-3 text-xs text-slate-400 tabular-nums pointer-events-none"><span id="cnt-follow-note">0</span>/1000</span>
           </div>
         </div>
       </form>
       <div class="flex justify-center gap-3 px-6 py-4 border-t border-slate-100 bg-slate-50/80 shrink-0">
-        <button type="button" id="btn-confirm-follow-note" class="h-10 px-8 rounded-lg bg-blue-600 text-white text-sm font-medium hover:bg-blue-700">确认</button>
-        <button type="button" id="btn-cancel-follow-note" class="h-10 px-8 rounded-lg border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50">取消</button>
+        <button type="button" id="btn-confirm-follow-note" class="h-9 px-8 rounded-md bg-blue-600 text-white text-sm font-medium hover:bg-blue-700">确认</button>
+        <button type="button" id="btn-cancel-follow-note" class="h-9 px-8 rounded-md border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50">取消</button>
       </div>
     </div>
   </div>
 
-  <div id="toast-add-lead-success" class="fixed top-6 left-1/2 -translate-x-1/2 z-[110] hidden px-5 py-2.5 rounded-lg bg-slate-800 text-white text-sm shadow-lg" role="status">新增成功</div>
-  <div id="toast-follow-success" class="fixed top-6 left-1/2 -translate-x-1/2 z-[110] hidden px-5 py-2.5 rounded-lg bg-slate-800 text-white text-sm shadow-lg" role="status">提交成功</div>
-  <div id="toast-maintain-success" class="fixed top-6 left-1/2 -translate-x-1/2 z-[110] hidden px-5 py-2.5 rounded-lg bg-slate-800 text-white text-sm shadow-lg" role="status">提交成功</div>
+  <div id="toast-add-lead-success" class="fixed top-6 left-1/2 -translate-x-1/2 z-[120] hidden px-5 py-2.5 rounded-lg bg-slate-800 text-white text-sm shadow-lg" role="status">新增成功</div>
+  
+  <div id="toast-follow-success" class="fixed top-6 left-1/2 -translate-x-1/2 z-[120] hidden px-5 py-2.5 rounded-lg bg-slate-800 text-white text-sm shadow-lg" role="status">提交成功</div>
+  <div id="toast-maintain-success" class="fixed top-6 left-1/2 -translate-x-1/2 z-[120] hidden px-5 py-2.5 rounded-lg bg-slate-800 text-white text-sm shadow-lg" role="status">提交成功</div>
 
   <!-- 添加维护弹窗 -->
-  <div id="modal-maintain" class="hidden fixed inset-0 z-[100] items-center justify-center p-4 bg-slate-900/45" role="dialog" aria-modal="true" aria-labelledby="modal-maintain-title">
+  <div id="modal-maintain" class="hidden fixed inset-0 z-[110] items-center justify-center p-4 bg-slate-900/45" role="dialog" aria-modal="true" aria-labelledby="modal-maintain-title">
     <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col border border-slate-200">
       <div class="relative flex items-center justify-center h-14 px-4 border-b border-slate-100 shrink-0">
-        <h2 id="modal-maintain-title" class="text-base font-semibold text-slate-800">添加维护</h2>
-        <button type="button" id="btn-close-maintain" class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 flex items-center justify-center" aria-label="关闭">
+        <h2 id="modal-maintain-title" class="text-lg font-semibold text-slate-800">添加维护</h2>
+        <button type="button" id="btn-close-maintain" class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-md text-slate-400 hover:text-slate-600 hover:bg-slate-100 flex items-center justify-center" aria-label="关闭">
           <i class="fa-solid fa-xmark text-lg"></i>
         </button>
       </div>
@@ -608,8 +645,8 @@
           <div class="flex items-center gap-4 md:col-span-2">
             <label class="w-24 shrink-0 text-sm text-slate-600">公司名称 <span class="text-red-500">*</span></label>
             <div class="flex-1 relative min-w-0">
-              <select class="w-full h-10 pl-3 pr-9 rounded-lg border border-slate-200 text-sm text-slate-800 bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
-                <option selected>苏州美时信息科技</option>
+              <select class="w-full h-9 pl-3 pr-9 rounded-md border border-slate-200 text-sm text-slate-800 bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
+                <option selected>苏州美时信息科技有限公司</option>
                 <option>苏州范尔科技有限公司</option>
                 <option>南京美时科技有限公司</option>
               </select>
@@ -619,7 +656,7 @@
           <div class="flex items-center gap-4">
             <label class="w-24 shrink-0 text-sm text-slate-600">维护类型 <span class="text-red-500">*</span></label>
             <div class="flex-1 relative min-w-0">
-              <select class="w-full h-10 pl-3 pr-9 rounded-lg border border-slate-200 text-sm text-slate-800 bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
+              <select class="w-full h-9 pl-3 pr-9 rounded-md border border-slate-200 text-sm text-slate-800 bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
                 <option selected>资料归档</option>
                 <option>联系确认</option>
                 <option>年检提醒</option>
@@ -630,23 +667,22 @@
           <div class="flex items-center gap-4">
             <label class="w-24 shrink-0 text-sm text-slate-600">维护时间 <span class="text-red-500">*</span></label>
             <div class="flex-1 relative min-w-0">
-              <input id="maintain-time" type="text" value="2026-04-07 10:09" class="w-full h-10 pl-3 pr-9 rounded-lg border border-slate-200 text-sm text-slate-800 tabular-nums focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
+              <input id="maintain-time" type="text" value="2026-04-07 10:09" class="w-full h-9 pl-3 pr-9 rounded-md border border-slate-200 text-sm text-slate-800 tabular-nums focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
               <i class="fa-solid fa-angle-down pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
             </div>
           </div>
         </div>
-
         <div class="flex flex-col md:flex-row md:items-start gap-2 md:gap-4">
           <label class="w-24 shrink-0 text-sm text-slate-600 md:text-right pt-2">添加维护内容 <span class="text-red-500">*</span></label>
           <div class="flex-1 min-w-0 relative">
-            <textarea id="maintain-content" maxlength="1000" rows="5" placeholder="请输入" class="w-full px-3 py-2.5 pb-8 rounded-lg border border-slate-200 text-sm text-slate-800 placeholder:text-slate-400 resize-y min-h-[150px] focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400 bg-slate-50/80">营业执照副本扫描件已更新至客户档案。</textarea>
+            <textarea id="maintain-content" maxlength="1000" rows="5" placeholder="请输入" class="w-full px-3 py-2.5 pb-8 rounded-md border border-slate-200 text-sm text-slate-800 placeholder:text-slate-400 resize-y min-h-[150px] focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400 bg-slate-50/80">营业执照副本扫描件已更新至客户档案。</textarea>
             <span class="absolute bottom-2 right-3 text-xs text-slate-400 tabular-nums pointer-events-none"><span id="cnt-maintain">0</span>/1000</span>
           </div>
         </div>
       </form>
       <div class="flex justify-center gap-6 px-8 py-5 border-t border-slate-100 bg-white shrink-0">
-        <button type="button" id="btn-confirm-maintain" class="h-10 w-40 rounded-lg bg-blue-600 text-white text-sm font-medium hover:bg-blue-700">确认</button>
-        <button type="button" id="btn-cancel-maintain" class="h-10 w-40 rounded-lg border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50">取消</button>
+        <button type="button" id="btn-confirm-maintain" class="h-9 w-40 rounded-md bg-blue-600 text-white text-sm font-medium hover:bg-blue-700">确认</button>
+        <button type="button" id="btn-cancel-maintain" class="h-9 w-40 rounded-md border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50">取消</button>
       </div>
     </div>
   </div>
@@ -658,32 +694,31 @@
       var tabTeam = document.getElementById('ranking-tab-team');
       var panelPersonal = document.getElementById('ranking-panel-personal');
       var panelTeam = document.getElementById('ranking-panel-team');
-      if (!tabPersonal || !tabTeam || !panelPersonal || !panelTeam) return;
 
       function activatePersonal() {
+        if (!tabPersonal || !tabTeam) return;
         tabPersonal.setAttribute('aria-selected', 'true');
         tabTeam.setAttribute('aria-selected', 'false');
-        tabPersonal.classList.add('border-blue-600', 'text-blue-600');
-        tabPersonal.classList.remove('border-transparent', 'text-slate-500');
-        tabTeam.classList.remove('border-blue-600', 'text-blue-600');
-        tabTeam.classList.add('border-transparent', 'text-slate-500');
+        tabPersonal.classList.add('tab-active');
+        tabTeam.classList.remove('tab-active');
         panelPersonal.classList.remove('hidden');
         panelTeam.classList.add('hidden');
       }
 
       function activateTeam() {
+        if (!tabPersonal || !tabTeam) return;
         tabTeam.setAttribute('aria-selected', 'true');
         tabPersonal.setAttribute('aria-selected', 'false');
-        tabTeam.classList.add('border-blue-600', 'text-blue-600');
-        tabTeam.classList.remove('border-transparent', 'text-slate-500');
-        tabPersonal.classList.remove('border-blue-600', 'text-blue-600');
-        tabPersonal.classList.add('border-transparent', 'text-slate-500');
+        tabTeam.classList.add('tab-active');
+        tabPersonal.classList.remove('tab-active');
         panelTeam.classList.remove('hidden');
         panelPersonal.classList.add('hidden');
       }
 
-      tabPersonal.addEventListener('click', activatePersonal);
-      tabTeam.addEventListener('click', activateTeam);
+      if (tabPersonal && tabTeam) {
+        tabPersonal.addEventListener('click', activatePersonal);
+        tabTeam.addEventListener('click', activateTeam);
+      }
 
       var modalAddLead = document.getElementById('modal-add-lead');
       var btnOpenAddLead = document.getElementById('btn-open-add-lead');
@@ -859,15 +894,23 @@
         }
       });
       window.mountCreateContractModal({ openSelectors: ['#btn-open-create-contract'] });
+
+      var sidebar = document.getElementById('app-sidebar');
+      var backdrop = document.getElementById('sidebar-backdrop');
+      var toggle = document.getElementById('btn-sidebar-toggle');
+      if (sidebar && backdrop && toggle) {
+        function setOpen(open) {
+          sidebar.classList.toggle('-translate-x-full', !open);
+          sidebar.classList.toggle('translate-x-0', open);
+          backdrop.classList.toggle('hidden', !open);
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        }
+        toggle.addEventListener('click', function () {
+          setOpen(sidebar.classList.contains('-translate-x-full'));
+        });
+        backdrop.addEventListener('click', function () { setOpen(false); });
+      }
     })();
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-

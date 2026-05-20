@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>财务申请 - 企税康协同工作平台</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="./assets/responsive.css">
+  <link rel="stylesheet" href="./assets/design-system.css">
+  <style>
+    body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
+    #modal-apply:not(.hidden),
+    #modal-detail:not(.hidden) { display: flex; }
+  </style>
+</head>
+<body class="bg-[#f5f7fa] text-slate-700">
+  <div id="sidebar-backdrop" class="fixed inset-0 z-[150] bg-slate-900/40 hidden lg:hidden"></div>
+  <div class="min-h-screen w-full flex flex-col lg:flex-row relative">
+    <aside id="app-sidebar" class="w-64 max-w-[min(18rem,88vw)] bg-slate-900 text-slate-200 flex flex-col shrink-0 fixed lg:static inset-y-0 left-0 z-[160] h-screen lg:h-auto -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-out overflow-y-auto lg:overflow-visible shadow-xl lg:shadow-none">
+      <div class="h-16 px-3 flex items-center border-b border-slate-800">
+        <div class="w-full rounded-lg bg-white px-2 py-1.5 flex items-center justify-center">
+          <img src="./assets/qishuikang-logo.png" alt="企税康Logo" class="h-8 w-full max-h-8 object-contain object-center">
+        </div>
+      </div>
+      <nav class="flex-1 py-4 text-sm overflow-y-auto">
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="index.html"><i class="fa-solid fa-table-columns w-5 mr-2"></i>工作台</a>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-building-user w-5 mr-2"></i>客户中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-management.html">客户管理</a>
+            
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">业绩管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-target.html">跟进管理</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-file-signature w-5 mr-2"></i>合同订单</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="contract-management.html">合同管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="order-management.html">订单管理</a>
+          </div>
+        </details>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
+        <details class="mx-3 mb-1 group" open>
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg bg-slate-800/80 flex items-center justify-between text-white [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-wallet w-5 mr-2"></i>运营管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="payment-request.html">财务申请</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="hr-request.html">人事申请</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="financial-reports.html">财务报表</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="salary-management.html">薪资管理</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-gear w-5 mr-2"></i>系统管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="role-permissions.html">角色权限</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="department-employees.html">部门员工</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="dictionary-management.html">字典管理</a>
+          </div>
+        </details>
+      </nav>
+    </aside>
+
+    <main class="flex-1 flex flex-col min-w-0 w-full">
+      <header class="h-16 bg-white border-b border-slate-200 px-4 sm:px-6 gap-2 flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-2 min-w-0 flex-1">
+          <button type="button" id="btn-sidebar-toggle" class="lg:hidden shrink-0 w-10 h-10 rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 flex items-center justify-center" aria-expanded="false" aria-controls="app-sidebar" aria-label="打开导航菜单"><i class="fa-solid fa-bars text-lg"></i></button>
+          <div class="text-sm text-slate-500 min-w-0 truncate">运营管理 / <span class="text-slate-700 font-medium">财务申请</span></div>
+        </div>
+      </header>
+
+      <section class="p-4 sm:p-6">
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-3">
+            <label class="text-xs text-slate-500">审批状态
+              <button type="button" class="mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-left text-sm text-slate-600">全部</button>
+            </label>
+            <label class="text-xs text-slate-500">申请人
+              <input type="text" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm" placeholder="请输入">
+            </label>
+            <label class="text-xs text-slate-500">申请类型
+              <select class="mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-600">
+                <option value="">请选择</option>
+                <option>报销申请</option>
+                <option>用款申请</option>
+                <option>开票申请</option>
+              </select>
+            </label>
+            <label class="text-xs text-slate-500">申请部门
+              <select class="mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-600">
+                <option value="">请选择</option>
+                <option>政务服务部</option>
+                <option>销售一组</option>
+                <option>财务部</option>
+              </select>
+            </label>
+            <label class="text-xs text-slate-500 lg:col-span-2">申请时间
+              <div class="mt-1 flex items-center gap-1">
+                <input type="date" class="h-9 w-full rounded-md border border-slate-200 px-3 text-sm" value="2023-03-21">
+                <span class="text-slate-400 shrink-0">至</span>
+                <input type="date" class="h-9 w-full rounded-md border border-slate-200 px-3 text-sm" value="2024-03-21">
+              </div>
+            </label>
+          </div>
+          <div class="flex flex-wrap items-center gap-2 mb-4">
+            <button type="button" class="h-9 px-4 rounded-md bg-blue-600 hover:bg-blue-700 cursor-pointer text-white text-sm hover:bg-blue-700">查询</button>
+            <button type="button" class="h-9 px-4 rounded-md border border-slate-200 hover:bg-slate-50 cursor-pointer bg-white text-sm text-slate-600 hover:bg-slate-50">重置</button>
+            <button type="button" id="btn-open-apply" class="h-9 px-4 rounded-md border border-slate-200 hover:bg-slate-50 cursor-pointer bg-white text-sm text-slate-600 hover:bg-slate-50">财务申请</button>
+          </div>
+
+          <div class="rounded border border-slate-200 overflow-x-auto">
+            <table class="w-full text-sm min-w-[900px]">
+              <thead class="bg-slate-50 text-slate-600">
+                <tr>
+                  <th class="px-3 py-3 text-left border-b border-slate-200 whitespace-nowrap">申请人</th>
+                  <th class="px-3 py-3 text-left border-b border-slate-200 whitespace-nowrap">申请类型</th>
+                  <th class="px-3 py-3 text-left border-b border-slate-200 whitespace-nowrap">审批状态</th>
+                  <th class="px-3 py-3 text-left border-b border-slate-200 whitespace-nowrap">申请部门</th>
+                  <th class="px-3 py-3 text-left border-b border-slate-200 whitespace-nowrap">申请时间</th>
+                  <th class="px-3 py-3 text-left border-b border-slate-200 whitespace-nowrap">申请金额</th>
+                  <th class="px-3 py-3 text-left border-b border-slate-200 whitespace-nowrap">申请说明</th>
+                  <th class="px-3 py-3 text-left border-b border-slate-200 whitespace-nowrap">操作</th>
+                </tr>
+              </thead>
+              <tbody class="text-slate-700">
+                <tr class="border-b border-slate-100 hover:bg-slate-50">
+                  <td class="px-3 py-3">孙红</td>
+                  <td class="px-3 py-3">报销申请</td>
+                  <td class="px-3 py-3 text-amber-500">审核中</td>
+                  <td class="px-3 py-3">政务服务部</td>
+                  <td class="px-3 py-3">2026-04-14 10:23</td>
+                  <td class="px-3 py-3">646.00</td>
+                  <td class="px-3 py-3 max-w-[220px] truncate">出差交通及餐费报销，附相关票据</td>
+                  <td class="px-3 py-3 whitespace-nowrap"><button type="button" class="text-blue-600 hover:underline js-view-detail" data-status="pending">查看详情</button></td>
+                </tr>
+                <tr class="border-b border-slate-100 hover:bg-slate-50">
+                  <td class="px-3 py-3">孙红</td>
+                  <td class="px-3 py-3">用款申请</td>
+                  <td class="px-3 py-3 text-emerald-600">审核通过</td>
+                  <td class="px-3 py-3">政务服务部</td>
+                  <td class="px-3 py-3">2026-04-14 11:05</td>
+                  <td class="px-3 py-3">646.00</td>
+                  <td class="px-3 py-3 max-w-[220px] truncate">采购办公用品及耗材用款</td>
+                  <td class="px-3 py-3 whitespace-nowrap"><button type="button" class="text-blue-600 hover:underline js-view-detail" data-status="approved">查看详情</button></td>
+                </tr>
+                <tr class="border-b border-slate-100 hover:bg-slate-50">
+                  <td class="px-3 py-3">孙红</td>
+                  <td class="px-3 py-3">开票申请</td>
+                  <td class="px-3 py-3 text-rose-500">审核未通过</td>
+                  <td class="px-3 py-3">政务服务部</td>
+                  <td class="px-3 py-3">2026-04-14 14:30</td>
+                  <td class="px-3 py-3">646.00</td>
+                  <td class="px-3 py-3 max-w-[220px] truncate">客户服务费开票，需补充合同附件</td>
+                  <td class="px-3 py-3 whitespace-nowrap">
+                    <button type="button" class="text-blue-600 hover:underline js-view-detail" data-status="rejected">查看详情</button>
+                    <span class="px-2 text-slate-300">|</span>
+                    <button type="button" class="text-blue-600 hover:underline js-reapply">重新申请</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- 财务申请弹窗（居中） -->
+  <div id="modal-apply" class="fixed inset-0 z-[120] hidden items-center justify-center p-4 bg-slate-900/45" role="dialog" aria-modal="true" aria-labelledby="modal-apply-title">
+    <div class="absolute inset-0" data-close-modal></div>
+    <div class="relative w-full max-w-2xl max-h-[90vh] flex flex-col rounded-xl border border-slate-200 bg-white shadow-xl overflow-hidden">
+      <div class="shrink-0 border-b border-slate-200 px-6 py-4 flex items-center justify-between">
+        <h3 id="modal-apply-title" class="text-lg font-medium text-slate-800">财务申请</h3>
+        <button type="button" data-close-modal class="text-slate-400 hover:text-slate-600" aria-label="关闭"><i class="fa-solid fa-xmark text-xl"></i></button>
+      </div>
+      <div class="flex-1 overflow-y-auto p-6 text-sm">
+        <div class="mb-4 flex items-center gap-2 border-b border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium text-slate-800">
+          <span class="h-4 w-1 rounded-sm bg-blue-600"></span>基本信息
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <label class="text-slate-600">申请人
+            <select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 bg-white"><option>孙红</option></select>
+          </label>
+          <label class="text-slate-600">申请部门
+            <select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 bg-white"><option>政务服务部</option><option>销售一组</option></select>
+          </label>
+          <label class="text-slate-600">申请金额（元）
+            <input type="number" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3" placeholder="请输入申请金额" value="646.00">
+          </label>
+          <label class="text-slate-600">申请类型
+            <select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 bg-white">
+              <option>报销申请</option>
+              <option>用款申请</option>
+              <option>开票申请</option>
+            </select>
+          </label>
+          <label class="text-slate-600 sm:col-span-2">申请说明
+            <textarea class="mt-1 w-full rounded border border-slate-200 px-3 py-2 text-sm min-h-[88px]" placeholder="请填写申请说明"></textarea>
+          </label>
+          <div class="sm:col-span-2">
+            <p class="text-slate-600 mb-2">附件上传</p>
+            <div class="rounded-lg border border-dashed border-slate-300 bg-slate-50 px-4 py-8 text-center">
+              <i class="fa-solid fa-cloud-arrow-up text-2xl text-slate-400 mb-2"></i>
+              <p class="text-sm text-slate-500">点击或拖拽文件到此处上传</p>
+              <p class="text-xs text-slate-400 mt-1">支持 PDF、图片、Word，单文件不超过 10MB</p>
+              <button type="button" class="mt-3 h-8 px-4 rounded border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-100">选择文件</button>
+            </div>
+          </div>
+        </div>
+        <div class="mt-6 mb-4 flex items-center gap-2 border-b border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium text-slate-800">
+          <span class="h-4 w-1 rounded-sm bg-blue-600"></span>审批流程
+        </div>
+        <div class="space-y-2 text-slate-600 pl-1">
+          <p>部门审批：孙红</p>
+          <p>经理审批：财务经理</p>
+          <p>抄送人：老板、出纳</p>
+        </div>
+      </div>
+      <div class="shrink-0 border-t border-slate-200 py-4 px-6 flex justify-center gap-4 bg-white">
+        <button type="button" id="btn-apply-submit" class="h-10 min-w-[100px] rounded bg-blue-600 text-white text-sm hover:bg-blue-700">确认</button>
+        <button type="button" data-close-modal class="h-10 min-w-[100px] rounded border border-slate-300 text-slate-600 text-sm hover:bg-slate-50">取消</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 财务申请详情弹窗（居中） -->
+  <div id="modal-detail" class="fixed inset-0 z-[120] hidden items-center justify-center p-4 bg-slate-900/45" role="dialog" aria-modal="true" aria-labelledby="modal-detail-title">
+    <div class="absolute inset-0" data-close-detail></div>
+    <div class="relative w-full max-w-2xl max-h-[90vh] flex flex-col rounded-xl border border-slate-200 bg-white shadow-xl overflow-hidden">
+      <div class="shrink-0 border-b border-slate-200 px-6 py-4 flex items-center justify-between">
+        <h3 id="modal-detail-title" class="text-base font-medium text-slate-800">财务申请</h3>
+        <button type="button" data-close-detail class="text-slate-400 hover:text-slate-600" aria-label="关闭"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <div class="flex-1 overflow-y-auto p-6 text-sm">
+        <div id="detail-status" class="mb-4 rounded-lg border px-4 py-3 text-sm"></div>
+        <div class="mb-4 flex items-center gap-2 border-b border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium text-slate-800">
+          <span class="h-4 w-1 rounded-sm bg-blue-600"></span>基本信息
+        </div>
+        <div id="detail-basic" class="text-slate-600 mb-4 px-1 space-y-4">
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-y-3 gap-x-4">
+          <p class="text-slate-500 shrink-0">申请人</p><p class="text-slate-800 font-medium">孙红</p>
+          <p class="text-slate-500 shrink-0">申请时间</p><p class="text-slate-800 font-medium whitespace-nowrap tabular-nums">2026-04-20 13:23:03</p>
+          <p class="text-slate-500">申请部门</p><p class="text-slate-800 font-medium">政务服务部</p>
+          <p class="text-slate-500">申请类型</p><p class="text-slate-800 font-medium" id="detail-type">报销申请</p>
+          <p class="text-slate-500 shrink-0">申请金额</p><p class="text-slate-800 font-medium text-blue-600 sm:col-span-3">￥646.00</p>
+          </div>
+          <div class="border-t border-slate-100 pt-4">
+            <p class="text-slate-500 mb-1.5">申请说明</p>
+            <p class="text-slate-800 leading-relaxed" id="detail-desc">出差交通及餐费报销，附相关票据</p>
+          </div>
+          <div class="border-t border-slate-100 pt-4">
+            <p class="text-slate-500 mb-2">附件</p>
+            <div class="flex flex-wrap gap-2" id="detail-attachments">
+              <a href="#" class="inline-flex items-center gap-1.5 rounded border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm text-blue-600 hover:bg-slate-100 whitespace-nowrap"><i class="fa-regular fa-file-pdf"></i>报销票据.pdf</a>
+              <a href="#" class="inline-flex items-center gap-1.5 rounded border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm text-blue-600 hover:bg-slate-100 whitespace-nowrap"><i class="fa-regular fa-image"></i>行程截图.png</a>
+            </div>
+          </div>
+        </div>
+        <div class="mb-4 flex items-center gap-2 border-b border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium text-slate-800">
+          <span class="h-4 w-1 rounded-sm bg-blue-600"></span>审批流程
+        </div>
+        <div id="detail-timeline" class="p-2"></div>
+      </div>
+      <div id="detail-footer" class="shrink-0 border-t border-slate-200 bg-white py-4 px-6 flex flex-wrap justify-center gap-3"></div>
+    </div>
+  </div>
+
+  <div id="toast-pay" class="fixed top-6 left-1/2 z-[200] hidden -translate-x-1/2 rounded-lg bg-slate-800 px-5 py-2.5 text-sm text-white shadow-lg"></div>
+
+  <script>
+    (function () {
+      var applyModal = document.getElementById('modal-apply');
+      var detailModal = document.getElementById('modal-detail');
+      var submitBtn = document.getElementById('btn-apply-submit');
+      var toast = document.getElementById('toast-pay');
+      var statusBox = document.getElementById('detail-status');
+      var footer = document.getElementById('detail-footer');
+      var timelineEl = document.getElementById('detail-timeline');
+      var detailType = document.getElementById('detail-type');
+      var detailDesc = document.getElementById('detail-desc');
+
+      var detailData = {
+        pending: { type: '报销申请', desc: '出差交通及餐费报销，附相关票据' },
+        approved: { type: '用款申请', desc: '采购办公用品及耗材用款' },
+        rejected: { type: '开票申请', desc: '客户服务费开票，需补充合同附件' }
+      };
+
+      var statusCfg = {
+        pending: {
+          cls: 'border-amber-200 bg-amber-50 text-amber-700',
+          title: '审核中',
+          desc: '当前审批人：钱蕾（财务经理）',
+          btns: '<button type="button" class="h-10 min-w-[100px] rounded bg-blue-600 text-white text-sm hover:bg-blue-700">审批通过</button><button type="button" class="h-10 min-w-[100px] rounded border border-slate-300 text-slate-600 text-sm hover:bg-slate-50">审批拒绝</button>',
+          timeline: [
+            { kind: 'pending', step: '经理审批', name: '钱蕾　财务经理', time: '2026-04-20 12:32:02', status: '审核中...', statusClass: 'text-amber-600', comment: '' },
+            { kind: 'done', step: '部门审批', name: '孙红　政务部主管', time: '2026-04-20 12:30:15', status: '审核通过', statusClass: 'text-emerald-600', comment: '审批意见：费用合理，同意报销' },
+            { kind: 'done', step: '提交申请', name: '孙红　政务服务部', time: '2026-04-20 12:28:00', status: '发起申请', statusClass: 'text-emerald-600', comment: '' }
+          ]
+        },
+        rejected: {
+          cls: 'border-rose-200 bg-rose-50 text-rose-700',
+          title: '审核未通过',
+          desc: '审批人：钱蕾（财务经理）',
+          btns: '<button type="button" class="h-10 min-w-[100px] rounded bg-blue-600 text-white text-sm hover:bg-blue-700 js-reapply-from-detail">重新申请</button><button type="button" data-close-detail class="h-10 min-w-[100px] rounded border border-slate-300 text-slate-600 text-sm hover:bg-slate-50">取消</button>',
+          timeline: [
+            { kind: 'reject', step: '经理审批', name: '钱蕾　财务经理', time: '2026-04-20 12:32:02', status: '审核未通过', statusClass: 'text-rose-600', comment: '审批意见：附件不完整，请补充合同后重新提交' },
+            { kind: 'done', step: '部门审批', name: '孙红　政务部主管', time: '2026-04-20 12:30:15', status: '审核通过', statusClass: 'text-emerald-600', comment: '审批意见：同意申请' },
+            { kind: 'done', step: '提交申请', name: '孙红　政务服务部', time: '2026-04-20 12:28:00', status: '发起申请', statusClass: 'text-emerald-600', comment: '' }
+          ]
+        },
+        approved: {
+          cls: 'border-emerald-200 bg-emerald-50 text-emerald-700',
+          title: '审核通过',
+          desc: '审批已完成',
+          btns: '<button type="button" data-close-detail class="h-10 min-w-[100px] rounded border border-slate-300 text-slate-600 text-sm hover:bg-slate-50">关闭</button>',
+          timeline: [
+            { kind: 'done', step: '经理审批', name: '钱蕾　财务经理', time: '2026-04-20 12:35:00', status: '审核通过', statusClass: 'text-emerald-600', comment: '审批意见：审批通过' },
+            { kind: 'done', step: '部门审批', name: '孙红　政务部主管', time: '2026-04-20 12:30:15', status: '审核通过', statusClass: 'text-emerald-600', comment: '审批意见：用款事由明确，同意' },
+            { kind: 'done', step: '提交申请', name: '孙红　政务服务部', time: '2026-04-20 12:28:00', status: '发起申请', statusClass: 'text-emerald-600', comment: '' }
+          ]
+        }
+      };
+
+      function openModal(el) {
+        el.classList.remove('hidden');
+        el.classList.add('flex');
+      }
+      function closeModal(el) {
+        el.classList.add('hidden');
+        el.classList.remove('flex');
+      }
+
+      function timelineItem(item, isLast) {
+        var line = isLast ? '' : '<div class="absolute left-4 top-9 bottom-0 w-px bg-slate-200"></div>';
+        var icon;
+        if (item.kind === 'pending') {
+          icon = '<div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 border-amber-200 bg-amber-50 text-amber-600"><i class="fa-regular fa-clock text-sm"></i></div>';
+        } else if (item.kind === 'reject') {
+          icon = '<div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-rose-500 text-white"><i class="fa-solid fa-xmark text-sm"></i></div>';
+        } else {
+          icon = '<div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-white"><i class="fa-solid fa-check text-sm"></i></div>';
+        }
+        var comment = item.comment ? '<p class="mt-1 text-slate-500">' + item.comment + '</p>' : '';
+        return (
+          '<div class="relative flex gap-3 pb-6">' +
+          line + icon +
+          '<div class="min-w-0 flex-1 pt-0.5">' +
+          '<p class="font-medium text-slate-800">' + item.step + '</p>' +
+          '<p class="text-slate-600">' + item.name + '　' + item.time + '</p>' +
+          '<p class="' + item.statusClass + ' font-medium">' + item.status + '</p>' +
+          comment +
+          '</div></div>'
+        );
+      }
+
+      function renderTimeline(items) {
+        var html = '';
+        for (var i = 0; i < items.length; i++) html += timelineItem(items[i], i === items.length - 1);
+        timelineEl.innerHTML = html;
+      }
+
+      document.getElementById('btn-open-apply').addEventListener('click', function () { openModal(applyModal); });
+
+      document.querySelectorAll('[data-close-modal]').forEach(function (el) {
+        el.addEventListener('click', function () { closeModal(applyModal); });
+      });
+      document.querySelectorAll('[data-close-detail]').forEach(function (el) {
+        el.addEventListener('click', function () { closeModal(detailModal); });
+      });
+
+      document.querySelectorAll('.js-view-detail').forEach(function (el) {
+        el.addEventListener('click', function () {
+          var status = el.getAttribute('data-status') || 'pending';
+          var cfg = statusCfg[status] || statusCfg.pending;
+          var data = detailData[status] || detailData.pending;
+          statusBox.className = 'mb-4 rounded-lg border px-4 py-3 ' + cfg.cls;
+          statusBox.innerHTML = '<p class="font-semibold">' + cfg.title + '</p><p class="text-xs mt-1 opacity-90">' + cfg.desc + '</p>';
+          if (detailType) detailType.textContent = data.type;
+          if (detailDesc) detailDesc.textContent = data.desc;
+          footer.innerHTML = cfg.btns;
+          footer.querySelectorAll('.js-reapply-from-detail').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+              closeModal(detailModal);
+              openModal(applyModal);
+            });
+          });
+          renderTimeline(cfg.timeline || []);
+          openModal(detailModal);
+        });
+      });
+
+      document.querySelectorAll('.js-reapply').forEach(function (el) {
+        el.addEventListener('click', function () {
+          closeModal(detailModal);
+          openModal(applyModal);
+        });
+      });
+
+      if (submitBtn) {
+        submitBtn.addEventListener('click', function () {
+          closeModal(applyModal);
+          toast.textContent = '提交成功';
+          toast.classList.remove('hidden');
+          clearTimeout(window._payToastTimer);
+          window._payToastTimer = setTimeout(function () { toast.classList.add('hidden'); }, 1800);
+        });
+      }
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape') return;
+        closeModal(applyModal);
+        closeModal(detailModal);
+      });
+    })();
+  </script>
+  <script src="./assets/app-shell.js"></script>
+</body>
+</html>

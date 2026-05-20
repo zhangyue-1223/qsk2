@@ -6,13 +6,17 @@
   <title>合同管理 - 企税康协同工作平台</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <link rel="stylesheet" href="./assets/responsive.css">
+  <link rel="stylesheet" href="./assets/design-system.css">
   <style>
     body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
   </style>
 </head>
-<body class="bg-slate-100 text-slate-700">
-  <div class="min-h-screen w-full flex">
-    <aside class="w-64 bg-slate-900 text-slate-200 flex flex-col shrink-0">
+<body class="bg-[#f5f7fa] text-slate-700">
+  <div id="sidebar-backdrop" class="fixed inset-0 z-[150] bg-slate-900/40 hidden lg:hidden"></div>
+  <div class="min-h-screen w-full flex flex-col lg:flex-row relative">
+    <aside id="app-sidebar" class="w-64 max-w-[min(18rem,88vw)] bg-slate-900 text-slate-200 flex flex-col shrink-0 fixed lg:static inset-y-0 left-0 z-[160] h-screen lg:h-auto -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-out overflow-y-auto lg:overflow-visible shadow-xl lg:shadow-none">
       <div class="h-16 px-3 flex items-center border-b border-slate-800">
         <div class="w-full rounded-lg bg-white px-2 py-1.5 flex items-center justify-center">
           <img src="./assets/qishuikang-logo.png" alt="企税康Logo" class="h-8 w-full max-h-8 object-contain object-center mix-blend-multiply">
@@ -22,12 +26,24 @@
         <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="index.html"><i class="fa-solid fa-table-columns w-5 mr-2"></i>工作台</a>
         <details class="mx-3 mb-1 group">
           <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-building-user w-5 mr-2"></i>客户中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-management.html">客户管理</a>
+            
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
             <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售管理</span>
             <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
           </summary>
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">销售业绩</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-target.html">销售目标</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">销售业绩</a>
+            
           </div>
         </details>
         <details class="mx-3 mb-1 group" open>
@@ -38,20 +54,43 @@
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
             <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="contract-management.html">合同管理</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="order-management.html">订单管理</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="invoice-management.html">开票管理</a>
           </div>
         </details>
-        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="#"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>交付中心</a>
-        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="#"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
-        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="#"><i class="fa-solid fa-wallet w-5 mr-2"></i>财务管理</a>
-        <a class="mx-3 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="#"><i class="fa-solid fa-gear w-5 mr-2"></i>系统管理</a>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>交付中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="government-affairs.html">政务服务</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="accounting-customer-management.html">代账客户</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="address-management.html">地址管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="#">客户物品</a>
+          </div>
+        </details>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="#"><i class="fa-solid fa-wallet w-5 mr-2"></i>运营管理</a>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-gear w-5 mr-2"></i>系统管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="role-permissions.html">角色权限</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="department-employees.html">部门员工</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="dictionary-management.html">字典管理</a>
+          </div>
+        </details>
       </nav>
     </aside>
 
-    <main class="flex-1 flex flex-col min-w-0">
-      <header class="h-16 bg-white border-b border-slate-200 px-6 flex items-center justify-between shrink-0">
-        <div class="text-sm text-slate-500">合同订单 / <span class="text-slate-700 font-medium">合同管理</span></div>
-        <div class="flex items-center gap-4">
+    <main class="flex-1 flex flex-col min-w-0 w-full">
+      <header class="h-16 bg-white border-b border-slate-200 px-4 sm:px-6 gap-2 flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-2 min-w-0 flex-1">
+        <button type="button" id="btn-sidebar-toggle" class="lg:hidden shrink-0 w-10 h-10 rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 flex items-center justify-center" aria-expanded="false" aria-controls="app-sidebar" aria-label="打开导航菜单"><i class="fa-solid fa-bars text-lg"></i></button>
+        <div class="text-sm text-slate-500 min-w-0 truncate">合同订单 / <span class="text-slate-700 font-medium">合同管理</span></div>
+        </div>
+        <div class="flex items-center gap-4 shrink-0">
           <button type="button" class="w-9 h-9 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200"><i class="fa-regular fa-bell"></i></button>
           <div class="flex items-center">
             <img class="w-9 h-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=80&q=80" alt="用户头像">
@@ -63,16 +102,16 @@
         </div>
       </header>
 
-      <section class="p-6">
+      <section class="p-4 sm:p-6">
         <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
           <div class="text-sm text-slate-500 mb-4">合同订单 / 合同管理</div>
 
           <div class="grid grid-cols-5 gap-3 mb-3">
-            <div><label class="block text-xs text-slate-500 mb-1">合同编号</label><input type="text" placeholder="请输入" class="w-full h-9 px-3 rounded border border-slate-200 text-sm"></div>
-            <div><label class="block text-xs text-slate-500 mb-1">甲方公司名称</label><input type="text" placeholder="请输入" class="w-full h-9 px-3 rounded border border-slate-200 text-sm"></div>
-            <div><label class="block text-xs text-slate-500 mb-1">签约状态</label><button class="w-full h-9 px-3 rounded border border-slate-200 bg-white text-sm text-slate-600 flex items-center justify-between">请选择<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button></div>
-            <div><label class="block text-xs text-slate-500 mb-1">负责人</label><button class="w-full h-9 px-3 rounded border border-slate-200 bg-white text-sm text-slate-600 flex items-center justify-between">请选择<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button></div>
-            <div><label class="block text-xs text-slate-500 mb-1">所属部门</label><button class="w-full h-9 px-3 rounded border border-slate-200 bg-white text-sm text-slate-600 flex items-center justify-between">请选择<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button></div>
+            <div><label class="block text-xs text-slate-500 mb-1">合同编号</label><input type="text" placeholder="请输入" class="w-full h-9 px-3 rounded-md border border-slate-200 text-sm"></div>
+            <div><label class="block text-xs text-slate-500 mb-1">甲方公司名称</label><input type="text" placeholder="请输入" class="w-full h-9 px-3 rounded-md border border-slate-200 text-sm"></div>
+            <div><label class="block text-xs text-slate-500 mb-1">签约状态</label><button class="w-full h-9 px-3 rounded-md border border-slate-200 bg-white text-sm text-slate-600 flex items-center justify-between">请选择<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button></div>
+            <div><label class="block text-xs text-slate-500 mb-1">负责</label><button class="w-full h-9 px-3 rounded-md border border-slate-200 bg-white text-sm text-slate-600 flex items-center justify-between">请选择<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button></div>
+            <div><label class="block text-xs text-slate-500 mb-1">所属部门</label><button class="w-full h-9 px-3 rounded-md border border-slate-200 bg-white text-sm text-slate-600 flex items-center justify-between">请选择<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button></div>
           </div>
 
           <div class="flex flex-wrap items-end gap-3 mb-4">
@@ -92,10 +131,10 @@
                 <input type="text" value="2024-03-21" class="h-9 w-32 px-3 rounded border border-slate-200 text-sm">
               </div>
             </div>
-            <button class="h-9 px-4 rounded bg-blue-600 text-white text-sm hover:bg-blue-700">查询</button>
-            <button class="h-9 px-4 rounded border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50">重置</button>
-            <button class="h-9 px-4 rounded border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50">全部导出</button>
-            <button type="button" id="btn-open-create-contract" class="h-9 px-4 rounded bg-blue-600 text-white text-sm hover:bg-blue-700">创建合同</button>
+            <button class="h-9 px-4 rounded-md bg-blue-600 hover:bg-blue-700 cursor-pointer text-white text-sm hover:bg-blue-700">查询</button>
+            <button class="h-9 px-4 rounded-md border border-slate-200 hover:bg-slate-50 cursor-pointer bg-white text-sm text-slate-600 hover:bg-slate-50">重置</button>
+            <button class="h-9 px-4 rounded-md border border-slate-200 hover:bg-slate-50 cursor-pointer bg-white text-sm text-slate-600 hover:bg-slate-50">全部导出</button>
+            <button type="button" id="btn-open-create-contract" class="h-9 px-4 rounded-md bg-blue-600 hover:bg-blue-700 cursor-pointer text-white text-sm hover:bg-blue-700">创建合同</button>
           </div>
 
           <div class="border-b border-slate-200 mb-3 flex gap-8 text-sm">
@@ -105,7 +144,7 @@
             <button class="pb-2 -mb-px border-b-2 border-transparent text-slate-500 hover:text-slate-700">增值服务</button>
           </div>
 
-          <div class="overflow-x-auto rounded border border-slate-200">
+          <div class="overflow-x-auto rounded-lg border border-slate-200">
             <table class="w-full min-w-[1400px] text-sm">
               <thead class="bg-slate-50 text-slate-600">
                 <tr>
@@ -123,11 +162,11 @@
                 </tr>
               </thead>
               <tbody class="text-slate-700">
-                <tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">HT20260404002</td><td class="px-3 py-3 border-b border-slate-100">苏州美时科技有限公司</td><td class="px-3 py-3 border-b border-slate-100">代理记账</td><td class="px-3 py-3 border-b border-slate-100">1600.00</td><td class="px-3 py-3 border-b border-slate-100">未签约</td><td class="px-3 py-3 border-b border-slate-100">--</td><td class="px-3 py-3 border-b border-slate-100">周方林</td><td class="px-3 py-3 border-b border-slate-100">财务一组</td><td class="px-3 py-3 border-b border-slate-100">2026-03-21 18:03</td><td class="px-3 py-3 border-b border-slate-100"><a href="#" class="text-blue-600 hover:underline">查看合同</a></td><td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap"><a href="#" class="text-blue-600 hover:underline mr-3">导出合同</a><a href="#" class="text-blue-600 hover:underline">作废</a></td></tr>
-                <tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">HT20260404002</td><td class="px-3 py-3 border-b border-slate-100">苏州美时科技有限公司</td><td class="px-3 py-3 border-b border-slate-100">增值服务</td><td class="px-3 py-3 border-b border-slate-100">1800.00</td><td class="px-3 py-3 border-b border-slate-100">未签约</td><td class="px-3 py-3 border-b border-slate-100">--</td><td class="px-3 py-3 border-b border-slate-100">周方林</td><td class="px-3 py-3 border-b border-slate-100">财务一组</td><td class="px-3 py-3 border-b border-slate-100">2026-03-21 18:03</td><td class="px-3 py-3 border-b border-slate-100"><a href="#" class="text-blue-600 hover:underline">查看合同</a></td><td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap"><a href="#" class="text-blue-600 hover:underline mr-3">导出合同</a><a href="#" class="text-blue-600 hover:underline">作废</a></td></tr>
-                <tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">HT20260404002</td><td class="px-3 py-3 border-b border-slate-100">苏州美时科技有限公司</td><td class="px-3 py-3 border-b border-slate-100">注册地址</td><td class="px-3 py-3 border-b border-slate-100">1800.00</td><td class="px-3 py-3 border-b border-slate-100">未签约</td><td class="px-3 py-3 border-b border-slate-100">--</td><td class="px-3 py-3 border-b border-slate-100">周方林</td><td class="px-3 py-3 border-b border-slate-100">财务一组</td><td class="px-3 py-3 border-b border-slate-100">2026-03-21 18:03</td><td class="px-3 py-3 border-b border-slate-100"><a href="#" class="text-blue-600 hover:underline">查看合同</a></td><td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap"><a href="#" class="text-blue-600 hover:underline mr-3">导出合同</a><a href="#" class="text-blue-600 hover:underline">作废</a></td></tr>
-                <tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">HT20260404002</td><td class="px-3 py-3 border-b border-slate-100">苏州美时科技有限公司</td><td class="px-3 py-3 border-b border-slate-100">代理记账</td><td class="px-3 py-3 border-b border-slate-100">1800.00</td><td class="px-3 py-3 border-b border-slate-100">已签约</td><td class="px-3 py-3 border-b border-slate-100">2026-04-13</td><td class="px-3 py-3 border-b border-slate-100">周方林</td><td class="px-3 py-3 border-b border-slate-100">财务一组</td><td class="px-3 py-3 border-b border-slate-100">2026-03-21 18:03</td><td class="px-3 py-3 border-b border-slate-100"><a href="#" class="text-blue-600 hover:underline">查看合同</a></td><td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap"><a href="#" class="text-blue-600 hover:underline">导出合同</a></td></tr>
-                <tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">HT20260404002</td><td class="px-3 py-3 border-b border-slate-100">苏州美时科技有限公司</td><td class="px-3 py-3 border-b border-slate-100">增值服务</td><td class="px-3 py-3 border-b border-slate-100">1800.00</td><td class="px-3 py-3 border-b border-slate-100">已签约</td><td class="px-3 py-3 border-b border-slate-100">2026-04-13</td><td class="px-3 py-3 border-b border-slate-100">周方林</td><td class="px-3 py-3 border-b border-slate-100">财务一组</td><td class="px-3 py-3 border-b border-slate-100">2026-03-21 18:03</td><td class="px-3 py-3 border-b border-slate-100"><a href="#" class="text-blue-600 hover:underline">查看合同</a></td><td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap"><a href="#" class="text-blue-600 hover:underline">导出合同</a></td></tr>
+                <tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">HT20260404002</td><td class="px-3 py-3 border-b border-slate-100">苏州美时科技有限公司</td><td class="px-3 py-3 border-b border-slate-100">代理记账</td><td class="px-3 py-3 border-b border-slate-100">1600.00</td><td class="px-3 py-3 border-b border-slate-100">未签</td><td class="px-3 py-3 border-b border-slate-100">--</td><td class="px-3 py-3 border-b border-slate-100">周方林</td><td class="px-3 py-3 border-b border-slate-100">财务一组</td><td class="px-3 py-3 border-b border-slate-100">2026-03-21 18:03</td><td class="px-3 py-3 border-b border-slate-100"><a href="#" class="text-blue-600 hover:underline">查看合同</a></td><td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap"><a href="#" class="text-blue-600 hover:underline mr-3">导出合同</a><a href="#" class="text-blue-600 hover:underline">作废</a></td></tr>
+                <tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">HT20260404002</td><td class="px-3 py-3 border-b border-slate-100">苏州美时科技有限公司</td><td class="px-3 py-3 border-b border-slate-100">增值服务</td><td class="px-3 py-3 border-b border-slate-100">1800.00</td><td class="px-3 py-3 border-b border-slate-100">未签</td><td class="px-3 py-3 border-b border-slate-100">--</td><td class="px-3 py-3 border-b border-slate-100">周方林</td><td class="px-3 py-3 border-b border-slate-100">财务一组</td><td class="px-3 py-3 border-b border-slate-100">2026-03-21 18:03</td><td class="px-3 py-3 border-b border-slate-100"><a href="#" class="text-blue-600 hover:underline">查看合同</a></td><td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap"><a href="#" class="text-blue-600 hover:underline mr-3">导出合同</a><a href="#" class="text-blue-600 hover:underline">作废</a></td></tr>
+                <tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">HT20260404002</td><td class="px-3 py-3 border-b border-slate-100">苏州美时科技有限公司</td><td class="px-3 py-3 border-b border-slate-100">注册地址</td><td class="px-3 py-3 border-b border-slate-100">1800.00</td><td class="px-3 py-3 border-b border-slate-100">未签</td><td class="px-3 py-3 border-b border-slate-100">--</td><td class="px-3 py-3 border-b border-slate-100">周方林</td><td class="px-3 py-3 border-b border-slate-100">财务一组</td><td class="px-3 py-3 border-b border-slate-100">2026-03-21 18:03</td><td class="px-3 py-3 border-b border-slate-100"><a href="#" class="text-blue-600 hover:underline">查看合同</a></td><td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap"><a href="#" class="text-blue-600 hover:underline mr-3">导出合同</a><a href="#" class="text-blue-600 hover:underline">作废</a></td></tr>
+                <tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">HT20260404002</td><td class="px-3 py-3 border-b border-slate-100">苏州美时科技有限公司</td><td class="px-3 py-3 border-b border-slate-100">代理记账</td><td class="px-3 py-3 border-b border-slate-100">1800.00</td><td class="px-3 py-3 border-b border-slate-100">已签</td><td class="px-3 py-3 border-b border-slate-100">2026-04-13</td><td class="px-3 py-3 border-b border-slate-100">周方林</td><td class="px-3 py-3 border-b border-slate-100">财务一组</td><td class="px-3 py-3 border-b border-slate-100">2026-03-21 18:03</td><td class="px-3 py-3 border-b border-slate-100"><a href="#" class="text-blue-600 hover:underline">查看合同</a></td><td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap"><a href="#" class="text-blue-600 hover:underline">导出合同</a></td></tr>
+                <tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">HT20260404002</td><td class="px-3 py-3 border-b border-slate-100">苏州美时科技有限公司</td><td class="px-3 py-3 border-b border-slate-100">增值服务</td><td class="px-3 py-3 border-b border-slate-100">1800.00</td><td class="px-3 py-3 border-b border-slate-100">已签</td><td class="px-3 py-3 border-b border-slate-100">2026-04-13</td><td class="px-3 py-3 border-b border-slate-100">周方林</td><td class="px-3 py-3 border-b border-slate-100">财务一组</td><td class="px-3 py-3 border-b border-slate-100">2026-03-21 18:03</td><td class="px-3 py-3 border-b border-slate-100"><a href="#" class="text-blue-600 hover:underline">查看合同</a></td><td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap"><a href="#" class="text-blue-600 hover:underline">导出合同</a></td></tr>
               </tbody>
             </table>
           </div>
@@ -151,8 +190,17 @@
   <script>
     window.mountCreateContractModal({ openSelectors: ['#btn-open-create-contract'] });
   </script>
+  <script src="./assets/app-shell.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
 
 
 

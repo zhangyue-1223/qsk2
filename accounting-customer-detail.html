@@ -1,0 +1,304 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>代账客户详情 - 企税康协同工作平台</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="./assets/responsive.css">
+  <link rel="stylesheet" href="./assets/design-system.css">
+
+  <style>
+    body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
+    .sec-title { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9375rem; font-weight: 600; color: #1e293b; margin-bottom: 1rem; }
+    .sec-title::before { content: ''; width: 3px; height: 14px; border-radius: 2px; background: #2563eb; flex-shrink: 0; }
+    #modal-progress-detail:not(.hidden) { display: flex; }
+    .wo-steps { display: flex; align-items: flex-start; justify-content: space-between; gap: 0; padding: 0.5rem 0 1.25rem; overflow-x: auto; }
+    .wo-step { flex: 1; min-width: 5.5rem; position: relative; text-align: center; }
+    .wo-step:not(:last-child)::after {
+      content: ''; position: absolute; top: 14px; left: calc(50% + 16px); right: calc(-50% + 16px);
+      height: 2px; background: #e2e8f0; z-index: 0;
+    }
+    .wo-step.done:not(:last-child)::after, .wo-step.active:not(:last-child)::after { background: #3b82f6; }
+    .wo-step-dot {
+      width: 28px; height: 28px; border-radius: 50%; margin: 0 auto 0.5rem; position: relative; z-index: 1;
+      display: flex; align-items: center; justify-content: center; font-size: 0.7rem; border: 2px solid #e2e8f0; background: #fff; color: #94a3b8;
+    }
+    .wo-step.done .wo-step-dot { background: #2563eb; border-color: #2563eb; color: #fff; }
+    .wo-step.active .wo-step-dot { background: #2563eb; border-color: #2563eb; color: #fff; }
+    .wo-step.pending .wo-step-dot { background: #fff; border-color: #cbd5e1; color: #94a3b8; }
+    .wo-step-label { font-size: 0.8125rem; color: #334155; font-weight: 500; line-height: 1.3; }
+    .wo-step-sub { font-size: 0.6875rem; color: #94a3b8; margin-top: 0.25rem; line-height: 1.2; }
+  </style>
+</head>
+<body class="bg-[#f5f7fa] text-slate-700">
+  <div id="sidebar-backdrop" class="fixed inset-0 z-[150] bg-slate-900/40 hidden lg:hidden"></div>
+  <div class="min-h-screen w-full flex flex-col lg:flex-row relative">
+    <aside id="app-sidebar" class="w-64 max-w-[min(18rem,88vw)] bg-slate-900 text-slate-200 flex flex-col shrink-0 fixed lg:static inset-y-0 left-0 z-[160] h-screen lg:h-auto -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-out overflow-y-auto lg:overflow-visible shadow-xl lg:shadow-none">
+      <div class="h-16 px-3 flex items-center border-b border-slate-800">
+        <div class="w-full rounded-lg bg-white px-2 py-1.5 flex items-center justify-center">
+          <img src="./assets/qishuikang-logo.png" alt="企税康Logo" class="h-8 w-full max-h-8 object-contain object-center mix-blend-multiply">
+        </div>
+      </div>
+      <nav class="flex-1 py-4 text-sm overflow-y-auto">
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="index.html"><i class="fa-solid fa-table-columns w-5 mr-2"></i>工作台</a>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-building-user w-5 mr-2"></i>客户中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-management.html">客户管理</a>
+            
+            
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group" open>
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg bg-slate-800/80 flex items-center justify-between text-white [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>交付中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="government-affairs.html">政务服务</a>
+            <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="accounting-customer-management.html">代账客户</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="address-management.html">地址管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-items.html">客户物品</a>
+          </div>
+        </details>
+      </nav>
+    </aside>
+
+    <main class="flex-1 flex flex-col min-w-0 w-full">
+      <header class="h-16 bg-white border-b border-slate-200 px-4 sm:px-6 gap-2 flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-2 min-w-0 flex-1">
+        <button type="button" id="btn-sidebar-toggle" class="lg:hidden shrink-0 w-10 h-10 rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 flex items-center justify-center" aria-expanded="false" aria-controls="app-sidebar" aria-label="打开导航菜单"><i class="fa-solid fa-bars text-lg"></i></button>
+        <div class="text-sm text-slate-500 min-w-0 truncate">交付中心 / <span class="text-slate-700 font-medium">代账客户</span></div>
+        </div>
+        <div class="flex items-center gap-3 shrink-0">
+          <button type="button" class="w-9 h-9 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200"><i class="fa-regular fa-bell"></i></button>
+          <div class="flex items-center">
+            <img class="w-9 h-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=80&q=80" alt="用户头像">
+            <div class="ml-2">
+              <p class="text-sm font-medium text-slate-700">朱总</p>
+              <p class="text-xs text-slate-400">企业端</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="p-4 sm:p-6 flex-1">
+        <div class="text-sm text-slate-500 mb-3">交付中心 / 代账客户</div>
+        <div class="bg-white rounded-xl border border-slate-200 shadow-sm">
+          <div class="px-5 py-3 border-b border-slate-200">
+            <a href="accounting-customer-management.html" class="text-sm text-slate-500 hover:text-slate-700"><i class="fa-solid fa-angle-left mr-1"></i>代账客户详情</a>
+          </div>
+
+          <div class="px-5 pt-4 pb-2 border-b border-slate-100">
+            <div id="block-workflow-steps" class="wo-steps" aria-label="服务流程进度"></div>
+          </div>
+
+          <div class="grid grid-cols-1 xl:grid-cols-5 gap-0 min-w-0">
+            <div class="xl:col-span-3 p-5 border-b xl:border-b-0 xl:border-r border-slate-200 space-y-7">
+              <section>
+                <h3 class="sec-title">基本信息</h3>
+                <div id="order-info" class="text-sm"></div>
+              </section>
+              <section>
+                <h3 class="sec-title">工商信息</h3>
+                <div id="ic-info" class="grid grid-cols-1 gap-y-3 text-sm"></div>
+                <div class="mt-3">
+                  <p class="text-xs text-slate-500 mb-1">经营范围</p>
+                  <p id="ic-scope" class="text-sm text-slate-700 leading-relaxed rounded border border-slate-100 bg-slate-50/80 p-3"></p>
+                </div>
+              </section>
+            </div>
+
+            <div class="xl:col-span-2 p-5 space-y-7">
+              <section>
+                <div class="flex items-center justify-between mb-4">
+                  <h3 class="sec-title !mb-0">办理进度</h3>
+                  <button type="button" id="btn-open-progress-detail" class="text-sm font-medium text-blue-600 hover:text-blue-700">添加进度</button>
+                </div>
+                <div class="overflow-x-auto rounded-lg border border-slate-200 mb-7">
+                  <table class="w-full min-w-[560px] text-sm">
+                    <thead class="bg-slate-50 text-slate-600">
+                      <tr>
+                        <th class="text-left px-3 py-2.5 border-b border-slate-200 font-medium">进度节点</th>
+                        <th class="text-left px-3 py-2.5 border-b border-slate-200 font-medium">状态</th>
+                        <th class="text-left px-3 py-2.5 border-b border-slate-200 font-medium">经办人</th>
+                        <th class="text-left px-3 py-2.5 border-b border-slate-200 font-medium">办理日期</th>
+                        <th class="text-left px-3 py-2.5 border-b border-slate-200 font-medium">完成说明</th>
+                        <th class="text-left px-3 py-2.5 border-b border-slate-200 font-medium">操作</th>
+                      </tr>
+                    </thead>
+                    <tbody id="progress-list" class="text-slate-700"></tbody>
+                  </table>
+                </div>
+              </section>
+              <section>
+                <h3 class="sec-title">附件资料</h3>
+                <div class="grid grid-cols-3 gap-3">
+                  <div class="aspect-[4/3] rounded-lg border border-dashed border-slate-200 bg-slate-50 flex flex-col items-center justify-center text-xs text-slate-400"><i class="fa-regular fa-image mb-2 text-lg"></i>身份证</div>
+                  <div class="aspect-[4/3] rounded-lg border border-dashed border-slate-200 bg-slate-50 flex flex-col items-center justify-center text-xs text-slate-400"><i class="fa-regular fa-image mb-2 text-lg"></i>营业执照</div>
+                  <div class="aspect-[4/3] rounded-lg border border-dashed border-slate-200 bg-slate-50 flex flex-col items-center justify-center text-xs text-slate-400"><i class="fa-regular fa-image mb-2 text-lg"></i>其他附件</div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="modal-progress-detail" class="fixed inset-0 z-[130] hidden items-center justify-center bg-slate-900/45 p-4">
+    <div class="absolute inset-0" data-close-progress></div>
+    <div class="relative w-full max-w-lg rounded-xl border border-slate-200 bg-white shadow-xl">
+      <div class="relative border-b border-slate-200 px-5 py-4">
+        <h3 class="text-center text-base font-semibold text-slate-800">办理进度</h3>
+        <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600" data-close-progress><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <div class="px-6 py-5 space-y-4 text-sm">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div><label class="block text-slate-600 mb-2">进度节点 <span class="text-red-500">*</span></label><select class="h-9 w-full rounded-md border border-slate-200 px-3 bg-white"><option>提交资料</option><option>记账</option></select></div>
+          <div><label class="block text-slate-600 mb-2">处理状态 <span class="text-red-500">*</span></label><select class="h-9 w-full rounded-md border border-slate-200 px-3 bg-white"><option>已完成</option><option>未完成</option></select></div>
+        </div>
+        <div><label class="block text-slate-600 mb-2">完成说明</label><textarea class="w-full h-24 rounded border border-slate-200 px-3 py-2 resize-none" placeholder="添加完成说明"></textarea></div>
+      </div>
+      <div class="flex justify-center gap-3 border-t border-slate-100 px-5 py-4">
+        <button type="button" class="h-9 min-w-[90px] rounded-md bg-blue-600 text-white hover:bg-blue-700" data-close-progress>确认</button>
+        <button type="button" class="h-9 min-w-[90px] rounded-md border border-slate-300 bg-white text-slate-600 hover:bg-slate-50" data-close-progress>取消</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var dataMap = {
+        'acc-1': {
+          workflow: [
+            { label: '新增客户', sub: '2023-04-08 17:23', state: 'done' },
+            { label: '服务派单', sub: '2023-04-10 17:23', state: 'done' },
+            { label: '客户资料交接', sub: '2023-04-10 17:23', state: 'done' },
+            { label: '代账续费', sub: '2024-04-10 17:23', state: 'done' },
+            { label: '代账续费', sub: '2025-04-10 17:23', state: 'done' },
+            { label: '代账续费', sub: '2026-04-10 17:23', state: 'done' },
+            { label: '代账待续费', sub: '', state: 'active' }
+          ],
+          order: {
+            企业名称: '苏州九州数字科技有限公司',
+            关联合同: { text: '202604140001', href: '#' },
+            代账金额: '4000',
+            收费单位: '年付',
+            '代账费/月': '333',
+            记账开始月份: '2026-06',
+            收费截止月份: '2027-05',
+            企业类型: '一般纳税人',
+            销售员: '周芳林',
+            业务部门: '网销一组',
+            开票员: '周芳林',
+            财税顾问: '周芳林',
+            主办会计: '周芳林',
+            服务部门: '顾问二组'
+          },
+          ic: {
+            企业名称: '苏州九州数字科技有限公司',
+            法定代表人: '李小',
+            股份占比: '100%',
+            联系电话: '13616207333',
+            法人身份证号码: '510603198708042221',
+            内部财务: '李小',
+            联系电话2: '13616207333',
+            身份证号码2: '510603198708042221',
+            注册资本: '10万',
+            注册地址: '江苏省苏州市吴中区'
+          },
+          scope: Array(8).fill('日用百货、五金交电、机械设备及配件销售；商务信息咨询').join('；') + '。',
+          progress: [
+            { node: '确认服务', status: '进行中', owner: '马会计', date: '2026-04-13', desc: '这是一个说明...', action: '—' },
+            { node: '键账/申报', status: '完成', owner: '马会计', date: '2026-04-13', desc: '这是一个说明...', action: '编辑' }
+          ]
+        }
+      };
+
+      var params = new URLSearchParams(location.search);
+      var id = params.get('id') || 'acc-1';
+      if (!dataMap[id]) id = 'acc-1';
+      var d = dataMap[id];
+
+      function renderWorkflow(steps) {
+        var el = document.getElementById('block-workflow-steps');
+        if (!el || !steps) return;
+        el.innerHTML = steps.map(function (s) {
+          var icon = s.state === 'done'
+            ? '<i class="fa-solid fa-check text-xs"></i>'
+            : (s.state === 'active' ? '<span class="tracking-widest text-[10px] leading-none">•••</span>' : '');
+          return '<div class="wo-step ' + s.state + '">' +
+            '<div class="wo-step-dot">' + icon + '</div>' +
+            '<p class="wo-step-label">' + s.label + '</p>' +
+            (s.sub ? '<p class="wo-step-sub">' + s.sub + '</p>' : '') +
+            '</div>';
+        }).join('');
+      }
+
+      function renderOrderInfo(order) {
+        var el = document.getElementById('order-info');
+        var name = order['企业名称'] || '—';
+        var restKeys = Object.keys(order).filter(function (k) { return k !== '企业名称'; });
+        var nameRow = '<div class="mb-4 pb-4 border-b border-slate-100"><p class="text-xs text-slate-500 mb-1">企业名称</p><p class="text-base font-medium text-slate-800">' + name + '</p></div>';
+        var grid = restKeys.map(function (k) {
+          var v = order[k];
+          if (v && typeof v === 'object' && v.text) {
+            return '<div><p class="text-xs text-slate-500 mb-1">' + k + '</p><p class="text-sm"><a href="' + (v.href || '#') + '" class="text-blue-600 hover:underline">' + v.text + '</a></p></div>';
+          }
+          return '<div><p class="text-xs text-slate-500 mb-1">' + k + '</p><p class="text-sm text-slate-800">' + v + '</p></div>';
+        }).join('');
+        el.innerHTML = nameRow + '<div class="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-3">' + grid + '</div>';
+      }
+
+      renderWorkflow(d.workflow);
+      renderOrderInfo(d.order);
+
+      var ic = d.ic;
+      var icRows = [
+        [['企业名称', ic.企业名称], ['法定代表人', ic.法定代表人], ['股份占比', ic.股份占比]],
+        [['联系电话', ic.联系电话], ['法人身份证号码', ic.法人身份证号码]],
+        [['内部财务', ic.内部财务], ['联系电话', ic.联系电话2], ['身份证号码', ic.身份证号码2]],
+        [['注册资本', ic.注册资本], ['注册地址', ic.注册地址]]
+      ];
+      document.getElementById('ic-info').innerHTML = icRows.map(function (row) {
+        return '<div class="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2">' + row.map(function (pair) {
+          return '<div><p class="text-xs text-slate-500 mb-0.5">' + pair[0] + '</p><p class="text-slate-800">' + pair[1] + '</p></div>';
+        }).join('') + '</div>';
+      }).join('');
+      document.getElementById('ic-scope').textContent = d.scope;
+
+      document.getElementById('progress-list').innerHTML = d.progress.map(function (p) {
+        var statusCls = p.status === '进行中' ? 'text-amber-600' : (p.status === '完成' ? 'text-emerald-600' : 'text-slate-600');
+        var actionHtml = p.action === '—' ? '—' : '<button type="button" class="text-blue-600 hover:underline">' + p.action + '</button>';
+        return '<tr class="hover:bg-slate-50"><td class="px-3 py-2.5 border-b border-slate-100">' + p.node + '</td><td class="px-3 py-2.5 border-b border-slate-100 ' + statusCls + '">' + p.status + '</td><td class="px-3 py-2.5 border-b border-slate-100">' + p.owner + '</td><td class="px-3 py-2.5 border-b border-slate-100">' + p.date + '</td><td class="px-3 py-2.5 border-b border-slate-100">' + p.desc + '</td><td class="px-3 py-2.5 border-b border-slate-100">' + actionHtml + '</td></tr>';
+      }).join('');
+
+      var modal = document.getElementById('modal-progress-detail');
+      document.getElementById('btn-open-progress-detail').addEventListener('click', function () {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      });
+      modal.querySelectorAll('[data-close-progress]').forEach(function (el) {
+        el.addEventListener('click', function () {
+          modal.classList.add('hidden');
+          modal.classList.remove('flex');
+        });
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          modal.classList.add('hidden');
+          modal.classList.remove('flex');
+        }
+      });
+    })();
+  </script>
+  <script src="./assets/app-shell.js"></script>
+</body>
+</html>
