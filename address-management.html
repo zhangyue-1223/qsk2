@@ -94,9 +94,13 @@
         <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm min-h-[calc(100vh-8.5rem)]">
           <div class="text-sm text-slate-500 mb-4">交付中心 / 地址管理</div>
 
-          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 text-sm mb-3">
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 text-sm mb-3">
             <label class="block text-slate-600">
               <span class="text-xs text-slate-500">渠道方名称</span>
+              <input type="text" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm placeholder:text-slate-400" placeholder="请输入">
+            </label>
+            <label class="block text-slate-600">
+              <span class="text-xs text-slate-500">注册地址</span>
               <input type="text" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm placeholder:text-slate-400" placeholder="请输入">
             </label>
             <label class="block text-slate-600">
@@ -109,26 +113,6 @@
                 请选择<i class="fa-solid fa-angle-down text-xs text-slate-400"></i>
               </button>
             </label>
-            <label class="block text-slate-600">
-              <span class="text-xs text-slate-500">销售顾问</span>
-              <button type="button" class="mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-left text-sm text-slate-500 flex items-center justify-between hover:bg-slate-50">
-                请选择<i class="fa-solid fa-angle-down text-xs text-slate-400"></i>
-              </button>
-            </label>
-            <label class="block text-slate-600">
-              <span class="text-xs text-slate-500">所属部门</span>
-              <button type="button" class="mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-left text-sm text-slate-500 flex items-center justify-between hover:bg-slate-50">
-                请选择<i class="fa-solid fa-angle-down text-xs text-slate-400"></i>
-              </button>
-            </label>
-            <label class="block text-slate-600 lg:col-span-1">
-              <span class="text-xs text-slate-500">起止日期</span>
-              <div class="mt-1 flex items-center gap-1">
-                <input type="text" class="h-9 flex-1 min-w-0 rounded-md border border-slate-200 px-2 text-sm" value="2023-03-21">
-                <span class="text-slate-400 shrink-0">至</span>
-                <input type="text" class="h-9 flex-1 min-w-0 rounded-md border border-slate-200 px-2 text-sm" value="2024-03-21">
-              </div>
-            </label>
           </div>
 
           <div class="flex flex-wrap items-center gap-3 mb-4">
@@ -138,18 +122,17 @@
           </div>
 
           <div class="overflow-x-auto rounded-lg border border-slate-200 shadow-sm">
-            <table class="data-table w-full min-w-[1200px]">
+            <table class="data-table w-full min-w-[1000px]">
               <thead>
                 <tr>
                   <th>渠道方名称</th>
                   <th>注册地址</th>
                   <th>所属区域</th>
                   <th>联系人/联系电话</th>
-                  <th>使用起止时间</th>
-                  <th>成交价</th>
+                  <th>合作价</th>
                   <th>付款账号</th>
-                  <th>销售顾问</th>
-                  <th>所属部门</th>
+                  <th>已用数量</th>
+                  <th>查看详情</th>
                   <th>操作</th>
                 </tr>
               </thead>
@@ -159,11 +142,10 @@
                   <td>江苏省苏州市工业园区沧海大厦</td>
                   <td>苏州市吴中区</td>
                   <td>耿先生/15252263036</td>
-                  <td class="whitespace-nowrap">2025-10-02 ~ 2026-10-01</td>
                   <td>1000</td>
                   <td>622 255212521222222</td>
-                  <td>周方林</td>
-                  <td>网销一组</td>
+                  <td>12</td>
+                  <td><a href="address-room-detail.html" class="text-blue-600 hover:text-blue-700 hover:underline">查看详情</a></td>
                   <td class="whitespace-nowrap">
                     <button type="button" class="js-edit-address text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">编辑</button>
                     <span class="px-1 text-slate-300">|</span>
@@ -175,11 +157,10 @@
                   <td>江苏省苏州市工业园区沧海大厦</td>
                   <td>苏州市吴中区</td>
                   <td>耿先生/15252263036</td>
-                  <td class="whitespace-nowrap">2025-10-02 ~ 2026-10-01</td>
                   <td>1000</td>
                   <td>622 255212521222222</td>
-                  <td>周方林</td>
-                  <td>网销一组</td>
+                  <td>8</td>
+                  <td><a href="address-room-detail.html" class="text-blue-600 hover:text-blue-700 hover:underline">查看详情</a></td>
                   <td class="whitespace-nowrap">
                     <button type="button" class="js-edit-address text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">编辑</button>
                     <span class="px-1 text-slate-300">|</span>
@@ -191,11 +172,10 @@
                   <td>江苏省苏州市工业园区沧海大厦</td>
                   <td>苏州市吴中区</td>
                   <td>耿先生/15252263036</td>
-                  <td class="whitespace-nowrap">2025-10-02 ~ 2026-10-01</td>
                   <td>1000</td>
                   <td>622 255212521222222</td>
-                  <td>周方林</td>
-                  <td>网销一组</td>
+                  <td>5</td>
+                  <td><a href="address-room-detail.html" class="text-blue-600 hover:text-blue-700 hover:underline">查看详情</a></td>
                   <td class="whitespace-nowrap">
                     <button type="button" class="js-edit-address text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">编辑</button>
                     <span class="px-1 text-slate-300">|</span>
@@ -207,11 +187,10 @@
                   <td>江苏省苏州市工业园区沧海大厦</td>
                   <td>苏州市吴中区</td>
                   <td>耿先生/15252263036</td>
-                  <td class="whitespace-nowrap">2025-10-02 ~ 2026-10-01</td>
                   <td>1000</td>
                   <td>622 255212521222222</td>
-                  <td>周方林</td>
-                  <td>网销一组</td>
+                  <td>3</td>
+                  <td><a href="address-room-detail.html" class="text-blue-600 hover:text-blue-700 hover:underline">查看详情</a></td>
                   <td class="whitespace-nowrap">
                     <button type="button" class="js-edit-address text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">编辑</button>
                     <span class="px-1 text-slate-300">|</span>
@@ -223,11 +202,10 @@
                   <td>江苏省苏州市工业园区沧海大厦</td>
                   <td>苏州市吴中区</td>
                   <td>耿先生/15252263036</td>
-                  <td class="whitespace-nowrap">2025-10-02 ~ 2026-10-01</td>
                   <td>1000</td>
                   <td>622 255212521222222</td>
-                  <td>周方林</td>
-                  <td>网销一组</td>
+                  <td>1</td>
+                  <td><a href="address-room-detail.html" class="text-blue-600 hover:text-blue-700 hover:underline">查看详情</a></td>
                   <td class="whitespace-nowrap">
                     <button type="button" class="js-edit-address text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">编辑</button>
                     <span class="px-1 text-slate-300">|</span>
@@ -284,34 +262,12 @@
           <input type="text" class="h-9 w-full rounded-md border border-slate-200 px-3 text-slate-800 placeholder:text-slate-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20" placeholder="请输入">
         </div>
         <div class="grid grid-cols-[7.5rem_1fr] items-center gap-x-4 gap-y-1">
-          <label class="text-right text-slate-600 shrink-0">使用开始时间 <span class="text-red-500">*</span></label>
-          <div class="relative">
-            <i class="fa-regular fa-calendar absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
-            <input type="month" class="h-9 w-full rounded-md border border-slate-200 pl-9 pr-3 text-sm text-slate-800 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20" value="2026-04">
-          </div>
-        </div>
-        <div class="grid grid-cols-[7.5rem_1fr] items-center gap-x-4 gap-y-1">
-          <label class="text-right text-slate-600 shrink-0">使用结束时间 <span class="text-red-500">*</span></label>
-          <div class="relative">
-            <i class="fa-regular fa-calendar absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
-            <input type="month" class="h-9 w-full rounded-md border border-slate-200 pl-9 pr-3 text-sm text-slate-800 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20" value="2026-04">
-          </div>
+          <label class="text-right text-slate-600 shrink-0">合作价</label>
+          <input type="text" class="h-9 w-full rounded-md border border-slate-200 px-3 text-slate-800 placeholder:text-slate-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20" placeholder="请输入">
         </div>
         <div class="grid grid-cols-[7.5rem_1fr] items-center gap-x-4 gap-y-1">
           <label class="text-right text-slate-600 shrink-0">付款账号</label>
           <input type="text" class="h-9 w-full rounded-md border border-slate-200 px-3 text-slate-800 placeholder:text-slate-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20" placeholder="请输入">
-        </div>
-        <div class="grid grid-cols-[7.5rem_1fr] items-center gap-x-4 gap-y-1">
-          <label class="text-right text-slate-600 shrink-0">销售顾问</label>
-          <button type="button" class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-left text-sm text-slate-500 flex items-center justify-between hover:bg-slate-50 cursor-pointer">
-            请选择<i class="fa-solid fa-angle-down text-xs text-slate-400"></i>
-          </button>
-        </div>
-        <div class="grid grid-cols-[7.5rem_1fr] items-center gap-x-4 gap-y-1">
-          <label class="text-right text-slate-600 shrink-0">所属部门</label>
-          <button type="button" class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-left text-sm text-slate-500 flex items-center justify-between hover:bg-slate-50 cursor-pointer">
-            请选择<i class="fa-solid fa-angle-down text-xs text-slate-400"></i>
-          </button>
         </div>
       </div>
       <div class="flex justify-center gap-3 border-t border-slate-100 px-6 py-4">
