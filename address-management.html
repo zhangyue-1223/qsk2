@@ -93,69 +93,235 @@
       <section class="p-4 sm:p-6">
         <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm min-h-[calc(100vh-8.5rem)]">
           <div class="text-sm text-slate-500 mb-4">交付中心 / 地址管理</div>
-          <div class="grid grid-cols-1 md:grid-cols-5 gap-3 items-end">
-            <label class="text-xs text-slate-500">地址编号
-              <input class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm" placeholder="请输入">
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 text-sm mb-3">
+            <label class="block text-slate-600">
+              <span class="text-xs text-slate-500">渠道方名称</span>
+              <input type="text" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm placeholder:text-slate-400" placeholder="请输入">
             </label>
-            <label class="text-xs text-slate-500">所在地区
-              <button type="button" class="mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-left text-sm text-slate-600 flex items-center justify-between">请选择<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button>
+            <label class="block text-slate-600">
+              <span class="text-xs text-slate-500">联系人/联系电话</span>
+              <input type="text" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm placeholder:text-slate-400" placeholder="请输入">
             </label>
-            <div class="flex gap-2">
-              <button class="h-9 px-4 rounded-md bg-blue-600 hover:bg-blue-700 cursor-pointer text-white text-sm">查询</button>
-              <button class="h-9 px-4 rounded-md border border-slate-200 hover:bg-slate-50 cursor-pointer bg-white text-sm text-slate-600">重置</button>
-            </div>
-          </div>
-          <div class="mt-4 mb-3">
-            <button id="btn-open-add-address" class="h-9 px-4 rounded-md bg-blue-600 hover:bg-blue-700 cursor-pointer text-white text-xs">添加地址</button>
+            <label class="block text-slate-600">
+              <span class="text-xs text-slate-500">所属区域</span>
+              <button type="button" class="mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-left text-sm text-slate-500 flex items-center justify-between hover:bg-slate-50">
+                请选择<i class="fa-solid fa-angle-down text-xs text-slate-400"></i>
+              </button>
+            </label>
+            <label class="block text-slate-600">
+              <span class="text-xs text-slate-500">销售顾问</span>
+              <button type="button" class="mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-left text-sm text-slate-500 flex items-center justify-between hover:bg-slate-50">
+                请选择<i class="fa-solid fa-angle-down text-xs text-slate-400"></i>
+              </button>
+            </label>
+            <label class="block text-slate-600">
+              <span class="text-xs text-slate-500">所属部门</span>
+              <button type="button" class="mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-left text-sm text-slate-500 flex items-center justify-between hover:bg-slate-50">
+                请选择<i class="fa-solid fa-angle-down text-xs text-slate-400"></i>
+              </button>
+            </label>
+            <label class="block text-slate-600 lg:col-span-1">
+              <span class="text-xs text-slate-500">起止日期</span>
+              <div class="mt-1 flex items-center gap-1">
+                <input type="text" class="h-9 flex-1 min-w-0 rounded-md border border-slate-200 px-2 text-sm" value="2023-03-21">
+                <span class="text-slate-400 shrink-0">至</span>
+                <input type="text" class="h-9 flex-1 min-w-0 rounded-md border border-slate-200 px-2 text-sm" value="2024-03-21">
+              </div>
+            </label>
           </div>
 
-          <div class="overflow-x-auto rounded-lg border border-slate-200">
-            <table class="w-full min-w-[980px] text-sm">
-              <thead class="bg-slate-50 text-slate-600">
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <button type="button" class="h-9 px-4 rounded-md bg-blue-600 text-sm text-white hover:bg-blue-700 cursor-pointer">查询</button>
+            <button type="button" class="h-9 px-4 rounded-md border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50 cursor-pointer">重置</button>
+            <button type="button" id="btn-open-add-address" class="h-9 px-4 rounded-md bg-blue-600 text-sm text-white hover:bg-blue-700 cursor-pointer">添加地址</button>
+          </div>
+
+          <div class="overflow-x-auto rounded-lg border border-slate-200 shadow-sm">
+            <table class="data-table w-full min-w-[1200px]">
+              <thead>
                 <tr>
-                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">地址编号</th>
-                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">注册地址</th>
-                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">所在地区</th>
-                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">已用房间</th>
-                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">成本价</th>
-                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">创建人</th>
-                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">创建时间</th>
-                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">房间详情</th>
-                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">操作</th>
+                  <th>渠道方名称</th>
+                  <th>注册地址</th>
+                  <th>所属区域</th>
+                  <th>联系人/联系电话</th>
+                  <th>使用起止时间</th>
+                  <th>成交价</th>
+                  <th>付款账号</th>
+                  <th>销售顾问</th>
+                  <th>所属部门</th>
+                  <th>操作</th>
                 </tr>
               </thead>
-              <tbody class="text-slate-700">
-                <tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">0C01</td><td class="px-3 py-3 border-b border-slate-100">吴中区红海大厦2005</td><td class="px-3 py-3 border-b border-slate-100">苏州市/吴中区</td><td class="px-3 py-3 border-b border-slate-100">23</td><td class="px-3 py-3 border-b border-slate-100">10000</td><td class="px-3 py-3 border-b border-slate-100">小麦</td><td class="px-3 py-3 border-b border-slate-100">2026-05-08 16:10</td><td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="address-room-detail.html">查看详情</a></td><td class="px-3 py-3 border-b border-slate-100"><a href="#" class="text-blue-600 hover:underline mr-3">编辑</a><button class="text-blue-600 hover:underline js-delete">删除</button></td></tr>
-                <tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">0C02</td><td class="px-3 py-3 border-b border-slate-100">开发路1258号6楼地址</td><td class="px-3 py-3 border-b border-slate-100">苏州市/吴中区</td><td class="px-3 py-3 border-b border-slate-100">21</td><td class="px-3 py-3 border-b border-slate-100">--</td><td class="px-3 py-3 border-b border-slate-100">小麦</td><td class="px-3 py-3 border-b border-slate-100">2026-05-08 15:10</td><td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="address-room-detail.html">查看详情</a></td><td class="px-3 py-3 border-b border-slate-100"><a href="#" class="text-blue-600 hover:underline mr-3">编辑</a><button class="text-blue-600 hover:underline js-delete">删除</button></td></tr>
+              <tbody>
+                <tr>
+                  <td>苏州一舟电子商务有限公司</td>
+                  <td>江苏省苏州市工业园区沧海大厦</td>
+                  <td>苏州市吴中区</td>
+                  <td>耿先生/15252263036</td>
+                  <td class="whitespace-nowrap">2025-10-02 ~ 2026-10-01</td>
+                  <td>1000</td>
+                  <td>622 255212521222222</td>
+                  <td>周方林</td>
+                  <td>网销一组</td>
+                  <td class="whitespace-nowrap">
+                    <button type="button" class="js-edit-address text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">编辑</button>
+                    <span class="px-1 text-slate-300">|</span>
+                    <button type="button" class="js-delete text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">删除</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>苏州一舟电子商务有限公司</td>
+                  <td>江苏省苏州市工业园区沧海大厦</td>
+                  <td>苏州市吴中区</td>
+                  <td>耿先生/15252263036</td>
+                  <td class="whitespace-nowrap">2025-10-02 ~ 2026-10-01</td>
+                  <td>1000</td>
+                  <td>622 255212521222222</td>
+                  <td>周方林</td>
+                  <td>网销一组</td>
+                  <td class="whitespace-nowrap">
+                    <button type="button" class="js-edit-address text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">编辑</button>
+                    <span class="px-1 text-slate-300">|</span>
+                    <button type="button" class="js-delete text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">删除</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>苏州一舟电子商务有限公司</td>
+                  <td>江苏省苏州市工业园区沧海大厦</td>
+                  <td>苏州市吴中区</td>
+                  <td>耿先生/15252263036</td>
+                  <td class="whitespace-nowrap">2025-10-02 ~ 2026-10-01</td>
+                  <td>1000</td>
+                  <td>622 255212521222222</td>
+                  <td>周方林</td>
+                  <td>网销一组</td>
+                  <td class="whitespace-nowrap">
+                    <button type="button" class="js-edit-address text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">编辑</button>
+                    <span class="px-1 text-slate-300">|</span>
+                    <button type="button" class="js-delete text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">删除</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>苏州一舟电子商务有限公司</td>
+                  <td>江苏省苏州市工业园区沧海大厦</td>
+                  <td>苏州市吴中区</td>
+                  <td>耿先生/15252263036</td>
+                  <td class="whitespace-nowrap">2025-10-02 ~ 2026-10-01</td>
+                  <td>1000</td>
+                  <td>622 255212521222222</td>
+                  <td>周方林</td>
+                  <td>网销一组</td>
+                  <td class="whitespace-nowrap">
+                    <button type="button" class="js-edit-address text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">编辑</button>
+                    <span class="px-1 text-slate-300">|</span>
+                    <button type="button" class="js-delete text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">删除</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>苏州一舟电子商务有限公司</td>
+                  <td>江苏省苏州市工业园区沧海大厦</td>
+                  <td>苏州市吴中区</td>
+                  <td>耿先生/15252263036</td>
+                  <td class="whitespace-nowrap">2025-10-02 ~ 2026-10-01</td>
+                  <td>1000</td>
+                  <td>622 255212521222222</td>
+                  <td>周方林</td>
+                  <td>网销一组</td>
+                  <td class="whitespace-nowrap">
+                    <button type="button" class="js-edit-address text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">编辑</button>
+                    <span class="px-1 text-slate-300">|</span>
+                    <button type="button" class="js-delete text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">删除</button>
+                  </td>
+                </tr>
               </tbody>
             </table>
+          </div>
+
+          <div class="mt-4 flex flex-wrap items-center justify-end gap-2 text-sm">
+            <button type="button" class="h-8 w-8 rounded border border-slate-200 bg-white text-slate-400 hover:bg-slate-50 cursor-pointer" aria-label="上一页"><i class="fa-solid fa-angle-left"></i></button>
+            <button type="button" class="h-8 min-w-8 px-2 rounded-md bg-blue-600 text-white font-medium">1</button>
+            <button type="button" class="h-8 min-w-8 px-2 rounded-md border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 cursor-pointer">2</button>
+            <button type="button" class="h-8 min-w-8 px-2 rounded-md border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 cursor-pointer">3</button>
+            <button type="button" class="h-8 min-w-8 px-2 rounded-md border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 cursor-pointer">4</button>
+            <button type="button" class="h-8 min-w-8 px-2 rounded-md border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 cursor-pointer">5</button>
+            <button type="button" class="h-8 min-w-8 px-2 rounded-md border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 cursor-pointer">6</button>
+            <button type="button" class="h-8 min-w-8 px-2 rounded-md border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 cursor-pointer">7</button>
+            <span class="text-slate-400 px-1">...</span>
+            <button type="button" class="h-8 min-w-8 px-2 rounded-md border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 cursor-pointer">19</button>
+            <button type="button" class="h-8 min-w-8 px-2 rounded-md border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 cursor-pointer">20</button>
+            <button type="button" class="h-8 w-8 rounded border border-slate-200 bg-white text-slate-500 hover:bg-slate-50 cursor-pointer" aria-label="下一页"><i class="fa-solid fa-angle-right"></i></button>
           </div>
         </div>
       </section>
     </main>
   </div>
 
-  <div id="modal-add-address" class="fixed inset-0 z-[130] hidden items-center justify-center bg-slate-900/45 p-4">
+  <div id="modal-add-address" class="fixed inset-0 z-[110] hidden items-center justify-center bg-slate-900/40 p-4" aria-hidden="true">
     <div class="absolute inset-0" data-close-add></div>
-    <div class="relative w-full max-w-2xl rounded-xl border border-slate-200 bg-white shadow-xl">
-      <div class="relative border-b border-slate-200 px-5 py-4">
-        <h3 class="text-center text-base font-semibold text-slate-800">添加地址</h3>
-        <button class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600" data-close-add><i class="fa-solid fa-xmark text-lg"></i></button>
+    <div class="relative w-full max-w-xl rounded-xl border border-slate-200 bg-white shadow-xl" role="dialog" aria-labelledby="modal-address-title">
+      <div class="relative border-b border-slate-100 px-6 py-4">
+        <h3 id="modal-address-title" class="text-center text-lg font-semibold text-slate-800">添加地址</h3>
+        <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer" data-close-add aria-label="关闭"><i class="fa-solid fa-xmark text-lg"></i></button>
       </div>
-      <div class="px-6 py-5 space-y-4 text-sm">
-        <div class="grid grid-cols-[90px_1fr] items-center gap-3"><label class="text-right text-slate-600">地址编号 <span class="text-red-500">*</span></label><input class="h-9 rounded border border-slate-200 px-3" value="0001"></div>
-        <div class="grid grid-cols-[90px_1fr] items-center gap-3"><label class="text-right text-slate-600">所属地区</label><button class="h-9 rounded-md border border-slate-200 bg-white hover:bg-slate-50 cursor-pointer px-3 text-left text-slate-600 flex items-center justify-between">请选择<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button></div>
-        <div class="grid grid-cols-[90px_1fr] items-center gap-3"><label class="text-right text-slate-600">注册地址 <span class="text-red-500">*</span></label><input class="h-9 rounded border border-slate-200 px-3" value="吴中区红海大厦2005"></div>
-        <div class="grid grid-cols-[90px_1fr] items-center gap-3"><label class="text-right text-slate-600">成本价</label><input class="h-9 rounded border border-slate-200 px-3" value="1000.00"></div>
+      <div class="px-6 py-5 space-y-4 text-sm max-h-[70vh] overflow-y-auto">
+        <div class="grid grid-cols-[7.5rem_1fr] items-center gap-x-4 gap-y-1">
+          <label class="text-right text-slate-600 shrink-0">渠道方名称 <span class="text-red-500">*</span></label>
+          <input type="text" class="h-9 w-full rounded-md border border-slate-200 px-3 text-slate-800 placeholder:text-slate-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20" placeholder="苏州一舟信息科技" value="苏州一舟信息科技">
+        </div>
+        <div class="grid grid-cols-[7.5rem_1fr] items-center gap-x-4 gap-y-1">
+          <label class="text-right text-slate-600 shrink-0">所属区域</label>
+          <button type="button" class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-left text-sm text-slate-500 flex items-center justify-between hover:bg-slate-50 cursor-pointer">
+            请选择<i class="fa-solid fa-angle-down text-xs text-slate-400"></i>
+          </button>
+        </div>
+        <div class="grid grid-cols-[7.5rem_1fr] items-center gap-x-4 gap-y-1">
+          <label class="text-right text-slate-600 shrink-0">注册地址 <span class="text-red-500">*</span></label>
+          <input type="text" class="h-9 w-full rounded-md border border-slate-200 px-3 text-slate-800 placeholder:text-slate-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20" placeholder="吴中区红海大厦2005" value="吴中区红海大厦2005">
+        </div>
+        <div class="grid grid-cols-[7.5rem_1fr] items-center gap-x-4 gap-y-1">
+          <label class="text-right text-slate-600 shrink-0">联系人/联系电话</label>
+          <input type="text" class="h-9 w-full rounded-md border border-slate-200 px-3 text-slate-800 placeholder:text-slate-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20" placeholder="请输入">
+        </div>
+        <div class="grid grid-cols-[7.5rem_1fr] items-center gap-x-4 gap-y-1">
+          <label class="text-right text-slate-600 shrink-0">使用开始时间 <span class="text-red-500">*</span></label>
+          <div class="relative">
+            <i class="fa-regular fa-calendar absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+            <input type="month" class="h-9 w-full rounded-md border border-slate-200 pl-9 pr-3 text-sm text-slate-800 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20" value="2026-04">
+          </div>
+        </div>
+        <div class="grid grid-cols-[7.5rem_1fr] items-center gap-x-4 gap-y-1">
+          <label class="text-right text-slate-600 shrink-0">使用结束时间 <span class="text-red-500">*</span></label>
+          <div class="relative">
+            <i class="fa-regular fa-calendar absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+            <input type="month" class="h-9 w-full rounded-md border border-slate-200 pl-9 pr-3 text-sm text-slate-800 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20" value="2026-04">
+          </div>
+        </div>
+        <div class="grid grid-cols-[7.5rem_1fr] items-center gap-x-4 gap-y-1">
+          <label class="text-right text-slate-600 shrink-0">付款账号</label>
+          <input type="text" class="h-9 w-full rounded-md border border-slate-200 px-3 text-slate-800 placeholder:text-slate-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20" placeholder="请输入">
+        </div>
+        <div class="grid grid-cols-[7.5rem_1fr] items-center gap-x-4 gap-y-1">
+          <label class="text-right text-slate-600 shrink-0">销售顾问</label>
+          <button type="button" class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-left text-sm text-slate-500 flex items-center justify-between hover:bg-slate-50 cursor-pointer">
+            请选择<i class="fa-solid fa-angle-down text-xs text-slate-400"></i>
+          </button>
+        </div>
+        <div class="grid grid-cols-[7.5rem_1fr] items-center gap-x-4 gap-y-1">
+          <label class="text-right text-slate-600 shrink-0">所属部门</label>
+          <button type="button" class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-left text-sm text-slate-500 flex items-center justify-between hover:bg-slate-50 cursor-pointer">
+            请选择<i class="fa-solid fa-angle-down text-xs text-slate-400"></i>
+          </button>
+        </div>
       </div>
-      <div class="flex justify-center gap-3 border-t border-slate-100 px-5 py-4">
-        <button class="h-9 min-w-[90px] rounded-md bg-blue-600 text-white" data-close-add>确认</button>
-        <button class="h-9 min-w-[90px] rounded-md border border-slate-300 bg-white text-slate-600" data-close-add>取消</button>
+      <div class="flex justify-center gap-3 border-t border-slate-100 px-6 py-4">
+        <button type="button" class="h-9 min-w-[5.5rem] rounded-md bg-blue-600 px-5 text-sm font-medium text-white hover:bg-blue-700 cursor-pointer" data-close-add>确认</button>
+        <button type="button" class="h-9 min-w-[5.5rem] rounded-md border border-slate-200 bg-white px-5 text-sm text-slate-600 hover:bg-slate-50 cursor-pointer" data-close-add>取消</button>
       </div>
     </div>
   </div>
 
-  <div id="modal-delete" class="fixed inset-0 z-[130] hidden items-center justify-center bg-slate-900/45 p-4">
+  <div id="modal-delete" class="fixed inset-0 z-[110] hidden items-center justify-center bg-slate-900/40 p-4">
     <div class="absolute inset-0" data-close-del></div>
     <div class="relative w-full max-w-sm rounded-xl border border-slate-200 bg-white p-6 shadow-xl">
       <p class="text-sm text-slate-700 text-center">确认删除该地址吗？</p>
@@ -170,14 +336,58 @@
     (function () {
       var add = document.getElementById('modal-add-address');
       var del = document.getElementById('modal-delete');
+      var titleEl = document.getElementById('modal-address-title');
+
+      function openAddressModal(mode) {
+        if (titleEl) titleEl.textContent = mode === 'edit' ? '编辑地址' : '添加地址';
+        add.classList.remove('hidden');
+        add.classList.add('flex');
+        add.setAttribute('aria-hidden', 'false');
+      }
+
+      function closeAddressModal() {
+        add.classList.add('hidden');
+        add.classList.remove('flex');
+        add.setAttribute('aria-hidden', 'true');
+      }
+
+      function openDeleteModal() {
+        del.classList.remove('hidden');
+        del.classList.add('flex');
+      }
+
+      function closeDeleteModal() {
+        del.classList.add('hidden');
+        del.classList.remove('flex');
+      }
+
       document.getElementById('btn-open-add-address').addEventListener('click', function () {
-        add.classList.remove('hidden'); add.classList.add('flex');
+        openAddressModal('add');
       });
-      add.querySelectorAll('[data-close-add]').forEach(function (el) { el.addEventListener('click', function () { add.classList.add('hidden'); add.classList.remove('flex'); }); });
-      document.querySelectorAll('.js-delete').forEach(function (el) { el.addEventListener('click', function () { del.classList.remove('hidden'); del.classList.add('flex'); }); });
-      del.querySelectorAll('[data-close-del]').forEach(function (el) { el.addEventListener('click', function () { del.classList.add('hidden'); del.classList.remove('flex'); }); });
+
+      document.querySelectorAll('.js-edit-address').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          openAddressModal('edit');
+        });
+      });
+
+      add.querySelectorAll('[data-close-add]').forEach(function (el) {
+        el.addEventListener('click', closeAddressModal);
+      });
+
+      document.querySelectorAll('.js-delete').forEach(function (el) {
+        el.addEventListener('click', openDeleteModal);
+      });
+
+      del.querySelectorAll('[data-close-del]').forEach(function (el) {
+        el.addEventListener('click', closeDeleteModal);
+      });
+
       document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') { add.classList.add('hidden'); add.classList.remove('flex'); del.classList.add('hidden'); del.classList.remove('flex'); }
+        if (e.key === 'Escape') {
+          closeAddressModal();
+          closeDeleteModal();
+        }
       });
     })();
   </script>
