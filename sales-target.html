@@ -31,6 +31,7 @@
           </summary>
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="opportunity-management.html">商机管理</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-management.html">客户管理</a>
             
           </div>
@@ -117,73 +118,60 @@
 
           <div class="space-y-6" id="target-list">
             <div class="target-item pb-5 border-b border-slate-100">
-              <div class="flex items-center gap-3 mb-4">
-                <label class="text-sm text-slate-600"><span class="target-select-label-text">选择部门</span> <span class="text-red-500">*</span></label>
-                <div class="relative w-80">
-                  <select class="w-full h-9 pl-3 pr-8 rounded border border-slate-200 text-sm bg-white appearance-none">
-                    <option selected>销售一</option>
-                    <option>销售二</option>
-                    <option>销售三</option>
-                  </select>
-                  <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+              <div class="flex flex-wrap items-center gap-3 text-sm">
+                <div class="flex items-center gap-2 shrink-0">
+                  <label class="text-slate-600 whitespace-nowrap"><span class="target-select-label-text">选择部门</span> <span class="text-red-500">*</span></label>
+                  <div class="relative w-44 sm:w-52">
+                    <select class="w-full h-9 pl-3 pr-8 rounded border border-slate-200 text-sm bg-white appearance-none">
+                      <option selected>销售一</option>
+                      <option>销售二</option>
+                      <option>销售三</option>
+                    </select>
+                    <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+                  </div>
                 </div>
-              </div>
-
-              <div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-sm">
-                <label class="flex items-center gap-2"><span class="text-slate-600 whitespace-nowrap">业绩目标 <span class="text-red-500">*</span></span><input type="text" value="188000" class="w-full h-8 px-2 rounded border border-slate-200"></label>
-                <label class="flex items-center gap-2"><span class="text-slate-600 whitespace-nowrap">每月业绩金额</span><input type="text" value="188000" class="w-full h-8 px-2 rounded border border-slate-200"></label>
-                <label class="flex items-center gap-2"><span class="text-slate-600 whitespace-nowrap">每月新增户数</span><input type="text" value="180000" class="w-full h-8 px-2 rounded border border-slate-200"></label>
-                <label class="flex items-center gap-2"><span class="text-slate-600 whitespace-nowrap">每月续费户数</span><input type="text" value="186000" class="w-full h-8 px-2 rounded border border-slate-200"></label>
+                <label class="flex items-center gap-2 flex-1 min-w-[200px]"><span class="text-slate-600 whitespace-nowrap">业绩目标 <span class="text-red-500">*</span></span><input type="text" value="188000" class="w-full h-9 px-2 rounded border border-slate-200"></label>
+                <label class="flex items-center gap-2 flex-1 min-w-[200px]"><span class="text-slate-600 whitespace-nowrap">每月新增户数</span><input type="text" value="180000" class="w-full h-9 px-2 rounded border border-slate-200"></label>
               </div>
             </div>
 
             <div class="target-item pb-5 border-b border-slate-100">
-              <div class="flex items-center gap-3 mb-4">
-                <label class="text-sm text-slate-600"><span class="target-select-label-text">选择部门</span> <span class="text-red-500">*</span></label>
-                <div class="relative w-80">
-                  <select class="w-full h-9 pl-3 pr-8 rounded border border-slate-200 text-sm bg-white appearance-none">
-                    <option>销售一</option>
-                    <option selected>销售二</option>
-                    <option>销售三</option>
-                  </select>
-                  <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+              <div class="flex flex-wrap items-center gap-3 text-sm">
+                <div class="flex items-center gap-2 shrink-0">
+                  <label class="text-slate-600 whitespace-nowrap"><span class="target-select-label-text">选择部门</span> <span class="text-red-500">*</span></label>
+                  <div class="relative w-44 sm:w-52">
+                    <select class="w-full h-9 pl-3 pr-8 rounded border border-slate-200 text-sm bg-white appearance-none">
+                      <option>销售一</option>
+                      <option selected>销售二</option>
+                      <option>销售三</option>
+                    </select>
+                    <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+                  </div>
                 </div>
-              </div>
-
-              <div class="flex items-end gap-3">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-sm flex-1">
-                  <label class="flex items-center gap-2"><span class="text-slate-600 whitespace-nowrap">业绩目标 <span class="text-red-500">*</span></span><input type="text" value="188000" class="w-full h-8 px-2 rounded border border-slate-200"></label>
-                  <label class="flex items-center gap-2"><span class="text-slate-600 whitespace-nowrap">每月业绩金额</span><input type="text" value="188000" class="w-full h-8 px-2 rounded border border-slate-200"></label>
-                  <label class="flex items-center gap-2"><span class="text-slate-600 whitespace-nowrap">每月新增户数</span><input type="text" value="188000" class="w-full h-8 px-2 rounded border border-slate-200"></label>
-                  <label class="flex items-center gap-2"><span class="text-slate-600 whitespace-nowrap">每月续费户数</span><input type="text" value="188000" class="w-full h-8 px-2 rounded border border-slate-200"></label>
-                </div>
-                <button type="button" class="h-8 w-8 rounded border border-slate-200 text-slate-400 hover:text-red-500 hover:border-red-200">
+                <label class="flex items-center gap-2 flex-1 min-w-[200px]"><span class="text-slate-600 whitespace-nowrap">业绩目标 <span class="text-red-500">*</span></span><input type="text" value="188000" class="w-full h-9 px-2 rounded border border-slate-200"></label>
+                <label class="flex items-center gap-2 flex-1 min-w-[200px]"><span class="text-slate-600 whitespace-nowrap">每月新增户数</span><input type="text" value="188000" class="w-full h-9 px-2 rounded border border-slate-200"></label>
+                <button type="button" class="h-9 w-9 shrink-0 rounded border border-slate-200 text-slate-400 hover:text-red-500 hover:border-red-200" aria-label="删除">
                   <i class="fa-regular fa-trash-can"></i>
                 </button>
               </div>
             </div>
 
             <div class="target-item pb-5 border-b border-slate-100">
-              <div class="flex items-center gap-3 mb-4">
-                <label class="text-sm text-slate-600"><span class="target-select-label-text">选择部门</span> <span class="text-red-500">*</span></label>
-                <div class="relative w-80">
-                  <select class="w-full h-9 pl-3 pr-8 rounded border border-slate-200 text-sm bg-white appearance-none">
-                    <option>销售一</option>
-                    <option>销售二</option>
-                    <option selected>销售三</option>
-                  </select>
-                  <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+              <div class="flex flex-wrap items-center gap-3 text-sm">
+                <div class="flex items-center gap-2 shrink-0">
+                  <label class="text-slate-600 whitespace-nowrap"><span class="target-select-label-text">选择部门</span> <span class="text-red-500">*</span></label>
+                  <div class="relative w-44 sm:w-52">
+                    <select class="w-full h-9 pl-3 pr-8 rounded border border-slate-200 text-sm bg-white appearance-none">
+                      <option>销售一</option>
+                      <option>销售二</option>
+                      <option selected>销售三</option>
+                    </select>
+                    <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+                  </div>
                 </div>
-              </div>
-
-              <div class="flex items-end gap-3">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-sm flex-1">
-                  <label class="flex items-center gap-2"><span class="text-slate-600 whitespace-nowrap">业绩目标 <span class="text-red-500">*</span></span><input type="text" value="188000" class="w-full h-8 px-2 rounded border border-slate-200"></label>
-                  <label class="flex items-center gap-2"><span class="text-slate-600 whitespace-nowrap">每月业绩金额</span><input type="text" value="188000" class="w-full h-8 px-2 rounded border border-slate-200"></label>
-                  <label class="flex items-center gap-2"><span class="text-slate-600 whitespace-nowrap">每月新增户数</span><input type="text" value="188000" class="w-full h-8 px-2 rounded border border-slate-200"></label>
-                  <label class="flex items-center gap-2"><span class="text-slate-600 whitespace-nowrap">每月续费户数</span><input type="text" value="188000" class="w-full h-8 px-2 rounded border border-slate-200"></label>
-                </div>
-                <button type="button" class="h-8 w-8 rounded border border-slate-200 text-slate-400 hover:text-red-500 hover:border-red-200">
+                <label class="flex items-center gap-2 flex-1 min-w-[200px]"><span class="text-slate-600 whitespace-nowrap">业绩目标 <span class="text-red-500">*</span></span><input type="text" value="188000" class="w-full h-9 px-2 rounded border border-slate-200"></label>
+                <label class="flex items-center gap-2 flex-1 min-w-[200px]"><span class="text-slate-600 whitespace-nowrap">每月新增户数</span><input type="text" value="188000" class="w-full h-9 px-2 rounded border border-slate-200"></label>
+                <button type="button" class="h-9 w-9 shrink-0 rounded border border-slate-200 text-slate-400 hover:text-red-500 hover:border-red-200" aria-label="删除">
                   <i class="fa-regular fa-trash-can"></i>
                 </button>
               </div>

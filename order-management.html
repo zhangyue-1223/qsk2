@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="./assets/design-system.css">
   <style>
     body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
+    #modal-payment-qrcode:not(.hidden) { display: flex; }
   </style>
 </head>
 <body class="bg-[#f5f7fa] text-slate-700">
@@ -31,6 +32,7 @@
           </summary>
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="opportunity-management.html">商机管理</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-management.html">客户管理</a>
             
           </div>
@@ -166,7 +168,11 @@
                   <td class="px-3 py-3 border-b border-slate-100">--</td>
                   <td class="px-3 py-3 border-b border-slate-100">周芳</td>
                   <td class="px-3 py-3 border-b border-slate-100">网销一组</td>
-                  <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="text-blue-600 hover:underline js-order-detail">查看详情</button></td>
+                  <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap">
+                    <button type="button" class="text-blue-600 hover:underline js-order-detail">查看详情</button>
+                    <span class="text-slate-300 px-1">|</span>
+                    <button type="button" class="text-blue-600 hover:underline js-send-payment-qr">发送收款码</button>
+                  </td>
                 </tr>
                 <tr class="hover:bg-slate-50 order-row" data-order-id="202604140003">
                   <td class="px-3 py-3 border-b border-slate-100">202604140003</td>
@@ -179,7 +185,11 @@
                   <td class="px-3 py-3 border-b border-slate-100">--</td>
                   <td class="px-3 py-3 border-b border-slate-100">周芳</td>
                   <td class="px-3 py-3 border-b border-slate-100">网销一组</td>
-                  <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="text-blue-600 hover:underline js-order-detail">查看详情</button></td>
+                  <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap">
+                    <button type="button" class="text-blue-600 hover:underline js-order-detail">查看详情</button>
+                    <span class="text-slate-300 px-1">|</span>
+                    <button type="button" class="text-blue-600 hover:underline js-send-payment-qr">发送收款码</button>
+                  </td>
                 </tr>
                 <tr class="hover:bg-slate-50 order-row" data-order-id="202604140004">
                   <td class="px-3 py-3 border-b border-slate-100">202604140004</td>
@@ -459,6 +469,44 @@
 
   <div id="toast-inv" class="fixed top-6 left-1/2 z-[200] hidden -translate-x-1/2 rounded-lg bg-slate-800 px-5 py-2.5 text-sm text-white shadow-lg" role="status"></div>
 
+  <!-- 收款方式 / 收款码 -->
+  <div id="modal-payment-qrcode" class="fixed inset-0 z-[115] hidden items-center justify-center p-4" aria-hidden="true">
+    <div class="absolute inset-0 bg-slate-900/40" data-close-payment-qr></div>
+    <div class="relative w-full max-w-md rounded-xl border border-slate-200 bg-white shadow-xl" role="dialog" aria-labelledby="payment-qr-title">
+      <div class="relative border-b border-slate-200 px-5 py-4">
+        <h2 id="payment-qr-title" class="text-center text-base font-semibold text-slate-800">收款方式</h2>
+        <button type="button" class="payment-qr-close absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600" aria-label="关闭"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <div class="px-6 py-5 space-y-4 text-sm">
+        <div class="rounded-lg bg-slate-50 border border-slate-100 px-4 py-3 space-y-1.5">
+          <p class="flex justify-between gap-3"><span class="text-slate-500">订单编号</span><span id="pq-order-no" class="text-slate-800 font-medium"></span></p>
+          <p class="flex justify-between gap-3"><span class="text-slate-500">订单金额</span><span id="pq-order-amount" class="text-slate-800 font-medium"></span></p>
+        </div>
+        <label class="block">
+          <span class="text-slate-600">收款方式 <span class="text-red-500">*</span></span>
+          <div class="relative mt-1.5">
+            <select id="pq-pay-method" class="w-full h-9 pl-3 pr-8 rounded-md border border-slate-200 bg-white appearance-none text-slate-700 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20">
+              <option value="">请选择收款方式</option>
+              <option value="alipay">支付宝</option>
+              <option value="wechat">微信</option>
+              <option value="bank">对公转账</option>
+            </select>
+            <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+          </div>
+        </label>
+        <div id="pq-qr-wrap" class="hidden flex flex-col items-center rounded-lg border border-slate-200 bg-slate-50/80 px-4 py-5">
+          <p id="pq-qr-label" class="mb-3 text-sm font-medium text-slate-700"></p>
+          <img id="pq-qr-image" src="" alt="收款二维码" class="w-[220px] h-[220px] rounded-md border border-white bg-white shadow-sm object-contain">
+          <p id="pq-qr-hint" class="mt-3 text-xs text-slate-500 text-center leading-relaxed"></p>
+        </div>
+      </div>
+      <div class="flex justify-center gap-3 border-t border-slate-100 px-6 py-4">
+        <button type="button" id="btn-copy-payment-qr" class="hidden h-9 min-w-[5.5rem] rounded-md border border-slate-200 bg-white px-5 text-sm text-slate-600 hover:bg-slate-50 cursor-pointer">复制收款码</button>
+        <button type="button" class="payment-qr-close h-9 min-w-[5.5rem] rounded-md bg-blue-600 px-5 text-sm font-medium text-white hover:bg-blue-700 cursor-pointer">关闭</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     (function () {
       var PLACEHOLDER = '--';
@@ -581,6 +629,80 @@
       var modal = document.getElementById('order-detail-modal');
       var applyInvModal = document.getElementById('modal-apply-invoice');
       var invDetailModal = document.getElementById('modal-inv-detail');
+      var paymentQrModal = document.getElementById('modal-payment-qrcode');
+      var pqPayMethod = document.getElementById('pq-pay-method');
+      var pqQrWrap = document.getElementById('pq-qr-wrap');
+      var pqQrImage = document.getElementById('pq-qr-image');
+      var pqQrLabel = document.getElementById('pq-qr-label');
+      var pqQrHint = document.getElementById('pq-qr-hint');
+      var btnCopyPaymentQr = document.getElementById('btn-copy-payment-qr');
+      var currentPaymentQrOrderId = null;
+
+      var payMethodMeta = {
+        alipay: { label: '支付宝收款码', hint: '请客户使用支付宝扫码完成支付', color: '1677FF' },
+        wechat: { label: '微信收款码', hint: '请客户使用微信扫码完成支付', color: '07C160' },
+        bank: { label: '对公转账收款码', hint: '请客户扫码查看对公账户信息并完成转账', color: '334155' }
+      };
+
+      function buildQrImageUrl(payload, color) {
+        var fg = color || '000000';
+        return 'https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=8&color=' + fg + '&data=' + encodeURIComponent(payload);
+      }
+
+      function buildPaymentPayload(method, orderId, amount) {
+        if (method === 'alipay') return 'ALIPAY|ORDER:' + orderId + '|AMT:' + amount;
+        if (method === 'wechat') return 'WECHAT|ORDER:' + orderId + '|AMT:' + amount;
+        return 'BANK|ORDER:' + orderId + '|AMT:' + amount + '|ACCT:苏州范阳信息科技有限公司|BANK:中国工商银行苏州工业园区支行';
+      }
+
+      function resetPaymentQrPreview() {
+        if (pqPayMethod) pqPayMethod.value = '';
+        if (pqQrWrap) pqQrWrap.classList.add('hidden');
+        if (pqQrImage) pqQrImage.removeAttribute('src');
+        if (btnCopyPaymentQr) btnCopyPaymentQr.classList.add('hidden');
+        currentPaymentQrOrderId = null;
+      }
+
+      function renderPaymentQr(method) {
+        if (!method || !currentPaymentQrOrderId) {
+          if (pqQrWrap) pqQrWrap.classList.add('hidden');
+          if (btnCopyPaymentQr) btnCopyPaymentQr.classList.add('hidden');
+          return;
+        }
+        var d = orderDetails[currentPaymentQrOrderId];
+        if (!d) return;
+        var meta = payMethodMeta[method];
+        var payload = buildPaymentPayload(method, d.orderNo, d.amount);
+        if (pqQrLabel) pqQrLabel.textContent = meta.label;
+        if (pqQrHint) pqQrHint.textContent = meta.hint;
+        if (pqQrImage) pqQrImage.src = buildQrImageUrl(payload, meta.color);
+        if (pqQrWrap) pqQrWrap.classList.remove('hidden');
+        if (btnCopyPaymentQr) btnCopyPaymentQr.classList.remove('hidden');
+      }
+
+      function openPaymentQrModal(orderId) {
+        var d = orderDetails[orderId];
+        if (!d || !paymentQrModal || d.status !== 'unpaid') return;
+        currentPaymentQrOrderId = orderId;
+        setText('pq-order-no', d.orderNo);
+        var amtEl = document.getElementById('pq-order-amount');
+        if (amtEl) amtEl.textContent = '¥' + d.amount;
+        if (pqPayMethod) pqPayMethod.value = '';
+        if (pqQrWrap) pqQrWrap.classList.add('hidden');
+        if (pqQrImage) pqQrImage.removeAttribute('src');
+        if (btnCopyPaymentQr) btnCopyPaymentQr.classList.add('hidden');
+        paymentQrModal.classList.remove('hidden');
+        paymentQrModal.classList.add('flex');
+        paymentQrModal.setAttribute('aria-hidden', 'false');
+      }
+
+      function closePaymentQrModal() {
+        if (!paymentQrModal) return;
+        paymentQrModal.classList.add('hidden');
+        paymentQrModal.classList.remove('flex');
+        paymentQrModal.setAttribute('aria-hidden', 'true');
+        resetPaymentQrPreview();
+      }
 
       var DEFAULT_APPLY = { contract: 'HT20260420001', collect: '1500', invoiceAmt: '1500' };
       var statusClassMap = {
@@ -853,6 +975,31 @@
           }
           if (e.target.closest('.js-view-invoice')) {
             openInvDetail(id);
+            return;
+          }
+          if (e.target.closest('.js-send-payment-qr')) {
+            openPaymentQrModal(id);
+          }
+        });
+      }
+
+      if (pqPayMethod) {
+        pqPayMethod.addEventListener('change', function () {
+          renderPaymentQr(pqPayMethod.value);
+        });
+      }
+      if (paymentQrModal) {
+        paymentQrModal.querySelectorAll('.payment-qr-close, [data-close-payment-qr]').forEach(function (el) {
+          el.addEventListener('click', closePaymentQrModal);
+        });
+      }
+      if (btnCopyPaymentQr) {
+        btnCopyPaymentQr.addEventListener('click', function () {
+          if (!pqQrImage || !pqQrImage.src) return;
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(pqQrImage.src).then(function () { showToast('收款码链接已复制'); }).catch(function () { showToast('收款码链接已复制'); });
+          } else {
+            showToast('收款码链接已复制');
           }
         });
       }
@@ -905,6 +1052,10 @@
         if (e.key !== 'Escape') return;
         if (invDetailModal && !invDetailModal.classList.contains('hidden')) {
           closeInvDetail();
+          return;
+        }
+        if (paymentQrModal && !paymentQrModal.classList.contains('hidden')) {
+          closePaymentQrModal();
           return;
         }
         if (applyInvModal && !applyInvModal.classList.contains('hidden')) {

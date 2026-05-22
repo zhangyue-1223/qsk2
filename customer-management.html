@@ -36,6 +36,7 @@
           </summary>
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="opportunity-management.html">商机管理</a>
             <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="customer-management.html">客户管理</a>
             
             
@@ -110,14 +111,28 @@
 
       <section class="p-4 sm:p-6">
         <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
-          <div class="grid grid-cols-8 gap-3 text-sm">
-            <label class="col-span-1">企业名称<input class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm" placeholder="请输入"></label>
-            <label class="col-span-1">联系人/联系方式<input class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm" placeholder="请输入"></label>
-            <label class="col-span-1">企业类型<button class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-left text-sm text-slate-500">全部</button></label>
-            <label class="col-span-1">所属部门<button class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-left text-sm text-slate-500">全部</button></label>
-            <label class="col-span-1">销售顾问<button class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-left text-sm text-slate-500">全部</button></label>
-            <label class="col-span-1">合作状态<button class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-left text-sm text-slate-500">全部</button></label>
-            <label class="col-span-2">创建时间
+          <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-9 gap-3 text-sm">
+            <label class="lg:col-span-1">客户名称<input class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm" placeholder="请输入"></label>
+            <label class="lg:col-span-1">联系人/联系方式<input class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm" placeholder="请输入"></label>
+            <label class="lg:col-span-1">企业类型<button type="button" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-left text-sm text-slate-500">全部</button></label>
+            <label class="lg:col-span-1">销售顾问<button type="button" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-left text-sm text-slate-500">全部</button></label>
+            <label class="lg:col-span-1">代账客户
+              <select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm text-slate-600 bg-white">
+                <option>全部</option>
+                <option>是</option>
+                <option>否</option>
+              </select>
+            </label>
+            <label class="lg:col-span-1">财税顾问
+              <select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm text-slate-600 bg-white">
+                <option>全部</option>
+                <option>李顾问</option>
+                <option>王顾问</option>
+                <option>赵顾问</option>
+              </select>
+            </label>
+            <label class="lg:col-span-1">合作状态<button type="button" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-left text-sm text-slate-500">全部</button></label>
+            <label class="lg:col-span-2">创建时间
               <div class="mt-1 flex items-center gap-1">
                 <input class="h-9 w-full rounded-md border border-slate-200 px-3 text-sm" value="2023-03-21">
                 <span class="text-slate-400">至</span>
@@ -136,26 +151,28 @@
             <table class="table-customers w-full">
               <colgroup>
                 <col style="width:2.5%">
-                <col style="width:16%">
+                <col style="width:14%">
+                <col style="width:5.5%">
+                <col style="width:8%">
+                <col style="width:7%">
+                <col style="width:7%">
+                <col style="width:5.5%">
+                <col style="width:7%">
+                <col style="width:7%">
+                <col style="width:10%">
                 <col style="width:6%">
-                <col style="width:9%">
-                <col style="width:8%">
-                <col style="width:8%">
-                <col style="width:7%">
-                <col style="width:8%">
-                <col style="width:11%">
-                <col style="width:7%">
-                <col style="width:17.5%">
+                <col style="width:15.5%">
               </colgroup>
               <thead class="bg-slate-50">
                 <tr>
                   <th class="col-check px-3 py-3 border-b border-slate-200 text-center"><input type="checkbox" class="h-4 w-4"></th>
-                  <th class="px-3 py-3 border-b border-slate-200 text-left">企业名称</th>
+                  <th class="px-3 py-3 border-b border-slate-200 text-left">客户名称</th>
                   <th class="px-3 py-3 border-b border-slate-200 text-left">联系人</th>
                   <th class="px-3 py-3 border-b border-slate-200 text-left">联系方式</th>
                   <th class="px-3 py-3 border-b border-slate-200 text-left">企业类型</th>
-                  <th class="px-3 py-3 border-b border-slate-200 text-left">所属部门</th>
                   <th class="px-3 py-3 border-b border-slate-200 text-left">销售顾问</th>
+                  <th class="px-3 py-3 border-b border-slate-200 text-left">代账客户</th>
+                  <th class="px-3 py-3 border-b border-slate-200 text-left">财税顾问</th>
                   <th class="px-3 py-3 border-b border-slate-200 text-left">合作状态</th>
                   <th class="px-3 py-3 border-b border-slate-200 text-left">创建时间</th>
                   <th class="px-3 py-3 border-b border-slate-200 text-left">查看详情</th>
@@ -166,7 +183,7 @@
                 <tr class="border-b border-slate-100 hover:bg-slate-50">
                   <td class="col-check px-3 py-3 text-center"><input type="checkbox" class="h-4 w-4"></td>
                   <td class="px-3 py-3">苏州怡启尔科技有限公司</td><td class="px-3 py-3">秦总</td><td class="px-3 py-3">13876763515</td>
-                  <td class="px-3 py-3">一般纳税人</td><td class="px-3 py-3">销售一部</td><td class="px-3 py-3">陈莉</td><td class="px-3 py-3">服务中</td>
+                  <td class="px-3 py-3">一般纳税人</td><td class="px-3 py-3">陈莉</td><td class="px-3 py-3">是</td><td class="px-3 py-3">李顾问</td><td class="px-3 py-3">服务中</td>
                   <td class="px-3 py-3">2026-03-21 16:03</td>
                   <td class="px-3 py-3"><a href="customer-detail.html?id=cust-1" class="text-blue-600 hover:underline">查看详情</a></td>
                   <td class="px-3 py-3"><button type="button" class="js-open-create-contract text-blue-600 hover:underline">新增合同</button><span class="px-1 text-slate-300">|</span><a class="text-blue-600 hover:underline" href="customer-edit.html?id=cust-1">编辑信息</a></td>
@@ -174,7 +191,7 @@
                 <tr class="border-b border-slate-100 hover:bg-slate-50">
                   <td class="col-check px-3 py-3 text-center"><input type="checkbox" class="h-4 w-4"></td>
                   <td class="px-3 py-3">南京实耐时科技有限公司</td><td class="px-3 py-3">王经理</td><td class="px-3 py-3">13876763515</td>
-                  <td class="px-3 py-3">小规模</td><td class="px-3 py-3">销售二部</td><td class="px-3 py-3">周方林</td><td class="px-3 py-3">服务终止</td>
+                  <td class="px-3 py-3">小规模</td><td class="px-3 py-3">周方林</td><td class="px-3 py-3">否</td><td class="px-3 py-3">王顾问</td><td class="px-3 py-3">服务终止</td>
                   <td class="px-3 py-3">2026-03-21 16:03</td>
                   <td class="px-3 py-3"><a href="customer-detail.html?id=cust-2" class="text-blue-600 hover:underline">查看详情</a></td>
                   <td class="px-3 py-3"><button type="button" class="js-open-create-contract text-blue-600 hover:underline">新增合同</button><span class="px-1 text-slate-300">|</span><a class="text-blue-600 hover:underline" href="customer-edit.html?id=cust-2">编辑信息</a></td>
@@ -182,7 +199,7 @@
                 <tr class="border-b border-slate-100 hover:bg-slate-50">
                   <td class="col-check px-3 py-3 text-center"><input type="checkbox" class="h-4 w-4"></td>
                   <td class="px-3 py-3">苏州怡启尔科技有限公司</td><td class="px-3 py-3">秦总</td><td class="px-3 py-3">13876763515</td>
-                  <td class="px-3 py-3">一般纳税人</td><td class="px-3 py-3">销售一部</td><td class="px-3 py-3">陈莉</td><td class="px-3 py-3">服务中</td>
+                  <td class="px-3 py-3">一般纳税人</td><td class="px-3 py-3">陈莉</td><td class="px-3 py-3">是</td><td class="px-3 py-3">李顾问</td><td class="px-3 py-3">服务中</td>
                   <td class="px-3 py-3">2026-03-21 16:03</td>
                   <td class="px-3 py-3"><a href="customer-detail.html?id=cust-3" class="text-blue-600 hover:underline">查看详情</a></td>
                   <td class="px-3 py-3"><button type="button" class="js-open-create-contract text-blue-600 hover:underline">新增合同</button><span class="px-1 text-slate-300">|</span><a class="text-blue-600 hover:underline" href="customer-edit.html?id=cust-3">编辑信息</a></td>
@@ -190,7 +207,7 @@
                 <tr class="border-b border-slate-100 hover:bg-slate-50">
                   <td class="col-check px-3 py-3 text-center"><input type="checkbox" class="h-4 w-4"></td>
                   <td class="px-3 py-3">南京莱刻科技有限公司</td><td class="px-3 py-3">王经理</td><td class="px-3 py-3">13876763515</td>
-                  <td class="px-3 py-3">小规模</td><td class="px-3 py-3">销售二部</td><td class="px-3 py-3">周方林</td><td class="px-3 py-3">服务终止</td>
+                  <td class="px-3 py-3">小规模</td><td class="px-3 py-3">周方林</td><td class="px-3 py-3">否</td><td class="px-3 py-3">赵顾问</td><td class="px-3 py-3">服务终止</td>
                   <td class="px-3 py-3">2026-03-21 16:03</td>
                   <td class="px-3 py-3"><a href="customer-detail.html?id=cust-4" class="text-blue-600 hover:underline">查看详情</a></td>
                   <td class="px-3 py-3"><button type="button" class="js-open-create-contract text-blue-600 hover:underline">新增合同</button><span class="px-1 text-slate-300">|</span><a class="text-blue-600 hover:underline" href="customer-edit.html?id=cust-4">编辑信息</a></td>
@@ -198,7 +215,7 @@
                 <tr class="hover:bg-slate-50">
                   <td class="col-check px-3 py-3 text-center"><input type="checkbox" class="h-4 w-4"></td>
                   <td class="px-3 py-3">苏州怡启尔科技有限公司</td><td class="px-3 py-3">秦总</td><td class="px-3 py-3">13876763515</td>
-                  <td class="px-3 py-3">一般纳税人</td><td class="px-3 py-3">销售一部</td><td class="px-3 py-3">陈莉</td><td class="px-3 py-3">服务中</td>
+                  <td class="px-3 py-3">一般纳税人</td><td class="px-3 py-3">陈莉</td><td class="px-3 py-3">是</td><td class="px-3 py-3">李顾问</td><td class="px-3 py-3">服务中</td>
                   <td class="px-3 py-3">2026-03-21 16:03</td>
                   <td class="px-3 py-3"><a href="customer-detail.html?id=cust-5" class="text-blue-600 hover:underline">查看详情</a></td>
                   <td class="px-3 py-3"><button type="button" class="js-open-create-contract text-blue-600 hover:underline">新增合同</button><span class="px-1 text-slate-300">|</span><a class="text-blue-600 hover:underline" href="customer-edit.html?id=cust-5">编辑信息</a></td>
