@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>代账客户管理 - 企税康协同工作平台</title>
+  <title>代账服务管理 - 企税康协同工作平台</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="./assets/responsive.css">
@@ -76,7 +76,7 @@
           </summary>
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="government-affairs.html">政务服务</a>
-            <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="accounting-customer-management.html">代账客户</a>
+            <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="accounting-customer-management.html">代账服务</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="address-management.html">地址管理</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-items.html">客户物品</a>
           </div>
@@ -89,7 +89,7 @@
       <header class="h-16 bg-white border-b border-slate-200 px-4 sm:px-6 gap-2 flex items-center justify-between shrink-0">
         <div class="flex items-center gap-2 min-w-0 flex-1">
         <button type="button" id="btn-sidebar-toggle" class="lg:hidden shrink-0 w-10 h-10 rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 flex items-center justify-center" aria-expanded="false" aria-controls="app-sidebar" aria-label="打开导航菜单"><i class="fa-solid fa-bars text-lg"></i></button>
-        <div class="text-sm text-slate-500 min-w-0 truncate">交付中心 / <span class="text-slate-700 font-medium">代账客户</span></div>
+        <div class="text-sm text-slate-500 min-w-0 truncate">交付中心 / <span class="text-slate-700 font-medium">代账服务</span></div>
         </div>
         <div class="flex items-center gap-3 shrink-0">
           <button type="button" class="w-9 h-9 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200"><i class="fa-regular fa-bell"></i></button>
@@ -105,7 +105,7 @@
 
       <section class="p-4 sm:p-6">
         <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
-          <div class="mb-4 text-sm text-slate-500">交付中心 / 代账客户</div>
+          <div class="mb-4 text-sm text-slate-500">交付中心 / 代账服务</div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-3 gap-y-4 items-end mb-4">
             <label class="text-xs text-slate-500">企业名称
@@ -165,7 +165,8 @@
               <div class="flex flex-wrap items-center gap-2 shrink-0">
                 <button type="button" class="h-9 px-5 rounded bg-blue-600 text-white text-sm hover:bg-blue-700">查询</button>
                 <button type="button" class="h-9 px-5 rounded-md border border-slate-200 hover:bg-slate-50 cursor-pointer bg-white text-sm text-slate-600 hover:bg-slate-50">重置</button>
-                <button type="button" id="btn-open-add-accounting" class="h-9 px-4 rounded-md bg-blue-600 hover:bg-blue-700 cursor-pointer text-white text-sm hover:bg-blue-700">新增代账客户</button>
+                <button type="button" id="btn-open-add-accounting" class="h-9 px-4 rounded-md bg-blue-600 hover:bg-blue-700 cursor-pointer text-white text-sm hover:bg-blue-700">新增代账服务</button>
+                <button type="button" id="btn-open-transfer-accounting" class="h-9 px-4 rounded-md border border-slate-200 hover:bg-slate-50 cursor-pointer bg-white text-sm text-slate-600">移交</button>
               </div>
             </div>
           </div>
@@ -276,8 +277,7 @@
                   <td class="px-3 py-3 border-b border-slate-100">2028-03-21</td>
                   <td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="accounting-customer-detail.html?id=acc-5">查看详情</a></td>
                   <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap">
-                    <button type="button" class="text-blue-600 hover:underline js-progress mr-3">添加进度</button>
-                    <button type="button" class="text-blue-600 hover:underline js-transfer">移交</button>
+                    <button type="button" class="text-blue-600 hover:underline js-progress">添加进度</button>
                   </td>
                 </tr>
                 <tr class="hover:bg-slate-50 acc-row" data-tax="small" data-id="acc-6" data-company="苏州维的科技有限公司" data-contract="20260415006" data-dept="常熟组" data-sales="周方林" data-fee="117/月" data-chief="马时笑" data-adviser="马时笑" data-invoice="马时笑">
@@ -295,8 +295,7 @@
                   <td class="px-3 py-3 border-b border-slate-100">2028-03-21</td>
                   <td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="accounting-customer-detail.html?id=acc-6">查看详情</a></td>
                   <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap">
-                    <button type="button" class="text-blue-600 hover:underline js-progress mr-3">添加进度</button>
-                    <button type="button" class="text-blue-600 hover:underline js-transfer">移交</button>
+                    <button type="button" class="text-blue-600 hover:underline js-progress">添加进度</button>
                   </td>
                 </tr>
               </tbody>
@@ -479,17 +478,27 @@
       });
 
       function openTransfer(row) {
-        document.getElementById('transfer-current-chief').value = row.dataset.chief || '—';
-        document.getElementById('transfer-current-adviser').value = row.dataset.adviser || '—';
-        document.getElementById('transfer-current-invoice').value = row.dataset.invoice || '—';
+        var chiefIn = document.getElementById('transfer-current-chief');
+        var adviserIn = document.getElementById('transfer-current-adviser');
+        var invoiceIn = document.getElementById('transfer-current-invoice');
+        if (row) {
+          if (chiefIn) chiefIn.value = row.dataset.chief || '—';
+          if (adviserIn) adviserIn.value = row.dataset.adviser || '—';
+          if (invoiceIn) invoiceIn.value = row.dataset.invoice || '—';
+        } else {
+          if (chiefIn) chiefIn.value = '—';
+          if (adviserIn) adviserIn.value = '—';
+          if (invoiceIn) invoiceIn.value = '—';
+        }
         modalTransfer.classList.remove('hidden');
         modalTransfer.classList.add('flex');
       }
-      document.querySelectorAll('.js-transfer').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          openTransfer(btn.closest('tr'));
+      var btnOpenTransferAccounting = document.getElementById('btn-open-transfer-accounting');
+      if (btnOpenTransferAccounting) {
+        btnOpenTransferAccounting.addEventListener('click', function () {
+          openTransfer(null);
         });
-      });
+      }
       modalTransfer.querySelectorAll('[data-close-transfer]').forEach(function (el) {
         el.addEventListener('click', function () {
           modalTransfer.classList.add('hidden');

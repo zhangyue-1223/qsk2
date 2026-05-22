@@ -69,7 +69,7 @@
           </summary>
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
             <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="government-affairs.html">政务服务</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="accounting-customer-management.html">代账客户</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="accounting-customer-management.html">代账服务</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="address-management.html">地址管理</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-items.html">客户物品</a>
           </div>
@@ -188,6 +188,7 @@
                 <button type="button" class="h-9 px-5 rounded bg-blue-600 text-white text-sm hover:bg-blue-700">确定</button>
                 <button type="button" class="h-9 px-5 rounded border border-blue-600 bg-white text-blue-600 text-sm hover:bg-blue-50">重置</button>
                 <button type="button" id="btn-open-new-order" class="h-9 px-4 rounded-md bg-blue-600 hover:bg-blue-700 cursor-pointer text-white text-sm hover:bg-blue-700">新增政务工单</button>
+                <button type="button" id="btn-open-transfer" class="h-9 px-4 rounded-md border border-slate-200 hover:bg-slate-50 cursor-pointer bg-white text-sm text-slate-600">移交</button>
               </div>
             </div>
           </div>
@@ -271,7 +272,7 @@
                   <td class="px-3 py-3 border-b border-slate-100">2026-03-21 16:03</td>
                   <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
                   <td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="government-affairs-detail.html?id=gov-2">查看详情</a></td>
-                  <td class="px-3 py-3 border-b border-slate-100 space-x-2 whitespace-nowrap"><button type="button" class="text-blue-600 hover:underline js-progress">添加进度</button><button type="button" class="text-blue-600 hover:underline js-transfer">移交</button></td>
+                  <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap"><button type="button" class="text-blue-600 hover:underline js-progress">添加进度</button></td>
                 </tr>
                 <tr class="hover:bg-slate-50 gov-row" data-status="doing"
                     data-id="gov-3"
@@ -298,7 +299,7 @@
                   <td class="px-3 py-3 border-b border-slate-100">2026-03-20 10:15</td>
                   <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
                   <td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="government-affairs-detail.html?id=gov-3">查看详情</a></td>
-                  <td class="px-3 py-3 border-b border-slate-100 space-x-2 whitespace-nowrap"><button type="button" class="text-blue-600 hover:underline js-progress">添加进度</button><button type="button" class="text-blue-600 hover:underline js-transfer">移交</button></td>
+                  <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap"><button type="button" class="text-blue-600 hover:underline js-progress">添加进度</button></td>
                 </tr>
                 <tr class="hover:bg-slate-50 gov-row hidden" data-status="done"
                     data-id="gov-4"
@@ -325,7 +326,7 @@
                   <td class="px-3 py-3 border-b border-slate-100">2026-03-01 09:00</td>
                   <td class="px-3 py-3 border-b border-slate-100">2026-03-28</td>
                   <td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="government-affairs-detail.html?id=gov-4">查看详情</a></td>
-                  <td class="px-3 py-3 border-b border-slate-100 space-x-2 whitespace-nowrap"><button type="button" class="text-blue-600 hover:underline js-progress">添加进度</button><button type="button" class="text-blue-600 hover:underline js-transfer">移交</button></td>
+                  <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap"><button type="button" class="text-blue-600 hover:underline js-progress">添加进度</button></td>
                 </tr>
               </tbody>
             </table>
@@ -532,6 +533,47 @@
     </div>
   </div>
 
+  <!-- 移交工单 -->
+  <div id="modal-transfer-gov" class="fixed inset-0 z-[130] hidden items-center justify-center bg-slate-900/45 p-4">
+    <div class="absolute inset-0" data-close-transfer-gov></div>
+    <div class="relative w-full max-w-lg rounded-xl border border-slate-200 bg-white shadow-xl">
+      <div class="relative border-b border-slate-200 px-5 py-4">
+        <h3 class="text-center text-base font-semibold text-slate-800">确认移交</h3>
+        <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600" data-close-transfer-gov><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <div class="px-6 py-5 space-y-4 text-sm">
+        <div class="grid grid-cols-[100px_1fr] items-center gap-3">
+          <label class="text-right text-slate-600">现在的线上申报员</label>
+          <input id="gov-transfer-current-online" type="text" class="h-9 rounded border border-slate-200 px-3 bg-slate-50 text-slate-600" readonly value="周芳林">
+        </div>
+        <div class="grid grid-cols-[100px_1fr] items-center gap-3">
+          <label class="text-right text-slate-600">现在的线下提报员</label>
+          <input id="gov-transfer-current-offline" type="text" class="h-9 rounded border border-slate-200 px-3 bg-slate-50 text-slate-600" readonly value="许月">
+        </div>
+        <div class="grid grid-cols-[100px_1fr] items-center gap-3">
+          <label class="text-right text-slate-600"><span class="text-red-500">*</span> 移交线上申报员</label>
+          <select id="gov-transfer-new-online" class="h-9 rounded border border-slate-200 px-3 bg-white text-slate-700">
+            <option>周芳林</option>
+            <option>许月</option>
+            <option>许悦</option>
+          </select>
+        </div>
+        <div class="grid grid-cols-[100px_1fr] items-center gap-3">
+          <label class="text-right text-slate-600"><span class="text-red-500">*</span> 移交线下提报员</label>
+          <select id="gov-transfer-new-offline" class="h-9 rounded border border-slate-200 px-3 bg-white text-slate-700">
+            <option>许月</option>
+            <option>许悦</option>
+            <option>周芳林</option>
+          </select>
+        </div>
+      </div>
+      <div class="flex justify-center gap-3 border-t border-slate-100 px-5 py-4">
+        <button type="button" id="btn-confirm-transfer-gov" class="h-9 min-w-[90px] rounded-md bg-blue-600 text-white hover:bg-blue-700">确认</button>
+        <button type="button" class="h-9 min-w-[90px] rounded-md border border-slate-300 bg-white text-slate-600 hover:bg-slate-50" data-close-transfer-gov>取消</button>
+      </div>
+    </div>
+  </div>
+
   <div id="gov-toast" class="fixed top-6 left-1/2 -translate-x-1/2 z-[140] hidden rounded bg-slate-800 px-5 py-2 text-sm text-white shadow-lg">创建成功</div>
 
   <script>
@@ -539,6 +581,7 @@
       var modalNew = document.getElementById('modal-new-order');
       var modalDispatch = document.getElementById('modal-dispatch');
       var modalProgress = document.getElementById('modal-progress');
+      var modalTransferGov = document.getElementById('modal-transfer-gov');
       var toast = document.getElementById('gov-toast');
       var toastTimer;
 
@@ -602,11 +645,45 @@
           modalProgress.classList.add('flex');
         });
       });
-      document.querySelectorAll('.js-transfer').forEach(function (btn) {
-        btn.addEventListener('click', function () {
+      function openTransferGov(row) {
+        var onlineIn = document.getElementById('gov-transfer-current-online');
+        var offlineIn = document.getElementById('gov-transfer-current-offline');
+        var newOnline = document.getElementById('gov-transfer-new-online');
+        var newOffline = document.getElementById('gov-transfer-new-offline');
+        if (row) {
+          if (onlineIn) onlineIn.value = row.dataset.online || '—';
+          if (offlineIn) offlineIn.value = row.dataset.offline || '—';
+          if (newOnline && row.dataset.online) newOnline.value = row.dataset.online;
+          if (newOffline && row.dataset.offline) newOffline.value = row.dataset.offline;
+        }
+        if (modalTransferGov) {
+          modalTransferGov.classList.remove('hidden');
+          modalTransferGov.classList.add('flex');
+        }
+      }
+      function closeTransferGov() {
+        if (!modalTransferGov) return;
+        modalTransferGov.classList.add('hidden');
+        modalTransferGov.classList.remove('flex');
+      }
+      var btnOpenTransfer = document.getElementById('btn-open-transfer');
+      if (btnOpenTransfer) {
+        btnOpenTransfer.addEventListener('click', function () {
+          openTransferGov(null);
+        });
+      }
+      if (modalTransferGov) {
+        modalTransferGov.querySelectorAll('[data-close-transfer-gov]').forEach(function (el) {
+          el.addEventListener('click', closeTransferGov);
+        });
+      }
+      var btnConfirmTransferGov = document.getElementById('btn-confirm-transfer-gov');
+      if (btnConfirmTransferGov) {
+        btnConfirmTransferGov.addEventListener('click', function () {
+          closeTransferGov();
           showToast('移交成功');
         });
-      });
+      }
       modalProgress.querySelectorAll('[data-close-progress]').forEach(function (el) {
         el.addEventListener('click', function () {
           modalProgress.classList.add('hidden');
