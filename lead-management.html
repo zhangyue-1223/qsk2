@@ -240,6 +240,8 @@
                       <button type="button" class="text-red-600 hover:underline js-urge">催跟进</button>
                       <span class="text-slate-300 select-none px-0.5">|</span>
                       <button type="button" class="text-slate-500 hover:underline js-follow">添加跟进</button>
+                      <span class="text-slate-300 select-none px-0.5">|</span>
+                      <button type="button" class="text-emerald-600 hover:underline js-convert-opp" data-lead-name="李华">转商机</button>
                     </span>
                   </td>
                 </tr>
@@ -264,6 +266,8 @@
                       <button type="button" class="text-blue-600 hover:underline js-quote">生成报价单</button>
                       <span class="text-slate-300 select-none px-0.5">|</span>
                       <button type="button" class="text-slate-500 hover:underline js-follow">添加跟进</button>
+                      <span class="text-slate-300 select-none px-0.5">|</span>
+                      <button type="button" class="text-emerald-600 hover:underline js-convert-opp" data-lead-name="张伟">转商机</button>
                     </span>
                   </td>
                 </tr>
@@ -786,7 +790,7 @@
                   </div>
                 </label>
               </div>
-              <!-- 减免金额（优惠减有时显示->
+              <!-- 减免金额（优惠减免时显示） -->
               <div id="bk-discount-amount" class="hidden">
                 <label class="block text-sm">
                   <span class="text-slate-600">减免金额（元）<span class="text-red-500">*</span></span>
@@ -860,6 +864,51 @@
     </div>
   </div>
 
+  <!-- 确认转商机 -->
+  <div id="modal-convert-opp" class="fixed inset-0 z-[100] hidden" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="convert-opp-title">
+    <div class="absolute inset-0 bg-slate-900/40" data-close="convert-opp"></div>
+    <div class="relative flex min-h-full items-center justify-center p-4 pointer-events-none">
+      <div class="pointer-events-auto w-full max-w-md rounded-lg border border-slate-200 bg-white shadow-xl overflow-hidden">
+        <div class="relative border-b border-slate-100 px-6 py-4 pr-12">
+          <h2 id="convert-opp-title" class="text-center text-base font-medium text-slate-800">确认转商机</h2>
+          <p id="convert-opp-hint" class="mt-2 text-center text-sm text-slate-500 leading-relaxed">确认将当前线索转为商机？</p>
+          <button type="button" class="absolute right-4 top-4 text-slate-400 hover:text-slate-600 cursor-pointer" data-close="convert-opp" aria-label="关闭"><i class="fa-solid fa-xmark text-lg"></i></button>
+        </div>
+        <div class="px-6 py-6 space-y-4 text-sm bg-white">
+          <div class="flex items-center gap-3">
+            <label class="w-24 shrink-0 text-right text-slate-600"><span class="text-red-500">*</span> 商机阶段</label>
+            <div class="relative flex-1">
+              <select id="convert-opp-stage" class="w-full h-9 pl-3 pr-8 rounded-md border border-slate-200 bg-white appearance-none text-slate-700 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 cursor-pointer">
+                <option value="">请选择</option>
+                <option value="intent" selected>意向商机</option>
+                <option value="won">成交商机</option>
+                <option value="lost">流失商机</option>
+              </select>
+              <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <label class="w-24 shrink-0 text-right text-slate-600"><span class="text-red-500">*</span> 商机等级</label>
+            <div class="relative flex-1">
+              <select id="convert-opp-level" class="w-full h-9 pl-3 pr-8 rounded-md border border-slate-200 bg-white appearance-none text-slate-700 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 cursor-pointer">
+                <option value="">请选择</option>
+                <option value="S">S级</option>
+                <option value="A" selected>A级</option>
+                <option value="B">B级</option>
+                <option value="C">C级</option>
+              </select>
+              <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-center gap-3 border-t border-slate-100 bg-white px-6 py-4">
+          <button type="button" id="btn-convert-opp-ok" class="h-9 min-w-[5.5rem] px-8 rounded-md bg-blue-600 text-sm font-medium text-white hover:bg-blue-700 cursor-pointer">确认</button>
+          <button type="button" class="h-9 min-w-[5.5rem] px-8 rounded-md border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50 cursor-pointer" data-close="convert-opp">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div id="toast-lead" class="fixed top-6 left-1/2 z-[200] hidden -translate-x-1/2 rounded-lg bg-slate-800 px-5 py-2.5 text-sm text-white shadow-lg"></div>
 
   <script>
@@ -870,14 +919,25 @@
         'first-follow': document.getElementById('modal-first-follow'),
         follow: document.getElementById('modal-follow'),
         supplement: document.getElementById('modal-supplement'),
-        quote: document.getElementById('modal-quote')
+        quote: document.getElementById('modal-quote'),
+        'convert-opp': document.getElementById('modal-convert-opp')
       };
+      var convertOppHint = document.getElementById('convert-opp-hint');
+      var convertOppStage = document.getElementById('convert-opp-stage');
+      var convertOppLevel = document.getElementById('convert-opp-level');
+      var currentConvertLeadName = '';
 
       function showModal(key) {
-        if (modals[key]) modals[key].classList.remove('hidden');
+        var el = modals[key];
+        if (!el) return;
+        el.classList.remove('hidden');
+        el.setAttribute('aria-hidden', 'false');
       }
       function hideModal(key) {
-        if (modals[key]) modals[key].classList.add('hidden');
+        var el = modals[key];
+        if (!el) return;
+        el.classList.add('hidden');
+        el.setAttribute('aria-hidden', 'true');
       }
       function toast(msg) {
         var t = document.getElementById('toast-lead');
@@ -910,6 +970,49 @@
       document.querySelectorAll('.js-quote').forEach(function (btn) {
         btn.addEventListener('click', function () { openQuoteModal(); });
       });
+
+      function openConvertOppModal(leadName) {
+        currentConvertLeadName = leadName || '';
+        if (convertOppHint) {
+          convertOppHint.textContent = currentConvertLeadName
+            ? '确认将线索「' + currentConvertLeadName + '」转为商机？'
+            : '确认将当前线索转为商机？';
+        }
+        if (convertOppStage) convertOppStage.value = 'intent';
+        if (convertOppLevel) convertOppLevel.value = 'A';
+        showModal('convert-opp');
+      }
+
+      var leadTbody = document.getElementById('lead-tbody');
+      if (leadTbody) {
+        leadTbody.addEventListener('click', function (e) {
+          var convertBtn = e.target.closest('.js-convert-opp');
+          if (!convertBtn) return;
+          e.preventDefault();
+          e.stopPropagation();
+          openConvertOppModal(convertBtn.getAttribute('data-lead-name') || '');
+        });
+      }
+
+      var btnConvertOppOk = document.getElementById('btn-convert-opp-ok');
+      if (btnConvertOppOk) {
+        btnConvertOppOk.addEventListener('click', function () {
+          var stage = convertOppStage ? convertOppStage.value : '';
+          var level = convertOppLevel ? convertOppLevel.value : '';
+          if (!stage) {
+            toast('请选择商机阶段');
+            return;
+          }
+          if (!level) {
+            toast('请选择商机等级');
+            return;
+          }
+          var stageText = convertOppStage.options[convertOppStage.selectedIndex].text;
+          var levelText = convertOppLevel.options[convertOppLevel.selectedIndex].text;
+          hideModal('convert-opp');
+          toast((currentConvertLeadName ? '「' + currentConvertLeadName + '」' : '线索') + '已转为商机（' + stageText + ' / ' + levelText + '）');
+        });
+      }
 
       /* ========== 生成报价单弹窗逻辑 ========== */
       function makeToggle(toggleId, dotId, sectionId, onOpen) {
