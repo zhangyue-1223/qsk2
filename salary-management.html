@@ -89,6 +89,7 @@
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="role-permissions.html">角色权限</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="dictionary-management.html">字典管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="menu-management.html">菜单管理</a>
           </div>
         </details>
       </nav>
@@ -134,7 +135,7 @@
               </div>
             </div>
             <button type="button" class="h-9 px-4 rounded-md bg-blue-600 hover:bg-blue-700 cursor-pointer text-white text-sm hover:bg-blue-700">查询</button>
-            <button type="button" class="h-9 px-4 rounded-md border border-slate-200 hover:bg-slate-50 cursor-pointer bg-white text-sm text-slate-600 hover:bg-slate-50">导出</button>
+            <button type="button" id="btn-batch-send" class="h-9 px-4 rounded-md bg-blue-600 hover:bg-blue-700 cursor-pointer text-white text-sm inline-flex items-center gap-1.5"><i class="fa-regular fa-paper-plane text-xs"></i>批量发送</button>
             <button type="button" class="h-9 px-4 rounded-md border border-slate-200 hover:bg-slate-50 cursor-pointer bg-white text-sm text-slate-600 hover:bg-slate-50">批量导入</button>
           </div>
 
@@ -142,6 +143,9 @@
             <table class="salary-table w-full text-sm">
               <thead class="bg-slate-50 text-slate-600">
                 <tr>
+                  <th class="text-center px-3 py-3 font-medium border-b border-slate-200 w-12 whitespace-nowrap">
+                    <input type="checkbox" id="salary-check-all" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600 cursor-pointer" aria-label="全选" title="全选">
+                  </th>
                   <th class="text-left px-3 py-3 font-medium border-b border-slate-200 whitespace-nowrap">姓名</th>
                   <th class="text-left px-3 py-3 font-medium border-b border-slate-200 whitespace-nowrap">部门</th>
                   <th class="text-left px-3 py-3 font-medium border-b border-slate-200 whitespace-nowrap">岗位</th>
@@ -163,8 +167,11 @@
                   <th class="text-left px-3 py-3 font-medium border-b border-slate-200 whitespace-nowrap">操作</th>
                 </tr>
               </thead>
-              <tbody class="text-slate-700">
-                <tr class="hover:bg-slate-50">
+              <tbody class="text-slate-700" id="salary-table-body">
+                <tr class="hover:bg-slate-50 salary-row">
+                  <td class="px-3 py-3 border-b border-slate-100 text-center">
+                    <input type="checkbox" class="salary-row-check h-3.5 w-3.5 rounded border-slate-300 text-blue-600 cursor-pointer" aria-label="选择张慧佳">
+                  </td>
                   <td class="px-3 py-3 border-b border-slate-100">张慧佳</td>
                   <td class="px-3 py-3 border-b border-slate-100">销售一组</td>
                   <td class="px-3 py-3 border-b border-slate-100">销售员</td>
@@ -189,7 +196,10 @@
                       data-avatar="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=96&q=80">查看</button>
                   </td>
                 </tr>
-                <tr class="hover:bg-slate-50">
+                <tr class="hover:bg-slate-50 salary-row">
+                  <td class="px-3 py-3 border-b border-slate-100 text-center">
+                    <input type="checkbox" class="salary-row-check h-3.5 w-3.5 rounded border-slate-300 text-blue-600 cursor-pointer" aria-label="选择张思佳">
+                  </td>
                   <td class="px-3 py-3 border-b border-slate-100">张思佳</td>
                   <td class="px-3 py-3 border-b border-slate-100">销售一组</td>
                   <td class="px-3 py-3 border-b border-slate-100">销售员</td>
@@ -218,7 +228,10 @@
                     <button type="button" class="text-blue-600 hover:underline">发送</button>
                   </td>
                 </tr>
-                <tr class="hover:bg-slate-50">
+                <tr class="hover:bg-slate-50 salary-row">
+                  <td class="px-3 py-3 border-b border-slate-100 text-center">
+                    <input type="checkbox" class="salary-row-check h-3.5 w-3.5 rounded border-slate-300 text-blue-600 cursor-pointer" aria-label="选择李芳">
+                  </td>
                   <td class="px-3 py-3 border-b border-slate-100">李芳</td>
                   <td class="px-3 py-3 border-b border-slate-100">销售一组</td>
                   <td class="px-3 py-3 border-b border-slate-100">销售员</td>
@@ -243,7 +256,10 @@
                       data-avatar="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=96&q=80">查看</button>
                   </td>
                 </tr>
-                <tr class="hover:bg-slate-50">
+                <tr class="hover:bg-slate-50 salary-row">
+                  <td class="px-3 py-3 border-b border-slate-100 text-center">
+                    <input type="checkbox" class="salary-row-check h-3.5 w-3.5 rounded border-slate-300 text-blue-600 cursor-pointer" aria-label="选择王强">
+                  </td>
                   <td class="px-3 py-3 border-b border-slate-100">王强</td>
                   <td class="px-3 py-3 border-b border-slate-100">网销二组</td>
                   <td class="px-3 py-3 border-b border-slate-100">销售主管</td>
@@ -268,7 +284,10 @@
                     <span class="text-blue-600 hover:underline cursor-pointer">发送</span>
                   </td>
                 </tr>
-                <tr class="hover:bg-slate-50">
+                <tr class="hover:bg-slate-50 salary-row">
+                  <td class="px-3 py-3 border-b border-slate-100 text-center">
+                    <input type="checkbox" class="salary-row-check h-3.5 w-3.5 rounded border-slate-300 text-blue-600 cursor-pointer" aria-label="选择赵丽">
+                  </td>
                   <td class="px-3 py-3 border-b border-slate-100">赵丽</td>
                   <td class="px-3 py-3 border-b border-slate-100">政务一组</td>
                   <td class="px-3 py-3 border-b border-slate-100">政务员</td>
@@ -364,8 +383,59 @@
     </div>
   </div>
 
+  <div id="salary-toast" class="fixed top-6 left-1/2 z-[140] hidden -translate-x-1/2 rounded-lg bg-slate-800 px-5 py-2.5 text-sm text-white shadow-lg"></div>
+
   <script>
     (function () {
+      var checkAll = document.getElementById('salary-check-all');
+      var rowChecks = document.querySelectorAll('.salary-row-check');
+      var btnBatchSend = document.getElementById('btn-batch-send');
+      var toast = document.getElementById('salary-toast');
+      var toastTimer;
+
+      function showToast(msg) {
+        if (!toast) return;
+        toast.textContent = msg;
+        toast.classList.remove('hidden');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () { toast.classList.add('hidden'); }, 2200);
+      }
+
+      function syncCheckAllState() {
+        if (!checkAll || !rowChecks.length) return;
+        var checked = 0;
+        rowChecks.forEach(function (cb) { if (cb.checked) checked++; });
+        checkAll.checked = checked === rowChecks.length;
+        checkAll.indeterminate = checked > 0 && checked < rowChecks.length;
+      }
+
+      if (checkAll) {
+        checkAll.addEventListener('change', function () {
+          rowChecks.forEach(function (cb) { cb.checked = checkAll.checked; });
+          checkAll.indeterminate = false;
+        });
+      }
+      rowChecks.forEach(function (cb) {
+        cb.addEventListener('change', syncCheckAllState);
+      });
+
+      if (btnBatchSend) {
+        btnBatchSend.addEventListener('click', function () {
+          var selected = [];
+          rowChecks.forEach(function (cb) {
+            if (!cb.checked) return;
+            var tr = cb.closest('tr');
+            var nameCell = tr && tr.cells[1];
+            if (nameCell) selected.push(nameCell.textContent.trim());
+          });
+          if (!selected.length) {
+            showToast('请先勾选要发送的工资单');
+            return;
+          }
+          showToast('已向 ' + selected.length + ' 名员工批量发送工资确认（' + selected.join('、') + '）');
+        });
+      }
+
       var modal = document.getElementById('modal-salary');
       var banner = document.getElementById('salary-banner');
       var bannerStatus = document.getElementById('salary-banner-status');

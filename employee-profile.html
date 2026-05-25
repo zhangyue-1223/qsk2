@@ -77,6 +77,7 @@
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="role-permissions.html">角色权限</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="dictionary-management.html">字典管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="menu-management.html">菜单管理</a>
           </div>
         </details>
       </nav>
@@ -293,22 +294,8 @@
         });
       }
 
-      var sidebar = document.getElementById('app-sidebar');
-      var backdrop = document.getElementById('sidebar-backdrop');
-      var toggle = document.getElementById('btn-sidebar-toggle');
-      if (sidebar && backdrop && toggle) {
-        function setOpen(open) {
-          sidebar.classList.toggle('-translate-x-full', !open);
-          sidebar.classList.toggle('translate-x-0', open);
-          backdrop.classList.toggle('hidden', !open);
-          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-        }
-        toggle.addEventListener('click', function () {
-          setOpen(sidebar.classList.contains('-translate-x-full'));
-        });
-        backdrop.addEventListener('click', function () { setOpen(false); });
-      }
     })();
   </script>
+  <script src="./assets/app-shell.js"></script>
 </body>
 </html>

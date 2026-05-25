@@ -15,6 +15,12 @@
     .gov-tab:hover { color: #334155; }
     .gov-tab-active { border-bottom-color: #2563eb; color: #2563eb; font-weight: 600; }
     #modal-new-order:not(.hidden), #modal-dispatch:not(.hidden), #modal-progress:not(.hidden) { display: flex; }
+    .gov-days-badge { display: inline-block; padding: 0.125rem 0.625rem; font-size: 0.8125rem; line-height: 1.25rem; border-radius: 0.25rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .gov-days-normal { background: #dcfce7; color: #166534; }
+    .gov-days-warning { background: #ffedd5; color: #c2410c; }
+    .gov-days-overdue { background: #fee2e2; color: #dc2626; }
+    .gov-filter-panel { background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%); }
+    .gov-filter-input:focus { border-color: #3b82f6; outline: none; box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15); }
   </style>
 </head>
 <body class="bg-[#f5f7fa] text-slate-700">
@@ -90,6 +96,7 @@
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="role-permissions.html">角色权限</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="dictionary-management.html">字典管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="menu-management.html">菜单管理</a>
           </div>
         </details>
       </nav>
@@ -115,76 +122,93 @@
 
       <section class="p-4 sm:p-6">
         <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
-          <div class="mb-4 text-lg font-semibold text-slate-800">政务服务</div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-3 gap-y-4 items-end mb-5">
-            <label class="text-xs text-slate-500">企业名称
-              <input type="text" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm" placeholder="请输入">
-            </label>
-            <label class="text-xs text-slate-500">业务类型
-              <select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm bg-white text-slate-600">
-                <option value="">请选择</option>
-                <option>解除地址异常</option>
-                <option>解地址异常</option>
-                <option>工商变更</option>
-              </select>
-            </label>
-            <label class="text-xs text-slate-500">所属区域
-              <select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm bg-white text-slate-600">
-                <option value="">请选择</option>
-                <option>苏州市姑苏区</option>
-                <option>苏州工业园区</option>
-                <option>苏州吴中区</option>
-                <option>苏州昆山市</option>
-              </select>
-            </label>
-            <label class="text-xs text-slate-500">销售顾问
-              <select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm bg-white text-slate-600">
-                <option value="">请选择</option>
-                <option>周芳林</option>
-                <option>周方林</option>
-                <option>陈莉</option>
-              </select>
-            </label>
-            <label class="text-xs text-slate-500">所属部门
-              <select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm bg-white text-slate-600">
-                <option value="">请选择</option>
-                <option>网销一组</option>
-                <option>网销二组</option>
-                <option>政务服务部</option>
-              </select>
-            </label>
-            <label class="text-xs text-slate-500">线上申报员
-              <select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm bg-white text-slate-600">
-                <option value="">请选择</option>
-                <option>周芳林</option>
-                <option>许月</option>
-              </select>
-            </label>
-            <label class="text-xs text-slate-500">线下提报员
-              <select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm bg-white text-slate-600">
-                <option value="">请选择</option>
-                <option>许月</option>
-                <option>许悦</option>
-              </select>
-            </label>
-            <div class="sm:col-span-2 lg:col-span-3 xl:col-span-5 flex flex-wrap items-end gap-3">
-              <div class="text-xs text-slate-500 shrink-0">
-                创建时间
-                <div class="mt-1 flex items-center gap-1.5">
-                  <input type="text" value="2023-03-21" class="h-9 w-32 px-3 rounded border border-slate-200 text-sm">
-                  <span class="text-slate-400 shrink-0">-</span>
-                  <input type="text" value="2024-03-21" class="h-9 w-32 px-3 rounded border border-slate-200 text-sm">
-                </div>
-              </div>
-              <div class="flex flex-wrap items-center gap-2 shrink-0">
-                <button type="button" class="h-9 px-5 rounded bg-blue-600 text-white text-sm hover:bg-blue-700">确定</button>
-                <button type="button" class="h-9 px-5 rounded border border-blue-600 bg-white text-blue-600 text-sm hover:bg-blue-50">重置</button>
-                <button type="button" id="btn-open-new-order" class="h-9 px-4 rounded-md bg-blue-600 hover:bg-blue-700 cursor-pointer text-white text-sm hover:bg-blue-700">新增政务工单</button>
-                <button type="button" id="btn-open-transfer" class="h-9 px-4 rounded-md border border-slate-200 hover:bg-slate-50 cursor-pointer bg-white text-sm text-slate-600">移交</button>
-              </div>
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <h2 class="text-lg font-semibold text-slate-800">政务服务</h2>
+            <div class="flex flex-wrap items-center gap-2">
+              <button type="button" id="btn-open-new-order" class="h-9 px-4 rounded-md bg-blue-600 text-white text-sm hover:bg-blue-700 cursor-pointer inline-flex items-center gap-1.5"><i class="fa-solid fa-plus text-xs"></i>新增政务工单</button>
+              <button type="button" id="btn-open-transfer" class="h-9 px-4 rounded-md border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50 cursor-pointer inline-flex items-center gap-1.5"><i class="fa-solid fa-right-left text-xs text-slate-400"></i>移交</button>
             </div>
           </div>
+
+          <form class="gov-filter-panel rounded-lg border border-slate-200 p-4 mb-5" id="gov-search-form" onsubmit="return false">
+            <div class="flex items-center gap-2 mb-3 pb-3 border-b border-slate-200/70">
+              <span class="inline-flex h-7 w-7 items-center justify-center rounded-md bg-blue-600 text-white text-xs"><i class="fa-solid fa-filter"></i></span>
+              <span class="text-sm font-medium text-slate-700">筛选条件</span>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 items-end">
+              <label class="text-xs text-slate-500">企业名称
+                <input type="text" class="gov-filter-input mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-700 placeholder:text-slate-400" placeholder="请输入企业名称">
+              </label>
+              <label class="text-xs text-slate-500">业务类型
+                <select class="gov-filter-input mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-600 cursor-pointer">
+                  <option value="">全部</option>
+                  <option>解除地址异常</option>
+                  <option>解地址异常</option>
+                  <option>工商变更</option>
+                </select>
+              </label>
+              <label class="text-xs text-slate-500">所属区域
+                <select class="gov-filter-input mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-600 cursor-pointer">
+                  <option value="">全部</option>
+                  <option>苏州市姑苏区</option>
+                  <option>苏州工业园区</option>
+                  <option>苏州吴中区</option>
+                  <option>苏州昆山市</option>
+                </select>
+              </label>
+              <label class="text-xs text-slate-500">销售顾问
+                <select class="gov-filter-input mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-600 cursor-pointer">
+                  <option value="">全部</option>
+                  <option>周芳林</option>
+                  <option>周方林</option>
+                  <option>陈莉</option>
+                </select>
+              </label>
+              <label class="text-xs text-slate-500">所属部门
+                <select class="gov-filter-input mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-600 cursor-pointer">
+                  <option value="">全部</option>
+                  <option>网销一组</option>
+                  <option>网销二组</option>
+                  <option>政务服务部</option>
+                </select>
+              </label>
+              <label class="text-xs text-slate-500">办事人员
+                <select id="filter-agent" class="gov-filter-input mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-600 cursor-pointer">
+                  <option value="">全部</option>
+                  <option>许月</option>
+                  <option>许悦</option>
+                  <option>周芳林</option>
+                </select>
+              </label>
+            </div>
+            <div class="mt-3 pt-3 border-t border-slate-200/70 grid grid-cols-1 md:grid-cols-3 gap-3 items-end">
+              <label class="text-xs text-slate-500">派单时间
+                <div class="mt-1 flex items-center gap-1.5">
+                  <input type="date" class="gov-filter-input h-9 flex-1 min-w-0 rounded-md border border-slate-200 bg-white px-3 text-sm">
+                  <span class="text-slate-400 shrink-0 text-xs">至</span>
+                  <input type="date" class="gov-filter-input h-9 flex-1 min-w-0 rounded-md border border-slate-200 bg-white px-3 text-sm">
+                </div>
+              </label>
+              <label class="text-xs text-slate-500">完成时间
+                <div class="mt-1 flex items-center gap-1.5">
+                  <input type="date" class="gov-filter-input h-9 flex-1 min-w-0 rounded-md border border-slate-200 bg-white px-3 text-sm">
+                  <span class="text-slate-400 shrink-0 text-xs">至</span>
+                  <input type="date" class="gov-filter-input h-9 flex-1 min-w-0 rounded-md border border-slate-200 bg-white px-3 text-sm">
+                </div>
+              </label>
+              <label class="text-xs text-slate-500">创建时间
+                <div class="mt-1 flex items-center gap-1.5">
+                  <input type="date" value="2023-03-21" class="gov-filter-input h-9 flex-1 min-w-0 rounded-md border border-slate-200 bg-white px-3 text-sm">
+                  <span class="text-slate-400 shrink-0 text-xs">至</span>
+                  <input type="date" value="2024-03-21" class="gov-filter-input h-9 flex-1 min-w-0 rounded-md border border-slate-200 bg-white px-3 text-sm">
+                </div>
+              </label>
+            </div>
+            <div class="mt-3 pt-3 border-t border-slate-200/70 flex flex-wrap items-center justify-end gap-2">
+              <button type="reset" class="h-9 px-4 rounded-md border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50 cursor-pointer">重置</button>
+              <button type="submit" class="h-9 px-5 rounded-md bg-blue-600 text-white text-sm hover:bg-blue-700 cursor-pointer inline-flex items-center gap-1.5"><i class="fa-solid fa-magnifying-glass text-xs"></i>查询</button>
+            </div>
+          </form>
 
           <div class="flex flex-wrap gap-6 text-sm mb-4 border-b border-slate-200" id="gov-tabs">
             <button type="button" data-filter="all" class="gov-tab">全部</button>
@@ -216,7 +240,9 @@
                 <tr class="hover:bg-slate-50 gov-row" data-status="doing"
                     data-id="gov-1"
                     data-company="苏州美药科技有限公司"
-                    data-service="解地址异常"
+                    data-service="解地址异常、资料补正"
+                    data-days="7"
+                    data-days-level="overdue"
                     data-region="苏州工业园区"
                     data-sales="周芳林"
                     data-dept="网销一组"
@@ -226,7 +252,7 @@
                     data-start="2026-04-10"
                     data-end="">
                   <td class="px-3 py-3 border-b border-slate-100">苏州美药科技有限公司</td>
-                  <td class="px-3 py-3 border-b border-slate-100">解地址异常</td>
+                  <td class="px-3 py-3 border-b border-slate-100">解地址异常、资料补正</td>
                   <td class="px-3 py-3 border-b border-slate-100">苏州工业园区</td>
                   <td class="px-3 py-3 border-b border-slate-100">周芳林</td>
                   <td class="px-3 py-3 border-b border-slate-100">网销一组</td>
@@ -234,7 +260,7 @@
                   <td class="px-3 py-3 border-b border-slate-100">许月</td>
                   <td class="px-3 py-3 border-b border-slate-100">未交接</td>
                   <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
-                  <td class="px-3 py-3 border-b border-slate-100">7天</td>
+                  <td class="px-3 py-3 border-b border-slate-100"><span class="gov-days-badge gov-days-overdue">7天</span></td>
                   <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
                   <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
                   <td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="government-affairs-detail.html?id=gov-1">查看详情</a></td>
@@ -243,7 +269,9 @@
                 <tr class="hover:bg-slate-50 gov-row" data-status="doing"
                     data-id="gov-2"
                     data-company="苏州维尔因科技有限公司"
-                    data-service="解除地址异常"
+                    data-service="解除地址异常、工商变更"
+                    data-days="5"
+                    data-days-level="warning"
                     data-region="苏州吴中区"
                     data-sales="周芳林"
                     data-dept="网销一组"
@@ -253,7 +281,7 @@
                     data-start="2026-04-14"
                     data-end="2026-04-20">
                   <td class="px-3 py-3 border-b border-slate-100">苏州维尔因科技有限公司</td>
-                  <td class="px-3 py-3 border-b border-slate-100">解除地址异常</td>
+                  <td class="px-3 py-3 border-b border-slate-100">解除地址异常、工商变更</td>
                   <td class="px-3 py-3 border-b border-slate-100">苏州吴中区</td>
                   <td class="px-3 py-3 border-b border-slate-100">周芳林</td>
                   <td class="px-3 py-3 border-b border-slate-100">网销一组</td>
@@ -261,7 +289,7 @@
                   <td class="px-3 py-3 border-b border-slate-100">许月</td>
                   <td class="px-3 py-3 border-b border-slate-100">部分交接</td>
                   <td class="px-3 py-3 border-b border-slate-100">2026-04-10 17:23</td>
-                  <td class="px-3 py-3 border-b border-slate-100">5天</td>
+                  <td class="px-3 py-3 border-b border-slate-100"><span class="gov-days-badge gov-days-warning">5天</span></td>
                   <td class="px-3 py-3 border-b border-slate-100">2026-03-21 16:03</td>
                   <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
                   <td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="government-affairs-detail.html?id=gov-2">查看详情</a></td>
@@ -270,7 +298,9 @@
                 <tr class="hover:bg-slate-50 gov-row" data-status="doing"
                     data-id="gov-3"
                     data-company="苏州美的信息科技有限公司"
-                    data-service="解除地址异常"
+                    data-service="解除地址异常、税务注销"
+                    data-days="3"
+                    data-days-level="normal"
                     data-region="苏州昆山市"
                     data-sales="陈莉"
                     data-dept="网销二组"
@@ -280,7 +310,7 @@
                     data-start="2026-04-14"
                     data-end="2026-04-14">
                   <td class="px-3 py-3 border-b border-slate-100">苏州美的信息科技有限公司</td>
-                  <td class="px-3 py-3 border-b border-slate-100">解除地址异常</td>
+                  <td class="px-3 py-3 border-b border-slate-100">解除地址异常、税务注销</td>
                   <td class="px-3 py-3 border-b border-slate-100">苏州昆山市</td>
                   <td class="px-3 py-3 border-b border-slate-100">陈莉</td>
                   <td class="px-3 py-3 border-b border-slate-100">网销二组</td>
@@ -288,7 +318,7 @@
                   <td class="px-3 py-3 border-b border-slate-100">许月</td>
                   <td class="px-3 py-3 border-b border-slate-100">未交接</td>
                   <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
-                  <td class="px-3 py-3 border-b border-slate-100">3天</td>
+                  <td class="px-3 py-3 border-b border-slate-100"><span class="gov-days-badge gov-days-normal">3天</span></td>
                   <td class="px-3 py-3 border-b border-slate-100">2026-03-20 10:15</td>
                   <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
                   <td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="government-affairs-detail.html?id=gov-3">查看详情</a></td>
@@ -297,7 +327,9 @@
                 <tr class="hover:bg-slate-50 gov-row hidden" data-status="done"
                     data-id="gov-4"
                     data-company="昆山示例贸易有限公司"
-                    data-service="工商变更"
+                    data-service="工商变更、税务备案"
+                    data-days="28"
+                    data-days-level="normal"
                     data-region="苏州昆山市"
                     data-sales="周芳林"
                     data-dept="网销一组"
@@ -307,7 +339,7 @@
                     data-start="2026-03-01"
                     data-end="2026-03-28">
                   <td class="px-3 py-3 border-b border-slate-100">昆山示例贸易有限公司</td>
-                  <td class="px-3 py-3 border-b border-slate-100">工商变更</td>
+                  <td class="px-3 py-3 border-b border-slate-100">工商变更、税务备案</td>
                   <td class="px-3 py-3 border-b border-slate-100">苏州昆山市</td>
                   <td class="px-3 py-3 border-b border-slate-100">周芳林</td>
                   <td class="px-3 py-3 border-b border-slate-100">网销一组</td>
@@ -315,7 +347,7 @@
                   <td class="px-3 py-3 border-b border-slate-100">许月</td>
                   <td class="px-3 py-3 border-b border-slate-100">已交接</td>
                   <td class="px-3 py-3 border-b border-slate-100">2026-03-05 14:00</td>
-                  <td class="px-3 py-3 border-b border-slate-100">28天</td>
+                  <td class="px-3 py-3 border-b border-slate-100"><span class="gov-days-badge gov-days-normal">28天</span></td>
                   <td class="px-3 py-3 border-b border-slate-100">2026-03-01 09:00</td>
                   <td class="px-3 py-3 border-b border-slate-100">2026-03-28</td>
                   <td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="government-affairs-detail.html?id=gov-4">查看详情</a></td>
@@ -585,6 +617,13 @@
         toastTimer = setTimeout(function () { toast.classList.add('hidden'); }, 2200);
       }
 
+      var searchForm = document.getElementById('gov-search-form');
+      if (searchForm) {
+        searchForm.addEventListener('submit', function () {
+          showToast('查询成功');
+        });
+      }
+
       document.getElementById('btn-open-new-order').addEventListener('click', function () {
         modalNew.classList.remove('hidden');
         modalNew.classList.add('flex');
@@ -682,6 +721,19 @@
           modalProgress.classList.add('hidden');
           modalProgress.classList.remove('flex');
         });
+      });
+
+      var daysLevelClass = { normal: 'gov-days-normal', warning: 'gov-days-warning', overdue: 'gov-days-overdue' };
+      document.querySelectorAll('.gov-row').forEach(function (row) {
+        var level = row.getAttribute('data-days-level');
+        var days = row.getAttribute('data-days');
+        if (!level || !days) return;
+        var cells = row.querySelectorAll('td');
+        if (!cells.length) return;
+        var daysCell = cells[9];
+        if (!daysCell || daysCell.querySelector('.gov-days-badge')) return;
+        var cls = daysLevelClass[level] || daysLevelClass.normal;
+        daysCell.innerHTML = '<span class="gov-days-badge ' + cls + '">' + days + '天</span>';
       });
 
       var tabs = document.querySelectorAll('#gov-tabs [data-filter]');

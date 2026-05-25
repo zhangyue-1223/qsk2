@@ -11,7 +11,8 @@
   <link rel="stylesheet" href="./assets/design-system.css">
   <style>
     body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
-    #modal-payment-qrcode:not(.hidden) { display: flex; }
+    #modal-payment-qrcode:not(.hidden),
+    #modal-order-remark:not(.hidden) { display: flex; }
   </style>
 </head>
 <body class="bg-[#f5f7fa] text-slate-700">
@@ -87,6 +88,7 @@
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="role-permissions.html">角色权限</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="dictionary-management.html">字典管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="menu-management.html">菜单管理</a>
           </div>
         </details>
       </nav>
@@ -160,7 +162,10 @@
                   <td class="px-3 py-3 border-b border-slate-100">网销一组</td>
                   <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap">
                     <button type="button" class="text-blue-600 hover:underline js-order-detail">查看详情</button>
-                    <button type="button" class="ml-2 text-blue-600 hover:underline js-apply-invoice">申请开票</button>
+                    <span class="text-slate-300 px-1">|</span>
+                    <button type="button" class="text-blue-600 hover:underline js-add-order-remark">添加订单备注</button>
+                    <span class="text-slate-300 px-1">|</span>
+                    <button type="button" class="text-blue-600 hover:underline js-apply-invoice">申请开票</button>
                   </td>
                 </tr>
                 <tr class="hover:bg-slate-50 order-row" data-order-id="202604140002">
@@ -176,6 +181,8 @@
                   <td class="px-3 py-3 border-b border-slate-100">网销一组</td>
                   <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap">
                     <button type="button" class="text-blue-600 hover:underline js-order-detail">查看详情</button>
+                    <span class="text-slate-300 px-1">|</span>
+                    <button type="button" class="text-blue-600 hover:underline js-add-order-remark">添加订单备注</button>
                     <span class="text-slate-300 px-1">|</span>
                     <button type="button" class="text-blue-600 hover:underline js-send-payment-qr">发送收款码</button>
                   </td>
@@ -194,6 +201,8 @@
                   <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap">
                     <button type="button" class="text-blue-600 hover:underline js-order-detail">查看详情</button>
                     <span class="text-slate-300 px-1">|</span>
+                    <button type="button" class="text-blue-600 hover:underline js-add-order-remark">添加订单备注</button>
+                    <span class="text-slate-300 px-1">|</span>
                     <button type="button" class="text-blue-600 hover:underline js-send-payment-qr">发送收款码</button>
                   </td>
                 </tr>
@@ -208,7 +217,11 @@
                   <td class="px-3 py-3 border-b border-slate-100">--</td>
                   <td class="px-3 py-3 border-b border-slate-100">周芳</td>
                   <td class="px-3 py-3 border-b border-slate-100">网销一组</td>
-                  <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="text-blue-600 hover:underline js-order-detail">查看详情</button></td>
+                  <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap">
+                    <button type="button" class="text-blue-600 hover:underline js-order-detail">查看详情</button>
+                    <span class="text-slate-300 px-1">|</span>
+                    <button type="button" class="text-blue-600 hover:underline js-add-order-remark">添加订单备注</button>
+                  </td>
                 </tr>
                 <tr class="hover:bg-slate-50 order-row" data-order-id="202604140005">
                   <td class="px-3 py-3 border-b border-slate-100">202604140005</td>
@@ -221,7 +234,11 @@
                   <td class="px-3 py-3 border-b border-slate-100">--</td>
                   <td class="px-3 py-3 border-b border-slate-100">周芳</td>
                   <td class="px-3 py-3 border-b border-slate-100">网销一组</td>
-                  <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="text-blue-600 hover:underline js-order-detail">查看详情</button></td>
+                  <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap">
+                    <button type="button" class="text-blue-600 hover:underline js-order-detail">查看详情</button>
+                    <span class="text-slate-300 px-1">|</span>
+                    <button type="button" class="text-blue-600 hover:underline js-add-order-remark">添加订单备注</button>
+                  </td>
                 </tr>
                 <tr class="hover:bg-slate-50 order-row" data-order-id="202604140006">
                   <td class="px-3 py-3 border-b border-slate-100">202604140006</td>
@@ -236,7 +253,10 @@
                   <td class="px-3 py-3 border-b border-slate-100">网销一组</td>
                   <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap">
                     <button type="button" class="text-blue-600 hover:underline js-order-detail">查看详情</button>
-                    <button type="button" class="ml-2 text-blue-600 hover:underline js-view-invoice">查看开票</button>
+                    <span class="text-slate-300 px-1">|</span>
+                    <button type="button" class="text-blue-600 hover:underline js-add-order-remark">添加订单备注</button>
+                    <span class="text-slate-300 px-1">|</span>
+                    <button type="button" class="text-blue-600 hover:underline js-view-invoice">查看开票</button>
                   </td>
                 </tr>
               </tbody>
@@ -475,6 +495,28 @@
 
   <div id="toast-inv" class="fixed top-6 left-1/2 z-[200] hidden -translate-x-1/2 rounded-lg bg-slate-800 px-5 py-2.5 text-sm text-white shadow-lg" role="status"></div>
 
+  <!-- 添加订单备注 -->
+  <div id="modal-order-remark" class="fixed inset-0 z-[115] hidden items-center justify-center p-4 bg-slate-900/45" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="order-remark-title">
+    <div class="absolute inset-0" data-close-order-remark></div>
+    <div class="relative w-full max-w-md rounded-xl border border-slate-200 bg-white shadow-xl overflow-hidden">
+      <div class="relative border-b border-slate-200 px-5 py-4">
+        <h3 id="order-remark-title" class="text-center text-base font-semibold text-slate-800">添加订单备注</h3>
+        <button type="button" class="order-remark-close absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600" data-close-order-remark aria-label="关闭"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <div class="px-6 py-5 text-sm">
+        <p class="text-xs text-slate-500 mb-3">订单编号：<span id="order-remark-order-no" class="text-slate-700 font-medium"></span></p>
+        <label class="block">
+          <span class="text-slate-600">订单备注</span>
+          <textarea id="order-remark-input" rows="5" class="mt-1.5 w-full rounded-md border border-slate-200 px-3 py-2 text-sm text-slate-700 placeholder:text-slate-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 resize-y min-h-[120px]" placeholder="请输入订单备注"></textarea>
+        </label>
+      </div>
+      <div class="flex justify-center gap-3 border-t border-slate-100 px-6 py-4">
+        <button type="button" id="btn-order-remark-submit" class="h-9 min-w-[5.5rem] rounded-md bg-blue-600 px-5 text-sm font-medium text-white hover:bg-blue-700 cursor-pointer">确认</button>
+        <button type="button" class="order-remark-close h-9 min-w-[5.5rem] rounded-md border border-slate-200 bg-white px-5 text-sm text-slate-600 hover:bg-slate-50 cursor-pointer" data-close-order-remark>取消</button>
+      </div>
+    </div>
+  </div>
+
   <!-- 收款方式 / 收款码 -->
   <div id="modal-payment-qrcode" class="fixed inset-0 z-[115] hidden items-center justify-center p-4" aria-hidden="true">
     <div class="absolute inset-0 bg-slate-900/40" data-close-payment-qr></div>
@@ -636,6 +678,11 @@
       var applyInvModal = document.getElementById('modal-apply-invoice');
       var invDetailModal = document.getElementById('modal-inv-detail');
       var paymentQrModal = document.getElementById('modal-payment-qrcode');
+      var orderRemarkModal = document.getElementById('modal-order-remark');
+      var orderRemarkOrderNo = document.getElementById('order-remark-order-no');
+      var orderRemarkInput = document.getElementById('order-remark-input');
+      var btnOrderRemarkSubmit = document.getElementById('btn-order-remark-submit');
+      var currentRemarkOrderId = null;
       var pqPayMethod = document.getElementById('pq-pay-method');
       var pqQrWrap = document.getElementById('pq-qr-wrap');
       var pqQrImage = document.getElementById('pq-qr-image');
@@ -700,6 +747,27 @@
         paymentQrModal.classList.remove('hidden');
         paymentQrModal.classList.add('flex');
         paymentQrModal.setAttribute('aria-hidden', 'false');
+      }
+
+      function openOrderRemarkModal(orderId) {
+        var d = orderDetails[orderId];
+        if (!d || !orderRemarkModal) return;
+        currentRemarkOrderId = orderId;
+        if (orderRemarkOrderNo) orderRemarkOrderNo.textContent = d.orderNo;
+        if (orderRemarkInput) orderRemarkInput.value = d.remark || '';
+        orderRemarkModal.classList.remove('hidden');
+        orderRemarkModal.classList.add('flex');
+        orderRemarkModal.setAttribute('aria-hidden', 'false');
+        if (orderRemarkInput) orderRemarkInput.focus();
+      }
+
+      function closeOrderRemarkModal() {
+        if (!orderRemarkModal) return;
+        orderRemarkModal.classList.add('hidden');
+        orderRemarkModal.classList.remove('flex');
+        orderRemarkModal.setAttribute('aria-hidden', 'true');
+        currentRemarkOrderId = null;
+        if (orderRemarkInput) orderRemarkInput.value = '';
       }
 
       function closePaymentQrModal() {
@@ -985,7 +1053,32 @@
           }
           if (e.target.closest('.js-send-payment-qr')) {
             openPaymentQrModal(id);
+            return;
           }
+          if (e.target.closest('.js-add-order-remark')) {
+            openOrderRemarkModal(id);
+          }
+        });
+      }
+
+      if (orderRemarkModal) {
+        orderRemarkModal.querySelectorAll('.order-remark-close, [data-close-order-remark]').forEach(function (el) {
+          el.addEventListener('click', closeOrderRemarkModal);
+        });
+      }
+      if (btnOrderRemarkSubmit) {
+        btnOrderRemarkSubmit.addEventListener('click', function () {
+          if (!currentRemarkOrderId) return;
+          var text = orderRemarkInput ? orderRemarkInput.value.trim() : '';
+          if (!text) {
+            showToast('请填写订单备注');
+            if (orderRemarkInput) orderRemarkInput.focus();
+            return;
+          }
+          var d = orderDetails[currentRemarkOrderId];
+          if (d) d.remark = text;
+          showToast('订单备注已保存');
+          closeOrderRemarkModal();
         });
       }
 
@@ -1056,6 +1149,10 @@
 
       document.addEventListener('keydown', function (e) {
         if (e.key !== 'Escape') return;
+        if (orderRemarkModal && !orderRemarkModal.classList.contains('hidden')) {
+          closeOrderRemarkModal();
+          return;
+        }
         if (invDetailModal && !invDetailModal.classList.contains('hidden')) {
           closeInvDetail();
           return;

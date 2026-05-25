@@ -16,6 +16,9 @@
     .hr-type-tab-active { background: #2563eb; border-color: #2563eb; color: #fff; font-weight: 500; }
     .hr-form-panel[hidden] { display: none !important; }
     .field-req::after { content: '*'; color: #ef4444; margin-left: 2px; }
+    .hr-list-tab { padding-bottom: 0.625rem; border-bottom: 2px solid transparent; color: #64748b; font-size: 0.875rem; cursor: pointer; transition: color 0.15s, border-color 0.15s; }
+    .hr-list-tab:hover { color: #334155; }
+    .hr-list-tab.hr-list-tab-active { color: #2563eb; border-bottom-color: #2563eb; font-weight: 600; }
   </style>
 </head>
 <body class="bg-[#f5f7fa] text-slate-700">
@@ -91,6 +94,7 @@
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="role-permissions.html">角色权限</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="dictionary-management.html">字典管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="menu-management.html">菜单管理</a>
           </div>
         </details>
       </nav>
@@ -159,6 +163,13 @@
             <button type="button" id="btn-open-apply" class="h-9 px-4 rounded-md border border-slate-200 hover:bg-slate-50 cursor-pointer bg-white text-sm text-slate-600 hover:bg-slate-50">人事申请</button>
           </div>
 
+          <div class="flex flex-wrap gap-6 text-sm mb-4 border-b border-slate-200" id="hr-list-tabs">
+            <button type="button" class="hr-list-tab hr-list-tab-active" data-hr-tab="submitted">我提交的</button>
+            <button type="button" class="hr-list-tab" data-hr-tab="todo">待我处理的</button>
+            <button type="button" class="hr-list-tab" data-hr-tab="done">我已处理的</button>
+            <button type="button" class="hr-list-tab" data-hr-tab="cc">抄送我的</button>
+          </div>
+
           <div class="rounded border border-slate-200 overflow-x-auto">
             <table class="w-full text-sm min-w-[960px]">
               <thead class="bg-slate-50 text-slate-600">
@@ -172,8 +183,8 @@
                   <th class="px-3 py-3 text-left border-b border-slate-200 whitespace-nowrap">操作</th>
                 </tr>
               </thead>
-              <tbody class="text-slate-700">
-                <tr class="border-b border-slate-100 hover:bg-slate-50">
+              <tbody class="text-slate-700" id="hr-table-body">
+                <tr class="hr-row border-b border-slate-100 hover:bg-slate-50" data-hr-tab="todo">
                   <td class="px-3 py-3">孙红</td>
                   <td class="px-3 py-3">招聘申请</td>
                   <td class="px-3 py-3 text-amber-500">审批中</td>
@@ -186,7 +197,7 @@
                     <button type="button" class="text-rose-500 hover:underline">拒绝</button>
                   </td>
                 </tr>
-                <tr class="border-b border-slate-100 hover:bg-slate-50">
+                <tr class="hr-row border-b border-slate-100 hover:bg-slate-50" data-hr-tab="submitted">
                   <td class="px-3 py-3">孙红</td>
                   <td class="px-3 py-3">转正申请</td>
                   <td class="px-3 py-3 text-rose-500">未通过</td>
@@ -197,7 +208,7 @@
                     <button type="button" class="text-blue-600 hover:underline js-reapply">重新申请</button>
                   </td>
                 </tr>
-                <tr class="border-b border-slate-100 hover:bg-slate-50">
+                <tr class="hr-row border-b border-slate-100 hover:bg-slate-50" data-hr-tab="done">
                   <td class="px-3 py-3">孙红</td>
                   <td class="px-3 py-3">调岗申请</td>
                   <td class="px-3 py-3 text-emerald-600">已通过</td>
@@ -206,7 +217,7 @@
                   <td class="px-3 py-3"><button type="button" class="text-blue-600 hover:underline js-view-detail" data-status="approved" data-type="transfer" data-applicant="孙红" data-dept="运营支撑部" data-time="2024-04-14 11:13">查看详情</button></td>
                   <td class="px-3 py-3 text-slate-400">—</td>
                 </tr>
-                <tr class="hover:bg-slate-50">
+                <tr class="hr-row border-b border-slate-100 hover:bg-slate-50" data-hr-tab="todo">
                   <td class="px-3 py-3">孙红</td>
                   <td class="px-3 py-3">离职申请</td>
                   <td class="px-3 py-3 text-amber-500">审批中</td>
@@ -219,9 +230,28 @@
                     <button type="button" class="text-rose-500 hover:underline">拒绝</button>
                   </td>
                 </tr>
+                <tr class="hr-row border-b border-slate-100 hover:bg-slate-50" data-hr-tab="submitted">
+                  <td class="px-3 py-3">王磊</td>
+                  <td class="px-3 py-3">招聘申请</td>
+                  <td class="px-3 py-3 text-amber-500">审批中</td>
+                  <td class="px-3 py-3">网销一组</td>
+                  <td class="px-3 py-3 whitespace-nowrap">2024-04-12 09:20</td>
+                  <td class="px-3 py-3"><button type="button" class="text-blue-600 hover:underline js-view-detail" data-status="pending" data-type="recruit" data-applicant="王磊" data-dept="网销一组" data-time="2024-04-12 09:20">查看详情</button></td>
+                  <td class="px-3 py-3 text-slate-400">—</td>
+                </tr>
+                <tr class="hr-row hover:bg-slate-50" data-hr-tab="cc">
+                  <td class="px-3 py-3">周芳林</td>
+                  <td class="px-3 py-3">转正申请</td>
+                  <td class="px-3 py-3 text-emerald-600">已通过</td>
+                  <td class="px-3 py-3">销售一组</td>
+                  <td class="px-3 py-3 whitespace-nowrap">2024-04-10 16:45</td>
+                  <td class="px-3 py-3"><button type="button" class="text-blue-600 hover:underline js-view-detail" data-status="approved" data-type="regular" data-applicant="周芳林" data-dept="销售一组" data-time="2024-04-10 16:45">查看详情</button></td>
+                  <td class="px-3 py-3 text-slate-400">—</td>
+                </tr>
               </tbody>
             </table>
           </div>
+          <p id="hr-table-empty" class="hidden py-10 text-center text-sm text-slate-400 border border-t-0 border-slate-200 rounded-b-lg -mt-px">暂无数据</p>
         </div>
       </section>
     </main>
@@ -251,6 +281,14 @@
             <label class="text-slate-600"><span class="field-req">申请部门</span><select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 bg-white"><option>政务服务部</option></select></label>
             <label class="text-slate-600"><span class="field-req">招聘岗位</span><select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 bg-white"><option>政务员</option><option>销售专员</option></select></label>
             <label class="text-slate-600"><span class="field-req">拟招聘人数</span><input type="number" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3" placeholder="请输入"></label>
+            <label class="text-slate-600 sm:col-span-2"><span class="field-req">薪资范围</span>
+              <div class="mt-1 flex flex-wrap items-center gap-2">
+                <input type="number" id="recruit-salary-min" class="h-9 w-full min-w-0 flex-1 rounded-md border border-slate-200 px-3 sm:max-w-[8.5rem]" placeholder="最低" min="0" step="100">
+                <span class="text-slate-400 shrink-0">至</span>
+                <input type="number" id="recruit-salary-max" class="h-9 w-full min-w-0 flex-1 rounded-md border border-slate-200 px-3 sm:max-w-[8.5rem]" placeholder="最高" min="0" step="100">
+                <span class="text-slate-500 shrink-0 text-xs sm:text-sm">元/月</span>
+              </div>
+            </label>
             <label class="text-slate-600 sm:col-span-2">期望到岗日期<input type="date" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3" value="2026-04-28"></label>
             <label class="text-slate-600 sm:col-span-2">岗位职责<textarea class="mt-1 w-full rounded border border-slate-200 px-3 py-2 min-h-[72px]" placeholder="请输入"></textarea></label>
             <label class="text-slate-600 sm:col-span-2">任职要求<textarea class="mt-1 w-full rounded border border-slate-200 px-3 py-2 min-h-[72px]" placeholder="请输入"></textarea></label>
@@ -355,6 +393,32 @@
     (function () {
       var applyModal = document.getElementById('modal-apply');
       var detailModal = document.getElementById('modal-detail');
+      var hrRows = document.querySelectorAll('.hr-row');
+      var hrTableEmpty = document.getElementById('hr-table-empty');
+      var currentHrTab = 'submitted';
+
+      function filterHrTable() {
+        var visible = 0;
+        hrRows.forEach(function (row) {
+          var show = row.getAttribute('data-hr-tab') === currentHrTab;
+          row.classList.toggle('hidden', !show);
+          if (show) visible++;
+        });
+        if (hrTableEmpty) hrTableEmpty.classList.toggle('hidden', visible > 0);
+      }
+
+      document.querySelectorAll('#hr-list-tabs .hr-list-tab').forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          document.querySelectorAll('#hr-list-tabs .hr-list-tab').forEach(function (t) {
+            t.classList.remove('hr-list-tab-active');
+          });
+          tab.classList.add('hr-list-tab-active');
+          currentHrTab = tab.getAttribute('data-hr-tab');
+          filterHrTable();
+        });
+      });
+      filterHrTable();
+
       var typeLabels = { recruit: '招聘申请', regular: '转正申请', transfer: '调岗申请', resign: '离职申请' };
       var panels = { recruit: 'panel-recruit', regular: 'panel-regular', transfer: 'panel-transfer', resign: 'panel-resign' };
 
@@ -403,7 +467,7 @@
       var footer = document.getElementById('detail-footer');
 
       var typeSamples = {
-        recruit: { position: '政务员', count: '2', onboard: '2026-05-15', duties: '负责政务服务窗口接待、政策咨询与业务办理。', requirements: '大专及以上学历，沟通能力强，有政务服务经验者优先。' },
+        recruit: { position: '政务员', count: '2', salaryRange: '6000 - 8000 元/月', onboard: '2026-05-15', duties: '负责政务服务窗口接待、政策咨询与业务办理。', requirements: '大专及以上学历，沟通能力强，有政务服务经验者优先。' },
         regular: { onboard: '2025-10-08', position: '政务员', regularType: '到期转正', regularDate: '2026-04-28', desc: '试用期间工作认真负责，熟悉业务流程，能够独立完成窗口服务与材料审核，申请按期转正。', files: ['转正申请表.pdf'] },
         transfer: { fromDept: '政务服务部', fromPos: '政务员', toDept: '运营支撑部', toPos: '运营专员', effective: '2026-05-01', desc: '因业务发展需要，申请调至运营支撑部担任运营专员，已做好工作交接安排。', files: ['调岗申请书.pdf'] },
         resign: { onboard: '2025-10-08', position: '政务员', lastDay: '2026-05-31', reason: '因个人职业规划原因申请离职，承诺在离职前完成工作交接。', files: ['离职申请书.pdf'] }
@@ -432,6 +496,7 @@
         if (tp === 'recruit') {
           html += gridField('招聘岗位', s.position);
           html += gridField('拟招聘人数', s.count);
+          html += gridField('薪资范围', s.salaryRange);
           html += gridField('期望到岗日期', s.onboard);
           html += '</div>' + blockField('岗位职责', s.duties) + blockField('任职要求', s.requirements);
         } else if (tp === 'regular') {
