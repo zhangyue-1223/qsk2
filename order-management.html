@@ -375,7 +375,7 @@
     </div>
   </div>
 
-  <!-- 开票申请（与开票管理 modal-apply-invoice 一致；z-index 高于订单详情） -->
+  <!-- 开票申请（z-index 高于订单详情） -->
   <div id="modal-apply-invoice" class="fixed inset-0 z-[110] hidden" aria-hidden="true">
     <div class="absolute inset-0 bg-slate-900/40" data-close-apply></div>
     <div class="relative flex min-h-full items-center justify-center p-4 pointer-events-none">
@@ -462,7 +462,7 @@
     </div>
   </div>
 
-  <!-- 开票申请详情（与开票管理 modal-inv-detail 一致；已通过等状态） -->
+  <!-- 开票申请详情（已通过等状态） -->
   <div id="modal-inv-detail" class="fixed inset-0 z-[120] hidden" aria-hidden="true">
     <div class="absolute inset-0 bg-slate-900/40" data-close-detail></div>
     <div class="relative flex min-h-full items-center justify-center p-4 pointer-events-none">
@@ -650,7 +650,7 @@
         }
       };
 
-      /** 订单关联的已通过开票详情（结构同开票管理 inv-3） */
+      /** 订单关联的已通过开票详情 */
       var invRecords = {
         '202604140006': {
           state: 'approved',
