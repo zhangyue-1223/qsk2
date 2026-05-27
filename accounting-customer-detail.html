@@ -13,7 +13,8 @@
     body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
     .sec-title { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9375rem; font-weight: 600; color: #1e293b; margin-bottom: 1rem; }
     .sec-title::before { content: ''; width: 3px; height: 14px; border-radius: 2px; background: #2563eb; flex-shrink: 0; }
-    #modal-progress-detail:not(.hidden) { display: flex; }
+    #modal-progress-detail:not(.hidden),
+    #modal-first-call-detail:not(.hidden) { display: flex; }
     .wo-steps { display: flex; align-items: flex-start; justify-content: space-between; gap: 0; padding: 0.5rem 0 1.25rem; overflow-x: auto; }
     .wo-step { flex: 1; min-width: 5.5rem; position: relative; text-align: center; }
     .wo-step:not(:last-child)::after {
@@ -120,6 +121,27 @@
             </div>
 
             <div class="xl:col-span-2 p-5 space-y-7">
+              <!-- 首电确认模块 -->
+              <section>
+                <div class="flex items-center justify-between mb-3">
+                  <h3 class="sec-title !mb-0">首电确认</h3>
+                  <button type="button" id="btn-open-first-call-detail" class="inline-flex items-center gap-1 text-sm font-medium text-blue-600 hover:text-blue-700 cursor-pointer"><i class="fa-solid fa-pen text-xs"></i>编辑</button>
+                </div>
+                <div class="rounded-lg border border-slate-200 bg-slate-50/60 p-4 text-sm">
+                  <div class="grid grid-cols-2 gap-x-6 gap-y-3">
+                    <div><p class="text-xs text-slate-500 mb-0.5">联系日期</p><p class="text-slate-800">2023-04-15</p></div>
+                    <div><p class="text-xs text-slate-500 mb-0.5">实际对接人姓名</p><p class="text-slate-800">李小明</p></div>
+                    <div><p class="text-xs text-slate-500 mb-0.5">实际对接人电话</p><p class="text-slate-800">13800138000</p></div>
+                    <div><p class="text-xs text-slate-500 mb-0.5">有无社保</p><p class="text-slate-800">有</p></div>
+                    <div><p class="text-xs text-slate-500 mb-0.5">开票税点</p><p class="text-slate-800">3%</p></div>
+                    <div><p class="text-xs text-slate-500 mb-0.5">资质许可证</p><p class="text-slate-800">—</p></div>
+                    <div class="col-span-2"><p class="text-xs text-slate-500 mb-0.5">挂靠地址</p><p class="text-slate-800">江苏省苏州市吴中区红海大厦2005</p></div>
+                    <div class="col-span-2"><p class="text-xs text-slate-500 mb-0.5">特殊业务</p><p class="text-slate-800">—</p></div>
+                    <div class="col-span-2"><p class="text-xs text-slate-500 mb-0.5">客户备注</p><p class="text-slate-800">客户需每月5号前出报告</p></div>
+                  </div>
+                </div>
+              </section>
+
               <section>
                 <div class="flex items-center justify-between mb-4">
                   <h3 class="sec-title !mb-0">办理进度</h3>
@@ -156,6 +178,64 @@
     </main>
   </div>
 
+  <!-- 首电确认弹窗（详情页编辑） -->
+  <div id="modal-first-call-detail" class="fixed inset-0 z-[130] hidden items-center justify-center bg-slate-900/45 p-4">
+    <div class="absolute inset-0" data-close-first-call></div>
+    <div class="relative w-full max-w-lg rounded-xl border border-slate-200 bg-white shadow-xl">
+      <div class="relative border-b border-slate-200 px-5 py-4">
+        <h3 class="text-center text-base font-semibold text-slate-800">首电确认</h3>
+        <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer" data-close-first-call><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <div class="px-6 py-5 text-sm space-y-4 max-h-[70vh] overflow-y-auto">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="sm:col-span-2">
+            <label class="block text-slate-600 mb-1.5">联系日期 <span class="text-red-500">*</span></label>
+            <input type="date" class="h-9 w-full rounded-md border border-slate-200 px-3 text-sm" value="2023-04-15">
+          </div>
+          <div>
+            <label class="block text-slate-600 mb-1.5">实际对接人姓名 <span class="text-red-500">*</span></label>
+            <input type="text" class="h-9 w-full rounded-md border border-slate-200 px-3 text-sm" value="李小明">
+          </div>
+          <div>
+            <label class="block text-slate-600 mb-1.5">实际对接人电话 <span class="text-red-500">*</span></label>
+            <input type="text" class="h-9 w-full rounded-md border border-slate-200 px-3 text-sm" value="13800138000">
+          </div>
+          <div>
+            <label class="block text-slate-600 mb-1.5">有无社保</label>
+            <select class="h-9 w-full rounded-md border border-slate-200 px-3 bg-white text-sm">
+              <option>有</option>
+              <option>无</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-slate-600 mb-1.5">开票税点</label>
+            <input type="text" class="h-9 w-full rounded-md border border-slate-200 px-3 text-sm" value="3%">
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block text-slate-600 mb-1.5">资质许可证</label>
+            <input type="text" class="h-9 w-full rounded-md border border-slate-200 px-3 text-sm" placeholder="请输入资质许可证信息">
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block text-slate-600 mb-1.5">挂靠地址</label>
+            <input type="text" class="h-9 w-full rounded-md border border-slate-200 px-3 text-sm" value="江苏省苏州市吴中区红海大厦2005">
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block text-slate-600 mb-1.5">特殊业务</label>
+            <textarea class="w-full h-20 rounded-md border border-slate-200 px-3 py-2 text-sm resize-none" placeholder="请填写特殊业务说明"></textarea>
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block text-slate-600 mb-1.5">客户备注</label>
+            <textarea class="w-full h-20 rounded-md border border-slate-200 px-3 py-2 text-sm resize-none">客户需每月5号前出报告</textarea>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-center gap-3 border-t border-slate-100 px-5 py-4">
+        <button type="button" class="h-9 min-w-[90px] rounded-md bg-blue-600 text-white hover:bg-blue-700 cursor-pointer" data-close-first-call>确认</button>
+        <button type="button" class="h-9 min-w-[90px] rounded-md border border-slate-300 bg-white text-slate-600 hover:bg-slate-50 cursor-pointer" data-close-first-call>取消</button>
+      </div>
+    </div>
+  </div>
+
   <div id="modal-progress-detail" class="fixed inset-0 z-[130] hidden items-center justify-center bg-slate-900/45 p-4">
     <div class="absolute inset-0" data-close-progress></div>
     <div class="relative w-full max-w-lg rounded-xl border border-slate-200 bg-white shadow-xl">
@@ -182,13 +262,11 @@
       var dataMap = {
         'acc-1': {
           workflow: [
-            { label: '新增客户', sub: '2023-04-08 17:23', state: 'done' },
-            { label: '服务派单', sub: '2023-04-10 17:23', state: 'done' },
-            { label: '客户资料交接', sub: '2023-04-10 17:23', state: 'done' },
-            { label: '代账续费', sub: '2024-04-10 17:23', state: 'done' },
-            { label: '代账续费', sub: '2025-04-10 17:23', state: 'done' },
-            { label: '代账续费', sub: '2026-04-10 17:23', state: 'done' },
-            { label: '代账待续费', sub: '', state: 'active' }
+            { label: '新增客户', sub: '2023-04-08', state: 'done' },
+            { label: '服务派单', sub: '2023-04-10', state: 'done' },
+            { label: '客户资料交接', sub: '2023-04-12', state: 'done' },
+            { label: '首电确认', sub: '2023-04-15', state: 'done' },
+            { label: '服务中', sub: '2023-05-01 起\n2027-06-30 止', state: 'active' }
           ],
           order: {
             企业名称: '苏州九州数字科技有限公司',
@@ -295,10 +373,25 @@
           modal.classList.remove('flex');
         });
       });
+
+      var modalFC = document.getElementById('modal-first-call-detail');
+      document.getElementById('btn-open-first-call-detail').addEventListener('click', function () {
+        modalFC.classList.remove('hidden');
+        modalFC.classList.add('flex');
+      });
+      modalFC.querySelectorAll('[data-close-first-call]').forEach(function (el) {
+        el.addEventListener('click', function () {
+          modalFC.classList.add('hidden');
+          modalFC.classList.remove('flex');
+        });
+      });
+
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') {
           modal.classList.add('hidden');
           modal.classList.remove('flex');
+          modalFC.classList.add('hidden');
+          modalFC.classList.remove('flex');
         }
       });
     })();

@@ -16,6 +16,7 @@
     .acc-tab-active { border-bottom-color: #2563eb; color: #2563eb; font-weight: 600; }
     #modal-add-accounting:not(.hidden),
     #modal-dispatch-accounting:not(.hidden),
+    #modal-first-call:not(.hidden),
     #modal-progress-accounting:not(.hidden),
     #modal-transfer-accounting:not(.hidden) { display: flex; }
     .deadline-badge { display: inline-block; padding: 0.125rem 0.5rem; font-size: 0.8125rem; line-height: 1.25rem; border-radius: 0.25rem; white-space: nowrap; }
@@ -250,7 +251,7 @@
                   <td class="px-3 py-3 border-b border-slate-100"><span class="deadline-badge deadline-warning">余2个月</span></td>
                   <td class="px-3 py-3 border-b border-slate-100">2028-03-21</td>
                   <td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="accounting-customer-detail.html?id=acc-3">查看详情</a></td>
-                  <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="text-blue-600 hover:underline js-dispatch">派单</button></td>
+                  <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="text-blue-600 hover:underline js-first-call">确认首电</button></td>
                 </tr>
                 <tr class="hover:bg-slate-50 acc-row" data-tax="general" data-id="acc-4" data-company="万州维的科技有限公司" data-contract="20260415004" data-dept="岚诺组" data-sales="周方林" data-fee="125/月" data-chief="马时笑" data-adviser="马时笑" data-invoice="马时笑">
                   <td class="px-3 py-3 border-b border-slate-100">万州维的科技有限公司</td>
@@ -266,7 +267,7 @@
                   <td class="px-3 py-3 border-b border-slate-100"><span class="deadline-badge deadline-overdue">逾期1个月</span></td>
                   <td class="px-3 py-3 border-b border-slate-100">2028-03-21</td>
                   <td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="accounting-customer-detail.html?id=acc-4">查看详情</a></td>
-                  <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="text-blue-600 hover:underline js-dispatch">派单</button></td>
+                  <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="text-blue-600 hover:underline js-first-call">确认首电</button></td>
                 </tr>
                 <tr class="hover:bg-slate-50 acc-row" data-tax="general" data-id="acc-5" data-company="苏州维的科技有限公司" data-contract="20260415005" data-dept="网销一组" data-sales="周方林" data-fee="325/月" data-chief="马时笑" data-adviser="马时笑" data-invoice="马时笑">
                   <td class="px-3 py-3 border-b border-slate-100">苏州维的科技有限公司</td>
@@ -360,8 +361,7 @@
       </div>
       <div class="px-6 py-5 text-sm space-y-4">
         <div class="grid grid-cols-2 gap-x-8 gap-y-3">
-          <div><p class="text-xs text-slate-500 mb-1">企业名称</p><p id="dispatch-company" class="text-slate-800">—</p></div>
-          <div><label class="text-xs text-slate-500 mb-1 block">关联合同</label><select id="dispatch-contract" class="h-9 w-full rounded-md border border-slate-200 px-3 bg-white"><option>20260415002</option><option>20260415003</option></select></div>
+          <div class="col-span-2"><p class="text-xs text-slate-500 mb-1">企业名称</p><p id="dispatch-company" class="text-slate-800">—</p></div>
           <div><label class="text-xs text-slate-500 mb-1 block">主办会计 <span class="text-red-500">*</span></label><select class="h-9 w-full max-w-[220px] rounded border border-slate-200 px-3 bg-white"><option>马时笑</option><option>许悦</option></select></div>
           <div><label class="text-xs text-slate-500 mb-1 block">财税顾问 <span class="text-red-500">*</span></label><select class="h-9 w-full max-w-[220px] rounded border border-slate-200 px-3 bg-white"><option>马时笑</option><option>许悦</option></select></div>
           <div><label class="text-xs text-slate-500 mb-1 block">开票员 <span class="text-red-500">*</span></label><select class="h-9 w-full max-w-[220px] rounded border border-slate-200 px-3 bg-white"><option>马时笑</option><option>许悦</option></select></div>
@@ -370,6 +370,65 @@
       <div class="flex justify-center gap-3 border-t border-slate-100 px-5 py-4">
         <button type="button" class="h-9 min-w-[90px] rounded-md bg-blue-600 text-white hover:bg-blue-700" data-close-dispatch>确认</button>
         <button type="button" class="h-9 min-w-[90px] rounded-md border border-slate-300 bg-white text-slate-600 hover:bg-slate-50" data-close-dispatch>取消</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 首电确认弹窗 -->
+  <div id="modal-first-call" class="fixed inset-0 z-[130] hidden items-center justify-center bg-slate-900/45 p-4">
+    <div class="absolute inset-0" data-close-first-call></div>
+    <div class="relative w-full max-w-lg rounded-xl border border-slate-200 bg-white shadow-xl">
+      <div class="relative border-b border-slate-200 px-5 py-4">
+        <h3 class="text-center text-base font-semibold text-slate-800">首电确认</h3>
+        <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer" data-close-first-call><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <div class="px-6 py-5 text-sm space-y-4 max-h-[70vh] overflow-y-auto">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="sm:col-span-2">
+            <label class="block text-slate-600 mb-1.5">联系日期 <span class="text-red-500">*</span></label>
+            <input type="date" class="h-9 w-full rounded-md border border-slate-200 px-3 text-sm" value="2026-05-27">
+          </div>
+          <div>
+            <label class="block text-slate-600 mb-1.5">实际对接人姓名 <span class="text-red-500">*</span></label>
+            <input type="text" class="h-9 w-full rounded-md border border-slate-200 px-3 text-sm" placeholder="请输入姓名">
+          </div>
+          <div>
+            <label class="block text-slate-600 mb-1.5">实际对接人电话 <span class="text-red-500">*</span></label>
+            <input type="text" class="h-9 w-full rounded-md border border-slate-200 px-3 text-sm" placeholder="请输入电话">
+          </div>
+          <div>
+            <label class="block text-slate-600 mb-1.5">有无社保</label>
+            <select class="h-9 w-full rounded-md border border-slate-200 px-3 bg-white text-sm">
+              <option value="">请选择</option>
+              <option>有</option>
+              <option>无</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-slate-600 mb-1.5">开票税点</label>
+            <input type="text" class="h-9 w-full rounded-md border border-slate-200 px-3 text-sm" placeholder="如：3%、6%">
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block text-slate-600 mb-1.5">资质许可证</label>
+            <input type="text" class="h-9 w-full rounded-md border border-slate-200 px-3 text-sm" placeholder="请输入资质许可证信息">
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block text-slate-600 mb-1.5">挂靠地址</label>
+            <input type="text" class="h-9 w-full rounded-md border border-slate-200 px-3 text-sm" placeholder="请输入挂靠地址">
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block text-slate-600 mb-1.5">特殊业务</label>
+            <textarea class="w-full h-20 rounded-md border border-slate-200 px-3 py-2 text-sm resize-none" placeholder="请填写特殊业务说明"></textarea>
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block text-slate-600 mb-1.5">客户备注</label>
+            <textarea class="w-full h-20 rounded-md border border-slate-200 px-3 py-2 text-sm resize-none" placeholder="请填写客户备注"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-center gap-3 border-t border-slate-100 px-5 py-4">
+        <button type="button" class="h-9 min-w-[90px] rounded-md bg-blue-600 text-white hover:bg-blue-700 cursor-pointer" data-close-first-call>确认</button>
+        <button type="button" class="h-9 min-w-[90px] rounded-md border border-slate-300 bg-white text-slate-600 hover:bg-slate-50 cursor-pointer" data-close-first-call>取消</button>
       </div>
     </div>
   </div>
@@ -423,6 +482,7 @@
     (function () {
       var modalAdd = document.getElementById('modal-add-accounting');
       var modalDispatch = document.getElementById('modal-dispatch-accounting');
+      var modalFirstCall = document.getElementById('modal-first-call');
       var modalProgress = document.getElementById('modal-progress-accounting');
       var modalTransfer = document.getElementById('modal-transfer-accounting');
       var toast = document.getElementById('accounting-toast');
@@ -474,6 +534,19 @@
         el.addEventListener('click', function () {
           modalDispatch.classList.add('hidden');
           modalDispatch.classList.remove('flex');
+        });
+      });
+
+      document.querySelectorAll('.js-first-call').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          modalFirstCall.classList.remove('hidden');
+          modalFirstCall.classList.add('flex');
+        });
+      });
+      modalFirstCall.querySelectorAll('[data-close-first-call]').forEach(function (el) {
+        el.addEventListener('click', function () {
+          modalFirstCall.classList.add('hidden');
+          modalFirstCall.classList.remove('flex');
         });
       });
 
@@ -537,6 +610,7 @@
         if (e.key !== 'Escape') return;
         modalAdd.classList.add('hidden'); modalAdd.classList.remove('flex');
         modalDispatch.classList.add('hidden'); modalDispatch.classList.remove('flex');
+        modalFirstCall.classList.add('hidden'); modalFirstCall.classList.remove('flex');
         modalProgress.classList.add('hidden'); modalProgress.classList.remove('flex');
         modalTransfer.classList.add('hidden'); modalTransfer.classList.remove('flex');
       });
