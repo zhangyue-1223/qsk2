@@ -25,6 +25,46 @@
     .deadline-overdue { background: #fee2e2; color: #dc2626; }
     .acc-filter-panel { background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%); }
     .acc-filter-input:focus { border-color: #3b82f6; outline: none; box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15); }
+    .first-call-field {
+      border: 1px solid #e2e8f0;
+      border-radius: 0.75rem;
+      background: #f8fafc;
+      padding: 0.625rem 0.75rem;
+    }
+    .first-call-label {
+      display: block;
+      font-size: 0.75rem;
+      line-height: 1rem;
+      color: #64748b;
+      margin-bottom: 0.375rem;
+      font-weight: 500;
+    }
+    .first-call-input {
+      height: 2.25rem;
+      width: 100%;
+      border-radius: 0.5rem;
+      border: 1px solid #cbd5e1;
+      background: #fff;
+      padding: 0 0.75rem;
+      font-size: 0.875rem;
+      color: #0f172a;
+    }
+    .first-call-input:focus,
+    .first-call-textarea:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.14);
+    }
+    .first-call-textarea {
+      width: 100%;
+      border-radius: 0.5rem;
+      border: 1px solid #cbd5e1;
+      background: #fff;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.875rem;
+      color: #0f172a;
+      resize: none;
+    }
   </style>
 </head>
 <body class="bg-[#f5f7fa] text-slate-700">
@@ -251,7 +291,7 @@
                   <td class="px-3 py-3 border-b border-slate-100"><span class="deadline-badge deadline-warning">余2个月</span></td>
                   <td class="px-3 py-3 border-b border-slate-100">2028-03-21</td>
                   <td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="accounting-customer-detail.html?id=acc-3">查看详情</a></td>
-                  <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="text-blue-600 hover:underline js-first-call">确认首电</button></td>
+                  <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="text-blue-600 hover:underline js-first-call">首电确认</button></td>
                 </tr>
                 <tr class="hover:bg-slate-50 acc-row" data-tax="general" data-id="acc-4" data-company="万州维的科技有限公司" data-contract="20260415004" data-dept="岚诺组" data-sales="周方林" data-fee="125/月" data-chief="马时笑" data-adviser="马时笑" data-invoice="马时笑">
                   <td class="px-3 py-3 border-b border-slate-100">万州维的科技有限公司</td>
@@ -267,7 +307,7 @@
                   <td class="px-3 py-3 border-b border-slate-100"><span class="deadline-badge deadline-overdue">逾期1个月</span></td>
                   <td class="px-3 py-3 border-b border-slate-100">2028-03-21</td>
                   <td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="accounting-customer-detail.html?id=acc-4">查看详情</a></td>
-                  <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="text-blue-600 hover:underline js-first-call">确认首电</button></td>
+                  <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="text-blue-600 hover:underline js-first-call">首电确认</button></td>
                 </tr>
                 <tr class="hover:bg-slate-50 acc-row" data-tax="general" data-id="acc-5" data-company="苏州维的科技有限公司" data-contract="20260415005" data-dept="网销一组" data-sales="周方林" data-fee="325/月" data-chief="马时笑" data-adviser="马时笑" data-invoice="马时笑">
                   <td class="px-3 py-3 border-b border-slate-100">苏州维的科技有限公司</td>
@@ -377,52 +417,112 @@
   <!-- 首电确认弹窗 -->
   <div id="modal-first-call" class="fixed inset-0 z-[130] hidden items-center justify-center bg-slate-900/45 p-4">
     <div class="absolute inset-0" data-close-first-call></div>
-    <div class="relative w-full max-w-lg rounded-xl border border-slate-200 bg-white shadow-xl">
+    <div class="relative w-full max-w-5xl rounded-xl border border-slate-200 bg-white shadow-xl">
       <div class="relative border-b border-slate-200 px-5 py-4">
         <h3 class="text-center text-base font-semibold text-slate-800">首电确认</h3>
         <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer" data-close-first-call><i class="fa-solid fa-xmark text-lg"></i></button>
       </div>
-      <div class="px-6 py-5 text-sm space-y-4 max-h-[70vh] overflow-y-auto">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="sm:col-span-2">
-            <label class="block text-slate-600 mb-1.5">联系日期 <span class="text-red-500">*</span></label>
-            <input type="date" class="h-9 w-full rounded-md border border-slate-200 px-3 text-sm" value="2026-05-27">
+      <div class="px-6 py-5 text-sm space-y-4 max-h-[72vh] overflow-y-auto">
+        <div class="rounded-lg border border-slate-100 bg-slate-50/70 p-4">
+          <p class="text-sm font-medium text-slate-700 mb-3">企业基础信息</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div class="first-call-field">
+              <label class="first-call-label">企业名称</label>
+              <input type="text" class="first-call-input" value="苏州企业税务服务科技有限公司">
+            </div>
+            <div class="first-call-field">
+              <label class="first-call-label">实际对接人姓名 <span class="text-red-500">*</span></label>
+              <select class="first-call-input">
+                <option value="">请输入实际对接人姓名</option>
+                <option>张三</option>
+                <option>李四</option>
+              </select>
+            </div>
+            <div class="first-call-field">
+              <label class="first-call-label">实际对接人电话 <span class="text-red-500">*</span></label>
+              <input type="text" class="first-call-input" placeholder="请输入实际对接人电话">
+            </div>
+            <div class="first-call-field">
+              <label class="first-call-label">所属区域</label>
+              <select class="first-call-input">
+                <option value="">请选择所属区域</option>
+                <option>苏州</option>
+                <option>昆山</option>
+              </select>
+            </div>
+            <div class="first-call-field">
+              <label class="first-call-label">有无社保 <span class="text-red-500">*</span></label>
+              <select class="first-call-input">
+                <option>有</option>
+                <option>无</option>
+              </select>
+            </div>
+            <div class="first-call-field">
+              <label class="first-call-label">成立日期</label>
+              <select class="first-call-input">
+                <option value="">请选择成立日期</option>
+              </select>
+            </div>
           </div>
-          <div>
-            <label class="block text-slate-600 mb-1.5">实际对接人姓名 <span class="text-red-500">*</span></label>
-            <input type="text" class="h-9 w-full rounded-md border border-slate-200 px-3 text-sm" placeholder="请输入姓名">
+        </div>
+        <div class="rounded-lg border border-slate-100 p-4">
+          <p class="text-sm font-medium text-slate-700 mb-3">税务与资质信息</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div class="first-call-field">
+              <label class="first-call-label">税务核定</label>
+              <select class="first-call-input">
+                <option value="">请选择税务核定日期</option>
+              </select>
+            </div>
+            <div class="first-call-field">
+              <label class="first-call-label">税务分局</label>
+              <input type="text" class="first-call-input" placeholder="请输入税务分局">
+            </div>
+            <div class="first-call-field">
+              <label class="first-call-label">开票税点</label>
+              <input type="text" class="first-call-input" placeholder="请输入开票税点">
+            </div>
+            <div class="first-call-field">
+              <label class="first-call-label">电子税务局密码</label>
+              <input type="text" class="first-call-input" placeholder="请输入电子税务局密码">
+            </div>
+            <div class="first-call-field">
+              <label class="first-call-label">资质许可证</label>
+              <input type="text" class="first-call-input" placeholder="请输入资质许可证信息">
+            </div>
+            <div class="first-call-field">
+              <label class="first-call-label">挂靠地址</label>
+              <input type="text" class="first-call-input" placeholder="请输入挂靠地址">
+            </div>
+            <div class="first-call-field">
+              <label class="first-call-label">开户行</label>
+              <input type="text" class="first-call-input" placeholder="请输入开户行">
+            </div>
+            <div class="first-call-field">
+              <label class="first-call-label">开户行账号</label>
+              <input type="text" class="first-call-input" placeholder="请输入开户行账号">
+            </div>
           </div>
-          <div>
-            <label class="block text-slate-600 mb-1.5">实际对接人电话 <span class="text-red-500">*</span></label>
-            <input type="text" class="h-9 w-full rounded-md border border-slate-200 px-3 text-sm" placeholder="请输入电话">
-          </div>
-          <div>
-            <label class="block text-slate-600 mb-1.5">有无社保</label>
-            <select class="h-9 w-full rounded-md border border-slate-200 px-3 bg-white text-sm">
-              <option value="">请选择</option>
-              <option>有</option>
-              <option>无</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-slate-600 mb-1.5">开票税点</label>
-            <input type="text" class="h-9 w-full rounded-md border border-slate-200 px-3 text-sm" placeholder="如：3%、6%">
-          </div>
-          <div class="sm:col-span-2">
-            <label class="block text-slate-600 mb-1.5">资质许可证</label>
-            <input type="text" class="h-9 w-full rounded-md border border-slate-200 px-3 text-sm" placeholder="请输入资质许可证信息">
-          </div>
-          <div class="sm:col-span-2">
-            <label class="block text-slate-600 mb-1.5">挂靠地址</label>
-            <input type="text" class="h-9 w-full rounded-md border border-slate-200 px-3 text-sm" placeholder="请输入挂靠地址">
-          </div>
-          <div class="sm:col-span-2">
-            <label class="block text-slate-600 mb-1.5">特殊业务</label>
-            <textarea class="w-full h-20 rounded-md border border-slate-200 px-3 py-2 text-sm resize-none" placeholder="请填写特殊业务说明"></textarea>
-          </div>
-          <div class="sm:col-span-2">
-            <label class="block text-slate-600 mb-1.5">客户备注</label>
-            <textarea class="w-full h-20 rounded-md border border-slate-200 px-3 py-2 text-sm resize-none" placeholder="请填写客户备注"></textarea>
+        </div>
+        <div class="rounded-lg border border-slate-100 p-4">
+          <p class="text-sm font-medium text-slate-700 mb-3">补充说明</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div class="first-call-field md:col-span-2">
+              <label class="first-call-label">特殊业务</label>
+              <textarea class="first-call-textarea h-20" placeholder="请填写特殊业务说明"></textarea>
+            </div>
+            <div class="first-call-field md:col-span-2">
+              <label class="first-call-label">经营范围</label>
+              <textarea class="first-call-textarea h-20" placeholder="请输入经营范围"></textarea>
+            </div>
+            <div class="first-call-field">
+              <label class="first-call-label">开票信息</label>
+              <input type="text" class="first-call-input" placeholder="请输入企业开票信息">
+            </div>
+            <div class="first-call-field md:col-span-2">
+              <label class="first-call-label">客户备注</label>
+              <textarea class="first-call-textarea h-20" placeholder="请输入备注内容"></textarea>
+            </div>
           </div>
         </div>
       </div>

@@ -31,6 +31,46 @@
     .wo-step.pending .wo-step-dot { background: #fff; border-color: #cbd5e1; color: #94a3b8; }
     .wo-step-label { font-size: 0.8125rem; color: #334155; font-weight: 500; line-height: 1.3; }
     .wo-step-sub { font-size: 0.6875rem; color: #94a3b8; margin-top: 0.25rem; line-height: 1.2; }
+    .first-call-field {
+      border: 1px solid #e2e8f0;
+      border-radius: 0.75rem;
+      background: #f8fafc;
+      padding: 0.625rem 0.75rem;
+    }
+    .first-call-label {
+      display: block;
+      font-size: 0.75rem;
+      line-height: 1rem;
+      color: #64748b;
+      margin-bottom: 0.375rem;
+      font-weight: 500;
+    }
+    .first-call-input {
+      height: 2.25rem;
+      width: 100%;
+      border-radius: 0.5rem;
+      border: 1px solid #cbd5e1;
+      background: #fff;
+      padding: 0 0.75rem;
+      font-size: 0.875rem;
+      color: #0f172a;
+    }
+    .first-call-input:focus,
+    .first-call-textarea:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.14);
+    }
+    .first-call-textarea {
+      width: 100%;
+      border-radius: 0.5rem;
+      border: 1px solid #cbd5e1;
+      background: #fff;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.875rem;
+      color: #0f172a;
+      resize: none;
+    }
   </style>
 </head>
 <body class="bg-[#f5f7fa] text-slate-700">
@@ -118,25 +158,42 @@
                   <p id="ic-scope" class="text-sm text-slate-700 leading-relaxed rounded border border-slate-100 bg-slate-50/80 p-3"></p>
                 </div>
               </section>
+              <section>
+                <h3 class="sec-title">附件资料</h3>
+                <div class="grid grid-cols-3 gap-3">
+                  <div class="aspect-[4/3] rounded-lg border border-dashed border-slate-200 bg-slate-50 flex flex-col items-center justify-center text-xs text-slate-400"><i class="fa-regular fa-image mb-2 text-lg"></i>身份证</div>
+                  <div class="aspect-[4/3] rounded-lg border border-dashed border-slate-200 bg-slate-50 flex flex-col items-center justify-center text-xs text-slate-400"><i class="fa-regular fa-image mb-2 text-lg"></i>营业执照</div>
+                  <div class="aspect-[4/3] rounded-lg border border-dashed border-slate-200 bg-slate-50 flex flex-col items-center justify-center text-xs text-slate-400"><i class="fa-regular fa-image mb-2 text-lg"></i>其他附件</div>
+                </div>
+              </section>
             </div>
 
             <div class="xl:col-span-2 p-5 space-y-7">
-              <!-- 首电确认模块 -->
+              <!-- 企业档案模块 -->
               <section>
                 <div class="flex items-center justify-between mb-3">
-                  <h3 class="sec-title !mb-0">首电确认</h3>
+                  <h3 class="sec-title !mb-0">企业档案</h3>
                   <button type="button" id="btn-open-first-call-detail" class="inline-flex items-center gap-1 text-sm font-medium text-blue-600 hover:text-blue-700 cursor-pointer"><i class="fa-solid fa-pen text-xs"></i>编辑</button>
                 </div>
                 <div class="rounded-lg border border-slate-200 bg-slate-50/60 p-4 text-sm">
                   <div class="grid grid-cols-2 gap-x-6 gap-y-3">
-                    <div><p class="text-xs text-slate-500 mb-0.5">联系日期</p><p class="text-slate-800">2023-04-15</p></div>
+                    <div><p class="text-xs text-slate-500 mb-0.5">企业名称</p><p class="text-slate-800">苏州九州数字科技有限公司</p></div>
                     <div><p class="text-xs text-slate-500 mb-0.5">实际对接人姓名</p><p class="text-slate-800">李小明</p></div>
                     <div><p class="text-xs text-slate-500 mb-0.5">实际对接人电话</p><p class="text-slate-800">13800138000</p></div>
+                    <div><p class="text-xs text-slate-500 mb-0.5">所属区域</p><p class="text-slate-800">苏州</p></div>
                     <div><p class="text-xs text-slate-500 mb-0.5">有无社保</p><p class="text-slate-800">有</p></div>
+                    <div><p class="text-xs text-slate-500 mb-0.5">成立日期</p><p class="text-slate-800">2023-04-15</p></div>
+                    <div><p class="text-xs text-slate-500 mb-0.5">税务核定</p><p class="text-slate-800">2023-04-20</p></div>
+                    <div><p class="text-xs text-slate-500 mb-0.5">税务分局</p><p class="text-slate-800">苏州工业园区税务分局</p></div>
                     <div><p class="text-xs text-slate-500 mb-0.5">开票税点</p><p class="text-slate-800">3%</p></div>
+                    <div><p class="text-xs text-slate-500 mb-0.5">电子税务局密码</p><p class="text-slate-800">******</p></div>
                     <div><p class="text-xs text-slate-500 mb-0.5">资质许可证</p><p class="text-slate-800">—</p></div>
-                    <div class="col-span-2"><p class="text-xs text-slate-500 mb-0.5">挂靠地址</p><p class="text-slate-800">江苏省苏州市吴中区红海大厦2005</p></div>
+                    <div><p class="text-xs text-slate-500 mb-0.5">挂靠地址</p><p class="text-slate-800">江苏省苏州市吴中区红海大厦2005</p></div>
+                    <div><p class="text-xs text-slate-500 mb-0.5">开户行</p><p class="text-slate-800">中国工商银行苏州分行</p></div>
+                    <div class="col-span-2"><p class="text-xs text-slate-500 mb-0.5">开户行账号</p><p class="text-slate-800">6222020202020202020</p></div>
                     <div class="col-span-2"><p class="text-xs text-slate-500 mb-0.5">特殊业务</p><p class="text-slate-800">—</p></div>
+                    <div class="col-span-2"><p class="text-xs text-slate-500 mb-0.5">经营范围</p><p class="text-slate-800">企业管理咨询；税务咨询；代理记账；财务信息咨询。</p></div>
+                    <div class="col-span-2"><p class="text-xs text-slate-500 mb-0.5">开票信息</p><p class="text-slate-800">增值税普通发票，抬头同企业名称</p></div>
                     <div class="col-span-2"><p class="text-xs text-slate-500 mb-0.5">客户备注</p><p class="text-slate-800">客户需每月5号前出报告</p></div>
                   </div>
                 </div>
@@ -163,14 +220,6 @@
                   </table>
                 </div>
               </section>
-              <section>
-                <h3 class="sec-title">附件资料</h3>
-                <div class="grid grid-cols-3 gap-3">
-                  <div class="aspect-[4/3] rounded-lg border border-dashed border-slate-200 bg-slate-50 flex flex-col items-center justify-center text-xs text-slate-400"><i class="fa-regular fa-image mb-2 text-lg"></i>身份证</div>
-                  <div class="aspect-[4/3] rounded-lg border border-dashed border-slate-200 bg-slate-50 flex flex-col items-center justify-center text-xs text-slate-400"><i class="fa-regular fa-image mb-2 text-lg"></i>营业执照</div>
-                  <div class="aspect-[4/3] rounded-lg border border-dashed border-slate-200 bg-slate-50 flex flex-col items-center justify-center text-xs text-slate-400"><i class="fa-regular fa-image mb-2 text-lg"></i>其他附件</div>
-                </div>
-              </section>
             </div>
           </div>
         </div>
@@ -181,51 +230,112 @@
   <!-- 首电确认弹窗（详情页编辑） -->
   <div id="modal-first-call-detail" class="fixed inset-0 z-[130] hidden items-center justify-center bg-slate-900/45 p-4">
     <div class="absolute inset-0" data-close-first-call></div>
-    <div class="relative w-full max-w-lg rounded-xl border border-slate-200 bg-white shadow-xl">
+    <div class="relative w-full max-w-5xl rounded-xl border border-slate-200 bg-white shadow-xl">
       <div class="relative border-b border-slate-200 px-5 py-4">
         <h3 class="text-center text-base font-semibold text-slate-800">首电确认</h3>
         <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer" data-close-first-call><i class="fa-solid fa-xmark text-lg"></i></button>
       </div>
-      <div class="px-6 py-5 text-sm space-y-4 max-h-[70vh] overflow-y-auto">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="sm:col-span-2">
-            <label class="block text-slate-600 mb-1.5">联系日期 <span class="text-red-500">*</span></label>
-            <input type="date" class="h-9 w-full rounded-md border border-slate-200 px-3 text-sm" value="2023-04-15">
+      <div class="px-6 py-5 text-sm space-y-4 max-h-[72vh] overflow-y-auto">
+        <div class="rounded-lg border border-slate-100 bg-slate-50/70 p-4">
+          <p class="text-sm font-medium text-slate-700 mb-3">企业基础信息</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div class="first-call-field">
+              <label class="first-call-label">企业名称</label>
+              <input type="text" class="first-call-input" value="苏州企业税务服务科技有限公司">
+            </div>
+            <div class="first-call-field">
+              <label class="first-call-label">实际对接人姓名 <span class="text-red-500">*</span></label>
+              <select class="first-call-input">
+                <option value="">请输入实际对接人姓名</option>
+                <option>张三</option>
+                <option>李四</option>
+              </select>
+            </div>
+            <div class="first-call-field">
+              <label class="first-call-label">实际对接人电话 <span class="text-red-500">*</span></label>
+              <input type="text" class="first-call-input" placeholder="请输入实际对接人电话">
+            </div>
+            <div class="first-call-field">
+              <label class="first-call-label">所属区域</label>
+              <select class="first-call-input">
+                <option value="">请选择所属区域</option>
+                <option>苏州</option>
+                <option>昆山</option>
+              </select>
+            </div>
+            <div class="first-call-field">
+              <label class="first-call-label">有无社保 <span class="text-red-500">*</span></label>
+              <select class="first-call-input">
+                <option>有</option>
+                <option>无</option>
+              </select>
+            </div>
+            <div class="first-call-field">
+              <label class="first-call-label">成立日期</label>
+              <select class="first-call-input">
+                <option value="">请选择成立日期</option>
+              </select>
+            </div>
           </div>
-          <div>
-            <label class="block text-slate-600 mb-1.5">实际对接人姓名 <span class="text-red-500">*</span></label>
-            <input type="text" class="h-9 w-full rounded-md border border-slate-200 px-3 text-sm" value="李小明">
+        </div>
+        <div class="rounded-lg border border-slate-100 p-4">
+          <p class="text-sm font-medium text-slate-700 mb-3">税务与资质信息</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div class="first-call-field">
+              <label class="first-call-label">税务核定</label>
+              <select class="first-call-input">
+                <option value="">请选择税务核定日期</option>
+              </select>
+            </div>
+            <div class="first-call-field">
+              <label class="first-call-label">税务分局</label>
+              <input type="text" class="first-call-input" placeholder="请输入税务分局">
+            </div>
+            <div class="first-call-field">
+              <label class="first-call-label">开票税点</label>
+              <input type="text" class="first-call-input" placeholder="请输入开票税点">
+            </div>
+            <div class="first-call-field">
+              <label class="first-call-label">电子税务局密码</label>
+              <input type="text" class="first-call-input" placeholder="请输入电子税务局密码">
+            </div>
+            <div class="first-call-field">
+              <label class="first-call-label">资质许可证</label>
+              <input type="text" class="first-call-input" placeholder="请输入资质许可证信息">
+            </div>
+            <div class="first-call-field">
+              <label class="first-call-label">挂靠地址</label>
+              <input type="text" class="first-call-input" placeholder="请输入挂靠地址">
+            </div>
+            <div class="first-call-field">
+              <label class="first-call-label">开户行</label>
+              <input type="text" class="first-call-input" placeholder="请输入开户行">
+            </div>
+            <div class="first-call-field">
+              <label class="first-call-label">开户行账号</label>
+              <input type="text" class="first-call-input" placeholder="请输入开户行账号">
+            </div>
           </div>
-          <div>
-            <label class="block text-slate-600 mb-1.5">实际对接人电话 <span class="text-red-500">*</span></label>
-            <input type="text" class="h-9 w-full rounded-md border border-slate-200 px-3 text-sm" value="13800138000">
-          </div>
-          <div>
-            <label class="block text-slate-600 mb-1.5">有无社保</label>
-            <select class="h-9 w-full rounded-md border border-slate-200 px-3 bg-white text-sm">
-              <option>有</option>
-              <option>无</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-slate-600 mb-1.5">开票税点</label>
-            <input type="text" class="h-9 w-full rounded-md border border-slate-200 px-3 text-sm" value="3%">
-          </div>
-          <div class="sm:col-span-2">
-            <label class="block text-slate-600 mb-1.5">资质许可证</label>
-            <input type="text" class="h-9 w-full rounded-md border border-slate-200 px-3 text-sm" placeholder="请输入资质许可证信息">
-          </div>
-          <div class="sm:col-span-2">
-            <label class="block text-slate-600 mb-1.5">挂靠地址</label>
-            <input type="text" class="h-9 w-full rounded-md border border-slate-200 px-3 text-sm" value="江苏省苏州市吴中区红海大厦2005">
-          </div>
-          <div class="sm:col-span-2">
-            <label class="block text-slate-600 mb-1.5">特殊业务</label>
-            <textarea class="w-full h-20 rounded-md border border-slate-200 px-3 py-2 text-sm resize-none" placeholder="请填写特殊业务说明"></textarea>
-          </div>
-          <div class="sm:col-span-2">
-            <label class="block text-slate-600 mb-1.5">客户备注</label>
-            <textarea class="w-full h-20 rounded-md border border-slate-200 px-3 py-2 text-sm resize-none">客户需每月5号前出报告</textarea>
+        </div>
+        <div class="rounded-lg border border-slate-100 p-4">
+          <p class="text-sm font-medium text-slate-700 mb-3">补充说明</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div class="first-call-field md:col-span-2">
+              <label class="first-call-label">特殊业务</label>
+              <textarea class="first-call-textarea h-20" placeholder="请填写特殊业务说明"></textarea>
+            </div>
+            <div class="first-call-field md:col-span-2">
+              <label class="first-call-label">经营范围</label>
+              <textarea class="first-call-textarea h-20" placeholder="请输入经营范围"></textarea>
+            </div>
+            <div class="first-call-field">
+              <label class="first-call-label">开票信息</label>
+              <input type="text" class="first-call-input" placeholder="请输入企业开票信息">
+            </div>
+            <div class="first-call-field md:col-span-2">
+              <label class="first-call-label">客户备注</label>
+              <textarea class="first-call-textarea h-20" placeholder="请输入备注内容"></textarea>
+            </div>
           </div>
         </div>
       </div>

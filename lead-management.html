@@ -162,8 +162,8 @@
           <div class="flex flex-wrap gap-6 text-sm mb-5 border-b border-slate-200 pb-3" id="lead-tabs">
             <button type="button" data-tab="all" class="lead-tab pb-2 border-b-2 border-blue-600 text-blue-600 font-medium lead-tab-active">全部</button>
             <button type="button" data-tab="following" class="lead-tab pb-2 border-b-2 border-transparent text-slate-500 hover:text-slate-700">跟进中</button>
-            <button type="button" data-tab="won" class="lead-tab pb-2 border-b-2 border-transparent text-slate-500 hover:text-slate-700">已成单</button>
-            <button type="button" data-tab="abandoned" class="lead-tab pb-2 border-b-2 border-transparent text-slate-500 hover:text-slate-700">已放弃</button>
+            <button type="button" data-tab="won" class="lead-tab pb-2 border-b-2 border-transparent text-slate-500 hover:text-slate-700">已放弃</button>
+            <button type="button" data-tab="abandoned" class="lead-tab pb-2 border-b-2 border-transparent text-slate-500 hover:text-slate-700">无效</button>
           </div>
 
           <div class="w-full rounded border border-slate-200">
@@ -178,6 +178,7 @@
                 <col style="width:5%">
                 <col style="width:6%">
                 <col style="width:3.5%">
+                <col style="width:5%">
                 <col style="width:9%">
                 <col style="width:5%">
                 <col style="width:9%">
@@ -194,6 +195,7 @@
                   <th class="text-left px-2 py-2.5 border-b border-slate-200 align-middle">企业类型</th>
                   <th class="text-left px-2 py-2.5 border-b border-slate-200 align-middle">来源渠道</th>
                   <th class="text-left px-2 py-2.5 border-b border-slate-200 align-middle">跟进结果</th>
+                  <th class="text-left px-2 py-2.5 border-b border-slate-200 align-middle whitespace-nowrap">添加微信</th>
                   <th class="text-left pl-2 pr-4 py-2.5 border-b border-slate-200 whitespace-nowrap align-middle">线索有效</th>
                   <th class="text-left pl-4 pr-2 py-2.5 border-b border-slate-200 align-middle">创建时间</th>
                   <th class="text-left px-2 py-2.5 border-b border-slate-200 align-middle">销售顾问</th>
@@ -212,6 +214,7 @@
                   <td class="px-2 py-2.5 align-middle">一般纳税人</td>
                   <td class="px-2 py-2.5 align-middle">抖音</td>
                   <td class="px-2 py-2.5 align-middle"><span class="font-medium text-amber-600">待跟进</span></td>
+                  <td class="px-2 py-2.5 align-middle whitespace-nowrap">是</td>
                   <td class="px-2 py-2.5 align-middle whitespace-nowrap"><span class="text-emerald-600 font-medium">有效</span></td>
                   <td class="px-2 py-2.5 align-middle whitespace-nowrap">2026-04-18 09:12</td>
                   <td class="px-2 py-2.5 align-middle text-slate-400">--</td>
@@ -228,6 +231,7 @@
                   <td class="px-2 py-2.5 align-middle">小规模纳税人</td>
                   <td class="px-2 py-2.5 align-middle">小红书</td>
                   <td class="px-2 py-2.5 align-middle"><span class="font-medium text-orange-600">跟进中</span></td>
+                  <td class="px-2 py-2.5 align-middle whitespace-nowrap">否</td>
                   <td class="px-2 py-2.5 align-middle whitespace-nowrap"><span class="text-emerald-600 font-medium">有效</span></td>
                   <td class="px-2 py-2.5 align-middle whitespace-nowrap">2026-04-17 14:20</td>
                   <td class="px-2 py-2.5 align-middle">周方林</td>
@@ -235,13 +239,13 @@
                   <td class="px-2 py-2.5 align-middle"><a href="lead-follow-detail.html?id=lead-2" class="text-blue-600 hover:underline">查看详情</a></td>
                   <td class="px-2 py-2.5 align-middle">
                     <span class="inline-flex flex-wrap items-center gap-x-1 gap-y-0.5">
-                      <button type="button" class="text-blue-600 hover:underline js-supplement">编辑客户信息</button>
+                      <button type="button" class="text-blue-600 hover:underline js-supplement">编辑线索信息</button>
                       <span class="text-slate-300 select-none px-0.5">|</span>
                       <button type="button" class="text-red-600 hover:underline js-urge">催跟进</button>
                       <span class="text-slate-300 select-none px-0.5">|</span>
                       <button type="button" class="text-slate-500 hover:underline js-follow">添加跟进</button>
                       <span class="text-slate-300 select-none px-0.5">|</span>
-                      <button type="button" class="text-emerald-600 hover:underline js-convert-opp" data-lead-name="李华">转商机</button>
+                      <button type="button" class="text-emerald-600 hover:underline js-convert-opp" data-lead-name="李华" data-company-name="无锡领越商贸有限公司" data-contact-name="李华" data-contact-phone="139****8899">转商机</button>
                     </span>
                   </td>
                 </tr>
@@ -254,6 +258,7 @@
                   <td class="px-2 py-2.5 align-middle">一般纳税人</td>
                   <td class="px-2 py-2.5 align-middle">58同城</td>
                   <td class="px-2 py-2.5 align-middle"><span class="font-medium text-blue-600">跟进中</span></td>
+                  <td class="px-2 py-2.5 align-middle whitespace-nowrap">是</td>
                   <td class="px-2 py-2.5 align-middle whitespace-nowrap"><span class="text-emerald-600 font-medium">有效</span></td>
                   <td class="px-2 py-2.5 align-middle whitespace-nowrap">2026-04-16 11:05</td>
                   <td class="px-2 py-2.5 align-middle">周方林</td>
@@ -261,13 +266,13 @@
                   <td class="px-2 py-2.5 align-middle"><a href="lead-follow-detail.html?id=lead-3" class="text-blue-600 hover:underline">查看详情</a></td>
                   <td class="px-2 py-2.5 align-middle">
                     <span class="inline-flex flex-wrap items-center gap-x-1 gap-y-0.5">
-                      <button type="button" class="text-blue-600 hover:underline js-supplement">编辑客户信息</button>
+                      <button type="button" class="text-blue-600 hover:underline js-supplement">编辑线索信息</button>
                       <span class="text-slate-300 select-none px-0.5">|</span>
                       <button type="button" class="text-blue-600 hover:underline js-quote">生成报价单</button>
                       <span class="text-slate-300 select-none px-0.5">|</span>
                       <button type="button" class="text-slate-500 hover:underline js-follow">添加跟进</button>
                       <span class="text-slate-300 select-none px-0.5">|</span>
-                      <button type="button" class="text-emerald-600 hover:underline js-convert-opp" data-lead-name="张伟">转商机</button>
+                      <button type="button" class="text-emerald-600 hover:underline js-convert-opp" data-lead-name="张伟" data-company-name="昆山智诺科技服务有限公司" data-contact-name="张伟" data-contact-phone="136****5566">转商机</button>
                     </span>
                   </td>
                 </tr>
@@ -279,13 +284,14 @@
                   <td class="px-2 py-2.5 align-middle">商业贸易</td>
                   <td class="px-2 py-2.5 align-middle">一般纳税人</td>
                   <td class="px-2 py-2.5 align-middle">抖音</td>
-                  <td class="px-2 py-2.5 align-middle"><span class="font-medium text-emerald-600">已成单</span></td>
-                  <td class="px-2 py-2.5 align-middle whitespace-nowrap"><span class="text-emerald-600 font-medium">有效</span></td>
+                  <td class="px-2 py-2.5 align-middle text-slate-400">--</td>
+                  <td class="px-2 py-2.5 align-middle whitespace-nowrap">是</td>
+                  <td class="px-2 py-2.5 align-middle whitespace-nowrap"><span class="text-slate-500 font-medium">无效</span></td>
                   <td class="px-2 py-2.5 align-middle whitespace-nowrap">2026-04-10 08:40</td>
                   <td class="px-2 py-2.5 align-middle">周方林</td>
                   <td class="px-2 py-2.5 align-middle whitespace-nowrap">2026-04-15 09:00</td>
                   <td class="px-2 py-2.5 align-middle"><a href="lead-follow-detail.html?id=lead-4" class="text-blue-600 hover:underline">查看详情</a></td>
-                  <td class="px-2 py-2.5 align-middle"><button type="button" class="text-blue-600 hover:underline text-left js-supplement">编辑客户信息</button></td>
+                  <td class="px-2 py-2.5 align-middle"><button type="button" class="text-blue-600 hover:underline text-left js-supplement">编辑线索信息</button></td>
                 </tr>
                 <tr class="lead-row hover:bg-slate-50 border-b border-slate-100" data-tab-cat="abandoned">
                   <td class="px-2 py-2.5 align-middle text-center"><input type="checkbox" class="rounded border-slate-300"></td>
@@ -296,7 +302,8 @@
                   <td class="px-2 py-2.5 align-middle">小规模纳税人</td>
                   <td class="px-2 py-2.5 align-middle">小红书</td>
                   <td class="px-2 py-2.5 align-middle"><span class="font-medium text-slate-500">已放弃</span></td>
-                  <td class="px-2 py-2.5 align-middle whitespace-nowrap"><span class="text-slate-500 font-medium">无效</span></td>
+                  <td class="px-2 py-2.5 align-middle whitespace-nowrap">否</td>
+                  <td class="px-2 py-2.5 align-middle whitespace-nowrap"><span class="text-emerald-600 font-medium">有效</span></td>
                   <td class="px-2 py-2.5 align-middle whitespace-nowrap">2026-03-28 15:22</td>
                   <td class="px-2 py-2.5 align-middle">周方林</td>
                   <td class="px-2 py-2.5 align-middle text-slate-400">--</td>
@@ -352,6 +359,16 @@
             </div>
           </div>
           <div class="flex items-center gap-3">
+            <label class="w-28 shrink-0 text-right text-slate-600">是否添加微信</label>
+            <div class="relative flex-1">
+              <select class="w-full h-9 pl-3 pr-8 rounded border border-slate-200 bg-white appearance-none text-slate-700">
+                <option selected>是</option>
+                <option>否</option>
+              </select>
+              <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
             <label class="w-28 shrink-0 text-right text-slate-600">所属区域</label>
             <div class="relative flex-1">
               <select class="w-full h-9 pl-3 pr-8 rounded border border-slate-200 bg-white appearance-none text-slate-700">
@@ -384,17 +401,6 @@
             </div>
           </div>
           <div class="flex items-center gap-3">
-            <label class="w-28 shrink-0 text-right text-slate-600">业务类型</label>
-            <div class="relative flex-1">
-              <select class="w-full h-9 pl-3 pr-8 rounded border border-slate-200 bg-white text-slate-500 appearance-none">
-                <option value="">请选择</option>
-                <option>代理记账</option>
-                <option>财税咨询</option>
-              </select>
-              <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
-            </div>
-          </div>
-          <div class="flex items-center gap-3">
             <label class="w-28 shrink-0 text-right text-slate-600"><span class="text-red-500">*</span> 来源渠道</label>
             <div class="relative flex-1">
               <select class="w-full h-9 pl-3 pr-8 rounded border border-slate-200 bg-white appearance-none">
@@ -414,13 +420,6 @@
                 <option>马经理</option>
               </select>
               <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
-            </div>
-          </div>
-          <div class="flex items-start gap-3">
-            <label class="w-28 shrink-0 text-right text-slate-600 pt-2">备注</label>
-            <div class="relative flex-1">
-              <input id="nl-remark" type="text" maxlength="30" placeholder="请输入内容" class="w-full h-9 px-3 pr-14 rounded border border-slate-200">
-              <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400"><span id="nl-remark-len">0</span>/30</span>
             </div>
           </div>
         </div>
@@ -518,7 +517,7 @@
     <div class="relative flex min-h-full items-center justify-center p-4 pointer-events-none">
       <div class="pointer-events-auto w-full max-w-lg rounded-lg border border-slate-200 bg-white shadow-xl">
         <div class="relative border-b border-slate-100 px-6 py-4">
-          <h2 class="text-center text-base font-medium text-slate-800">添加跟进</h2>
+          <h2 class="text-center text-base font-medium text-slate-800">线索跟进</h2>
           <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600" data-close="follow" aria-label="关闭"><i class="fa-solid fa-xmark text-lg"></i></button>
         </div>
         <div class="px-6 py-5 space-y-4 text-sm">
@@ -556,13 +555,13 @@
     </div>
   </div>
 
-  <!-- 补充客户信息 -->
+  <!-- 线索信息 -->
   <div id="modal-supplement" class="fixed inset-0 z-[100] hidden">
     <div class="absolute inset-0 bg-slate-900/40" data-close="supplement"></div>
     <div class="relative flex min-h-full items-center justify-center p-4 pointer-events-none">
       <div class="pointer-events-auto w-full max-w-3xl rounded-lg border border-slate-200 bg-white shadow-xl max-h-[92vh] overflow-y-auto">
         <div class="sticky top-0 z-10 flex items-center justify-between border-b border-slate-100 bg-white px-6 py-4">
-          <h2 class="text-base font-medium text-slate-800">客户信息</h2>
+          <h2 class="text-base font-medium text-slate-800">线索信息</h2>
           <button type="button" class="text-slate-400 hover:text-slate-600" data-close="supplement" aria-label="关闭"><i class="fa-solid fa-xmark text-lg"></i></button>
         </div>
         <div class="px-6 py-4">
@@ -571,16 +570,22 @@
           </div>
           <div class="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2 text-sm">
             <label class="block sm:col-span-2">
-              <span class="text-slate-600"><span class="text-red-500">*</span> 客户名称</span>
-              <input type="text" placeholder="请输入客户名称" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200">
+              <span class="text-slate-600"><span class="text-red-500">*</span> 客户姓名</span>
+              <input type="text" placeholder="请输入客户姓名" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200">
             </label>
             <label class="block">
-              <span class="text-slate-600"><span class="text-red-500">*</span> 联系人</span>
-              <input type="text" placeholder="请输入联系人姓名" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200">
+              <span class="text-slate-600"><span class="text-red-500">*</span> 手机号码</span>
+              <input type="text" placeholder="请输入手机号码" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200">
             </label>
             <label class="block">
-              <span class="text-slate-600"><span class="text-red-500">*</span> 联系方式</span>
-              <input type="text" placeholder="请输入联系人手机号" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200">
+              <span class="text-slate-600">是否添加微信</span>
+              <div class="relative mt-1">
+                <select class="w-full h-9 pl-3 pr-8 rounded border border-slate-200 bg-white appearance-none">
+                  <option selected>是</option>
+                  <option>否</option>
+                </select>
+                <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+              </div>
             </label>
             <label class="block">
               <span class="text-slate-600"><span class="text-red-500">*</span> 所属区域</span>
@@ -626,53 +631,8 @@
               <span class="text-slate-600"><span class="text-red-500">*</span> 企业名称</span>
               <input type="text" placeholder="请输入企业名称" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200">
             </label>
-            <label class="block">
-              <span class="text-slate-600">公司规模</span>
-              <div class="relative mt-1">
-                <select class="w-full h-9 pl-3 pr-8 rounded border border-slate-200 bg-white text-slate-500 appearance-none">
-                  <option value="">请选择公司规模</option>
-                  <option>1-50</option>
-                  <option>51-200</option>
-                </select>
-                <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
-              </div>
-            </label>
-            <label class="block">
-              <span class="text-slate-600">成立日期</span>
-              <div class="relative mt-1">
-                <input type="text" placeholder="请选择成立日期" class="w-full h-9 px-3 pr-9 rounded border border-slate-200">
-                <i class="fa-regular fa-calendar absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm pointer-events-none"></i>
-              </div>
-            </label>
-            <label class="block">
-              <span class="text-slate-600">企业法人</span>
-              <input type="text" placeholder="请输入企业法人" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200">
-            </label>
-            <label class="block">
-              <span class="text-slate-600">法人证件号</span>
-              <input type="text" placeholder="请输入法人证件号" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200">
-            </label>
-            <label class="block">
-              <span class="text-slate-600">社会信用代码</span>
-              <input type="text" placeholder="请输入社会信用代码" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200">
-            </label>
           </div>
           <div class="px-4 pb-4">
-            <label class="block text-sm">
-              <span class="text-slate-600">企业画像</span>
-              <div class="mt-1 flex gap-2">
-                <input type="text" placeholder="请输入企业画像" class="flex-1 h-9 px-3 rounded-md border border-slate-200">
-                <button type="button" class="shrink-0 text-sm text-blue-600 hover:underline whitespace-nowrap py-2">+ 添加企业画像</button>
-              </div>
-            </label>
-            <label class="block text-sm mt-3">
-              <span class="text-slate-600">营业地址</span>
-              <input type="text" placeholder="请输入企业营业地址" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200">
-            </label>
-            <label class="block text-sm mt-3">
-              <span class="text-slate-600">经营范围</span>
-              <input type="text" placeholder="请输入经营范围" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200">
-            </label>
             <label class="block text-sm mt-3">
               <span class="text-slate-600">备注</span>
               <textarea rows="3" placeholder="请输入备注内容" class="mt-1 w-full rounded border border-slate-200 px-3 py-2 text-sm resize-y"></textarea>
@@ -871,10 +831,21 @@
       <div class="pointer-events-auto w-full max-w-md rounded-lg border border-slate-200 bg-white shadow-xl overflow-hidden">
         <div class="relative border-b border-slate-100 px-6 py-4 pr-12">
           <h2 id="convert-opp-title" class="text-center text-base font-medium text-slate-800">确认转商机</h2>
-          <p id="convert-opp-hint" class="mt-2 text-center text-sm text-slate-500 leading-relaxed">确认将当前线索转为商机？</p>
           <button type="button" class="absolute right-4 top-4 text-slate-400 hover:text-slate-600 cursor-pointer" data-close="convert-opp" aria-label="关闭"><i class="fa-solid fa-xmark text-lg"></i></button>
         </div>
         <div class="px-6 py-6 space-y-4 text-sm bg-white">
+          <div class="flex items-center gap-3">
+            <label class="w-24 shrink-0 text-right text-slate-600"><span class="text-red-500">*</span> 企业名称</label>
+            <input id="convert-opp-company" type="text" class="flex-1 h-9 pl-3 pr-3 rounded-md border border-slate-200 text-slate-700 bg-slate-50" readonly>
+          </div>
+          <div class="flex items-center gap-3">
+            <label class="w-24 shrink-0 text-right text-slate-600"><span class="text-red-500">*</span> 联系人</label>
+            <input id="convert-opp-contact" type="text" class="flex-1 h-9 pl-3 pr-3 rounded-md border border-slate-200 text-slate-700 bg-slate-50" readonly>
+          </div>
+          <div class="flex items-center gap-3">
+            <label class="w-24 shrink-0 text-right text-slate-600"><span class="text-red-500">*</span> 联系方式</label>
+            <input id="convert-opp-phone" type="text" class="flex-1 h-9 pl-3 pr-3 rounded-md border border-slate-200 text-slate-700 bg-slate-50" readonly>
+          </div>
           <div class="flex items-center gap-3">
             <label class="w-24 shrink-0 text-right text-slate-600"><span class="text-red-500">*</span> 商机阶段</label>
             <div class="relative flex-1">
@@ -922,10 +893,17 @@
         quote: document.getElementById('modal-quote'),
         'convert-opp': document.getElementById('modal-convert-opp')
       };
-      var convertOppHint = document.getElementById('convert-opp-hint');
+      var convertOppCompany = document.getElementById('convert-opp-company');
+      var convertOppContact = document.getElementById('convert-opp-contact');
+      var convertOppPhone = document.getElementById('convert-opp-phone');
       var convertOppStage = document.getElementById('convert-opp-stage');
       var convertOppLevel = document.getElementById('convert-opp-level');
       var currentConvertLeadName = '';
+      function maskPhone(phone) {
+        var value = String(phone || '').replace(/\s+/g, '');
+        if (!/^\d{11}$/.test(value)) return phone || '';
+        return value.slice(0, 3) + '****' + value.slice(-4);
+      }
 
       function showModal(key) {
         var el = modals[key];
@@ -970,14 +948,17 @@
       document.querySelectorAll('.js-quote').forEach(function (btn) {
         btn.addEventListener('click', function () { openQuoteModal(); });
       });
+      document.querySelectorAll('#lead-tbody tr td:nth-child(3)').forEach(function (cell) {
+        cell.textContent = maskPhone(cell.textContent.trim());
+      });
 
-      function openConvertOppModal(leadName) {
+      function openConvertOppModal(payload) {
+        payload = payload || {};
+        var leadName = payload.leadName || '';
         currentConvertLeadName = leadName || '';
-        if (convertOppHint) {
-          convertOppHint.textContent = currentConvertLeadName
-            ? '确认将线索「' + currentConvertLeadName + '」转为商机？'
-            : '确认将当前线索转为商机？';
-        }
+        if (convertOppCompany) convertOppCompany.value = payload.companyName || '--';
+        if (convertOppContact) convertOppContact.value = payload.contactName || currentConvertLeadName || '--';
+        if (convertOppPhone) convertOppPhone.value = payload.contactPhone || '--';
         if (convertOppStage) convertOppStage.value = 'intent';
         if (convertOppLevel) convertOppLevel.value = 'A';
         showModal('convert-opp');
@@ -990,7 +971,12 @@
           if (!convertBtn) return;
           e.preventDefault();
           e.stopPropagation();
-          openConvertOppModal(convertBtn.getAttribute('data-lead-name') || '');
+          openConvertOppModal({
+            leadName: convertBtn.getAttribute('data-lead-name') || '',
+            companyName: convertBtn.getAttribute('data-company-name') || '',
+            contactName: convertBtn.getAttribute('data-contact-name') || '',
+            contactPhone: convertBtn.getAttribute('data-contact-phone') || ''
+          });
         });
       }
 
@@ -1127,7 +1113,6 @@
       }
       bindCounter('nl-name', 'nl-name-len', 5);
       bindCounter('nl-phone', 'nl-phone-len', 11);
-      bindCounter('nl-remark', 'nl-remark-len', 30);
       bindCounter('follow-content', 'follow-len', 1000);
       bindCounter('ff-content', 'ff-content-len', 100);
       bindCounter('ff-invalid-reason', 'ff-invalid-len', 100);

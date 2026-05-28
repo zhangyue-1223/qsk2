@@ -175,7 +175,7 @@
       var dataMap = {
         'lead-1': {
           status: '待跟进', statusCls: 'bg-amber-50 text-amber-700',
-          info: { 客户姓名: '王小', 手机号码: '138****1200', 来源渠道: '抖音', 所属区域: '苏州/工业园区', 行业类别: '医疗器械', 企业类型: '一般纳税人', 线索有效: '有效' },
+          info: { 客户姓名: '王小', 手机号码: '13812001200', 是否添加微信: '是', 所属区域: '苏州/工业园区', 行业类别: '医疗器械', 企业类型: '一般纳税人', 来源渠道: '抖音', 企业名称: '苏州初禾医疗科技有限公司' },
           note: '新线索待销售顾问完成首次跟进。',
           steps: [
             { type: 'create', creator: '陆琴', time: '2026-04-18 09:12' },
@@ -184,7 +184,7 @@
         },
         'lead-2': {
           status: '跟进中', statusCls: 'bg-orange-50 text-orange-700', showForm: true,
-          info: { 客户姓名: '李华', 手机号码: '139****8899', 来源渠道: '小红书', 所属区域: '无锡/新吴区', 行业类别: '商业贸易', 企业类型: '小规模纳税人', 线索有效: '有效' },
+          info: { 客户姓名: '李华', 手机号码: '13900008899', 是否添加微信: '否', 所属区域: '无锡/新吴区', 行业类别: '商业贸易', 企业类型: '小规模纳税人', 来源渠道: '小红书', 企业名称: '无锡领越商贸有限公司' },
           note: '客户处于观望阶段，近期需重点跟进产品方案和价格区间。',
           steps: [
             { type: 'create', creator: '陆琴', time: '2026-04-17 14:20' },
@@ -195,7 +195,7 @@
         },
         'lead-3': {
           status: '跟进中', statusCls: 'bg-blue-50 text-blue-700', showForm: true,
-          info: { 客户姓名: '张伟', 手机号码: '136****5566', 来源渠道: '58同城', 所属区域: '昆山', 行业类别: '科技服务', 企业类型: '一般纳税人', 线索有效: '有效' },
+          info: { 客户姓名: '张伟', 手机号码: '13600005566', 是否添加微信: '是', 所属区域: '昆山', 行业类别: '科技服务', 企业类型: '一般纳税人', 来源渠道: '58同城', 企业名称: '昆山智诺科技服务有限公司' },
           note: '已多轮沟通，客户关注报价细节与交付周期，预计本周内给出反馈。',
           steps: [
             { type: 'create', creator: '马经理', time: '2026-04-16 11:05' },
@@ -207,7 +207,7 @@
         },
         'lead-4': {
           status: '已成单', statusCls: 'bg-emerald-50 text-emerald-700',
-          info: { 客户姓名: '赵敏', 手机号码: '137****3344', 来源渠道: '抖音', 所属区域: '苏州/姑苏区', 行业类别: '商业贸易', 企业类型: '一般纳税人', 线索有效: '有效' },
+          info: { 客户姓名: '赵敏', 手机号码: '13700003344', 是否添加微信: '是', 所属区域: '苏州/姑苏区', 行业类别: '商业贸易', 企业类型: '一般纳税人', 来源渠道: '抖音', 企业名称: '苏州悦澜商贸有限公司' },
           note: '已签约并完成支付，后续移交交付团队持续服务。',
           steps: [
             { type: 'create', creator: '陆琴', time: '2026-04-10 08:40' },
@@ -221,7 +221,7 @@
         },
         'lead-5': {
           status: '已放弃', statusCls: 'bg-slate-100 text-slate-600',
-          info: { 客户姓名: '陈晨', 手机号码: '135****7788', 来源渠道: '小红书', 所属区域: '苏州/高新区', 行业类别: '制造业', 企业类型: '小规模纳税人', 线索有效: '无效' },
+          info: { 客户姓名: '陈晨', 手机号码: '13500007788', 是否添加微信: '否', 所属区域: '苏州/高新区', 行业类别: '制造业', 企业类型: '小规模纳税人', 来源渠道: '小红书', 企业名称: '苏州凯锐精工有限公司' },
           note: '首次跟进判定线索无效，已终止跟进。',
           steps: [
             { type: 'create', creator: '陆琴', time: '2026-03-28 15:22' },
@@ -230,7 +230,7 @@
         },
         'lead-6': {
           status: '已放弃', statusCls: 'bg-slate-100 text-slate-600',
-          info: { 客户姓名: '孙磊', 手机号码: '158****6622', 来源渠道: '抖音', 所属区域: '苏州/吴中区', 行业类别: '商业贸易', 企业类型: '一般纳税人', 线索有效: '有效' },
+          info: { 客户姓名: '孙磊', 手机号码: '15800006622', 是否添加微信: '是', 所属区域: '苏州/吴中区', 行业类别: '商业贸易', 企业类型: '一般纳税人', 来源渠道: '抖音', 企业名称: '苏州拓远供应链有限公司' },
           note: '客户预算有限，经评估后团队一致同意放弃跟进。',
           steps: [
             { type: 'create', creator: '陆琴', time: '2026-04-05 09:00' },
@@ -322,8 +322,14 @@
       badge.textContent = '跟进结果：' + data.status;
 
       var infoEl = document.getElementById('lead-info');
+      function maskPhone(phone) {
+        var value = String(phone || '').replace(/\s+/g, '');
+        if (!/^\d{11}$/.test(value)) return phone || '';
+        return value.slice(0, 3) + '****' + value.slice(-4);
+      }
       infoEl.innerHTML = Object.keys(data.info).map(function (k) {
-        return '<div class="py-0.5"><p class="text-xs text-slate-500 mb-1">' + k + '</p><p class="text-sm text-slate-800">' + data.info[k] + '</p></div>';
+        var value = k === '手机号码' ? maskPhone(data.info[k]) : data.info[k];
+        return '<div class="py-0.5"><p class="text-xs text-slate-500 mb-1">' + k + '</p><p class="text-sm text-slate-800">' + value + '</p></div>';
       }).join('');
       document.getElementById('lead-note').innerHTML = data.note.replace(/\n/g, '<br>');
       document.getElementById('follow-form').classList.toggle('hidden', !data.showForm);

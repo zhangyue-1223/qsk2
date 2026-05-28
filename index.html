@@ -600,6 +600,16 @@
             </div>
           </div>
           <div class="flex items-center gap-3">
+            <label class="w-28 shrink-0 text-right text-slate-600">是否添加微信</label>
+            <div class="relative flex-1">
+              <select class="w-full h-9 pl-3 pr-8 rounded border border-slate-200 bg-white appearance-none text-slate-700">
+                <option selected>是</option>
+                <option>否</option>
+              </select>
+              <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
             <label class="w-28 shrink-0 text-right text-slate-600">所属区域</label>
             <div class="relative flex-1">
               <select class="w-full h-9 pl-3 pr-8 rounded border border-slate-200 bg-white appearance-none text-slate-700">
@@ -632,17 +642,6 @@
             </div>
           </div>
           <div class="flex items-center gap-3">
-            <label class="w-28 shrink-0 text-right text-slate-600">业务类型</label>
-            <div class="relative flex-1">
-              <select class="w-full h-9 pl-3 pr-8 rounded border border-slate-200 bg-white text-slate-500 appearance-none">
-                <option value="">请选择</option>
-                <option>代理记账</option>
-                <option>财税咨询</option>
-              </select>
-              <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
-            </div>
-          </div>
-          <div class="flex items-center gap-3">
             <label class="w-28 shrink-0 text-right text-slate-600"><span class="text-red-500">*</span> 来源渠道</label>
             <div class="relative flex-1">
               <select class="w-full h-9 pl-3 pr-8 rounded border border-slate-200 bg-white appearance-none">
@@ -662,13 +661,6 @@
                 <option>马经理</option>
               </select>
               <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
-            </div>
-          </div>
-          <div class="flex items-start gap-3">
-            <label class="w-28 shrink-0 text-right text-slate-600 pt-2">备注</label>
-            <div class="relative flex-1">
-              <input id="nl-remark" type="text" maxlength="30" placeholder="请输入内容" class="w-full h-9 px-3 pr-14 rounded border border-slate-200">
-              <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400"><span id="nl-remark-len">0</span>/30</span>
             </div>
           </div>
         </form>
@@ -1015,7 +1007,6 @@
       }
       bindLeadCounter('nl-name', 'nl-name-len', 5);
       bindLeadCounter('nl-phone', 'nl-phone-len', 11);
-      bindLeadCounter('nl-remark', 'nl-remark-len', 30);
       if (modalFollowNote) {
         modalFollowNote.addEventListener('click', function (e) {
           if (e.target === modalFollowNote) closeFollowNoteModal();
