@@ -37,11 +37,10 @@
       '      <section class="border border-slate-200 rounded-lg overflow-hidden">' +
       '        <div class="h-9 px-3 bg-slate-50 text-sm text-slate-700 font-medium flex items-center"><span class="w-1 h-4 rounded bg-blue-600 mr-2"></span>合同信息</div>' +
       '        <div class="p-4 space-y-3 text-sm">' +
-      '          <div class="grid grid-cols-4 gap-3">' +
+      '          <div class="grid grid-cols-3 gap-3">' +
       '            <label><span class="text-slate-600">所选服务 <span class="text-red-500">*</span></span><select class="mt-1 w-full h-9 px-3 rounded border border-slate-200"><option>请选择</option></select></label>' +
       '            <label><span class="text-slate-600">合同金额(元) <span class="text-red-500">*</span></span><input type="text" placeholder="请输入" class="mt-1 w-full h-9 px-3 rounded border border-slate-200"></label>' +
       '            <label><span class="text-slate-600">付款方式 <span class="text-red-500">*</span></span><select class="mt-1 w-full h-9 px-3 rounded border border-slate-200"><option>年付</option></select></label>' +
-      '            <label><span class="text-slate-600">是否开票</span><select class="mt-1 w-full h-9 px-3 rounded border border-slate-200"><option>不开票</option></select></label>' +
       '          </div>' +
       '          <div class="grid grid-cols-4 gap-3">' +
       '            <label><span class="text-slate-600">合同起止</span><input type="text" value="2026-04-14" class="mt-1 w-full h-9 px-3 rounded border border-slate-200"></label>' +

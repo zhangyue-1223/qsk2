@@ -1,0 +1,6 @@
+/* 企税康 — 响应式与布局辅助 */
+@media (max-width: 1023px) {
+  .table-scroll {
+    -webkit-overflow-scrolling: touch;
+  }
+}

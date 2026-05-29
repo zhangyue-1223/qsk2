@@ -37,8 +37,8 @@
       id: 'operations', type: 'group', name: '运营管理', icon: 'fa-wallet', enabled: true, sort: 6,
       children: [
         { id: 'payment-request', type: 'link', name: '财务报销', icon: '', href: 'payment-request.html', enabled: true, sort: 1 },
-        { id: 'hr-request', type: 'link', name: '人事申请', icon: '', href: 'hr-request.html', enabled: true, sort: 2 },
-        { id: 'financial-reports', type: 'link', name: '经营报表', icon: '', href: 'financial-reports.html', enabled: true, sort: 3 },
+        { id: 'financial-reports', type: 'link', name: '经营报表', icon: '', href: 'financial-reports.html', enabled: true, sort: 2 },
+        { id: 'hr-request', type: 'link', name: '人事管理', icon: '', href: 'hr-request.html', enabled: true, sort: 3 },
         { id: 'salary-mgmt', type: 'link', name: '薪资管理', icon: '', href: 'salary-management.html', enabled: true, sort: 4 },
         { id: 'employee-mgmt', type: 'link', name: '员工管理', icon: '', href: 'department-employees.html', enabled: true, sort: 5 }
       ]
