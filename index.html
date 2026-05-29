@@ -57,13 +57,14 @@
         </a>
         <details class="mx-3 mb-1 group">
           <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
-            <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售管理</span>
+            <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售中心</span>
             <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
           </summary>
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-target.html">销售目标</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="opportunity-management.html">商机管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-management.html">客户管理</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">销售业绩</a>
           </div>
         </details>
@@ -73,13 +74,13 @@
             <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
           </summary>
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-management.html">客户管理</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="government-affairs.html">政务服务</a>
+<a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="government-affairs.html">政务服务</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="accounting-customer-management.html">代账服务</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="address-management.html">地址管理</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-items.html">客户物品</a>
+<a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-items.html">客户物品</a>
           </div>
         </details>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="address-management.html"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>供应链中心</a>
+
         <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html">
           <i class="fa-solid fa-book-open w-5 mr-2"></i>知识库
         </a>
@@ -95,7 +96,7 @@
         </details>
         <details class="mx-3 mb-1 group">
           <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
-            <span class="flex items-center"><i class="fa-solid fa-wallet w-5 mr-2"></i>运营管理</span>
+            <span class="flex items-center"><i class="fa-solid fa-wallet w-5 mr-2"></i>运营中心</span>
             <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
           </summary>
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
@@ -685,7 +686,7 @@
         <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
           <label class="w-full sm:w-28 shrink-0 text-sm text-slate-600 sm:text-right">线索/商机 <span class="text-red-500">*</span></label>
           <div class="flex-1 min-w-0 relative">
-            <select class="w-full h-9 pl-3 pr-9 rounded-md border border-slate-200 text-sm text-slate-800 bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
+            <select id="follow-note-target" class="w-full h-9 pl-3 pr-9 rounded-md border border-slate-200 text-sm text-slate-800 bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
               <option selected>苏苏</option>
               <option>陈明</option>
               <option>王敏</option>
@@ -694,29 +695,87 @@
             <i class="fa-solid fa-angle-down pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
           </div>
         </div>
-        <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-          <label class="w-full sm:w-28 shrink-0 text-sm text-slate-600 sm:text-right">跟进进度 <span class="text-red-500">*</span></label>
-          <div class="flex-1 min-w-0 relative">
-            <select class="w-full h-9 pl-3 pr-9 rounded-md border border-slate-200 text-sm text-slate-800 bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
-              <option value="following" selected>跟进中</option>
-              <option value="won">已成单</option>
-              <option value="abandoned">已放弃</option>
-            </select>
-            <i class="fa-solid fa-angle-down pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+        <div id="fn-lead-mode" class="space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+            <label class="w-full sm:w-28 shrink-0 text-sm text-slate-600 sm:text-right">是否有效 <span class="text-red-500">*</span></label>
+            <div class="flex-1 min-w-0 relative">
+              <select id="follow-note-valid" class="w-full h-9 pl-3 pr-9 rounded-md border border-slate-200 text-sm text-slate-800 bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
+                <option value="valid" selected>有效</option>
+                <option value="invalid">无效</option>
+              </select>
+              <i class="fa-solid fa-angle-down pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+            </div>
+          </div>
+          <div id="fn-result-row" class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+            <label class="w-full sm:w-28 shrink-0 text-sm text-slate-600 sm:text-right">跟进结果 <span class="text-red-500">*</span></label>
+            <div class="flex-1 min-w-0 relative">
+              <select id="follow-note-result" class="w-full h-9 pl-3 pr-9 rounded-md border border-slate-200 text-sm text-slate-800 bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
+                <option value="following" selected>跟进中</option>
+                <option value="abandoned">已放弃</option>
+              </select>
+              <i class="fa-solid fa-angle-down pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+            </div>
+          </div>
+          <div id="fn-next-time-row" class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+            <label class="w-full sm:w-28 shrink-0 text-sm text-slate-600 sm:text-right">下次跟进 <span class="text-red-500">*</span></label>
+            <div class="flex-1 min-w-0 relative">
+              <input id="follow-note-next-time" type="text" value="2026年4月7日" class="w-full h-9 pl-3 pr-9 rounded-md border border-slate-200 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
+              <i class="fa-regular fa-calendar pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+            </div>
+          </div>
+          <div id="fn-valid-fields" class="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
+            <label class="w-full sm:w-28 shrink-0 text-sm text-slate-600 sm:text-right pt-2">跟进内容 <span class="text-red-500">*</span></label>
+            <div class="flex-1 min-w-0 relative">
+              <textarea id="follow-note-content" maxlength="1000" rows="5" placeholder="请输入内容" class="w-full px-3 py-2.5 pb-8 rounded-md border border-slate-200 text-sm text-slate-800 placeholder:text-slate-400 resize-y min-h-[140px] focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400 bg-slate-50/80"></textarea>
+              <span class="absolute bottom-2 right-3 text-xs text-slate-400 tabular-nums pointer-events-none"><span id="cnt-follow-note">0</span>/1000</span>
+            </div>
+          </div>
+          <div id="fn-invalid-fields" class="hidden flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
+            <label class="w-full sm:w-28 shrink-0 text-sm text-slate-600 sm:text-right pt-2">无效说明 <span class="text-red-500">*</span></label>
+            <div class="flex-1 min-w-0 relative">
+              <textarea id="follow-note-invalid" maxlength="1000" rows="5" placeholder="请输入内容" class="w-full px-3 py-2.5 pb-8 rounded-md border border-slate-200 text-sm text-slate-800 placeholder:text-slate-400 resize-y min-h-[140px] focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400 bg-slate-50/80"></textarea>
+              <span class="absolute bottom-2 right-3 text-xs text-slate-400 tabular-nums pointer-events-none"><span id="cnt-follow-note-invalid">0</span>/1000</span>
+            </div>
+          </div>
+          <div id="fn-abandon-fields" class="hidden flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
+            <label class="w-full sm:w-28 shrink-0 text-sm text-slate-600 sm:text-right pt-2">放弃说明 <span class="text-red-500">*</span></label>
+            <div class="flex-1 min-w-0 relative">
+              <textarea id="follow-note-abandon" maxlength="1000" rows="5" placeholder="请输入内容" class="w-full px-3 py-2.5 pb-8 rounded-md border border-slate-200 text-sm text-slate-800 placeholder:text-slate-400 resize-y min-h-[140px] focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400 bg-slate-50/80"></textarea>
+              <span class="absolute bottom-2 right-3 text-xs text-slate-400 tabular-nums pointer-events-none"><span id="cnt-follow-note-abandon">0</span>/1000</span>
+            </div>
           </div>
         </div>
-        <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-          <label class="w-full sm:w-28 shrink-0 text-sm text-slate-600 sm:text-right">跟进时间 <span class="text-red-500">*</span></label>
-          <div class="flex-1 min-w-0 relative">
-            <input type="text" value="2026-04-07 10:09" class="w-full h-9 pl-3 pr-9 rounded-md border border-slate-200 text-sm text-slate-800 tabular-nums focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
-            <i class="fa-solid fa-angle-down pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+        <div id="fn-opp-mode" class="hidden space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+            <label class="w-full sm:w-28 shrink-0 text-sm text-slate-600 sm:text-right">商机阶段 <span class="text-red-500">*</span></label>
+            <div class="flex-1 min-w-0 relative">
+              <select id="follow-note-opp-stage" class="w-full h-9 pl-3 pr-9 rounded-md border border-slate-200 text-sm text-slate-800 bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
+                <option value="intent" selected>意向商机</option>
+                <option value="invalid">无效商机</option>
+              </select>
+              <i class="fa-solid fa-angle-down pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+            </div>
           </div>
-        </div>
-        <div class="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
-          <label class="w-full sm:w-28 shrink-0 text-sm text-slate-600 sm:text-right pt-2">跟进内容 <span class="text-red-500">*</span></label>
-          <div class="flex-1 min-w-0 relative">
-            <textarea id="follow-note-content" maxlength="1000" rows="5" placeholder="请输入内容" class="w-full px-3 py-2.5 pb-8 rounded-md border border-slate-200 text-sm text-slate-800 placeholder:text-slate-400 resize-y min-h-[140px] focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400 bg-slate-50/80"></textarea>
-            <span class="absolute bottom-2 right-3 text-xs text-slate-400 tabular-nums pointer-events-none"><span id="cnt-follow-note">0</span>/1000</span>
+          <div id="fn-opp-next-time-row" class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+            <label class="w-full sm:w-28 shrink-0 text-sm text-slate-600 sm:text-right">下次跟进 <span class="text-red-500">*</span></label>
+            <div class="flex-1 min-w-0 relative">
+              <input id="follow-note-opp-next-time" type="text" value="2026年4月7日" class="w-full h-9 pl-3 pr-9 rounded-md border border-slate-200 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
+              <i class="fa-regular fa-calendar pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+            </div>
+          </div>
+          <div id="fn-opp-valid-fields" class="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
+            <label class="w-full sm:w-28 shrink-0 text-sm text-slate-600 sm:text-right pt-2">跟进内容 <span class="text-red-500">*</span></label>
+            <div class="flex-1 min-w-0 relative">
+              <textarea id="follow-note-opp-content" maxlength="1000" rows="5" placeholder="请输入内容" class="w-full px-3 py-2.5 pb-8 rounded-md border border-slate-200 text-sm text-slate-800 placeholder:text-slate-400 resize-y min-h-[140px] focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400 bg-slate-50/80"></textarea>
+              <span class="absolute bottom-2 right-3 text-xs text-slate-400 tabular-nums pointer-events-none"><span id="cnt-follow-note-opp">0</span>/1000</span>
+            </div>
+          </div>
+          <div id="fn-opp-invalid-fields" class="hidden flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
+            <label class="w-full sm:w-28 shrink-0 text-sm text-slate-600 sm:text-right pt-2">无效说明 <span class="text-red-500">*</span></label>
+            <div class="flex-1 min-w-0 relative">
+              <textarea id="follow-note-opp-invalid" maxlength="1000" rows="5" placeholder="请输入内容" class="w-full px-3 py-2.5 pb-8 rounded-md border border-slate-200 text-sm text-slate-800 placeholder:text-slate-400 resize-y min-h-[140px] focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400 bg-slate-50/80"></textarea>
+              <span class="absolute bottom-2 right-3 text-xs text-slate-400 tabular-nums pointer-events-none"><span id="cnt-follow-note-opp-invalid">0</span>/1000</span>
+            </div>
           </div>
         </div>
       </form>
@@ -1021,6 +1080,90 @@
         followNoteContent.addEventListener('input', function () { syncCount(followNoteContent, cntFollowNote); });
         syncCount(followNoteContent, cntFollowNote);
       }
+      var followNoteInvalid = document.getElementById('follow-note-invalid');
+      var cntFollowNoteInvalid = document.getElementById('cnt-follow-note-invalid');
+      if (followNoteInvalid && cntFollowNoteInvalid) {
+        followNoteInvalid.addEventListener('input', function () { syncCount(followNoteInvalid, cntFollowNoteInvalid); });
+        syncCount(followNoteInvalid, cntFollowNoteInvalid);
+      }
+      var followNoteAbandon = document.getElementById('follow-note-abandon');
+      var cntFollowNoteAbandon = document.getElementById('cnt-follow-note-abandon');
+      if (followNoteAbandon && cntFollowNoteAbandon) {
+        followNoteAbandon.addEventListener('input', function () { syncCount(followNoteAbandon, cntFollowNoteAbandon); });
+        syncCount(followNoteAbandon, cntFollowNoteAbandon);
+      }
+      var followNoteOppContent = document.getElementById('follow-note-opp-content');
+      var cntFollowNoteOpp = document.getElementById('cnt-follow-note-opp');
+      if (followNoteOppContent && cntFollowNoteOpp) {
+        followNoteOppContent.addEventListener('input', function () { syncCount(followNoteOppContent, cntFollowNoteOpp); });
+        syncCount(followNoteOppContent, cntFollowNoteOpp);
+      }
+      var followNoteOppInvalid = document.getElementById('follow-note-opp-invalid');
+      var cntFollowNoteOppInvalid = document.getElementById('cnt-follow-note-opp-invalid');
+      if (followNoteOppInvalid && cntFollowNoteOppInvalid) {
+        followNoteOppInvalid.addEventListener('input', function () { syncCount(followNoteOppInvalid, cntFollowNoteOppInvalid); });
+        syncCount(followNoteOppInvalid, cntFollowNoteOppInvalid);
+      }
+
+      function setFnBlockVisible(el, show, flex) {
+        if (!el) return;
+        el.classList.toggle('hidden', !show);
+        if (flex) el.classList.toggle('flex', show);
+      }
+
+      function updateFollowNoteFields() {
+        var targetSel = document.getElementById('follow-note-target');
+        var leadMode = document.getElementById('fn-lead-mode');
+        var oppMode = document.getElementById('fn-opp-mode');
+        var isOpp = targetSel && targetSel.value === '李强';
+
+        setFnBlockVisible(leadMode, !isOpp);
+        setFnBlockVisible(oppMode, isOpp);
+
+        if (isOpp) {
+          var oppStageSel = document.getElementById('follow-note-opp-stage');
+          var isInvalidOpp = oppStageSel && oppStageSel.value === 'invalid';
+          setFnBlockVisible(document.getElementById('fn-opp-next-time-row'), !isInvalidOpp);
+          setFnBlockVisible(document.getElementById('fn-opp-valid-fields'), !isInvalidOpp, true);
+          setFnBlockVisible(document.getElementById('fn-opp-invalid-fields'), isInvalidOpp, true);
+          return;
+        }
+
+        var validSel = document.getElementById('follow-note-valid');
+        var resultSel = document.getElementById('follow-note-result');
+        var isValid = validSel && validSel.value === 'valid';
+        var isAbandoned = resultSel && resultSel.value === 'abandoned';
+
+        if (!isValid) {
+          setFnBlockVisible(document.getElementById('fn-result-row'), false);
+          setFnBlockVisible(document.getElementById('fn-next-time-row'), false);
+          setFnBlockVisible(document.getElementById('fn-valid-fields'), false, true);
+          setFnBlockVisible(document.getElementById('fn-abandon-fields'), false, true);
+          setFnBlockVisible(document.getElementById('fn-invalid-fields'), true, true);
+        } else if (isAbandoned) {
+          setFnBlockVisible(document.getElementById('fn-result-row'), true);
+          setFnBlockVisible(document.getElementById('fn-next-time-row'), false);
+          setFnBlockVisible(document.getElementById('fn-valid-fields'), false, true);
+          setFnBlockVisible(document.getElementById('fn-invalid-fields'), false, true);
+          setFnBlockVisible(document.getElementById('fn-abandon-fields'), true, true);
+        } else {
+          setFnBlockVisible(document.getElementById('fn-result-row'), true);
+          setFnBlockVisible(document.getElementById('fn-next-time-row'), true);
+          setFnBlockVisible(document.getElementById('fn-valid-fields'), true, true);
+          setFnBlockVisible(document.getElementById('fn-invalid-fields'), false, true);
+          setFnBlockVisible(document.getElementById('fn-abandon-fields'), false, true);
+        }
+      }
+
+      var followNoteTarget = document.getElementById('follow-note-target');
+      var followNoteValid = document.getElementById('follow-note-valid');
+      var followNoteResult = document.getElementById('follow-note-result');
+      var followNoteOppStage = document.getElementById('follow-note-opp-stage');
+      if (followNoteTarget) followNoteTarget.addEventListener('change', updateFollowNoteFields);
+      if (followNoteValid) followNoteValid.addEventListener('change', updateFollowNoteFields);
+      if (followNoteResult) followNoteResult.addEventListener('change', updateFollowNoteFields);
+      if (followNoteOppStage) followNoteOppStage.addEventListener('change', updateFollowNoteFields);
+      updateFollowNoteFields();
       if (maintainContent && cntMaintain) {
         maintainContent.addEventListener('input', function () { syncCount(maintainContent, cntMaintain); });
         syncCount(maintainContent, cntMaintain);
