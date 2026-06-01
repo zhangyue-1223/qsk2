@@ -11,26 +11,55 @@
 
   <style>
     body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
-    .sec-title { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9375rem; font-weight: 600; color: #1e293b; margin-bottom: 1rem; }
-    .sec-title::before { content: ''; width: 3px; height: 14px; border-radius: 2px; background: #2563eb; flex-shrink: 0; }
     #modal-progress-detail:not(.hidden),
     #modal-first-call-detail:not(.hidden) { display: flex; }
-    .wo-steps { display: flex; align-items: flex-start; justify-content: space-between; gap: 0; padding: 0.5rem 0 1.25rem; overflow-x: auto; }
-    .wo-step { flex: 1; min-width: 5.5rem; position: relative; text-align: center; }
-    .wo-step:not(:last-child)::after {
-      content: ''; position: absolute; top: 14px; left: calc(50% + 16px); right: calc(-50% + 16px);
-      height: 2px; background: #e2e8f0; z-index: 0;
+    .acc-detail-page { width: 100%; max-width: none; }
+    .acc-detail-page .detail-content-inner { width: 100%; max-width: none; }
+    .info-card { border: 1px solid #e2e8f0; border-radius: 0.5rem; padding: 1rem 1.25rem; background: #fff; box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04); }
+    .profile-block { border: 1px solid #e2e8f0; border-radius: 0.75rem; background: #fff; overflow: hidden; }
+    #panel-profile:not(.hidden) { display: flex; flex-direction: column; gap: 1.5rem; }
+    #panel-profile.hidden { display: none !important; }
+    #panel-order.hidden { display: none !important; }
+    #panel-profile .profile-block + .profile-block { margin-top: 0; }
+    .profile-block-hd { display: flex; align-items: center; gap: 0.5rem; padding: 0.875rem 1.25rem; border-bottom: 1px solid #f1f5f9; background: #fafbfc; }
+    .profile-block-hd i { color: #2563eb; width: 1rem; text-align: center; }
+    .profile-dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.875rem 1.5rem; padding: 1.25rem; }
+    @media (min-width: 768px) { .profile-dl { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    .profile-dl .full { grid-column: 1 / -1; }
+    .profile-dl dt { font-size: 0.75rem; color: #94a3b8; margin-bottom: 0.125rem; }
+    .profile-dl dd { font-size: 0.875rem; color: #1e293b; margin: 0; }
+    .tax-info-grid {
+      display: grid;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      gap: 0.75rem 1.25rem;
+      padding: 1.25rem;
     }
-    .wo-step.done:not(:last-child)::after, .wo-step.active:not(:last-child)::after { background: #3b82f6; }
-    .wo-step-dot {
-      width: 28px; height: 28px; border-radius: 50%; margin: 0 auto 0.5rem; position: relative; z-index: 1;
-      display: flex; align-items: center; justify-content: center; font-size: 0.7rem; border: 2px solid #e2e8f0; background: #fff; color: #94a3b8;
+    @media (min-width: 768px) {
+      .tax-info-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
-    .wo-step.done .wo-step-dot { background: #2563eb; border-color: #2563eb; color: #fff; }
-    .wo-step.active .wo-step-dot { background: #2563eb; border-color: #2563eb; color: #fff; }
-    .wo-step.pending .wo-step-dot { background: #fff; border-color: #cbd5e1; color: #94a3b8; }
-    .wo-step-label { font-size: 0.8125rem; color: #334155; font-weight: 500; line-height: 1.3; }
-    .wo-step-sub { font-size: 0.6875rem; color: #94a3b8; margin-top: 0.25rem; line-height: 1.2; }
+    .tax-info-item {
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+      gap: 0.375rem;
+      min-width: 0;
+      font-size: 0.875rem;
+    }
+    .tax-info-item dt {
+      flex-shrink: 0;
+      font-size: 0.75rem;
+      color: #94a3b8;
+      margin: 0;
+      white-space: nowrap;
+    }
+    .tax-info-item dt::after { content: '：'; }
+    .tax-info-item dd {
+      margin: 0;
+      color: #1e293b;
+      min-width: 0;
+      word-break: break-word;
+    }
+    .attach-tile { aspect-ratio: 4/3; border-radius: 0.5rem; border: 1px dashed #cbd5e1; background: #f8fafc; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 0.75rem; color: #94a3b8; }
     .first-call-field {
       border: 1px solid #e2e8f0;
       border-radius: 0.75rem;
@@ -109,9 +138,10 @@
 <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="government-affairs.html">政务服务</a>
             <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="accounting-customer-management.html">代账服务</a>
 <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-items.html">客户物品</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="address-management.html">地址管理</a>
           </div>
         </details>
-        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="address-management.html"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>供应链中心</a>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="supply-chain-management.html"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>供应链中心</a>
 
         <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
         <details class="mx-3 mb-1 group">
@@ -169,78 +199,49 @@
         </div>
       </header>
 
-      <section class="p-4 sm:p-6 flex-1">
-        <div class="text-sm text-slate-500 mb-3">客户中心 / 代账服务</div>
-        <div class="bg-white rounded-xl border border-slate-200 shadow-sm">
+      <section class="acc-detail-page px-4 py-4 sm:px-5 lg:px-6 flex-1 pb-8">
+        <div class="text-sm text-slate-500 mb-3">客户中心 / <a href="accounting-customer-management.html" class="hover:text-slate-700">代账服务</a> / <span class="text-slate-700">代账服务详情</span></div>
+
+        <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden w-full">
           <div class="px-5 py-3 border-b border-slate-200">
-            <a href="accounting-customer-management.html" class="text-sm text-slate-500 hover:text-slate-700"><i class="fa-solid fa-angle-left mr-1"></i>代账服务详情</a>
+            <a href="accounting-customer-management.html" class="text-sm text-slate-500 hover:text-slate-700"><i class="fa-solid fa-angle-left mr-1"></i>返回列表</a>
           </div>
 
-          <div class="px-5 pt-4 pb-2 border-b border-slate-100">
-            <div id="block-workflow-steps" class="wo-steps" aria-label="服务流程进度"></div>
+          <div class="px-5 py-4 border-b border-slate-100">
+            <div class="flex flex-wrap items-start justify-between gap-4">
+              <div class="min-w-0 flex-1">
+                <h1 id="acc-company-name" class="text-lg font-semibold text-slate-800 mb-1">苏州美的信息科技有限公司</h1>
+                <div class="flex flex-wrap gap-x-5 gap-y-1 text-sm text-slate-600">
+                  <span><i class="fa-regular fa-user text-slate-400 mr-1.5"></i>联系人：<span id="acc-contact">李川</span></span>
+                  <span><i class="fa-solid fa-phone text-slate-400 mr-1.5"></i><span id="acc-phone">13816207333</span></span>
+                  <span><i class="fa-solid fa-user-tie text-slate-400 mr-1.5"></i>销售顾问：<span id="acc-sales">周方林 · 网销一组</span></span>
+                </div>
+              </div>
+              <div class="flex flex-wrap gap-2 shrink-0">
+                <span id="acc-tax-type" class="inline-flex items-center gap-1 rounded-md bg-white border border-slate-200 px-2.5 py-1 text-xs text-slate-600">一般纳税人</span>
+              </div>
+            </div>
           </div>
 
-          <div class="grid grid-cols-1 xl:grid-cols-5 gap-0 min-w-0">
-            <div class="xl:col-span-3 p-5 border-b xl:border-b-0 xl:border-r border-slate-200 space-y-7">
-              <section>
-                <h3 class="sec-title">基本信息</h3>
-                <div id="order-info" class="text-sm"></div>
-              </section>
-              <section>
-                <h3 class="sec-title">工商信息</h3>
-                <div id="ic-info" class="grid grid-cols-1 gap-y-3 text-sm"></div>
-                <div class="mt-3">
-                  <p class="text-xs text-slate-500 mb-1">经营范围</p>
-                  <p id="ic-scope" class="text-sm text-slate-700 leading-relaxed rounded border border-slate-100 bg-slate-50/80 p-3"></p>
-                </div>
-              </section>
-              <section>
-                <h3 class="sec-title">附件资料</h3>
-                <div class="grid grid-cols-3 gap-3">
-                  <div class="aspect-[4/3] rounded-lg border border-dashed border-slate-200 bg-slate-50 flex flex-col items-center justify-center text-xs text-slate-400"><i class="fa-regular fa-image mb-2 text-lg"></i>身份证</div>
-                  <div class="aspect-[4/3] rounded-lg border border-dashed border-slate-200 bg-slate-50 flex flex-col items-center justify-center text-xs text-slate-400"><i class="fa-regular fa-image mb-2 text-lg"></i>营业执照</div>
-                  <div class="aspect-[4/3] rounded-lg border border-dashed border-slate-200 bg-slate-50 flex flex-col items-center justify-center text-xs text-slate-400"><i class="fa-regular fa-image mb-2 text-lg"></i>其他附件</div>
-                </div>
-              </section>
+          <div class="detail-content-inner p-4 sm:p-5 lg:p-6 min-w-0">
+            <div class="border-b border-slate-200 mb-5">
+              <div id="acc-tabs" class="flex flex-wrap gap-6 sm:gap-8">
+                <button type="button" class="detail-tab tab-active" data-tab="order">工单信息</button>
+                <button type="button" class="detail-tab" data-tab="profile">客户档案</button>
+              </div>
             </div>
 
-            <div class="xl:col-span-2 p-5 space-y-7">
-              <!-- 企业档案模块 -->
-              <section>
-                <div class="flex items-center justify-between mb-3">
-                  <h3 class="sec-title !mb-0">企业档案</h3>
-                  <button type="button" id="btn-open-first-call-detail" class="inline-flex items-center gap-1 text-sm font-medium text-blue-600 hover:text-blue-700 cursor-pointer"><i class="fa-solid fa-pen text-xs"></i>编辑</button>
+            <div id="panel-order" class="space-y-4">
+              <div class="info-card">
+                <h3 class="text-sm font-semibold text-slate-800 mb-3">工单信息</h3>
+                <div id="order-info" class="text-sm"></div>
+              </div>
+              <div class="info-card">
+                <div class="flex items-center justify-between gap-3 mb-3">
+                  <h3 class="text-sm font-semibold text-slate-800">办理进度</h3>
+                  <button type="button" id="btn-open-progress-detail" class="text-sm text-blue-600 hover:text-blue-700 shrink-0">添加进度</button>
                 </div>
-                <div class="rounded-lg border border-slate-200 bg-slate-50/60 p-4 text-sm">
-                  <div class="grid grid-cols-2 gap-x-6 gap-y-3">
-                    <div><p class="text-xs text-slate-500 mb-0.5">企业名称</p><p class="text-slate-800">苏州九州数字科技有限公司</p></div>
-                    <div><p class="text-xs text-slate-500 mb-0.5">实际对接人姓名</p><p class="text-slate-800">李小明</p></div>
-                    <div><p class="text-xs text-slate-500 mb-0.5">实际对接人电话</p><p class="text-slate-800">13800138000</p></div>
-                    <div><p class="text-xs text-slate-500 mb-0.5">所属区域</p><p class="text-slate-800">苏州</p></div>
-                    <div><p class="text-xs text-slate-500 mb-0.5">有无社保</p><p class="text-slate-800">有</p></div>
-                    <div><p class="text-xs text-slate-500 mb-0.5">成立日期</p><p class="text-slate-800">2023-04-15</p></div>
-                    <div><p class="text-xs text-slate-500 mb-0.5">税务核定</p><p class="text-slate-800">2023-04-20</p></div>
-                    <div><p class="text-xs text-slate-500 mb-0.5">税务分局</p><p class="text-slate-800">苏州工业园区税务分局</p></div>
-                    <div><p class="text-xs text-slate-500 mb-0.5">开票税点</p><p class="text-slate-800">3%</p></div>
-                    <div><p class="text-xs text-slate-500 mb-0.5">电子税务局密码</p><p class="text-slate-800">******</p></div>
-                    <div><p class="text-xs text-slate-500 mb-0.5">资质许可证</p><p class="text-slate-800">—</p></div>
-                    <div><p class="text-xs text-slate-500 mb-0.5">挂靠地址</p><p class="text-slate-800">江苏省苏州市吴中区红海大厦2005</p></div>
-                    <div><p class="text-xs text-slate-500 mb-0.5">开户行</p><p class="text-slate-800">中国工商银行苏州分行</p></div>
-                    <div class="col-span-2"><p class="text-xs text-slate-500 mb-0.5">开户行账号</p><p class="text-slate-800">6222020202020202020</p></div>
-                    <div class="col-span-2"><p class="text-xs text-slate-500 mb-0.5">特殊业务</p><p class="text-slate-800">—</p></div>
-                    <div class="col-span-2"><p class="text-xs text-slate-500 mb-0.5">经营范围</p><p class="text-slate-800">企业管理咨询；税务咨询；代理记账；财务信息咨询。</p></div>
-                    <div class="col-span-2"><p class="text-xs text-slate-500 mb-0.5">开票信息</p><p class="text-slate-800">增值税普通发票，抬头同企业名称</p></div>
-                    <div class="col-span-2"><p class="text-xs text-slate-500 mb-0.5">客户备注</p><p class="text-slate-800">客户需每月5号前出报告</p></div>
-                  </div>
-                </div>
-              </section>
-
-              <section>
-                <div class="flex items-center justify-between mb-4">
-                  <h3 class="sec-title !mb-0">办理进度</h3>
-                  <button type="button" id="btn-open-progress-detail" class="text-sm font-medium text-blue-600 hover:text-blue-700">添加进度</button>
-                </div>
-                <div class="overflow-x-auto rounded-lg border border-slate-200 mb-7">
+                <div class="overflow-x-auto rounded-lg border border-slate-200">
                   <table class="w-full min-w-[560px] text-sm">
                     <thead class="bg-slate-50 text-slate-600">
                       <tr>
@@ -255,7 +256,37 @@
                     <tbody id="progress-list" class="text-slate-700"></tbody>
                   </table>
                 </div>
-              </section>
+              </div>
+            </div>
+
+            <div id="panel-profile" class="hidden">
+              <div class="profile-block">
+                <div class="profile-block-hd">
+                  <i class="fa-solid fa-receipt"></i>
+                  <h3 class="text-sm font-semibold text-slate-800">税务信息</h3>
+                  <button type="button" id="btn-open-first-call-detail" class="ml-auto text-sm text-blue-600 hover:text-blue-700 cursor-pointer"><i class="fa-solid fa-pen text-xs mr-1"></i>编辑</button>
+                </div>
+                <dl id="block-tax-info" class="tax-info-grid"></dl>
+              </div>
+              <div class="profile-block">
+                <div class="profile-block-hd">
+                  <i class="fa-solid fa-building"></i>
+                  <h3 class="text-sm font-semibold text-slate-800">工商信息</h3>
+                </div>
+                <dl id="ic-info" class="profile-dl"></dl>
+              </div>
+              <div class="profile-block">
+                <div class="profile-block-hd">
+                  <i class="fa-regular fa-images"></i>
+                  <h3 class="text-sm font-semibold text-slate-800">附件资料</h3>
+                  <span class="ml-auto text-xs text-slate-400">共 3 项</span>
+                </div>
+                <div class="p-4 sm:p-5 grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  <div class="attach-tile"><i class="fa-regular fa-id-card mb-2 text-xl"></i>身份证</div>
+                  <div class="attach-tile"><i class="fa-regular fa-file-image mb-2 text-xl"></i>营业执照</div>
+                  <div class="attach-tile"><i class="fa-regular fa-folder mb-2 text-xl"></i>其他附件</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -263,12 +294,12 @@
     </main>
   </div>
 
-  <!-- 首电确认弹窗（详情页编辑） -->
+  <!-- 税务信息编辑弹窗 -->
   <div id="modal-first-call-detail" class="fixed inset-0 z-[130] hidden items-center justify-center bg-slate-900/45 p-4">
     <div class="absolute inset-0" data-close-first-call></div>
     <div class="relative w-full max-w-5xl rounded-xl border border-slate-200 bg-white shadow-xl">
       <div class="relative border-b border-slate-200 px-5 py-4">
-        <h3 class="text-center text-base font-semibold text-slate-800">首电确认</h3>
+        <h3 class="text-center text-base font-semibold text-slate-800">编辑信息</h3>
         <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer" data-close-first-call><i class="fa-solid fa-xmark text-lg"></i></button>
       </div>
       <div class="px-6 py-5 text-sm space-y-4 max-h-[72vh] overflow-y-auto">
@@ -326,6 +357,10 @@
             <div class="first-call-field">
               <label class="first-call-label">税务分局</label>
               <input type="text" class="first-call-input" placeholder="请输入税务分局">
+            </div>
+            <div class="first-call-field">
+              <label class="first-call-label">税务局电话</label>
+              <input type="text" class="first-call-input" placeholder="请输入税务局电话">
             </div>
             <div class="first-call-field">
               <label class="first-call-label">开票税点</label>
@@ -405,49 +440,86 @@
 
   <script>
     (function () {
+      var SCOPE = '企业管理咨询；税务咨询；代理记账；财务信息咨询。日用百货、五金交电、机械设备及配件销售。';
+      var BASE_ARCHIVE = {
+        实际对接人姓名: '李小明',
+        实际对接人电话: '13800138000',
+        所属区域: '苏州',
+        有无社保: '有',
+        成立日期: '2023-04-15',
+        税务核定: '2023-04-20',
+        税务分局: '苏州工业园区税务分局',
+        税务局电话: '0512-62886688',
+        开票税点: '3%',
+        电子税务局密码: '******',
+        资质许可证: '—',
+        挂靠地址: '江苏省苏州市吴中区红海大厦2005',
+        开户行: '中国工商银行苏州分行',
+        开户行账号: '6222020202020202020',
+        特殊业务: '—',
+        经营范围: '企业管理咨询；税务咨询；代理记账；财务信息咨询。',
+        开票信息: '增值税普通发票，抬头同企业名称',
+        客户备注: '客户需每月5号前出报告'
+      };
+      var BASE_IC = {
+        股份占比: '100%',
+        法人身份证号码: '510603198708042221',
+        内部财务: '李小',
+        联系电话2: '13616207333',
+        身份证号码2: '510603198708042221',
+        注册资本: '10万',
+        注册地址: '江苏省苏州市吴中区'
+      };
+      var BASE_PROGRESS = [
+        { node: '确认服务', status: '进行中', owner: '马会计', date: '2026-04-13', desc: '资料核对中', action: '—' },
+        { node: '建账/申报', status: '完成', owner: '马会计', date: '2026-04-13', desc: '本月申报已完成', action: '编辑' }
+      ];
+
+      function makeEntry(company, contact, phone, contract, feeMonth, amount, taxType, sales, dept, serviceDept, chief, adviser, invoice, archiveExtra) {
+        var archive = {};
+        Object.keys(BASE_ARCHIVE).forEach(function (k) { archive[k] = BASE_ARCHIVE[k]; });
+        archive.企业名称 = company;
+        if (archiveExtra) Object.keys(archiveExtra).forEach(function (k) { archive[k] = archiveExtra[k]; });
+        var order = {
+          企业名称: company,
+          关联合同: { text: contract, href: '#' },
+          代账金额: amount,
+          收费单位: '年付',
+          '代账费/月': feeMonth,
+          记账开始月份: '2026-06',
+          收费截止月份: '2027-05',
+          企业类型: taxType,
+          销售顾问: sales,
+          业务部门: dept,
+          开票员: invoice || '—',
+          财税顾问: adviser || '—',
+          主办会计: chief || '—',
+          服务部门: serviceDept || '—'
+        };
+        var ic = {
+          企业名称: company,
+          法定代表人: contact,
+          联系电话: phone
+        };
+        Object.keys(BASE_IC).forEach(function (k) { ic[k] = BASE_IC[k]; });
+        return {
+          contact: contact,
+          phone: phone,
+          order: order,
+          archive: archive,
+          ic: ic,
+          scope: SCOPE,
+          progress: BASE_PROGRESS.slice()
+        };
+      }
+
       var dataMap = {
-        'acc-1': {
-          workflow: [
-            { label: '新增客户', sub: '2023-04-08', state: 'done' },
-            { label: '服务派单', sub: '2023-04-10', state: 'done' },
-            { label: '客户资料交接', sub: '2023-04-12', state: 'done' },
-            { label: '首电确认', sub: '2023-04-15', state: 'done' },
-            { label: '服务中', sub: '2023-05-01 起\n2027-06-30 止', state: 'active' }
-          ],
-          order: {
-            企业名称: '苏州九州数字科技有限公司',
-            关联合同: { text: '202604140001', href: '#' },
-            代账金额: '4000',
-            收费单位: '年付',
-            '代账费/月': '333',
-            记账开始月份: '2026-06',
-            收费截止月份: '2027-05',
-            企业类型: '一般纳税人',
-            销售顾问: '周芳林',
-            业务部门: '网销一组',
-            开票员: '周芳林',
-            财税顾问: '周芳林',
-            主办会计: '周芳林',
-            服务部门: '顾问二组'
-          },
-          ic: {
-            企业名称: '苏州九州数字科技有限公司',
-            法定代表人: '李小',
-            股份占比: '100%',
-            联系电话: '13616207333',
-            法人身份证号码: '510603198708042221',
-            内部财务: '李小',
-            联系电话2: '13616207333',
-            身份证号码2: '510603198708042221',
-            注册资本: '10万',
-            注册地址: '江苏省苏州市吴中区'
-          },
-          scope: Array(8).fill('日用百货、五金交电、机械设备及配件销售；商务信息咨询').join('；') + '。',
-          progress: [
-            { node: '确认服务', status: '进行中', owner: '马会计', date: '2026-04-13', desc: '这是一个说明...', action: '—' },
-            { node: '键账/申报', status: '完成', owner: '马会计', date: '2026-04-13', desc: '这是一个说明...', action: '编辑' }
-          ]
-        }
+        'acc-1': makeEntry('苏州美的信息科技有限公司', '李川', '13816207333', '20260415002', '333', '4000', '一般纳税人', '周方林', '网销一组', '—', '—', '—', '—'),
+        'acc-2': makeEntry('苏州维的科技有限公司', '王某', '13700001111', '20260415002', '292', '3500', '一般纳税人', '周方林', '网销一组', '—', '—', '—', '—'),
+        'acc-3': makeEntry('苏州维的科技有限公司', '周某', '13700002222', '20260415003', '117', '1400', '小规模纳税人', '周方林', '常熟组', '顾问二组', '—', '—', '—', { 所属区域: '常熟' }),
+        'acc-4': makeEntry('万州维的科技有限公司', '赵某', '13700003333', '20260415004', '125', '1500', '一般纳税人', '周方林', '岚诺组', '—', '—', '—', '—', { 所属区域: '万州' }),
+        'acc-5': makeEntry('苏州维的科技有限公司', '陈某', '13700004444', '20260415005', '325', '4000', '一般纳税人', '周方林', '网销一组', '顾问一组', '马时笑', '马时笑', '马时笑'),
+        'acc-6': makeEntry('苏州维的科技有限公司', '孙某', '13700005555', '20260415006', '117', '6500', '小规模纳税人', '周方林', '常熟组', '顾问一组', '马时笑', '马时笑', '马时笑', { 所属区域: '常熟', 客户备注: '续费跟进中' })
       };
 
       var params = new URLSearchParams(location.search);
@@ -455,56 +527,115 @@
       if (!dataMap[id]) id = 'acc-1';
       var d = dataMap[id];
 
-      function renderWorkflow(steps) {
-        var el = document.getElementById('block-workflow-steps');
-        if (!el || !steps) return;
-        el.innerHTML = steps.map(function (s) {
-          var icon = s.state === 'done'
-            ? '<i class="fa-solid fa-check text-xs"></i>'
-            : (s.state === 'active' ? '<span class="tracking-widest text-[10px] leading-none">•••</span>' : '');
-          return '<div class="wo-step ' + s.state + '">' +
-            '<div class="wo-step-dot">' + icon + '</div>' +
-            '<p class="wo-step-label">' + s.label + '</p>' +
-            (s.sub ? '<p class="wo-step-sub">' + s.sub + '</p>' : '') +
-            '</div>';
-        }).join('');
+      var HEADER_ORDER_KEYS = ['企业名称', '销售顾问', '业务部门', '企业类型'];
+      var ORDER_FIELD_ORDER = [
+        '关联合同', '代账金额', '收费单位', '代账费/月', '记账开始月份', '收费截止月份',
+        '开票员', '财税顾问', '主办会计', '服务部门'
+      ];
+
+      function renderOrderField(k, v) {
+        if (v == null || v === '') v = '—';
+        if (v && typeof v === 'object' && v.text) {
+          return '<div><p class="text-xs text-slate-500 mb-1">' + k + '</p><p class="text-sm"><a href="' + (v.href || '#') + '" class="text-blue-600 hover:underline">' + v.text + '</a></p></div>';
+        }
+        return '<div><p class="text-xs text-slate-500 mb-1">' + k + '</p><p class="text-sm text-slate-800">' + v + '</p></div>';
+      }
+
+      function renderHeader(data) {
+        var order = data.order || {};
+        var companyEl = document.getElementById('acc-company-name');
+        var contactEl = document.getElementById('acc-contact');
+        var phoneEl = document.getElementById('acc-phone');
+        var salesEl = document.getElementById('acc-sales');
+        var taxEl = document.getElementById('acc-tax-type');
+        if (companyEl) companyEl.textContent = order['企业名称'] || '—';
+        if (contactEl) contactEl.textContent = data.contact || '—';
+        if (phoneEl) phoneEl.textContent = data.phone || '—';
+        if (salesEl) {
+          var sales = order['销售顾问'] || '—';
+          if (order['业务部门']) sales += ' · ' + order['业务部门'];
+          salesEl.textContent = sales;
+        }
+        if (taxEl) taxEl.textContent = order['企业类型'] || '—';
       }
 
       function renderOrderInfo(order) {
         var el = document.getElementById('order-info');
-        var name = order['企业名称'] || '—';
-        var restKeys = Object.keys(order).filter(function (k) { return k !== '企业名称'; });
-        var nameRow = '<div class="mb-4 pb-4 border-b border-slate-100"><p class="text-xs text-slate-500 mb-1">企业名称</p><p class="text-base font-medium text-slate-800">' + name + '</p></div>';
-        var grid = restKeys.map(function (k) {
-          var v = order[k];
-          if (v && typeof v === 'object' && v.text) {
-            return '<div><p class="text-xs text-slate-500 mb-1">' + k + '</p><p class="text-sm"><a href="' + (v.href || '#') + '" class="text-blue-600 hover:underline">' + v.text + '</a></p></div>';
-          }
-          return '<div><p class="text-xs text-slate-500 mb-1">' + k + '</p><p class="text-sm text-slate-800">' + v + '</p></div>';
-        }).join('');
-        el.innerHTML = nameRow + '<div class="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-3">' + grid + '</div>';
+        if (!el) return;
+        var shown = {};
+        var parts = ORDER_FIELD_ORDER.filter(function (k) {
+          return HEADER_ORDER_KEYS.indexOf(k) === -1 && order[k] !== undefined;
+        }).map(function (k) {
+          shown[k] = true;
+          return renderOrderField(k, order[k]);
+        });
+        Object.keys(order).forEach(function (k) {
+          if (HEADER_ORDER_KEYS.indexOf(k) !== -1 || shown[k]) return;
+          parts.push(renderOrderField(k, order[k]));
+        });
+        el.innerHTML = '<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-3">' + parts.join('') + '</div>';
       }
 
-      renderWorkflow(d.workflow);
-      renderOrderInfo(d.order);
-
-      var ic = d.ic;
-      var icRows = [
-        [['企业名称', ic.企业名称], ['法定代表人', ic.法定代表人], ['股份占比', ic.股份占比]],
-        [['联系电话', ic.联系电话], ['法人身份证号码', ic.法人身份证号码]],
-        [['内部财务', ic.内部财务], ['联系电话', ic.联系电话2], ['身份证号码', ic.身份证号码2]],
-        [['注册资本', ic.注册资本], ['注册地址', ic.注册地址]]
+      var ARCHIVE_ORDER = [
+        '企业名称', '实际对接人姓名', '实际对接人电话', '所属区域', '有无社保', '成立日期',
+        '税务核定', '税务分局', '税务局电话', '开票税点', '电子税务局密码', '资质许可证', '挂靠地址',
+        '开户行', '开户行账号', '特殊业务', '经营范围', '开票信息', '客户备注'
       ];
-      document.getElementById('ic-info').innerHTML = icRows.map(function (row) {
-        return '<div class="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2">' + row.map(function (pair) {
-          return '<div><p class="text-xs text-slate-500 mb-0.5">' + pair[0] + '</p><p class="text-slate-800">' + pair[1] + '</p></div>';
-        }).join('') + '</div>';
-      }).join('');
-      document.getElementById('ic-scope').textContent = d.scope;
+      function renderTaxInfo(archive) {
+        var el = document.getElementById('block-tax-info');
+        if (!el || !archive) return;
+        el.innerHTML = ARCHIVE_ORDER.map(function (k) {
+          return '<div class="tax-info-item"><dt>' + k + '</dt><dd>' + (archive[k] || '—') + '</dd></div>';
+        }).join('');
+      }
+
+      function renderIcProfile(ic, scope) {
+        var el = document.getElementById('ic-info');
+        if (!el) return;
+        var idNo = ic.法人身份证号码 || ic.身份证号码 || '—';
+        var phone2 = ic.联系电话2 || '—';
+        var idNo2 = ic.身份证号码2 || '—';
+        el.innerHTML =
+          '<div class="full"><dt>公司名称</dt><dd class="font-medium">' + (ic.企业名称 || '—') + '</dd></div>' +
+          '<div><dt>法定代表人</dt><dd>' + (ic.法定代表人 || '—') + '</dd></div>' +
+          '<div><dt>联系电话</dt><dd>' + (ic.联系电话 || '—') + '</dd></div>' +
+          '<div><dt>股份占比</dt><dd>' + (ic.股份占比 || '—') + '</dd></div>' +
+          '<div><dt>身份证号码</dt><dd>' + idNo + '</dd></div>' +
+          '<div><dt>内部财务</dt><dd>' + (ic.内部财务 || '—') + '</dd></div>' +
+          '<div><dt>财务联系电话</dt><dd>' + phone2 + '</dd></div>' +
+          '<div><dt>财务身份证号</dt><dd>' + idNo2 + '</dd></div>' +
+          '<div><dt>注册资本</dt><dd>' + (ic.注册资本 || '—') + '</dd></div>' +
+          '<div><dt>注册地址</dt><dd>' + (ic.注册地址 || '—') + '</dd></div>' +
+          '<div class="full"><dt>经营范围</dt><dd class="leading-relaxed rounded-lg border border-slate-100 bg-slate-50/80 p-3 mt-0.5">' + (scope || '—') + '</dd></div>';
+      }
+
+      renderHeader(d);
+      renderOrderInfo(d.order);
+      renderTaxInfo(d.archive);
+      renderIcProfile(d.ic, d.scope);
+
+      var accTabs = document.querySelectorAll('#acc-tabs [data-tab]');
+      var accPanels = {
+        order: document.getElementById('panel-order'),
+        profile: document.getElementById('panel-profile')
+      };
+      function switchAccTab(tab) {
+        accTabs.forEach(function (btn) {
+          var on = btn.getAttribute('data-tab') === tab;
+          btn.classList.toggle('tab-active', on);
+        });
+        Object.keys(accPanels).forEach(function (k) {
+          if (accPanels[k]) accPanels[k].classList.toggle('hidden', k !== tab);
+        });
+      }
+      accTabs.forEach(function (btn) {
+        btn.addEventListener('click', function () { switchAccTab(btn.getAttribute('data-tab')); });
+      });
+      switchAccTab('order');
 
       document.getElementById('progress-list').innerHTML = d.progress.map(function (p) {
         var statusCls = p.status === '进行中' ? 'text-amber-600' : (p.status === '完成' ? 'text-emerald-600' : 'text-slate-600');
-        var actionHtml = p.action === '—' ? '—' : '<button type="button" class="text-blue-600 hover:underline">' + p.action + '</button>';
+        var actionHtml = !p.action || p.action === '—' ? '—' : '<button type="button" class="text-blue-600 hover:underline">' + p.action + '</button>';
         return '<tr class="hover:bg-slate-50"><td class="px-3 py-2.5 border-b border-slate-100">' + p.node + '</td><td class="px-3 py-2.5 border-b border-slate-100 ' + statusCls + '">' + p.status + '</td><td class="px-3 py-2.5 border-b border-slate-100">' + p.owner + '</td><td class="px-3 py-2.5 border-b border-slate-100">' + p.date + '</td><td class="px-3 py-2.5 border-b border-slate-100">' + p.desc + '</td><td class="px-3 py-2.5 border-b border-slate-100">' + actionHtml + '</td></tr>';
       }).join('');
 

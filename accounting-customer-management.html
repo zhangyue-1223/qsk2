@@ -104,9 +104,10 @@
 <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="government-affairs.html">政务服务</a>
             <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="accounting-customer-management.html">代账服务</a>
 <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-items.html">客户物品</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="address-management.html">地址管理</a>
           </div>
         </details>
-        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="address-management.html"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>供应链中心</a>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="supply-chain-management.html"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>供应链中心</a>
 
         <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
         <details class="mx-3 mb-1 group">
@@ -228,12 +229,13 @@
                   <option>许悦</option>
                 </select>
               </label>
-              <label class="text-xs text-slate-500 lg:col-span-2">服务起止时间
-                <div class="mt-1 flex items-center gap-1.5">
-                  <input type="date" value="2023-03-21" class="acc-filter-input h-9 flex-1 min-w-0 rounded-md border border-slate-200 bg-white px-3 text-sm">
-                  <span class="text-slate-400 shrink-0 text-xs">至</span>
-                  <input type="date" value="2024-03-21" class="acc-filter-input h-9 flex-1 min-w-0 rounded-md border border-slate-200 bg-white px-3 text-sm">
-                </div>
+              <label class="text-xs text-slate-500">收费截止月份
+                <select id="filter-deadline-month" class="acc-filter-input mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-600 cursor-pointer">
+                  <option value="">全部</option>
+                  <option value="normal">正常</option>
+                  <option value="warning">临期</option>
+                  <option value="overdue">超期</option>
+                </select>
               </label>
             </div>
             <div class="mt-3 pt-3 border-t border-slate-200/70 flex flex-wrap items-center justify-end gap-2">
@@ -253,117 +255,124 @@
               <thead class="bg-slate-50 text-slate-600">
                 <tr>
                   <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">企业名称</th>
-                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">业务部门</th>
-                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">销售顾问</th>
-                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">财税顾问</th>
-                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">主办会计</th>
-                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">开票员</th>
                   <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">代账价格</th>
                   <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">收费单位</th>
                   <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">代账费/月</th>
                   <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">记账开始月份</th>
                   <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">收费截止月份</th>
                   <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">合同结束日期</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">财税顾问</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">主办会计</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">开票员</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">服务部门</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">销售顾问</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">业务部门</th>
                   <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">查看详情</th>
                   <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">操作</th>
                 </tr>
               </thead>
               <tbody class="text-slate-700">
-                <tr class="hover:bg-slate-50 acc-row" data-tax="general" data-id="acc-1" data-company="苏州美的信息科技有限公司" data-contract="20260415002" data-dept="网销一组" data-sales="周方林" data-fee="333/月" data-chief="马时笑" data-adviser="马时笑" data-invoice="马时笑">
+                <tr class="hover:bg-slate-50 acc-row" data-deadline="normal" data-tax="general" data-id="acc-1" data-company="苏州美的信息科技有限公司" data-contract="20260415002" data-dept="网销一组" data-service-dept="" data-sales="周方林" data-fee="333/月" data-chief="" data-adviser="" data-invoice="">
                   <td class="px-3 py-3 border-b border-slate-100">苏州美的信息科技有限公司</td>
-                  <td class="px-3 py-3 border-b border-slate-100">网销一组</td>
-                  <td class="px-3 py-3 border-b border-slate-100">周方林</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
                   <td class="px-3 py-3 border-b border-slate-100">4000</td>
                   <td class="px-3 py-3 border-b border-slate-100">年付</td>
                   <td class="px-3 py-3 border-b border-slate-100">333</td>
                   <td class="px-3 py-3 border-b border-slate-100">2026-06</td>
                   <td class="px-3 py-3 border-b border-slate-100"><span class="deadline-badge deadline-normal">2027年6月</span></td>
                   <td class="px-3 py-3 border-b border-slate-100">2028-03-21</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
+                  <td class="px-3 py-3 border-b border-slate-100">周方林</td>
+                  <td class="px-3 py-3 border-b border-slate-100">网销一组</td>
                   <td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="accounting-customer-detail.html?id=acc-1">查看详情</a></td>
                   <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="text-blue-600 hover:underline js-dispatch">派单</button></td>
                 </tr>
-                <tr class="hover:bg-slate-50 acc-row" data-tax="general" data-id="acc-2" data-company="苏州维的科技有限公司" data-contract="20260415002" data-dept="网销一组" data-sales="周方林" data-fee="292/月" data-chief="马时笑" data-adviser="马时笑" data-invoice="马时笑">
+                <tr class="hover:bg-slate-50 acc-row" data-deadline="normal" data-tax="general" data-id="acc-2" data-company="苏州维的科技有限公司" data-contract="20260415002" data-dept="网销一组" data-service-dept="" data-sales="周方林" data-fee="292/月" data-chief="" data-adviser="" data-invoice="">
                   <td class="px-3 py-3 border-b border-slate-100">苏州维的科技有限公司</td>
-                  <td class="px-3 py-3 border-b border-slate-100">网销一组</td>
-                  <td class="px-3 py-3 border-b border-slate-100">周方林</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
                   <td class="px-3 py-3 border-b border-slate-100">3500</td>
                   <td class="px-3 py-3 border-b border-slate-100">年付</td>
                   <td class="px-3 py-3 border-b border-slate-100">292</td>
                   <td class="px-3 py-3 border-b border-slate-100">2026-06</td>
                   <td class="px-3 py-3 border-b border-slate-100"><span class="deadline-badge deadline-normal">2027年6月</span></td>
                   <td class="px-3 py-3 border-b border-slate-100">2028-03-21</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
+                  <td class="px-3 py-3 border-b border-slate-100">周方林</td>
+                  <td class="px-3 py-3 border-b border-slate-100">网销一组</td>
                   <td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="accounting-customer-detail.html?id=acc-2">查看详情</a></td>
                   <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="text-blue-600 hover:underline js-dispatch">派单</button></td>
                 </tr>
-                <tr class="hover:bg-slate-50 acc-row" data-tax="small" data-id="acc-3" data-company="苏州维的科技有限公司" data-contract="20260415003" data-dept="常熟组" data-sales="周方林" data-fee="117/月" data-chief="马时笑" data-adviser="马时笑" data-invoice="马时笑">
+                <tr class="hover:bg-slate-50 acc-row" data-deadline="warning" data-tax="small" data-id="acc-3" data-company="苏州维的科技有限公司" data-contract="20260415003" data-dept="常熟组" data-service-dept="顾问二组" data-sales="周方林" data-fee="117/月" data-chief="" data-adviser="" data-invoice="">
                   <td class="px-3 py-3 border-b border-slate-100">苏州维的科技有限公司</td>
-                  <td class="px-3 py-3 border-b border-slate-100">常熟组</td>
-                  <td class="px-3 py-3 border-b border-slate-100">周方林</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
                   <td class="px-3 py-3 border-b border-slate-100">1400</td>
                   <td class="px-3 py-3 border-b border-slate-100">年付</td>
                   <td class="px-3 py-3 border-b border-slate-100">117</td>
                   <td class="px-3 py-3 border-b border-slate-100">2026-06</td>
                   <td class="px-3 py-3 border-b border-slate-100"><span class="deadline-badge deadline-warning">余2个月</span></td>
                   <td class="px-3 py-3 border-b border-slate-100">2028-03-21</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
+                  <td class="px-3 py-3 border-b border-slate-100">顾问二组</td>
+                  <td class="px-3 py-3 border-b border-slate-100">周方林</td>
+                  <td class="px-3 py-3 border-b border-slate-100">常熟组</td>
                   <td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="accounting-customer-detail.html?id=acc-3">查看详情</a></td>
                   <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="text-blue-600 hover:underline js-first-call">首电确认</button></td>
                 </tr>
-                <tr class="hover:bg-slate-50 acc-row" data-tax="general" data-id="acc-4" data-company="万州维的科技有限公司" data-contract="20260415004" data-dept="岚诺组" data-sales="周方林" data-fee="125/月" data-chief="马时笑" data-adviser="马时笑" data-invoice="马时笑">
+                <tr class="hover:bg-slate-50 acc-row" data-deadline="overdue" data-tax="general" data-id="acc-4" data-company="万州维的科技有限公司" data-contract="20260415004" data-dept="岚诺组" data-service-dept="" data-sales="周方林" data-fee="125/月" data-chief="" data-adviser="" data-invoice="">
                   <td class="px-3 py-3 border-b border-slate-100">万州维的科技有限公司</td>
-                  <td class="px-3 py-3 border-b border-slate-100">岚诺组</td>
-                  <td class="px-3 py-3 border-b border-slate-100">周方林</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
                   <td class="px-3 py-3 border-b border-slate-100">1500</td>
                   <td class="px-3 py-3 border-b border-slate-100">年付</td>
                   <td class="px-3 py-3 border-b border-slate-100">125</td>
                   <td class="px-3 py-3 border-b border-slate-100">2026-06</td>
                   <td class="px-3 py-3 border-b border-slate-100"><span class="deadline-badge deadline-overdue">逾期1个月</span></td>
                   <td class="px-3 py-3 border-b border-slate-100">2028-03-21</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
+                  <td class="px-3 py-3 border-b border-slate-100">周方林</td>
+                  <td class="px-3 py-3 border-b border-slate-100">岚诺组</td>
                   <td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="accounting-customer-detail.html?id=acc-4">查看详情</a></td>
                   <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="text-blue-600 hover:underline js-first-call">首电确认</button></td>
                 </tr>
-                <tr class="hover:bg-slate-50 acc-row" data-tax="general" data-id="acc-5" data-company="苏州维的科技有限公司" data-contract="20260415005" data-dept="网销一组" data-sales="周方林" data-fee="325/月" data-chief="马时笑" data-adviser="马时笑" data-invoice="马时笑">
+                <tr class="hover:bg-slate-50 acc-row" data-deadline="warning" data-tax="general" data-id="acc-5" data-company="苏州维的科技有限公司" data-contract="20260415005" data-dept="网销一组" data-service-dept="顾问一组" data-sales="周方林" data-fee="325/月" data-chief="马时笑" data-adviser="马时笑" data-invoice="马时笑">
                   <td class="px-3 py-3 border-b border-slate-100">苏州维的科技有限公司</td>
-                  <td class="px-3 py-3 border-b border-slate-100">网销一组</td>
-                  <td class="px-3 py-3 border-b border-slate-100">周方林</td>
-                  <td class="px-3 py-3 border-b border-slate-100">马时笑</td>
-                  <td class="px-3 py-3 border-b border-slate-100">马时笑</td>
-                  <td class="px-3 py-3 border-b border-slate-100">马时笑</td>
                   <td class="px-3 py-3 border-b border-slate-100">4000</td>
                   <td class="px-3 py-3 border-b border-slate-100">年付</td>
                   <td class="px-3 py-3 border-b border-slate-100">325</td>
                   <td class="px-3 py-3 border-b border-slate-100">2026-06</td>
                   <td class="px-3 py-3 border-b border-slate-100"><span class="deadline-badge deadline-warning">余3个月</span></td>
                   <td class="px-3 py-3 border-b border-slate-100">2028-03-21</td>
+                  <td class="px-3 py-3 border-b border-slate-100">马时笑</td>
+                  <td class="px-3 py-3 border-b border-slate-100">马时笑</td>
+                  <td class="px-3 py-3 border-b border-slate-100">马时笑</td>
+                  <td class="px-3 py-3 border-b border-slate-100">顾问一组</td>
+                  <td class="px-3 py-3 border-b border-slate-100">周方林</td>
+                  <td class="px-3 py-3 border-b border-slate-100">网销一组</td>
                   <td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="accounting-customer-detail.html?id=acc-5">查看详情</a></td>
                   <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap">
                     <button type="button" class="text-blue-600 hover:underline js-progress">添加进度</button>
                   </td>
                 </tr>
-                <tr class="hover:bg-slate-50 acc-row" data-tax="small" data-id="acc-6" data-company="苏州维的科技有限公司" data-contract="20260415006" data-dept="常熟组" data-sales="周方林" data-fee="117/月" data-chief="马时笑" data-adviser="马时笑" data-invoice="马时笑">
+                <tr class="hover:bg-slate-50 acc-row" data-deadline="warning" data-tax="small" data-id="acc-6" data-company="苏州维的科技有限公司" data-contract="20260415006" data-dept="常熟组" data-service-dept="顾问一组" data-sales="周方林" data-fee="117/月" data-chief="马时笑" data-adviser="马时笑" data-invoice="马时笑">
                   <td class="px-3 py-3 border-b border-slate-100">苏州维的科技有限公司</td>
-                  <td class="px-3 py-3 border-b border-slate-100">常熟组</td>
-                  <td class="px-3 py-3 border-b border-slate-100">周方林</td>
-                  <td class="px-3 py-3 border-b border-slate-100">马时笑</td>
-                  <td class="px-3 py-3 border-b border-slate-100">马时笑</td>
-                  <td class="px-3 py-3 border-b border-slate-100">马时笑</td>
                   <td class="px-3 py-3 border-b border-slate-100">6500</td>
                   <td class="px-3 py-3 border-b border-slate-100">年付</td>
                   <td class="px-3 py-3 border-b border-slate-100">117</td>
                   <td class="px-3 py-3 border-b border-slate-100">2026-06</td>
                   <td class="px-3 py-3 border-b border-slate-100"><span class="deadline-badge deadline-warning">余1个月</span></td>
                   <td class="px-3 py-3 border-b border-slate-100">2028-03-21</td>
+                  <td class="px-3 py-3 border-b border-slate-100">马时笑</td>
+                  <td class="px-3 py-3 border-b border-slate-100">马时笑</td>
+                  <td class="px-3 py-3 border-b border-slate-100">马时笑</td>
+                  <td class="px-3 py-3 border-b border-slate-100">顾问一组</td>
+                  <td class="px-3 py-3 border-b border-slate-100">周方林</td>
+                  <td class="px-3 py-3 border-b border-slate-100">常熟组</td>
                   <td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="accounting-customer-detail.html?id=acc-6">查看详情</a></td>
                   <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap">
                     <button type="button" class="text-blue-600 hover:underline js-progress">添加进度</button>
@@ -620,9 +629,28 @@
       }
 
       var accSearchForm = document.getElementById('acc-search-form');
+      var filterDeadlineMonth = document.getElementById('filter-deadline-month');
+      var activeTaxFilter = 'all';
+
+      function applyAccFilters() {
+        var deadlineVal = filterDeadlineMonth ? filterDeadlineMonth.value : '';
+        document.querySelectorAll('.acc-row').forEach(function (row) {
+          var tax = row.getAttribute('data-tax');
+          var taxOk = activeTaxFilter === 'all' || tax === activeTaxFilter;
+          var deadline = row.getAttribute('data-deadline') || '';
+          var deadlineOk = !deadlineVal || deadline === deadlineVal;
+          row.classList.toggle('hidden', !(taxOk && deadlineOk));
+        });
+      }
+
       if (accSearchForm) {
-        accSearchForm.addEventListener('submit', function () {
+        accSearchForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          applyAccFilters();
           showToast('查询成功');
+        });
+        accSearchForm.addEventListener('reset', function () {
+          setTimeout(applyAccFilters, 0);
         });
       }
 
@@ -717,16 +745,11 @@
       });
 
       var tabs = document.querySelectorAll('#accounting-tabs [data-filter]');
-      var rows = document.querySelectorAll('.acc-row');
       tabs.forEach(function (tab) {
         tab.addEventListener('click', function () {
-          var f = tab.getAttribute('data-filter');
+          activeTaxFilter = tab.getAttribute('data-filter') || 'all';
           tabs.forEach(function (t) { t.classList.toggle('acc-tab-active', t === tab); });
-          rows.forEach(function (row) {
-            var tax = row.getAttribute('data-tax');
-            if (f === 'all') row.classList.remove('hidden');
-            else row.classList.toggle('hidden', tax !== f);
-          });
+          applyAccFilters();
         });
       });
 

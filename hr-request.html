@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="./assets/design-system.css">
   <style>
     body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
-    #modal-apply:not(.hidden), #modal-detail:not(.hidden) { display: flex; }
+    #modal-apply:not(.hidden), #modal-detail:not(.hidden), #modal-insurance-voucher:not(.hidden) { display: flex; }
     .hr-type-tab { height: 2rem; padding: 0 1rem; border-radius: 0.25rem; border: 1px solid #e2e8f0; background: #fff; font-size: 0.8125rem; color: #475569; transition: all 0.15s; }
     .hr-type-tab:hover { border-color: #93c5fd; color: #2563eb; }
     .hr-type-tab-active { background: #2563eb; border-color: #2563eb; color: #fff; font-weight: 500; }
@@ -58,9 +58,10 @@
 <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="government-affairs.html">政务服务</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="accounting-customer-management.html">代账服务</a>
 <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-items.html">客户物品</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="address-management.html">地址管理</a>
           </div>
         </details>
-        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="address-management.html"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>供应链中心</a>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="supply-chain-management.html"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>供应链中心</a>
 
         <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
         <details class="mx-3 mb-1 group">
@@ -217,6 +218,15 @@
                   <td class="px-3 py-3">运营支撑部</td>
                   <td class="px-3 py-3 whitespace-nowrap">2024-04-14 11:13</td>
                   <td class="px-3 py-3"><button type="button" class="text-blue-600 hover:underline js-view-detail" data-status="approved" data-type="transfer" data-applicant="孙红" data-dept="运营支撑部" data-time="2024-04-14 11:13">查看详情</button></td>
+                  <td class="px-3 py-3 text-slate-400">—</td>
+                </tr>
+                <tr class="hr-row border-b border-slate-100 hover:bg-slate-50" data-hr-tab="done">
+                  <td class="px-3 py-3">李强</td>
+                  <td class="px-3 py-3">离职申请</td>
+                  <td class="px-3 py-3 text-emerald-600">已通过</td>
+                  <td class="px-3 py-3">政务服务部</td>
+                  <td class="px-3 py-3 whitespace-nowrap">2024-04-08 10:30</td>
+                  <td class="px-3 py-3"><button type="button" class="text-blue-600 hover:underline js-view-detail" data-status="approved" data-type="resign" data-insurance="done" data-applicant="李强" data-dept="政务服务部" data-time="2024-04-08 10:30">查看详情</button></td>
                   <td class="px-3 py-3 text-slate-400">—</td>
                 </tr>
                 <tr class="hr-row border-b border-slate-100 hover:bg-slate-50" data-hr-tab="todo">
@@ -386,6 +396,12 @@
           <p><i class="fa-regular fa-user text-slate-400 mr-2"></i>人事审批：人事专员</p>
           <p><i class="fa-regular fa-paper-plane text-slate-400 mr-2"></i>抄送人：老板、经理</p>
         </div>
+        <div id="hr-flow-resign" class="space-y-2 text-slate-600 pl-1 text-sm hidden">
+          <p><i class="fa-regular fa-user text-slate-400 mr-2"></i>部门审批：孙红</p>
+          <p><i class="fa-regular fa-user text-slate-400 mr-2"></i>经理审批：业务经理</p>
+          <p><i class="fa-solid fa-shield-halved text-slate-400 mr-2"></i>退保处理人：HR人事</p>
+          <p><i class="fa-regular fa-paper-plane text-slate-400 mr-2"></i>抄送人：老板、人事</p>
+        </div>
         <div id="hr-flow-other" class="space-y-2 text-slate-600 pl-1 text-sm hidden">
           <p><i class="fa-regular fa-user text-slate-400 mr-2"></i>部门审批：孙红</p>
           <p><i class="fa-regular fa-user text-slate-400 mr-2"></i>经理审批：业务经理</p>
@@ -415,6 +431,28 @@
         <div id="detail-timeline" class="p-2"></div>
       </div>
       <div id="detail-footer" class="shrink-0 border-t border-slate-200 py-4 px-6 flex justify-center gap-3"></div>
+    </div>
+  </div>
+
+  <div id="modal-insurance-voucher" class="fixed inset-0 z-[130] hidden items-center justify-center p-4 bg-slate-900/45" role="dialog" aria-modal="true">
+    <div class="absolute inset-0" data-close-voucher></div>
+    <div class="relative w-full max-w-md rounded-xl border border-slate-200 bg-white shadow-xl overflow-hidden">
+      <div class="border-b border-slate-200 px-5 py-4 flex items-center justify-between">
+        <h3 class="text-base font-medium text-slate-800">退保凭证</h3>
+        <button type="button" data-close-voucher class="text-slate-400 hover:text-slate-600" aria-label="关闭"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <div class="p-5 text-sm">
+        <p class="text-slate-500 mb-3">申请人：李强 · 政务服务部 · 离职申请</p>
+        <div class="rounded-lg border border-slate-200 bg-slate-50 p-6 text-center">
+          <i class="fa-regular fa-file-pdf text-4xl text-rose-500 mb-3"></i>
+          <p class="font-medium text-slate-800">社保退保凭证.pdf</p>
+          <p class="text-xs text-slate-400 mt-1">上传时间：2024-04-09 16:20</p>
+        </div>
+        <a href="#" class="mt-4 inline-flex items-center gap-1.5 text-blue-600 hover:underline" onclick="return false"><i class="fa-solid fa-download text-xs"></i>下载凭证</a>
+      </div>
+      <div class="border-t border-slate-100 px-5 py-3 flex justify-center">
+        <button type="button" data-close-voucher class="h-9 min-w-[5rem] rounded-md border border-slate-200 text-sm text-slate-600 hover:bg-slate-50">关闭</button>
+      </div>
     </div>
   </div>
 
@@ -465,7 +503,8 @@
           if (p) p.hidden = k !== type;
         });
         document.getElementById('hr-flow-recruit').classList.toggle('hidden', type !== 'recruit');
-        document.getElementById('hr-flow-other').classList.toggle('hidden', type === 'recruit');
+        document.getElementById('hr-flow-resign').classList.toggle('hidden', type !== 'resign');
+        document.getElementById('hr-flow-other').classList.toggle('hidden', type === 'recruit' || type === 'resign');
       }
 
       document.querySelectorAll('.hr-type-tab').forEach(function (btn) {
@@ -567,7 +606,7 @@
       function getSecondApprover(type) {
         return type === 'recruit' ? '李婷　人事专员' : '王磊　业务经理';
       }
-      function getTimeline(status, type, base) {
+      function getTimeline(status, type, base, insuranceDone) {
         var step2 = getSecondStep(type);
         var approver2 = getSecondApprover(type);
         var submitName = base.applicant + '　' + base.dept;
@@ -587,11 +626,24 @@
             { kind: 'done', step: '提交申请', name: submitName, time: t, status: '发起申请', statusClass: 'text-emerald-600', comment: '' }
           ];
         }
-        return [
+        var approvedSteps = [
           { kind: 'done', step: step2, name: approver2, time: '2024-04-14 15:10:00', status: '审批通过', statusClass: 'text-emerald-600', comment: '审批意见：审批通过' },
           { kind: 'done', step: '部门审批', name: deptApprover, time: '2024-04-14 13:05:00', status: '审批通过', statusClass: 'text-emerald-600', comment: '审批意见：同意申请' },
           { kind: 'done', step: '提交申请', name: submitName, time: t, status: '发起申请', statusClass: 'text-emerald-600', comment: '' }
         ];
+        if (status === 'approved' && type === 'resign' && insuranceDone) {
+          approvedSteps.unshift({
+            kind: 'done',
+            step: '退保已处理',
+            name: 'HR人事',
+            time: '2024-04-09 16:20:00',
+            status: '已处理',
+            statusClass: 'text-emerald-600',
+            comment: '已完成社保退保办理',
+            voucher: true
+          });
+        }
+        return approvedSteps;
       }
 
       var statusCfg = {
@@ -632,15 +684,38 @@
           icon = '<div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-white"><i class="fa-solid fa-check text-sm"></i></div>';
         }
         var comment = item.comment ? '<p class="mt-1 text-slate-500">' + item.comment + '</p>' : '';
+        var voucherBtn = item.voucher
+          ? '<p class="mt-2"><button type="button" class="js-view-insurance-voucher inline-flex items-center gap-1.5 rounded border border-blue-200 bg-blue-50 px-3 py-1.5 text-sm text-blue-600 hover:bg-blue-100"><i class="fa-regular fa-file-pdf"></i>查看退保凭证</button></p>'
+          : '';
         return '<div class="relative flex gap-3 pb-6">' + line + icon +
           '<div class="min-w-0 flex-1 pt-0.5"><p class="font-medium text-slate-800">' + item.step + '</p>' +
           '<p class="text-slate-600">' + item.name + '　' + item.time + '</p>' +
-          '<p class="' + item.statusClass + ' font-medium">' + item.status + '</p>' + comment + '</div></div>';
+          '<p class="' + item.statusClass + ' font-medium">' + item.status + '</p>' + comment + voucherBtn + '</div></div>';
       }
       function renderTimeline(items) {
         var html = '';
         for (var i = 0; i < items.length; i++) html += timelineItem(items[i], i === items.length - 1);
         timelineEl.innerHTML = html;
+        timelineEl.querySelectorAll('.js-view-insurance-voucher').forEach(function (btn) {
+          btn.addEventListener('click', openInsuranceVoucherModal);
+        });
+      }
+
+      var voucherModal = document.getElementById('modal-insurance-voucher');
+      function openInsuranceVoucherModal() {
+        if (!voucherModal) return;
+        voucherModal.classList.remove('hidden');
+        voucherModal.classList.add('flex');
+      }
+      function closeInsuranceVoucherModal() {
+        if (!voucherModal) return;
+        voucherModal.classList.add('hidden');
+        voucherModal.classList.remove('flex');
+      }
+      if (voucherModal) {
+        voucherModal.querySelectorAll('[data-close-voucher]').forEach(function (el) {
+          el.addEventListener('click', closeInsuranceVoucherModal);
+        });
       }
 
       function openDetail(btn) {
@@ -665,7 +740,8 @@
             openModal(applyModal);
           });
         });
-        renderTimeline(getTimeline(st, tp, base));
+        var insuranceDone = btn.getAttribute('data-insurance') === 'done';
+        renderTimeline(getTimeline(st, tp, base, insuranceDone));
         openModal(detailModal);
       }
 
@@ -685,6 +761,7 @@
         if (e.key !== 'Escape') return;
         closeModal(applyModal);
         closeModal(detailModal);
+        closeInsuranceVoucherModal();
       });
     })();
   </script>

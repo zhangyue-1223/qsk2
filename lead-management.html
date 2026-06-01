@@ -14,6 +14,12 @@
     .lead-tab-active { border-bottom-color: #2563eb; color: #2563eb; font-weight: 600; }
     .table-leads { table-layout: fixed; width: 100%; border-collapse: collapse; }
     .table-leads th, .table-leads td { word-wrap: break-word; overflow-wrap: break-word; }
+    .table-leads th:nth-child(3),
+    .table-leads td:nth-child(3) {
+      white-space: nowrap;
+      word-wrap: normal;
+      overflow-wrap: normal;
+    }
     .table-leads thead th { font-size: 12px; line-height: 1.4; color: #64748b; font-weight: 500; }
     .table-leads tbody td { font-size: 14px; line-height: 1.5; color: #1e293b; }
   </style>
@@ -55,9 +61,10 @@
 <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="government-affairs.html">政务服务</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="accounting-customer-management.html">代账服务</a>
 <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="#">客户物品</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="address-management.html">地址管理</a>
           </div>
         </details>
-        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="address-management.html"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>供应链中心</a>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="supply-chain-management.html"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>供应链中心</a>
 
         <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
         <details class="mx-3 mb-1 group">
@@ -1022,12 +1029,6 @@
       var convertOppStage = document.getElementById('convert-opp-stage');
       var convertOppLevel = document.getElementById('convert-opp-level');
       var currentConvertLeadName = '';
-      function maskPhone(phone) {
-        var value = String(phone || '').replace(/\s+/g, '');
-        if (!/^\d{11}$/.test(value)) return phone || '';
-        return value.slice(0, 3) + '****' + value.slice(-4);
-      }
-
       function showModal(key) {
         var el = modals[key];
         if (!el) return;
@@ -1071,9 +1072,6 @@
       });
       document.querySelectorAll('.js-quote').forEach(function (btn) {
         btn.addEventListener('click', function () { openQuoteModal(); });
-      });
-      document.querySelectorAll('#lead-tbody tr td:nth-child(3)').forEach(function (cell) {
-        cell.textContent = maskPhone(cell.textContent.trim());
       });
 
       function openConvertOppModal(payload) {

@@ -48,9 +48,10 @@
 <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="government-affairs.html">政务服务</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="accounting-customer-management.html">代账服务</a>
 <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-items.html">客户物品</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="address-management.html">地址管理</a>
           </div>
         </details>
-        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="address-management.html"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>供应链中心</a>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="supply-chain-management.html"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>供应链中心</a>
 
         <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
         <details class="mx-3 mb-1 group">
@@ -394,14 +395,8 @@
       badge.textContent = data.status;
 
       var infoEl = document.getElementById('lead-info');
-      function maskPhone(phone) {
-        var value = String(phone || '').replace(/\s+/g, '');
-        if (!/^\d{11}$/.test(value)) return phone || '';
-        return value.slice(0, 3) + '****' + value.slice(-4);
-      }
       infoEl.innerHTML = Object.keys(data.info).map(function (k) {
-        var value = k === '手机号码' ? maskPhone(data.info[k]) : data.info[k];
-        return '<div class="py-0.5"><p class="text-xs text-slate-500 mb-1">' + k + '</p><p class="text-sm text-slate-800">' + value + '</p></div>';
+        return '<div class="py-0.5"><p class="text-xs text-slate-500 mb-1">' + k + '</p><p class="text-sm text-slate-800">' + data.info[k] + '</p></div>';
       }).join('');
       document.getElementById('lead-note').innerHTML = data.note.replace(/\n/g, '<br>');
       document.getElementById('follow-form').classList.toggle('hidden', !data.showForm);

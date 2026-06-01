@@ -37,6 +37,51 @@
     .rank-bar-fill { height: 100%; border-radius: 999px; background: #2563eb; }
     .rank-row { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.625rem; border-radius: 0.375rem; transition: background-color 0.15s; }
     .rank-row:hover { background: #f8fafc; }
+    .todo-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.875rem 1rem;
+      border-radius: 0.5rem;
+      border: 1px solid #e2e8f0;
+      background: #fff;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .todo-item:hover { border-color: #93c5fd; box-shadow: 0 1px 3px rgba(37, 99, 235, 0.08); }
+    .todo-action {
+      height: 2rem;
+      padding: 0 0.875rem;
+      border-radius: 0.375rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      white-space: nowrap;
+      flex-shrink: 0;
+      cursor: pointer;
+      transition: background-color 0.15s;
+    }
+    .order-carousel-viewport { overflow: hidden; border-radius: 0.5rem; }
+    .order-carousel-track {
+      display: flex;
+      transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .order-carousel-slide {
+      min-width: 100%;
+      flex-shrink: 0;
+      padding: 1rem 1.25rem;
+      background: linear-gradient(135deg, #eff6ff 0%, #f8fafc 100%);
+      border: 1px solid #dbeafe;
+      border-radius: 0.5rem;
+    }
+    .order-carousel-dot {
+      width: 0.375rem;
+      height: 0.375rem;
+      border-radius: 999px;
+      background: #cbd5e1;
+      transition: background 0.2s, width 0.2s;
+      cursor: pointer;
+    }
+    .order-carousel-dot-active { background: #2563eb; width: 1.125rem; }
     #modal-add-lead:not(.hidden) { display: block; }
     #modal-follow-note:not(.hidden),
     #modal-maintain:not(.hidden) { display: flex; }
@@ -77,9 +122,10 @@
 <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="government-affairs.html">政务服务</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="accounting-customer-management.html">代账服务</a>
 <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-items.html">客户物品</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="address-management.html">地址管理</a>
           </div>
         </details>
-        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="address-management.html"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>供应链中心</a>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="supply-chain-management.html"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>供应链中心</a>
 
         <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html">
           <i class="fa-solid fa-book-open w-5 mr-2"></i>知识库
@@ -152,7 +198,7 @@
           <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-5 sm:p-6 bg-gradient-to-r from-blue-600 to-blue-500 text-white">
             <div>
               <p class="text-lg font-semibold">你好，朱总，欢迎回到企税康</p>
-              <p class="text-blue-100 mt-1 text-sm">今日待处理事项 9 项 · 请优先处理右侧待办</p>
+              <p class="text-blue-100 mt-1 text-sm">今日我的代办 4 项 · 请优先处理下方事项</p>
             </div>
             <span class="inline-flex items-center self-start sm:self-center rounded-full bg-white/15 px-3 py-1 text-xs font-medium">2026年5月19日</span>
           </div>
@@ -240,193 +286,55 @@
 
             <section class="dash-card p-5">
               <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
-                <h2 class="sec-title mb-0">工作简报</h2>
-                <div class="flex flex-wrap items-center gap-2">
-                  <button type="button" class="filter-btn min-w-24"><span>全部</span><i class="fa-solid fa-angle-down text-slate-400 text-xs"></i></button>
-                  <button type="button" class="filter-btn min-w-24"><span>全部</span><i class="fa-solid fa-angle-down text-slate-400 text-xs"></i></button>
-                  <button type="button" class="filter-btn min-w-24"><span>本月</span><i class="fa-solid fa-angle-down text-slate-400 text-xs"></i></button>
-                </div>
+                <h2 class="sec-title mb-0">我的代办</h2>
+                <span class="text-xs text-slate-500">朱总 · 共 <span class="text-blue-600 font-semibold">4</span> 项待办</span>
               </div>
-              <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-                <div class="brief-item flex items-center gap-3">
-                  <div class="w-11 h-11 rounded-lg bg-blue-600 text-white flex items-center justify-center shrink-0"><i class="fa-regular fa-file-lines"></i></div>
-                  <div><p class="text-2xl leading-6 text-slate-700">27</p><p class="text-sm text-slate-500 mt-1">新增线索</p></div>
-                </div>
-                <div class="brief-item flex items-center gap-3">
-                  <div class="w-11 h-11 rounded-lg bg-blue-600 text-white flex items-center justify-center shrink-0"><i class="fa-solid fa-clipboard-check"></i></div>
-                  <div><p class="text-2xl leading-6 text-slate-700">17</p><p class="text-sm text-slate-500 mt-1">新增商机</p></div>
-                </div>
-                <div class="brief-item flex items-center gap-3">
-                  <div class="w-11 h-11 rounded-lg bg-blue-600 text-white flex items-center justify-center shrink-0"><i class="fa-regular fa-clock"></i></div>
-                  <div><p class="text-2xl leading-6 text-slate-700">27</p><p class="text-sm text-slate-500 mt-1">跟进中</p></div>
-                </div>
-                <div class="brief-item flex items-center gap-3">
-                  <div class="w-11 h-11 rounded-lg bg-blue-600 text-white flex items-center justify-center shrink-0"><i class="fa-regular fa-address-card"></i></div>
-                  <div><p class="text-2xl leading-6 text-slate-700">27</p><p class="text-sm text-slate-500 mt-1">合同审核</p></div>
-                </div>
-                <div class="brief-item flex items-center gap-3">
-                  <div class="w-11 h-11 rounded-lg bg-blue-600 text-white flex items-center justify-center shrink-0"><i class="fa-solid fa-file-signature"></i></div>
-                  <div><p class="text-2xl leading-6 text-slate-700">27</p><p class="text-sm text-slate-500 mt-1">合同待签</p></div>
-                </div>
-                <div class="brief-item flex items-center gap-3">
-                  <div class="w-11 h-11 rounded-lg bg-blue-600 text-white flex items-center justify-center shrink-0"><i class="fa-solid fa-file-invoice-dollar"></i></div>
-                  <div><p class="text-2xl leading-6 text-slate-700">27</p><p class="text-sm text-slate-500 mt-1">订单未支付</p></div>
-                </div>
-                <div class="brief-item flex items-center gap-3">
-                  <div class="w-11 h-11 rounded-lg bg-blue-600 text-white flex items-center justify-center shrink-0"><i class="fa-solid fa-building-columns"></i></div>
-                  <div><p class="text-2xl leading-6 text-slate-700">27</p><p class="text-sm text-slate-500 mt-1">工商未派单</p></div>
-                </div>
-                <div class="brief-item flex items-center gap-3">
-                  <div class="w-11 h-11 rounded-lg bg-blue-600 text-white flex items-center justify-center shrink-0"><i class="fa-regular fa-rectangle-list"></i></div>
-                  <div><p class="text-2xl leading-6 text-slate-700">27</p><p class="text-sm text-slate-500 mt-1">代账未派单</p></div>
-                </div>
-                <div class="brief-item flex items-center gap-3">
-                  <div class="w-11 h-11 rounded-lg bg-blue-600 text-white flex items-center justify-center shrink-0"><i class="fa-regular fa-calendar-check"></i></div>
-                  <div><p class="text-2xl leading-6 text-slate-700">27</p><p class="text-sm text-slate-500 mt-1">代账到期</p></div>
-                </div>
-                <div class="brief-item flex items-center gap-3">
-                  <div class="w-11 h-11 rounded-lg bg-blue-600 text-white flex items-center justify-center shrink-0"><i class="fa-solid fa-map-location-dot"></i></div>
-                  <div><p class="text-2xl leading-6 text-slate-700">27</p><p class="text-sm text-slate-500 mt-1">地址到期</p></div>
-                </div>
-              </div>
-            </section>
-
-            <section class="dash-card p-5 bg-slate-50/80">
-              <div class="flex items-center justify-between mb-4">
-                <h2 class="sec-title mb-0">业务速览</h2>
-                <a class="text-xs text-blue-600 hover:text-blue-700" href="government-affairs.html">查看全部</a>
-              </div>
-              <div class="flex gap-4 flex-col lg:flex-row">
-                <div class="w-full lg:w-56 shrink-0 space-y-3">
-                  <div class="dash-card p-4">
-                    <div class="flex items-start gap-3">
-                      <div class="w-11 h-11 rounded-lg bg-blue-600 text-white flex items-center justify-center shrink-0">
-                        <i class="fa-solid fa-table-cells text-lg"></i>
-                      </div>
-                      <div class="min-w-0 flex-1">
-                        <p class="text-sm text-slate-600">政务服务（条）</p>
-                        <p class="text-2xl font-semibold text-slate-800 tabular-nums mt-2">422,169</p>
-                      </div>
+              <ul class="space-y-2.5" id="todo-list">
+                <li class="todo-item">
+                  <div class="flex items-center gap-3 min-w-0 flex-1">
+                    <div class="w-10 h-10 rounded-lg bg-orange-100 text-orange-600 flex items-center justify-center shrink-0"><i class="fa-solid fa-user-clock"></i></div>
+                    <div class="min-w-0">
+                      <p class="text-sm font-medium text-slate-800">线索待跟进</p>
+                      <p class="text-xs text-slate-500 mt-0.5 truncate">3 条线索超过 48 小时未跟进</p>
                     </div>
                   </div>
-                  <div class="dash-card p-4">
-                    <div class="flex items-start gap-3">
-                      <div class="w-11 h-11 rounded-lg bg-blue-600 text-white flex items-center justify-center shrink-0">
-                        <i class="fa-solid fa-layer-group text-lg"></i>
-                      </div>
-                      <div class="min-w-0 flex-1">
-                        <p class="text-sm text-slate-600">代账客户（家）</p>
-                        <p class="text-2xl font-semibold text-slate-800 tabular-nums mt-2">422,169</p>
-                      </div>
+                  <a href="lead-management.html" class="todo-action bg-orange-50 text-orange-700 hover:bg-orange-100 inline-flex items-center">去跟进</a>
+                </li>
+                <li class="todo-item">
+                  <div class="flex items-center gap-3 min-w-0 flex-1">
+                    <div class="w-10 h-10 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center shrink-0"><i class="fa-solid fa-building-columns"></i></div>
+                    <div class="min-w-0">
+                      <p class="text-sm font-medium text-slate-800">工商未派单</p>
+                      <p class="text-xs text-slate-500 mt-0.5 truncate">2 笔政务工单待派单处理</p>
                     </div>
                   </div>
-                </div>
-                <div class="flex-1 min-w-0 dash-card overflow-hidden">
-                  <div class="overflow-auto">
-                    <table class="w-full text-sm">
-                      <thead class="bg-slate-50 text-slate-600">
-                        <tr class="border-b border-slate-200">
-                          <th class="text-left font-medium px-4 py-3">编号</th>
-                          <th class="text-left font-medium px-4 py-3">业务类型</th>
-                          <th class="text-left font-medium px-4 py-3">服务项目</th>
-                          <th class="text-left font-medium px-4 py-3">办理状态</th>
-                          <th class="text-left font-medium px-4 py-3">经办人</th>
-                          <th class="text-left font-medium px-4 py-3">销售顾问</th>
-                        </tr>
-                      </thead>
-                      <tbody class="text-slate-700 divide-y divide-slate-100">
-                        <tr>
-                          <td class="px-4 py-3">20260404002</td>
-                          <td class="px-4 py-3">代理记账</td>
-                          <td class="px-4 py-3">代理记账</td>
-                          <td class="px-4 py-3">待派单</td>
-                          <td class="px-4 py-3">马氏</td>
-                          <td class="px-4 py-3">伊一</td>
-                        </tr>
-                        <tr>
-                          <td class="px-4 py-3">20260404003</td>
-                          <td class="px-4 py-3">工商业务</td>
-                          <td class="px-4 py-3">解地址异常</td>
-                          <td class="px-4 py-3">提交材料</td>
-                          <td class="px-4 py-3">徐月</td>
-                          <td class="px-4 py-3">伊一</td>
-                        </tr>
-                        <tr>
-                          <td class="px-4 py-3">20260404004</td>
-                          <td class="px-4 py-3">工商业务</td>
-                          <td class="px-4 py-3">解地址异常</td>
-                          <td class="px-4 py-3">政务系统审核</td>
-                          <td class="px-4 py-3">徐月</td>
-                          <td class="px-4 py-3">伊一</td>
-                        </tr>
-                      </tbody>
-                    </table>
+                  <a href="government-affairs.html" class="todo-action bg-blue-50 text-blue-700 hover:bg-blue-100 inline-flex items-center">去派单</a>
+                </li>
+                <li class="todo-item">
+                  <div class="flex items-center gap-3 min-w-0 flex-1">
+                    <div class="w-10 h-10 rounded-lg bg-violet-100 text-violet-600 flex items-center justify-center shrink-0"><i class="fa-regular fa-rectangle-list"></i></div>
+                    <div class="min-w-0">
+                      <p class="text-sm font-medium text-slate-800">代账未派单</p>
+                      <p class="text-xs text-slate-500 mt-0.5 truncate">1 笔代账服务待派单</p>
+                    </div>
                   </div>
-                </div>
-              </div>
+                  <a href="accounting-customer-management.html" class="todo-action bg-violet-50 text-violet-700 hover:bg-violet-100 inline-flex items-center">去派单</a>
+                </li>
+                <li class="todo-item">
+                  <div class="flex items-center gap-3 min-w-0 flex-1">
+                    <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                    <div class="min-w-0">
+                      <p class="text-sm font-medium text-slate-800">报销待审批</p>
+                      <p class="text-xs text-slate-500 mt-0.5 truncate">2 笔报销单待您审批</p>
+                    </div>
+                  </div>
+                  <a href="payment-request.html" class="todo-action bg-emerald-50 text-emerald-700 hover:bg-emerald-100 inline-flex items-center">去审批</a>
+                </li>
+              </ul>
             </section>
           </div>
 
           <div class="xl:col-span-4 space-y-5">
-            <section class="dash-card p-5">
-              <div class="flex items-center justify-between mb-3">
-                <h2 class="sec-title mb-0">平台知识库</h2>
-                <a class="text-xs text-blue-600 hover:text-blue-700" href="knowledge-base.html">去查阅</a>
-              </div>
-              <ul class="space-y-3 text-sm">
-                <li class="flex gap-2">
-                  <i class="fa-regular fa-file-lines text-blue-600 mt-1"></i>
-                  <div>
-                    <p class="text-slate-700">关于客户涉税申诉处理指引（2026 版）</p>
-                    <p class="text-xs text-slate-400 mt-1">更新于 2026-05-04</p>
-                  </div>
-                </li>
-                <li class="flex gap-2">
-                  <i class="fa-regular fa-file-lines text-blue-600 mt-1"></i>
-                  <div>
-                    <p class="text-slate-700">开票异常问题排查与工单升级规范</p>
-                    <p class="text-xs text-slate-400 mt-1">更新于 2026-05-02</p>
-                  </div>
-                </li>
-                <li class="flex gap-2">
-                  <i class="fa-regular fa-file-lines text-blue-600 mt-1"></i>
-                  <div>
-                    <p class="text-slate-700">企业税务健康体检服务操作手册</p>
-                    <p class="text-xs text-slate-400 mt-1">更新于 2026-04-30</p>
-                  </div>
-                </li>
-              </ul>
-            </section>
-
-            <section class="dash-card p-5">
-              <div class="flex items-center justify-between mb-3">
-                <h2 class="sec-title mb-0">代办事项</h2>
-                <span class="text-xs text-red-500 font-medium">8</span>
-              </div>
-              <ul class="space-y-2 text-sm max-h-44 overflow-y-auto pr-1">
-                <li class="flex justify-between items-center p-2 rounded bg-red-50">
-                  <span>待完成：优质客户合同补充协议</span>
-                  <a class="text-xs text-red-600 shrink-0 ml-2" href="#">去处理</a>
-                </li>
-                <li class="flex justify-between items-center p-2 rounded bg-amber-50">
-                  <span>领用申请审批：深圳分公司</span>
-                  <a class="text-xs text-amber-600 shrink-0 ml-2" href="#">去审批</a>
-                </li>
-                <li class="flex justify-between items-center p-2 rounded bg-blue-50">
-                  <span>客户回访：江南生物本周回访</span>
-                  <a class="text-xs text-blue-600 shrink-0 ml-2" href="#">去跟进</a>
-                </li>
-                <li class="flex justify-between items-center p-2 rounded bg-violet-50">
-                  <span>资料补齐：园区企业税控托管授权书</span>
-                  <a class="text-xs text-violet-600 shrink-0 ml-2" href="#">去补充</a>
-                </li>
-                <li class="flex justify-between items-center p-2 rounded bg-emerald-50">
-                  <span>续费跟进：苏州范尔科技合同到期提醒</span>
-                  <a class="text-xs text-emerald-600 shrink-0 ml-2" href="#">去联系</a>
-                </li>
-              </ul>
-            </section>
-
             <section class="dash-card p-5">
               <div class="flex items-center justify-between gap-2 mb-3">
                 <h2 class="sec-title mb-0">月度业绩排行</h2>
@@ -569,6 +477,69 @@
               </div>
 
               <p id="rank-footnote" class="text-[10px] text-slate-400 mt-3 pt-2 border-t border-slate-100">数据截至 2026-05-26 · 按业绩金额排序</p>
+            </section>
+
+            <section class="dash-card p-5">
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <h2 class="sec-title mb-0">销售顾问报单</h2>
+                <div class="flex items-center gap-1">
+                  <button type="button" id="order-carousel-prev" class="w-7 h-7 rounded-md border border-slate-200 bg-white text-slate-500 hover:bg-slate-50 flex items-center justify-center cursor-pointer" aria-label="上一条"><i class="fa-solid fa-chevron-left text-xs"></i></button>
+                  <button type="button" id="order-carousel-next" class="w-7 h-7 rounded-md border border-slate-200 bg-white text-slate-500 hover:bg-slate-50 flex items-center justify-center cursor-pointer" aria-label="下一条"><i class="fa-solid fa-chevron-right text-xs"></i></button>
+                </div>
+              </div>
+              <div class="order-carousel-viewport" id="order-carousel-viewport">
+                <div class="order-carousel-track" id="order-carousel-track">
+                  <div class="order-carousel-slide">
+                    <div class="flex items-center gap-2 mb-3">
+                      <span class="inline-flex items-center rounded-full bg-blue-600/10 px-2 py-0.5 text-[10px] font-medium text-blue-700">最新报单</span>
+                      <span class="text-xs text-slate-400">2026-05-26 14:32</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                      <div><p class="text-xs text-slate-500">部门</p><p class="font-medium text-slate-800 mt-0.5">网销一组</p></div>
+                      <div><p class="text-xs text-slate-500">姓名</p><p class="font-medium text-slate-800 mt-0.5">周芳林</p></div>
+                      <div><p class="text-xs text-slate-500">业务类型</p><p class="font-medium text-slate-800 mt-0.5">注册地址</p></div>
+                      <div><p class="text-xs text-slate-500">收款金额</p><p class="font-semibold text-blue-600 mt-0.5 tabular-nums">¥ 12,000</p></div>
+                    </div>
+                  </div>
+                  <div class="order-carousel-slide">
+                    <div class="flex items-center gap-2 mb-3">
+                      <span class="inline-flex items-center rounded-full bg-emerald-600/10 px-2 py-0.5 text-[10px] font-medium text-emerald-700">业务报单</span>
+                      <span class="text-xs text-slate-400">2026-05-26 11:18</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                      <div><p class="text-xs text-slate-500">部门</p><p class="font-medium text-slate-800 mt-0.5">常熟组</p></div>
+                      <div><p class="text-xs text-slate-500">姓名</p><p class="font-medium text-slate-800 mt-0.5">陈莉</p></div>
+                      <div><p class="text-xs text-slate-500">业务类型</p><p class="font-medium text-slate-800 mt-0.5">代理记账</p></div>
+                      <div><p class="text-xs text-slate-500">收款金额</p><p class="font-semibold text-blue-600 mt-0.5 tabular-nums">¥ 4,800</p></div>
+                    </div>
+                  </div>
+                  <div class="order-carousel-slide">
+                    <div class="flex items-center gap-2 mb-3">
+                      <span class="inline-flex items-center rounded-full bg-amber-600/10 px-2 py-0.5 text-[10px] font-medium text-amber-800">业务报单</span>
+                      <span class="text-xs text-slate-400">2026-05-25 16:45</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                      <div><p class="text-xs text-slate-500">部门</p><p class="font-medium text-slate-800 mt-0.5">网销二组</p></div>
+                      <div><p class="text-xs text-slate-500">姓名</p><p class="font-medium text-slate-800 mt-0.5">李承</p></div>
+                      <div><p class="text-xs text-slate-500">业务类型</p><p class="font-medium text-slate-800 mt-0.5">工商变更</p></div>
+                      <div><p class="text-xs text-slate-500">收款金额</p><p class="font-semibold text-blue-600 mt-0.5 tabular-nums">¥ 2,600</p></div>
+                    </div>
+                  </div>
+                  <div class="order-carousel-slide">
+                    <div class="flex items-center gap-2 mb-3">
+                      <span class="inline-flex items-center rounded-full bg-violet-600/10 px-2 py-0.5 text-[10px] font-medium text-violet-700">业务报单</span>
+                      <span class="text-xs text-slate-400">2026-05-25 09:20</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                      <div><p class="text-xs text-slate-500">部门</p><p class="font-medium text-slate-800 mt-0.5">网销一组</p></div>
+                      <div><p class="text-xs text-slate-500">姓名</p><p class="font-medium text-slate-800 mt-0.5">吴芳</p></div>
+                      <div><p class="text-xs text-slate-500">业务类型</p><p class="font-medium text-slate-800 mt-0.5">政务代办</p></div>
+                      <div><p class="text-xs text-slate-500">收款金额</p><p class="font-semibold text-blue-600 mt-0.5 tabular-nums">¥ 1,500</p></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex justify-center gap-1.5 mt-3" id="order-carousel-dots" role="tablist" aria-label="报单轮播指示"></div>
             </section>
           </div>
         </div>
@@ -928,6 +899,52 @@
         });
       });
       updateRankFootnote();
+
+      (function initOrderCarousel() {
+        var track = document.getElementById('order-carousel-track');
+        var dotsWrap = document.getElementById('order-carousel-dots');
+        var btnPrev = document.getElementById('order-carousel-prev');
+        var btnNext = document.getElementById('order-carousel-next');
+        if (!track || !dotsWrap) return;
+
+        var slides = track.querySelectorAll('.order-carousel-slide');
+        var total = slides.length;
+        var index = 0;
+        var timer = null;
+
+        function goTo(i) {
+          index = (i + total) % total;
+          track.style.transform = 'translateX(-' + (index * 100) + '%)';
+          dotsWrap.querySelectorAll('.order-carousel-dot').forEach(function (dot, di) {
+            dot.classList.toggle('order-carousel-dot-active', di === index);
+            dot.setAttribute('aria-selected', di === index ? 'true' : 'false');
+          });
+        }
+
+        slides.forEach(function (_, i) {
+          var dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = 'order-carousel-dot' + (i === 0 ? ' order-carousel-dot-active' : '');
+          dot.setAttribute('role', 'tab');
+          dot.setAttribute('aria-label', '第 ' + (i + 1) + ' 条报单');
+          dot.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+          dot.addEventListener('click', function () {
+            goTo(i);
+            resetAuto();
+          });
+          dotsWrap.appendChild(dot);
+        });
+
+        function resetAuto() {
+          if (timer) clearInterval(timer);
+          timer = setInterval(function () { goTo(index + 1); }, 5000);
+        }
+
+        if (btnPrev) btnPrev.addEventListener('click', function () { goTo(index - 1); resetAuto(); });
+        if (btnNext) btnNext.addEventListener('click', function () { goTo(index + 1); resetAuto(); });
+        goTo(0);
+        resetAuto();
+      })();
 
       var modalAddLead = document.getElementById('modal-add-lead');
       var btnOpenAddLead = document.getElementById('btn-open-add-lead');

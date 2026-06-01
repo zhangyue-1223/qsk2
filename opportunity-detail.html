@@ -48,9 +48,10 @@
 <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="government-affairs.html">政务服务</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="accounting-customer-management.html">代账服务</a>
 <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-items.html">客户物品</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="address-management.html">地址管理</a>
           </div>
         </details>
-        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="address-management.html"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>供应链中心</a>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="supply-chain-management.html"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>供应链中心</a>
 
         <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
         <details class="mx-3 mb-1 group">
@@ -141,9 +142,7 @@
                     <span class="w-24 shrink-0 text-slate-600"><span class="text-red-500">*</span> 商机阶段</span>
                     <div class="relative flex-1">
                       <select id="detail-stage" class="w-full h-9 pl-3 pr-8 rounded-md border border-slate-200 bg-white appearance-none">
-                        <option value="intent">意向商机</option>
-                        <option value="won">成交商机</option>
-                        <option value="lost">流失商机</option>
+                        <!-- 选项由脚本按商机类型动态填充 -->
                       </select>
                       <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
                     </div>
@@ -352,17 +351,41 @@
       document.getElementById('timeline').innerHTML = renderTimeline(data.steps);
 
       var detailStage = document.getElementById('detail-stage');
-      detailStage.value = data.stageKey;
+      var followForm = document.getElementById('detail-follow-form');
       var contentWrap = document.getElementById('detail-content-wrap');
       var lostWrap = document.getElementById('detail-lost-wrap');
+      var stageKey = data.stageKey;
 
       function updateDetailFollowFields() {
         var lost = detailStage.value === 'lost';
         contentWrap.classList.toggle('hidden', lost);
         lostWrap.classList.toggle('hidden', !lost);
       }
-      detailStage.addEventListener('change', updateDetailFollowFields);
-      updateDetailFollowFields();
+
+      function initDetailFollowForm() {
+        if (stageKey === 'won' || stageKey === 'lost') {
+          followForm.classList.add('hidden');
+          return;
+        }
+        followForm.classList.remove('hidden');
+        var options = stageKey === 'intent'
+          ? [
+              { value: 'intent', label: '意向商机' },
+              { value: 'lost', label: '流失商机' }
+            ]
+          : [
+              { value: 'intent', label: '意向商机' },
+              { value: 'won', label: '成交商机' },
+              { value: 'lost', label: '流失商机' }
+            ];
+        detailStage.innerHTML = options.map(function (o) {
+          return '<option value="' + o.value + '">' + o.label + '</option>';
+        }).join('');
+        detailStage.value = stageKey;
+        detailStage.addEventListener('change', updateDetailFollowFields);
+        updateDetailFollowFields();
+      }
+      initDetailFollowForm();
 
       var idx = order.indexOf(id);
       var prev = idx > 0 ? order[idx - 1] : null;
