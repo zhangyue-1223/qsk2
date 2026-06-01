@@ -479,10 +479,13 @@
               <p id="rank-footnote" class="text-[10px] text-slate-400 mt-3 pt-2 border-t border-slate-100">数据截至 2026-05-26 · 按业绩金额排序</p>
             </section>
 
-            <section class="dash-card p-5">
-              <div class="flex items-center justify-between gap-2 mb-3">
-                <h2 class="sec-title mb-0">销售顾问报单</h2>
-                <div class="flex items-center gap-1">
+            <section class="dash-card p-5" data-order-report-total="20">
+              <div class="flex items-start justify-between gap-2 mb-3">
+                <div class="min-w-0">
+                  <h2 class="sec-title mb-0">销售顾问报单<span id="order-report-count" class="font-semibold text-slate-600">（20）</span></h2>
+                  <p class="text-[10px] text-slate-400 mt-0.5">每日0点更新</p>
+                </div>
+                <div class="flex items-center gap-1 shrink-0">
                   <button type="button" id="order-carousel-prev" class="w-7 h-7 rounded-md border border-slate-200 bg-white text-slate-500 hover:bg-slate-50 flex items-center justify-center cursor-pointer" aria-label="上一条"><i class="fa-solid fa-chevron-left text-xs"></i></button>
                   <button type="button" id="order-carousel-next" class="w-7 h-7 rounded-md border border-slate-200 bg-white text-slate-500 hover:bg-slate-50 flex items-center justify-center cursor-pointer" aria-label="下一条"><i class="fa-solid fa-chevron-right text-xs"></i></button>
                 </div>
@@ -909,6 +912,12 @@
 
         var slides = track.querySelectorAll('.order-carousel-slide');
         var total = slides.length;
+        var countEl = document.getElementById('order-report-count');
+        var reportSection = track.closest('[data-order-report-total]');
+        if (countEl && reportSection) {
+          var reportTotal = reportSection.getAttribute('data-order-report-total');
+          countEl.textContent = '（' + (reportTotal || total) + '）';
+        }
         var index = 0;
         var timer = null;
 
