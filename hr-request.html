@@ -312,9 +312,10 @@
         <div id="panel-onboard" class="hr-form-panel" hidden>
           <div class="mb-4 flex items-center gap-2 border-b border-slate-200 bg-slate-50 px-3 py-2 font-medium text-slate-800"><span class="h-4 w-1 rounded-sm bg-blue-600"></span>基本信息</div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <label class="text-slate-600"><span class="field-req">姓名</span><input type="text" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3" placeholder="请输入" value="孙红"></label>
+            <label class="text-slate-600"><span class="field-req">员工姓名</span><input type="text" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3" placeholder="请输入" value="孙红"></label>
             <label class="text-slate-600"><span class="field-req">所属部门</span><select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 bg-white"><option>政务服务部</option><option>运营支撑部</option><option>销售一组</option></select></label>
-            <label class="text-slate-600"><span class="field-req">入职日期</span><input type="date" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3" value="2026-04-28"></label>
+            <label class="text-slate-600"><span class="field-req">入职日期</span><input type="date" id="onboard-date" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3" value="2026-04-28"></label>
+            <label class="text-slate-600"><span class="field-req">转正日期</span><input type="date" id="onboard-regular-date" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3" value="2026-07-28"></label>
             <label class="text-slate-600"><span class="field-req">所属岗位</span><select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 bg-white"><option>政务员</option><option>运营专员</option><option>销售专员</option></select></label>
             <label class="text-slate-600"><span class="field-req">试用期薪资</span>
               <div class="mt-1 flex items-center gap-2">
@@ -328,6 +329,9 @@
                 <span class="text-slate-500 text-xs sm:text-sm shrink-0">元/月</span>
               </div>
             </label>
+            <label class="text-slate-600">登录账号<input type="text" id="onboard-login-account" class="mt-1 h-9 w-full rounded-md border border-slate-200 bg-slate-50 px-3 text-slate-600" value="sunhong" readonly aria-readonly="true"></label>
+            <label class="text-slate-600"><span class="field-req">登录密码</span><input type="password" id="onboard-login-password" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3" placeholder="请输入登录密码" value=""></label>
+            <label class="text-slate-600"><span class="field-req">合同到期日</span><input type="date" id="onboard-contract-end" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3" value="2029-04-27"></label>
             <label class="text-slate-600 sm:col-span-2"><span class="field-req">入职说明</span><textarea class="mt-1 w-full rounded border border-slate-200 px-3 py-2 min-h-[88px]" placeholder="请填写入职说明"></textarea></label>
             <div class="sm:col-span-2">
               <p class="text-slate-600 mb-2">附件上传</p>
@@ -538,7 +542,7 @@
 
       var typeSamples = {
         recruit: { position: '政务员', count: '2', salaryRange: '6000 - 8000 元/月', onboard: '2026-05-15', duties: '负责政务服务窗口接待、政策咨询与业务办理。', requirements: '大专及以上学历，沟通能力强，有政务服务经验者优先。' },
-        onboard: { name: '孙红', dept: '政务服务部', onboard: '2026-04-28', position: '政务员', probationSalary: '5500 元/月', regularSalary: '7000 元/月', desc: '拟录用为政务员，试用期3个月，试用期结束后根据绩效评估转正。', files: ['入职申请表.pdf'] },
+        onboard: { name: '孙红', dept: '政务服务部', onboard: '2026-04-28', regularDate: '2026-07-28', position: '政务员', probationSalary: '5500 元/月', regularSalary: '7000 元/月', loginAccount: 'sunhong', loginPassword: '******', contractEnd: '2029-04-27', desc: '拟录用为政务员，试用期3个月，试用期结束后根据绩效评估转正。', files: ['入职申请表.pdf'] },
         regular: { onboard: '2025-10-08', position: '政务员', regularType: '到期转正', regularDate: '2026-04-28', desc: '试用期间工作认真负责，熟悉业务流程，能够独立完成窗口服务与材料审核，申请按期转正。', files: ['转正申请表.pdf'] },
         transfer: { fromDept: '政务服务部', fromPos: '政务员', toDept: '运营支撑部', toPos: '运营专员', effective: '2026-05-01', desc: '因业务发展需要，申请调至运营支撑部担任运营专员，已做好工作交接安排。', files: ['调岗申请书.pdf'] },
         resign: { onboard: '2025-10-08', position: '政务员', lastDay: '2026-05-31', reason: '因个人职业规划原因申请离职，承诺在离职前完成工作交接。', files: ['离职申请书.pdf'] }
@@ -571,12 +575,16 @@
           html += gridField('期望到岗日期', s.onboard);
           html += '</div>' + blockField('岗位职责', s.duties) + blockField('任职要求', s.requirements);
         } else if (tp === 'onboard') {
-          html += gridField('姓名', s.name);
+          html += gridField('员工姓名', s.name);
           html += gridField('所属部门', s.dept);
           html += gridField('入职日期', s.onboard);
+          html += gridField('转正日期', s.regularDate);
           html += gridField('所属岗位', s.position);
           html += gridField('试用期薪资', s.probationSalary);
           html += gridField('转正后薪资', s.regularSalary);
+          html += gridField('登录账号', s.loginAccount);
+          html += gridField('登录密码', s.loginPassword);
+          html += gridField('合同到期日', s.contractEnd);
           html += '</div>' + blockField('入职说明', s.desc) + attachField(s.files);
         } else if (tp === 'regular') {
           html += gridField('所属岗位', s.position);

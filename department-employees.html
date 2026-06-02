@@ -17,7 +17,8 @@
     details.dept-tree > summary { list-style: none; }
     details.dept-tree > summary::-webkit-details-marker { display: none; }
     details.dept-tree:not([open]) > summary .tree-chevron { transform: rotate(-90deg); }
-    #modal-new-dept:not(.hidden), #modal-ban:not(.hidden) { display: flex; }
+    #modal-new-dept:not(.hidden), #modal-new-employee:not(.hidden), #modal-ban:not(.hidden) { display: flex; }
+    .field-req::before { content: "* "; color: #ef4444; }
   </style>
 </head>
 <body class="bg-[#f5f7fa] text-slate-700">
@@ -263,7 +264,7 @@
                 </div>
                 <button type="button" class="h-9 rounded-md bg-blue-600 px-4 text-sm text-white hover:bg-blue-700">查询</button>
                 <button type="button" class="h-9 rounded-md border border-slate-200 bg-white px-4 text-sm text-slate-600 hover:bg-slate-50">重置</button>
-                <button type="button" class="h-9 rounded-md border border-slate-200 bg-white px-4 text-sm text-slate-600 hover:bg-slate-50">新建员工</button>
+                <button type="button" id="btn-new-employee" class="h-9 rounded-md border border-slate-200 bg-white px-4 text-sm text-slate-600 hover:bg-slate-50">新建员工</button>
               </div>
             </div>
 
@@ -443,6 +444,73 @@
     </div>
   </div>
 
+  <div id="modal-new-employee" class="fixed inset-0 z-[130] hidden items-center justify-center bg-slate-900/45 p-4" aria-hidden="true" role="dialog" aria-labelledby="modal-new-employee-title">
+    <div class="absolute inset-0" data-close-new-employee></div>
+    <div class="relative w-full max-w-lg rounded-xl border border-slate-200 bg-white shadow-xl max-h-[90vh] flex flex-col overflow-hidden">
+      <div class="relative shrink-0 border-b border-slate-200 px-5 py-4">
+        <h3 id="modal-new-employee-title" class="text-center text-base font-semibold text-slate-800">新建员工</h3>
+        <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600" data-close-new-employee aria-label="关闭"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <div class="flex-1 overflow-y-auto px-5 py-5 text-sm">
+        <div class="space-y-4">
+          <div class="grid grid-cols-[5.5rem_1fr] sm:grid-cols-[88px_1fr] items-center gap-3">
+            <label class="text-right text-slate-600 shrink-0"><span class="field-req">员工姓名</span></label>
+            <input type="text" id="new-emp-name" class="h-9 w-full rounded-md border border-slate-200 px-3 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20" placeholder="请输入员工姓名">
+          </div>
+          <div class="grid grid-cols-[5.5rem_1fr] sm:grid-cols-[88px_1fr] items-center gap-3">
+            <label class="text-right text-slate-600 shrink-0"><span class="field-req">登录账号</span></label>
+            <input type="text" id="new-emp-account" class="h-9 w-full rounded-md border border-slate-200 px-3 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20" placeholder="请输入登录账号">
+          </div>
+          <div class="grid grid-cols-[5.5rem_1fr] sm:grid-cols-[88px_1fr] items-center gap-3">
+            <label class="text-right text-slate-600 shrink-0"><span class="field-req">登录密码</span></label>
+            <input type="password" id="new-emp-password" class="h-9 w-full rounded-md border border-slate-200 px-3 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20" placeholder="请输入登录密码" autocomplete="new-password">
+          </div>
+          <div class="grid grid-cols-[5.5rem_1fr] sm:grid-cols-[88px_1fr] items-center gap-3">
+            <label class="text-right text-slate-600 shrink-0"><span class="field-req">所属部门</span></label>
+            <select id="new-emp-dept" class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 cursor-pointer focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20">
+              <option value="">请选择所属部门</option>
+              <option>网销顾问部</option>
+              <option>网销一组</option>
+              <option>网销二组</option>
+              <option>政务服务部</option>
+              <option>政务一组</option>
+              <option>会计顾问部</option>
+              <option>财务一组</option>
+              <option>运营支撑部</option>
+            </select>
+          </div>
+          <div class="grid grid-cols-[5.5rem_1fr] sm:grid-cols-[88px_1fr] items-center gap-3">
+            <label class="text-right text-slate-600 shrink-0"><span class="field-req">所属岗位</span></label>
+            <select id="new-emp-position" class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 cursor-pointer focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20">
+              <option value="">请选择所属岗位</option>
+              <option>销售主管</option>
+              <option>销售专员</option>
+              <option>政务员</option>
+              <option>运营专员</option>
+              <option>会计顾问</option>
+            </select>
+          </div>
+          <div class="grid grid-cols-[5.5rem_1fr] sm:grid-cols-[88px_1fr] items-center gap-3">
+            <label class="text-right text-slate-600 shrink-0"><span class="field-req">入职日期</span></label>
+            <input type="date" id="new-emp-onboard" class="h-9 w-full rounded-md border border-slate-200 px-3 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20">
+          </div>
+          <div class="grid grid-cols-[5.5rem_1fr] sm:grid-cols-[88px_1fr] items-center gap-3">
+            <label class="text-right text-slate-600 shrink-0"><span class="field-req">转正日期</span></label>
+            <input type="date" id="new-emp-regular" class="h-9 w-full rounded-md border border-slate-200 px-3 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20">
+          </div>
+          <div class="grid grid-cols-[5.5rem_1fr] sm:grid-cols-[88px_1fr] items-center gap-3">
+            <label class="text-right text-slate-600 shrink-0"><span class="field-req">合同到期</span></label>
+            <input type="date" id="new-emp-contract" class="h-9 w-full rounded-md border border-slate-200 px-3 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20">
+          </div>
+        </div>
+      </div>
+      <div class="flex shrink-0 justify-center gap-3 border-t border-slate-100 px-5 py-4">
+        <button type="button" id="btn-new-employee-confirm" class="h-9 min-w-[100px] rounded-md bg-blue-600 px-4 text-sm font-medium text-white hover:bg-blue-700">确认</button>
+        <button type="button" class="h-9 min-w-[100px] rounded-md border border-slate-300 bg-white px-4 text-sm text-slate-600 hover:bg-slate-50" data-close-new-employee>取消</button>
+      </div>
+    </div>
+  </div>
+
   <div id="modal-ban" class="fixed inset-0 z-[130] hidden items-center justify-center bg-slate-900/45 p-4" aria-hidden="true">
     <div class="absolute inset-0" data-close-ban></div>
     <div class="relative w-full max-w-sm rounded-xl border border-slate-200 bg-white shadow-xl p-6">
@@ -495,6 +563,39 @@
         el.addEventListener('click', closeNewDept);
       });
 
+      var newEmployeeModal = document.getElementById('modal-new-employee');
+      var newEmpFormIds = ['new-emp-name', 'new-emp-account', 'new-emp-password', 'new-emp-dept', 'new-emp-position', 'new-emp-onboard', 'new-emp-regular', 'new-emp-contract'];
+
+      function resetNewEmployeeForm() {
+        newEmpFormIds.forEach(function (id) {
+          var el = document.getElementById(id);
+          if (!el) return;
+          if (el.tagName === 'SELECT') el.selectedIndex = 0;
+          else el.value = '';
+        });
+      }
+
+      function openNewEmployee() {
+        resetNewEmployeeForm();
+        var today = new Date().toISOString().slice(0, 10);
+        document.getElementById('new-emp-onboard').value = today;
+        newEmployeeModal.classList.remove('hidden');
+        newEmployeeModal.classList.add('flex');
+        newEmployeeModal.setAttribute('aria-hidden', 'false');
+      }
+
+      function closeNewEmployee() {
+        newEmployeeModal.classList.add('hidden');
+        newEmployeeModal.classList.remove('flex');
+        newEmployeeModal.setAttribute('aria-hidden', 'true');
+      }
+
+      document.getElementById('btn-new-employee').addEventListener('click', openNewEmployee);
+      document.getElementById('btn-new-employee-confirm').addEventListener('click', closeNewEmployee);
+      newEmployeeModal.querySelectorAll('[data-close-new-employee]').forEach(function (el) {
+        el.addEventListener('click', closeNewEmployee);
+      });
+
       var banModal = document.getElementById('modal-ban');
       var banNameEl = document.getElementById('ban-target-name');
       function closeBan() {
@@ -529,6 +630,7 @@
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') {
           if (!newDept.classList.contains('hidden')) closeNewDept();
+          if (!newEmployeeModal.classList.contains('hidden')) closeNewEmployee();
           if (!banModal.classList.contains('hidden')) closeBan();
         }
       });

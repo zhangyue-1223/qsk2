@@ -125,11 +125,8 @@
               <span class="inline-flex h-7 w-7 items-center justify-center rounded-md bg-blue-600 text-white text-xs"><i class="fa-solid fa-filter"></i></span>
               <span class="text-sm font-medium text-slate-700">筛选条件</span>
             </div>
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 items-end">
-              <label class="text-xs text-slate-500 sm:col-span-2 lg:col-span-1">供应商名称
-                <input type="text" id="filter-name" class="sc-filter-input mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm placeholder:text-slate-400" placeholder="请输入供应商名称">
-              </label>
-              <label class="text-xs text-slate-500">提供项目
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 items-end">
+              <label class="text-xs text-slate-500">服务产品
                 <select id="filter-project" class="sc-filter-input mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-600 cursor-pointer">
                   <option value="">全部</option>
                   <option>注册地址</option>
@@ -138,8 +135,8 @@
                   <option>工商变更</option>
                 </select>
               </label>
-              <label class="text-xs text-slate-500">联系人
-                <input type="text" id="filter-contact" class="sc-filter-input mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm placeholder:text-slate-400" placeholder="请输入联系人">
+              <label class="text-xs text-slate-500">供应商名称
+                <input type="text" id="filter-name" class="sc-filter-input mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm placeholder:text-slate-400" placeholder="请输入供应商名称">
               </label>
               <label class="text-xs text-slate-500">所属区域
                 <select id="filter-region" class="sc-filter-input mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-600 cursor-pointer">
@@ -163,15 +160,13 @@
             <table class="w-full min-w-[1400px] text-sm">
               <thead class="bg-slate-50 text-slate-600">
                 <tr>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">服务产品</th>
                   <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">供应商名称</th>
-                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">优势项目</th>
-                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">其他项目</th>
                   <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">所属区域</th>
                   <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">联系人</th>
                   <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">联系电话</th>
                   <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">微信号</th>
                   <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">收款账号</th>
-                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">合作价</th>
                   <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">查看详情</th>
                   <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">操作</th>
                 </tr>
@@ -188,15 +183,13 @@
                     data-wechat="gx_yizhou"
                     data-account="622 2552 1251 2222 2222"
                     data-projects="注册地址,工商变更,政务代办">
+                  <td class="px-3 py-3 border-b border-slate-100 text-slate-600">注册地址 ¥1000；工商变更 ¥800；政务代办 ¥600</td>
                   <td class="px-3 py-3 border-b border-slate-100">苏州一舟电子商务有限公司</td>
-                  <td class="px-3 py-3 border-b border-slate-100">注册地址</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-slate-600">工商变更 ¥800；政务代办 ¥600</td>
                   <td class="px-3 py-3 border-b border-slate-100">苏州市吴中区</td>
                   <td class="px-3 py-3 border-b border-slate-100">耿先生</td>
                   <td class="px-3 py-3 border-b border-slate-100 tabular-nums">15252263036</td>
                   <td class="px-3 py-3 border-b border-slate-100">gx_yizhou</td>
                   <td class="px-3 py-3 border-b border-slate-100 tabular-nums">622 2552 1251 2222 2222</td>
-                  <td class="px-3 py-3 border-b border-slate-100">¥ 1,000</td>
                   <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="js-view-detail text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">查看详情</button></td>
                   <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap">
                     <button type="button" class="js-edit-supplier text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">编辑</button>
@@ -215,15 +208,13 @@
                     data-wechat="canghai_svc"
                     data-account="6217 0000 1234 5678 901"
                     data-projects="代账服务,注册地址">
+                  <td class="px-3 py-3 border-b border-slate-100 text-slate-600">代账服务 ¥2800；注册地址 ¥1200</td>
                   <td class="px-3 py-3 border-b border-slate-100">苏州沧海商务服务有限公司</td>
-                  <td class="px-3 py-3 border-b border-slate-100">代账服务</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-slate-600">注册地址 ¥1200</td>
                   <td class="px-3 py-3 border-b border-slate-100">苏州工业园区</td>
                   <td class="px-3 py-3 border-b border-slate-100">李女士</td>
                   <td class="px-3 py-3 border-b border-slate-100 tabular-nums">13905128899</td>
                   <td class="px-3 py-3 border-b border-slate-100">canghai_svc</td>
                   <td class="px-3 py-3 border-b border-slate-100 tabular-nums">6217 0000 1234 5678 901</td>
-                  <td class="px-3 py-3 border-b border-slate-100">¥ 2,800/年</td>
                   <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="js-view-detail text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">查看详情</button></td>
                   <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap">
                     <button type="button" class="js-edit-supplier text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">编辑</button>
@@ -242,15 +233,13 @@
                     data-wechat="zhizheng_ks"
                     data-account="6228 4800 9988 7766 5544"
                     data-projects="政务代办">
+                  <td class="px-3 py-3 border-b border-slate-100 text-slate-600">政务代办 ¥1500</td>
                   <td class="px-3 py-3 border-b border-slate-100">昆山智政代办中心</td>
-                  <td class="px-3 py-3 border-b border-slate-100">政务代办</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
                   <td class="px-3 py-3 border-b border-slate-100">苏州昆山市</td>
                   <td class="px-3 py-3 border-b border-slate-100">王经理</td>
                   <td class="px-3 py-3 border-b border-slate-100 tabular-nums">13706228866</td>
                   <td class="px-3 py-3 border-b border-slate-100">zhizheng_ks</td>
                   <td class="px-3 py-3 border-b border-slate-100 tabular-nums">6228 4800 9988 7766 5544</td>
-                  <td class="px-3 py-3 border-b border-slate-100">¥ 1,500</td>
                   <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="js-view-detail text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">查看详情</button></td>
                   <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap">
                     <button type="button" class="js-edit-supplier text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">编辑</button>
@@ -285,25 +274,11 @@
           <label class="text-right text-slate-600 shrink-0">供应商名称 <span class="text-red-500">*</span></label>
           <input type="text" id="form-name" class="h-9 w-full rounded-md border border-slate-200 px-3 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20" placeholder="请输入供应商名称">
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-[7.5rem_1fr] items-center gap-x-4 gap-y-3">
-          <label class="text-right text-slate-600 shrink-0">优势项目 <span class="text-red-500">*</span></label>
-          <select id="form-advantage" class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 cursor-pointer focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20">
-            <option value="">请选择优势项目</option>
-            <option>注册地址</option>
-            <option>代账服务</option>
-            <option>政务代办</option>
-            <option>工商变更</option>
-          </select>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-[7.5rem_1fr] items-center gap-x-4 gap-y-3">
-          <label class="text-right text-slate-600 shrink-0">合作价</label>
-          <input type="text" id="form-advantage-price" class="h-9 w-full rounded-md border border-slate-200 px-3 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20" placeholder="请输入合作价">
-        </div>
         <div class="grid grid-cols-1 sm:grid-cols-[7.5rem_1fr] items-start gap-x-4 gap-y-3">
-          <span class="text-right text-slate-600 shrink-0 sm:pt-2">其他项目</span>
+          <span class="text-right text-slate-600 shrink-0 sm:pt-2">服务产品 <span class="text-red-500">*</span></span>
           <div class="space-y-2 min-w-0">
-            <div id="other-projects-list" class="space-y-2"></div>
-            <button type="button" id="btn-add-other-project" class="text-sm text-blue-600 hover:text-blue-700 hover:underline cursor-pointer inline-flex items-center gap-1"><i class="fa-solid fa-plus text-xs"></i>添加其他项目</button>
+            <div id="service-products-list" class="space-y-2"></div>
+            <button type="button" id="btn-add-service-product" class="text-sm text-blue-600 hover:text-blue-700 hover:underline cursor-pointer inline-flex items-center gap-1"><i class="fa-solid fa-plus text-xs"></i>添加服务产品</button>
           </div>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-[7.5rem_1fr] items-center gap-x-4 gap-y-3">
@@ -366,17 +341,17 @@
     </div>
   </div>
 
-  <template id="tpl-other-project-row">
+  <template id="tpl-service-product-row">
     <div class="other-project-row w-full">
-      <select class="other-project-select h-9 flex-1 min-w-[8rem] rounded-md border border-slate-200 bg-white px-3 text-sm cursor-pointer">
-        <option value="">请选择项目</option>
+      <select class="service-product-select h-9 flex-1 min-w-[8rem] rounded-md border border-slate-200 bg-white px-3 text-sm cursor-pointer">
+        <option value="">请选择服务产品</option>
         <option>注册地址</option>
         <option>代账服务</option>
         <option>政务代办</option>
         <option>工商变更</option>
       </select>
-      <input type="text" class="other-project-price h-9 w-28 rounded-md border border-slate-200 px-3 text-sm" placeholder="合作价">
-      <button type="button" class="js-remove-other-project h-9 px-3 rounded-md border border-slate-200 text-slate-500 hover:bg-red-50 hover:text-red-600 hover:border-red-200 cursor-pointer text-sm shrink-0" title="删除"><i class="fa-solid fa-trash-can"></i></button>
+      <input type="text" class="service-product-price h-9 w-28 rounded-md border border-slate-200 px-3 text-sm" placeholder="合作价">
+      <button type="button" class="js-remove-service-product h-9 px-3 rounded-md border border-slate-200 text-slate-500 hover:bg-red-50 hover:text-red-600 hover:border-red-200 cursor-pointer text-sm shrink-0" title="删除"><i class="fa-solid fa-trash-can"></i></button>
     </div>
   </template>
 
@@ -386,8 +361,8 @@
       var detailModal = document.getElementById('modal-supplier-detail');
       var delModal = document.getElementById('modal-delete');
       var titleForm = document.getElementById('modal-form-title');
-      var otherList = document.getElementById('other-projects-list');
-      var tplOther = document.getElementById('tpl-other-project-row');
+      var serviceProductsList = document.getElementById('service-products-list');
+      var tplServiceProduct = document.getElementById('tpl-service-product-row');
       var editingRow = null;
       var deleteRow = null;
 
@@ -395,11 +370,11 @@
         try { return JSON.parse(raw || '[]'); } catch (e) { return []; }
       }
 
-      function formatOtherText(list) {
-        if (!list.length) return '—';
-        return list.map(function (o) {
-          return o.project + (o.price ? ' ¥' + o.price : '');
-        }).join('；');
+      function getAllServiceProducts(d) {
+        var items = [];
+        if (d.advantage) items.push({ project: d.advantage, price: d.advantagePrice });
+        (d.other || []).forEach(function (o) { items.push(o); });
+        return items;
       }
 
       function formatPriceDisplay(price) {
@@ -422,35 +397,40 @@
         };
       }
 
-      function createOtherRow(project, price) {
-        var node = tplOther.content.cloneNode(true);
+      function createServiceProductRow(project, price) {
+        var node = tplServiceProduct.content.cloneNode(true);
         var row = node.querySelector('.other-project-row');
-        var sel = row.querySelector('.other-project-select');
-        var inp = row.querySelector('.other-project-price');
+        var sel = row.querySelector('.service-product-select');
+        var inp = row.querySelector('.service-product-price');
         if (project) sel.value = project;
         if (price) inp.value = price;
-        row.querySelector('.js-remove-other-project').addEventListener('click', function () {
+        row.querySelector('.js-remove-service-product').addEventListener('click', function () {
           row.remove();
         });
         return row;
       }
 
-      function clearOtherProjects() {
-        otherList.innerHTML = '';
+      function clearServiceProducts() {
+        serviceProductsList.innerHTML = '';
       }
 
-      function fillOtherProjects(list) {
-        clearOtherProjects();
-        (list || []).forEach(function (item) {
-          otherList.appendChild(createOtherRow(item.project, item.price));
+      function fillServiceProducts(d) {
+        clearServiceProducts();
+        var items = getAllServiceProducts(d);
+        if (!items.length) {
+          serviceProductsList.appendChild(createServiceProductRow('', ''));
+          return;
+        }
+        items.forEach(function (item) {
+          serviceProductsList.appendChild(createServiceProductRow(item.project, item.price));
         });
       }
 
-      function collectOtherProjects() {
+      function collectServiceProducts() {
         var items = [];
-        otherList.querySelectorAll('.other-project-row').forEach(function (row) {
-          var project = row.querySelector('.other-project-select').value;
-          var price = row.querySelector('.other-project-price').value.trim();
+        serviceProductsList.querySelectorAll('.other-project-row').forEach(function (row) {
+          var project = row.querySelector('.service-product-select').value;
+          var price = row.querySelector('.service-product-price').value.trim();
           if (project) items.push({ project: project, price: price });
         });
         return items;
@@ -462,21 +442,19 @@
         if (row) {
           var d = getRowData(row);
           document.getElementById('form-name').value = d.name;
-          document.getElementById('form-advantage').value = d.advantage;
-          document.getElementById('form-advantage-price').value = d.advantagePrice;
           document.getElementById('form-region').value = d.region;
           document.getElementById('form-contact').value = d.contact;
           document.getElementById('form-phone').value = d.phone;
           document.getElementById('form-wechat').value = d.wechat;
           document.getElementById('form-account').value = d.account;
-          fillOtherProjects(d.other);
+          fillServiceProducts(d);
         } else {
-          ['form-name', 'form-advantage-price', 'form-contact', 'form-phone', 'form-wechat', 'form-account'].forEach(function (id) {
+          ['form-name', 'form-contact', 'form-phone', 'form-wechat', 'form-account'].forEach(function (id) {
             document.getElementById(id).value = '';
           });
-          document.getElementById('form-advantage').selectedIndex = 0;
           document.getElementById('form-region').selectedIndex = 0;
-          clearOtherProjects();
+          clearServiceProducts();
+          serviceProductsList.appendChild(createServiceProductRow('', ''));
         }
         formModal.classList.remove('hidden');
         formModal.classList.add('flex');
@@ -491,22 +469,20 @@
       }
 
       function buildDetailHtml(d) {
-        var otherHtml = d.other.length
-          ? '<ul class="list-disc pl-4 space-y-1">' + d.other.map(function (o) {
-              return '<li>' + o.project + ' — 合作价：' + (o.price || '—') + '</li>';
+        var productsHtml = getAllServiceProducts(d).length
+          ? '<ul class="list-disc pl-4 space-y-1">' + getAllServiceProducts(d).map(function (o) {
+              return '<li>' + o.project + ' — 合作价：' + (o.price ? formatPriceDisplay(o.price) : '—') + '</li>';
             }).join('') + '</ul>'
           : '<p class="detail-value text-slate-400">无</p>';
         return ''
           + '<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">'
           + '<div><p class="detail-label">供应商名称</p><p class="detail-value">' + (d.name || '—') + '</p></div>'
-          + '<div><p class="detail-label">优势项目</p><p class="detail-value">' + (d.advantage || '—') + '</p></div>'
-          + '<div><p class="detail-label">合作价（优势项目）</p><p class="detail-value">' + formatPriceDisplay(d.advantagePrice) + '</p></div>'
           + '<div><p class="detail-label">所属区域</p><p class="detail-value">' + (d.region || '—') + '</p></div>'
           + '<div><p class="detail-label">联系人</p><p class="detail-value">' + (d.contact || '—') + '</p></div>'
           + '<div><p class="detail-label">联系电话</p><p class="detail-value tabular-nums">' + (d.phone || '—') + '</p></div>'
           + '<div><p class="detail-label">微信号</p><p class="detail-value">' + (d.wechat || '—') + '</p></div>'
           + '<div class="sm:col-span-2"><p class="detail-label">收款账号</p><p class="detail-value tabular-nums">' + (d.account || '—') + '</p></div>'
-          + '<div class="sm:col-span-2"><p class="detail-label">其他项目</p>' + otherHtml + '</div>'
+          + '<div class="sm:col-span-2"><p class="detail-label">服务产品</p>' + productsHtml + '</div>'
           + '</div>';
       }
 
@@ -526,7 +502,6 @@
       function applyFilter() {
         var name = (document.getElementById('filter-name').value || '').trim().toLowerCase();
         var project = document.getElementById('filter-project').value;
-        var contact = (document.getElementById('filter-contact').value || '').trim().toLowerCase();
         var region = document.getElementById('filter-region').value;
         document.querySelectorAll('.supplier-row').forEach(function (row) {
           var show = true;
@@ -535,7 +510,6 @@
             var projects = (row.dataset.projects || '').split(',');
             if (projects.indexOf(project) === -1 && row.dataset.advantage !== project) show = false;
           }
-          if (contact && (row.dataset.contact || '').toLowerCase().indexOf(contact) === -1) show = false;
           if (region && row.dataset.region !== region) show = false;
           row.style.display = show ? '' : 'none';
         });
@@ -545,8 +519,8 @@
         openFormModal('add');
       });
 
-      document.getElementById('btn-add-other-project').addEventListener('click', function () {
-        otherList.appendChild(createOtherRow('', ''));
+      document.getElementById('btn-add-service-product').addEventListener('click', function () {
+        serviceProductsList.appendChild(createServiceProductRow('', ''));
       });
 
       document.querySelectorAll('[data-close-form]').forEach(function (el) {
