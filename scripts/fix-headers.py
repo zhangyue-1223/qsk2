@@ -84,8 +84,8 @@ if "rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200" not in t.split(
         1,
     )
     t = t.replace(
-        '        <div class="text-sm text-slate-500 min-w-0 truncate">交付中心 / <span class="text-slate-700 font-medium">客户物品</span></div>\n        </div>\n      </header>',
-        '          <div class="text-sm text-slate-500 min-w-0 truncate">交付中心 / <span class="text-slate-700 font-medium">客户物品</span></div>\n        </div>\n'
+        '        <div class="text-sm text-slate-500 min-w-0 truncate">客户中心 / <span class="text-slate-700 font-medium">客户物品</span></div>\n        </div>\n      </header>',
+        '          <div class="text-sm text-slate-500 min-w-0 truncate">客户中心 / <span class="text-slate-700 font-medium">客户物品</span></div>\n        </div>\n'
         + USER
         + "\n      </header>",
     )
