@@ -14,7 +14,7 @@
     .gov-tab { border-bottom: 2px solid transparent; padding-bottom: 0.5rem; margin-bottom: -1px; color: #64748b; }
     .gov-tab:hover { color: #334155; }
     .gov-tab-active { border-bottom-color: #2563eb; color: #2563eb; font-weight: 600; }
-    #modal-new-order:not(.hidden), #modal-dispatch:not(.hidden), #modal-progress:not(.hidden) { display: flex; }
+    #modal-new-order:not(.hidden), #modal-dispatch:not(.hidden), #modal-progress:not(.hidden), #modal-material-confirm:not(.hidden) { display: flex; }
     .gov-days-badge { display: inline-block; padding: 0.125rem 0.625rem; font-size: 0.8125rem; line-height: 1.25rem; border-radius: 0.25rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
     .gov-days-normal { background: #dcfce7; color: #166534; }
     .gov-days-warning { background: #ffedd5; color: #c2410c; }
@@ -295,7 +295,7 @@
                   <td class="px-3 py-3 border-b border-slate-100">2026-03-21 16:03</td>
                   <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
                   <td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="government-affairs-detail.html?id=gov-2">查看详情</a></td>
-                  <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap"><button type="button" class="text-blue-600 hover:underline js-progress">添加进度</button></td>
+                  <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap"><button type="button" class="text-blue-600 hover:underline js-material-confirm">资料确认</button></td>
                 </tr>
                 <tr class="hover:bg-slate-50 gov-row" data-status="doing"
                     data-id="gov-3"
@@ -560,6 +560,35 @@
     </div>
   </div>
 
+  <!-- 资料确认 -->
+  <div id="modal-material-confirm" class="fixed inset-0 z-[130] hidden items-center justify-center bg-slate-900/45 p-4" role="dialog" aria-labelledby="modal-material-confirm-title">
+    <div class="absolute inset-0" data-close-material-confirm></div>
+    <div class="relative w-full max-w-lg rounded-xl border border-slate-200 bg-white shadow-xl">
+      <div class="relative border-b border-slate-200 px-5 py-4">
+        <h3 id="modal-material-confirm-title" class="text-center text-base font-semibold text-slate-800">资料确认</h3>
+        <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600" data-close-material-confirm aria-label="关闭"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <div class="px-6 py-5 space-y-4 text-sm">
+        <div>
+          <label class="block text-slate-600 mb-2">客户资料 <span class="text-red-500">*</span></label>
+          <select id="material-confirm-status" class="h-9 w-full rounded-md border border-slate-200 px-3 bg-white text-slate-700 cursor-pointer">
+            <option value="未交接">未交接</option>
+            <option value="已交接">已交接</option>
+            <option value="部分交接" selected>部分交接</option>
+          </select>
+        </div>
+        <div id="material-supplement-wrap">
+          <label class="block text-slate-600 mb-2">补全说明 <span class="text-red-500">*</span></label>
+          <textarea id="material-supplement-note" class="w-full min-h-[88px] rounded-md border border-slate-200 px-3 py-2 resize-none" placeholder="请填写需补全的资料说明"></textarea>
+        </div>
+      </div>
+      <div class="flex justify-center gap-3 border-t border-slate-100 px-5 py-4">
+        <button type="button" id="btn-confirm-material" class="h-9 min-w-[90px] rounded-md bg-blue-600 text-white text-sm hover:bg-blue-700 cursor-pointer">确认</button>
+        <button type="button" class="h-9 min-w-[90px] rounded-md border border-slate-300 bg-white text-sm text-slate-600 hover:bg-slate-50 cursor-pointer" data-close-material-confirm>取消</button>
+      </div>
+    </div>
+  </div>
+
   <!-- 移交工单 -->
   <div id="modal-transfer-gov" class="fixed inset-0 z-[130] hidden items-center justify-center bg-slate-900/45 p-4">
     <div class="absolute inset-0" data-close-transfer-gov></div>
@@ -608,6 +637,10 @@
       var modalNew = document.getElementById('modal-new-order');
       var modalDispatch = document.getElementById('modal-dispatch');
       var modalProgress = document.getElementById('modal-progress');
+      var modalMaterialConfirm = document.getElementById('modal-material-confirm');
+      var materialStatusSelect = document.getElementById('material-confirm-status');
+      var materialSupplementWrap = document.getElementById('material-supplement-wrap');
+      var materialSupplementNote = document.getElementById('material-supplement-note');
       var modalTransferGov = document.getElementById('modal-transfer-gov');
       var toast = document.getElementById('gov-toast');
       var toastTimer;
@@ -672,6 +705,56 @@
           modalDispatch.classList.remove('flex');
         });
       });
+
+      function toggleMaterialSupplement() {
+        if (!materialStatusSelect || !materialSupplementWrap) return;
+        var v = materialStatusSelect.value;
+        var show = v === '未交接' || v === '部分交接';
+        materialSupplementWrap.classList.toggle('hidden', !show);
+      }
+
+      function openMaterialConfirmModal(row) {
+        if (!modalMaterialConfirm) return;
+        if (materialStatusSelect && row) {
+          var mat = row.getAttribute('data-material') || '未交接';
+          if (['未交接', '已交接', '部分交接'].indexOf(mat) !== -1) {
+            materialStatusSelect.value = mat;
+          }
+        }
+        if (materialSupplementNote) materialSupplementNote.value = '';
+        toggleMaterialSupplement();
+        modalMaterialConfirm.classList.remove('hidden');
+        modalMaterialConfirm.classList.add('flex');
+      }
+
+      function closeMaterialConfirmModal() {
+        if (!modalMaterialConfirm) return;
+        modalMaterialConfirm.classList.add('hidden');
+        modalMaterialConfirm.classList.remove('flex');
+      }
+
+      if (materialStatusSelect) {
+        materialStatusSelect.addEventListener('change', toggleMaterialSupplement);
+      }
+
+      document.querySelectorAll('.js-material-confirm').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          openMaterialConfirmModal(btn.closest('.gov-row'));
+        });
+      });
+
+      if (modalMaterialConfirm) {
+        modalMaterialConfirm.querySelectorAll('[data-close-material-confirm]').forEach(function (el) {
+          el.addEventListener('click', closeMaterialConfirmModal);
+        });
+        var btnConfirmMaterial = document.getElementById('btn-confirm-material');
+        if (btnConfirmMaterial) {
+          btnConfirmMaterial.addEventListener('click', function () {
+            closeMaterialConfirmModal();
+            showToast('资料确认已保存');
+          });
+        }
+      }
 
       document.querySelectorAll('.js-progress').forEach(function (btn) {
         btn.addEventListener('click', function () {
@@ -759,6 +842,7 @@
         modalNew.classList.add('hidden'); modalNew.classList.remove('flex');
         modalDispatch.classList.add('hidden'); modalDispatch.classList.remove('flex');
         modalProgress.classList.add('hidden'); modalProgress.classList.remove('flex');
+        closeMaterialConfirmModal();
       });
     })();
   </script>
